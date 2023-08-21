@@ -1,23 +1,8 @@
-import { useState, useEffect } from "react"
-import axios from "axios"
-
-export default function Home() {
-  const [characters, setCharacters] = useState([])
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:4242/characters")
-      .then((res) => setCharacters(res.data))
-  }, [])
-
+const Home = () => {
   return (
-    <header className="App-header">
-      {characters.map((character) => (
-        <>
-          <img src={character.imgUrl} alt={character.name} />
-          <p>{character.firstname}</p>
-        </>
-      ))}
-    </header>
+    <div>
+      <h1>Je suis dans la page Home</h1>
+    </div>
   )
 }
+export default Home

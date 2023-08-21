@@ -1,12 +1,24 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Home from "./pages/Home"
+import Boutique from "./pages/Boutique"
+import Formulaire from "./pages/Formulaire"
+import NavBar from "./components/Navbar"
 
 import "./App.css"
+import Createurs from "./pages/Createurs"
 
 function App() {
   return (
     <div className="App">
-      <Home />
-      <p>coucou</p>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Boutique" element={<Boutique />} />
+          <Route path="/Formulaire" element={<Formulaire />} />
+          <Route path="/Createurs" element={<Createurs />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }
