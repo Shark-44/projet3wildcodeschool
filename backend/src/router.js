@@ -19,6 +19,10 @@ router.get("/utilisateur/:id", utilisateurControllers.read)
 router.post("/utilisateur", utilisateurControllers.add)
 router.put("/utilisateur/:id", utilisateurControllers.edit)
 router.delete("/utilisateur/:id", utilisateurControllers.destroy)
+router.get(
+  "/utilisateur/with/categorie",
+  utilisateurControllers.readUtilisateurWithCategorie
+)
 
 router.get("/objets", objetsControllers.browse)
 router.get("/objets/:id", objetsControllers.read)

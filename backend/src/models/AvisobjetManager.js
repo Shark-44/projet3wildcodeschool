@@ -7,24 +7,24 @@ class AvisobjetManager extends AbstractManager {
 
   insert(avisobjet) {
     return this.database.query(
-      `insert into ${this.table} (Utilisateur_id, Objet_id, description, date) values (?,?,?,?)`,
+      `insert into ${this.table} (Utilisateur_id, Objet_id, avis_objet, date_avis_objet) values (?,?,?,?)`,
       [
         avisobjet.Utilisateur_id,
         avisobjet.Objet_id,
-        avisobjet.description,
-        avisobjet.date,
+        avisobjet.avis_objet,
+        avisobjet.date_avis_objet,
       ]
     )
   }
 
   update(avisobjet) {
     return this.database.query(
-      `update ${this.table} set Utilisateur_id = ?, Objet_id =? description = ?, date = ? where id = ?`,
+      `update ${this.table} set Utilisateur_id = ?, Objet_id =? avis_objet = ?, date_avis_objet = ? `,
       [
         avisobjet.Utilisateur_id,
         avisobjet.Objet_id1,
-        avisobjet.description,
-        avisobjet.date,
+        avisobjet.avis_objet,
+        avisobjet.date_avis_objet,
       ]
     )
   }

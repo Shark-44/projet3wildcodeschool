@@ -80,10 +80,26 @@ const destroy = (req, res) => {
     })
 }
 
+const readUtilisateurWithCategorie = (req, res) => {
+  models.utilisateur
+    .readUtilisateurWithCategorie()
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404)
+      } else {
+        res.send(rows)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
 module.exports = {
   browse,
   add,
   read,
   edit,
   destroy,
+  readUtilisateurWithCategorie,
 }

@@ -11,8 +11,11 @@ function Boutique() {
       <h1>Je suis dans la Boutique</h1>
       {objets.map((objet) => (
         <div key={objet.id}>
-          <img src={`http://localhost:4242${objet.photo_1}`} alt={objet.nom} />
-          <p>{objet.nom}</p>
+          <img
+            src={`http://localhost:4242${objet.photo_1}`}
+            alt={objet.nom_objet}
+          />
+          <p>{objet.nom_objet}</p>
         </div>
       ))}
     </div>

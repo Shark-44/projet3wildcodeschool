@@ -35,8 +35,8 @@ DROP TABLE IF EXISTS `avis_objet`;
 CREATE TABLE `avis_objet` (
   `Utilisateur_id` int NOT NULL,
   `Objets_id` int NOT NULL,
-  `description` varchar(500) DEFAULT NULL,
-  `date` date DEFAULT NULL,
+  `avis_objet` varchar(500) DEFAULT NULL,
+  `date_avis_objet` date DEFAULT NULL,
   PRIMARY KEY (`Utilisateur_id`,`Objets_id`),
   KEY `fk_Utilisateur_has_Objets1_Objets1_idx` (`Objets_id`),
   KEY `fk_Utilisateur_has_Objets1_Utilisateur1_idx` (`Utilisateur_id`),
@@ -65,8 +65,8 @@ DROP TABLE IF EXISTS `avis_utilisateur`;
 CREATE TABLE `avis_utilisateur` (
   `Utilisateur_id` int NOT NULL,
   `Utilisateur_id1` int NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `date` date DEFAULT NULL,
+  `avis_createur` varchar(255) DEFAULT NULL,
+  `date_avis` date DEFAULT NULL,
   PRIMARY KEY (`Utilisateur_id`,`Utilisateur_id1`),
   KEY `fk_Utilisateur_has_Utilisateur_Utilisateur2_idx` (`Utilisateur_id1`),
   KEY `fk_Utilisateur_has_Utilisateur_Utilisateur1_idx` (`Utilisateur_id`),
@@ -94,7 +94,7 @@ DROP TABLE IF EXISTS `categorie`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `categorie` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(45) DEFAULT NULL,
+  `type` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -146,9 +146,9 @@ DROP TABLE IF EXISTS `commande`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `commande` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `numero` INT(6) ZEROFILL NULL,
+  `numero` int(6) unsigned zerofill DEFAULT NULL,
   `Utilisateur_id` int NOT NULL,
-  `prix total` int DEFAULT NULL,
+  `prix_total` int DEFAULT NULL,
   PRIMARY KEY (`id`,`Utilisateur_id`),
   KEY `fk_Commande_Utilisateur1_idx` (`Utilisateur_id`),
   CONSTRAINT `fk_Commande_Utilisateur1` FOREIGN KEY (`Utilisateur_id`) REFERENCES `utilisateur` (`id`)
@@ -161,7 +161,7 @@ CREATE TABLE `commande` (
 
 LOCK TABLES `commande` WRITE;
 /*!40000 ALTER TABLE `commande` DISABLE KEYS */;
-INSERT INTO `commande` VALUES (1,'1',1,42),(2,'2',5,65),(3,'3',6,101),(4,'4',7,109),(5,'5',8,106),(6,'6',9,68);
+INSERT INTO `commande` VALUES (1,000001,1,42),(2,000002,5,65),(3,000003,6,101),(4,000004,7,109),(5,000005,8,106),(6,000006,9,68);
 /*!40000 ALTER TABLE `commande` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,8 +175,8 @@ DROP TABLE IF EXISTS `commande_has_objets`;
 CREATE TABLE `commande_has_objets` (
   `Commande_id` int NOT NULL AUTO_INCREMENT,
   `Objets_id` int NOT NULL,
-  `quantite` varchar(250) DEFAULT NULL,
-  `date` date DEFAULT NULL,
+  `quantite_commande` varchar(250) DEFAULT NULL,
+  `date_commande` date DEFAULT NULL,
   PRIMARY KEY (`Commande_id`,`Objets_id`),
   KEY `fk_Commande_has_Objets_Objets1_idx` (`Objets_id`),
   KEY `fk_Commande_has_Objets_Commande1_idx` (`Commande_id`),
@@ -204,12 +204,12 @@ DROP TABLE IF EXISTS `objets`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `objets` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(250) DEFAULT NULL,
+  `nom_objet` varchar(250) DEFAULT NULL,
   `prix` int DEFAULT NULL,
   `quantité` int DEFAULT NULL,
   `photo_1` varchar(250) DEFAULT NULL,
   `photo_2` varchar(250) DEFAULT NULL,
-  `description` varchar(250) DEFAULT NULL,
+  `description_objet` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -234,7 +234,7 @@ DROP TABLE IF EXISTS `panier`;
 CREATE TABLE `panier` (
   `Utilisateur_id` int NOT NULL,
   `Objets_id` int NOT NULL,
-  `quantité` int DEFAULT NULL,
+  `quantité_panier` int DEFAULT NULL,
   PRIMARY KEY (`Utilisateur_id`,`Objets_id`),
   KEY `fk_Utilisateur_has_Objets1_Objets2_idx` (`Objets_id`),
   KEY `fk_Utilisateur_has_Objets1_Utilisateur2_idx` (`Utilisateur_id`),
@@ -266,11 +266,11 @@ CREATE TABLE `utilisateur` (
   `email` varchar(250) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
   `adresse` varchar(250) DEFAULT NULL,
-  `Createur` tinyint DEFAULT NULL,
+  `createur` tinyint DEFAULT NULL,
   `photo` varchar(250) DEFAULT NULL,
-  `Description_createur` varchar(255) DEFAULT NULL,
+  `description_createur` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -279,7 +279,7 @@ CREATE TABLE `utilisateur` (
 
 LOCK TABLES `utilisateur` WRITE;
 /*!40000 ALTER TABLE `utilisateur` DISABLE KEYS */;
-INSERT INTO `utilisateur` VALUES (1,'Extraterrestre','Casimir','casimir@aol.fr','1234','Ile aux enfants',0,'..\\assets\\images\\avatar\\Casimir.jpg',NULL),(2,'Gribouille','pierre','p.gribouille@aol.fr','1234','58 boulevard des artistes 75000 Paris',1,'..\\assets\\images\\avatar\\Pierre.png','Depuis de nombreuse années je fais des illustrations et je mets ma passion a votre service'),(3,'Mirabel','Marie','m.miabel@aol','1234',' 12 des jardins 75000 Paris',1,'..\\assets\\images\\avatar\\Marie.png','Ancienne costumiere de theatre j\'ai tout changé pour un plaisir des jeux'),(4,'Minimoys','Arthur','A.minimoys','1234','place du jardin 75000Paris',1,'..\\assets\\images\\avatar\\Arthur.jpg','Fan d\'aventure et de jeu de role j\'ai du vous ressortir mes vielles cartes non explorées'),(5,'Aux fraises','Charlotte','charlottes@aol.fr','1234','pays magique',0,'..\\assets\\images\\avatar\\Charlotte.jpg',NULL),(6,'Montmirail','Hubert','h.montmirail@aol.fr','1234','chateau de Montmirail52000Montmirail',0,'..\\assets\\images\\avatar\\Hubert.jpg',NULL),(7,'Sawyer','Tom','t.sawyer@aol.fr','1234','bord du mississipi',0,'..\\assets\\images\\avatar\\Tom.jpg',NULL),(8,'Neige','Candy','n.candy@aol.fr','1234','1 impasse de la tristesse 75000 Paris',0,'..c\\assets\\images\\avatar\\Candy.jpg',NULL),(9,'d\'Euphore','Actarus','Actarus.Euphore@aol.fr','1234','7 route du centre 75000 Paris',0,'..\\assets\\images\\avatar\\Actarus.jpg',NULL),(10,'Alpe','Heidi','A.Heidi@aol','1234','le chalet des Alpes',1,'..\\assets\\images\\avatar\\Hubert.jpg','Dans mes montagnes j\'ai du tres tot apprendre toute sorte de choses et mes petites mains sont magiques'),(11,'Corsaire','Albator','Albator.corsaire@aol.fr','1234','Atlantis',1,'..\\assets\\images\\avatar\\Albator.jpg','Ma passion pour l\'aventure et les objets 3D aggrandiira votre experience'),(12,'Pirate','Cobra','cobra@aol.fr','1234','Ici et la',1,'..\\assets\\images\\avatar\\Cobra.jpg','De mes voyages je vous ramene cette experience de la 3D');
+INSERT INTO `utilisateur` VALUES (1,'Extraterrestre','Casimir','casimir@aol.fr','1234','Ile aux enfants',0,'/assets/images/avatar/Casimir.jpg',NULL),(2,'Gribouille','pierre','p.gribouille@aol.fr','1234','58 boulevard des artistes 75000 Paris',1,'/assets/images/avatar/Pierre.png','Depuis de nombreuse années je fais des illustrations et je mets ma passion a votre service'),(3,'Crewe','Sarah','S.crewe@aol.fr','1234',' 12 des jardins 75000 Paris',1,'/assets/images/avatar/Sarah.jpg','Ancienne costumiere de theatre j\'ai tout changé pour un plaisir des jeux'),(4,'Curtis','Flam','capitainflam@aol.fr','1234','place du jardin 75000Paris',1,'/assets/images/avatar/Flam.jpg','Fan d\'aventure et de jeu de role j\'ai du vous ressortir mes vielles cartes non explorées'),(5,'Aux fraises','Charlotte','charlottes@aol.fr','1234','pays magique',0,'/assets/images/avatar/Charlotte.jpg',NULL),(6,'Larson','Nicky','h.montmirail@aol.fr','1234','city hunter 75000 Paris',0,'/assets/images/avatar/Nicky.jpg',NULL),(7,'Sawyer','Tom','t.sawyer@aol.fr','1234','bord du mississipi',0,'/assets/images/avatar/Tom.jpg',NULL),(8,'Neige','Candy','n.candy@aol.fr','1234','1 impasse de la tristesse 75000 Paris',0,'/assets/images/avatar/Candy.jpg',NULL),(9,'d\'Euphore','Actarus','Actarus.Euphore@aol.fr','1234','7 route du centre 75000 Paris',0,'/assets/images/avatar/Actarus.jpg',NULL),(10,'Alpe','Heidi','A.Heidi@aol','1234','le chalet des Alpes',1,'/assets/images/avatar/Heidi.jpg','Dans mes montagnes j\'ai du tres tot apprendre toute sorte de choses et mes petites mains sont magiques'),(11,'Corsaire','Albator','Albator.corsaire@aol.fr','1234','Atlantis',1,'/assets/images/avatar/Albator.jpg','Ma passion pour l\'aventure et les objets 3D aggrandiira votre experience'),(12,'Pirate','Cobra','cobra@aol.fr','1234','Ici et la',1,'/assets/images/avatar/Cobra.jpg','De mes voyages je vous ramene cette experience de la 3D');
 /*!40000 ALTER TABLE `utilisateur` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -348,4 +348,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-12 13:44:29
+-- Dump completed on 2023-08-24 16:39:45

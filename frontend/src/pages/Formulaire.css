@@ -1,21 +1,20 @@
-.contenair{
-display: flex;
-flex-direction: column;
-align-items: center;
+.contenair {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.general{
-    margin:30px
-
+.general {
+  margin: 30px;
 }
-input{
-    margin-top: 10px;
+input {
+  margin-top: 10px;
 }
-.description{
-    height: 150px;
+.description {
+  height: 150px;
 }
-.icone{
-    margin-top: 10px;
-    border-radius: 15px;
-    height: 150px;
-    width: 150px;
+.icone {
+  margin-top: 10px;
+  border-radius: 15px;
+  height: 150px;
+  width: 150px;
 }
