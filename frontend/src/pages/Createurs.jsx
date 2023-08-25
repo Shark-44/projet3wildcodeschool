@@ -11,7 +11,7 @@ function Createurs() {
       .get("http://localhost:4242/utilisateur/with/categorie")
       .then((res) => setCreateurs(res.data))
   }, [])
-  console.log(filter)
+
   return (
     <div className="container">
       <h1> Je suis la page createurs</h1>
