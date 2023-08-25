@@ -1,0 +1,11 @@
+.contenaireB{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.renduB{
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

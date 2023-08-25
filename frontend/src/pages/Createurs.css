@@ -6,20 +6,28 @@
 img {
   height: 250px;
   width: 250px;
+  margin: 20px;
 }
 .resultat{
   display: flex;
+  width: 100vw;
 }
 .filtre{
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-evenly;
-  margin-right: 20px;
-  height: 150px;
-  width: 200px;
+  height: 250px;
+  width: 150x;
   flex-wrap: wrap;
+  margin: 30px;
 }
 .rendu{
-  display: grid;
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+p{
+  text-align: center;
 }

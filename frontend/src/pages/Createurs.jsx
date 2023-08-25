@@ -6,6 +6,11 @@ import FilterButton from "../components/FilterButton"
 function Createurs() {
   const [createurs, setCreateurs] = useState([])
   const [filter, setFilter] = useState("all")
+  const tableFiltre =
+    filter === "all"
+      ? createurs
+      : createurs.filter((createur) => createur.type === filter)
+
   useEffect(() => {
     axios
       .get("http://localhost:4242/utilisateur/with/categorie")
@@ -17,6 +22,7 @@ function Createurs() {
       <h1> Je suis la page createurs</h1>
       <div className="resultat">
         <div className="filtre">
+          <h3>Les filtres</h3>
           <FilterButton
             label="Tous"
             onClick={() => setFilter("all")}
@@ -40,18 +46,16 @@ function Createurs() {
           <br />
         </div>
         <div className="rendu">
-          {createurs
-            .filter((createur) => createur.type === filter)
-            .map((createur) => (
-              <div key={createur.id}>
-                <img
-                  src={`http://localhost:4242${createur.photo}`}
-                  alt={createur.nom}
-                />
-                <p>{createur.nom}</p>
-                <p>{createur.prenom}</p>
-              </div>
-            ))}
+          {tableFiltre.map((createur) => (
+            <div key={createur.id}>
+              <img
+                src={`http://localhost:4242${createur.photo}`}
+                alt={createur.nom}
+              />
+              <p>{createur.nom}</p>
+              <p>{createur.prenom}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -39,7 +39,7 @@ class UtilisateurManager extends AbstractManager {
 
   readUtilisateurWithCategorie() {
     return this.database.query(
-      `SELECT * FROM ${this.table} JOIN utilisateur_has_categorie ON utilisateur.id = utilisateur_has_categorie.Utilisateur_id JOIN categorie ON utilisateur_has_categorie.Categorie_id = categorie.id;`
+      `SELECT utilisateur.nom, utilisateur.prenom, utilisateur.createur, utilisateur.photo, utilisateur.description_createur, utilisateur_has_categorie.Utilisateur_id, utilisateur_has_categorie.Categorie_id, categorie.type  FROM ${this.table} JOIN utilisateur_has_categorie ON utilisateur.id = utilisateur_has_categorie.Utilisateur_id JOIN categorie ON utilisateur_has_categorie.Categorie_id = categorie.id;`
     )
   }
 }
