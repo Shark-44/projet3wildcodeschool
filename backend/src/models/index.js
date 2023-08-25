@@ -29,14 +29,50 @@ pool.getConnection().catch(() => {
 
 const models = {}
 
-const ItemManager = require("./ItemManager")
-const CharactersManager = require("./CharactersManager")
+const AvisobjetManager = require("./AvisobjetManager")
+const AvisutilisateurManager = require("./AvisutilisateurManager")
+const CategorieobjetsManager = require("./CategorieobjetsManager")
+const CategorieManager = require("./CategorieManager")
+const CommandeManager = require("./CommandeManager")
+const CommandeobjetsManager = require("./CommandeobjetsManager")
+const ObjetsManager = require("./ObjetsManager")
+const PanierManager = require("./PanierManager")
+const UtilisateurcategorieManager = require("./UtilisateurcategorieManager")
+const UtilisateurManager = require("./UtilisateurManager")
+const UtilisateurobjetsManager = require("./UtilisateurobjetsManager")
 
-models.item = new ItemManager()
-models.item.setDatabase(pool)
+models.avisobjet = new AvisobjetManager()
+models.avisobjet.setDatabase(pool)
 
-models.characters = new CharactersManager()
-models.characters.setDatabase(pool)
+models.avisutilisateur = new AvisutilisateurManager()
+models.avisutilisateur.setDatabase(pool)
+
+models.categorie = new CategorieManager()
+models.categorie.setDatabase(pool)
+
+models.categorieobjets = new CategorieobjetsManager()
+models.categorieobjets.setDatabase(pool)
+
+models.commande = new CommandeManager()
+models.commande.setDatabase(pool)
+
+models.commandeobjets = new CommandeobjetsManager()
+models.commandeobjets.setDatabase(pool)
+
+models.objets = new ObjetsManager()
+models.objets.setDatabase(pool)
+
+models.panier = new PanierManager()
+models.panier.setDatabase(pool)
+
+models.utilisateurcategorie = new UtilisateurcategorieManager()
+models.utilisateurcategorie.setDatabase(pool)
+
+models.utilisateur = new UtilisateurManager()
+models.utilisateur.setDatabase(pool)
+
+models.utilisateurobjets = new UtilisateurobjetsManager()
+models.utilisateurobjets.setDatabase(pool)
 
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
