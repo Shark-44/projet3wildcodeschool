@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import "./Boutique.css"
+import CardB from "../components/CardB"
 
 function Boutique() {
   const [objets, setObjets] = useState([])
@@ -12,13 +13,11 @@ function Boutique() {
       <h1>Je suis dans la Boutique</h1>
       <div className="renduB">
         {objets.map((objet) => (
-          <div key={objet.id}>
-            <img
-              src={`http://localhost:4242${objet.photo_1}`}
-              alt={objet.nom_objet}
-            />
-            <p>{objet.nom_objet}</p>
-          </div>
+          <CardB
+            key={objet.id}
+            nom_objet={objet.nom_objet}
+            photo_1={objet.photo_1}
+          />
         ))}
       </div>
     </div>

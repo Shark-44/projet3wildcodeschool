@@ -2,6 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import "./Createurs.css"
 import FilterButton from "../components/FilterButton"
+import Card from "../components/Card"
 
 function Createurs() {
   const [createurs, setCreateurs] = useState([])
@@ -47,14 +48,12 @@ function Createurs() {
         </div>
         <div className="rendu">
           {tableFiltre.map((createur) => (
-            <div key={createur.id}>
-              <img
-                src={`http://localhost:4242${createur.photo}`}
-                alt={createur.nom}
-              />
-              <p>{createur.nom}</p>
-              <p>{createur.prenom}</p>
-            </div>
+            <Card
+              key={createur.id}
+              nom={createur.nom}
+              prenom={createur.prenom}
+              photo={createur.photo}
+            />
           ))}
         </div>
       </div>
