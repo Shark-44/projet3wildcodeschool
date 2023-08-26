@@ -31,22 +31,16 @@ function Formulaire() {
     e.preventDefault()
     setImageUrl("./src/assets/avatar.png")
   }
-  // Selection joueur ou createur + affichage detail createur
-  // eslint-disable-next-line no-restricted-syntax
-  console.log(joueur)
+
   const handleOptionChange = (event) => {
     setJoueur(event.target.value === "true")
     if (joueur === true) {
-      // eslint-disable-next-line no-restricted-syntax
-      console.log(isVisible)
       setIsVisible(!isVisible)
     }
   }
   // Selection categorie pour createur
   const handleSelect = (event) => {
     setSelectCategorie(event.target.value)
-    // eslint-disable-next-line no-restricted-syntax
-    console.log(selectCategorie)
   }
 
   return (
