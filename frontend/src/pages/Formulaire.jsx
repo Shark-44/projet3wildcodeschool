@@ -80,7 +80,7 @@ function Formulaire() {
         <input type="file" accept="image/*" onChange={uploadImage} />
         <button onClick={cancelImage}>Annuler</button>
         <br />
-        Serez vous? :
+        Serez vous? :{selectCategorie}
         <input
           type="radio"
           value="false"
