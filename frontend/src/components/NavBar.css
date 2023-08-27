@@ -1,7 +1,5 @@
-.navGlobal {
-  background-color: blue;
-  color: white;
-}
 .navlink {
   color: white;
+  margin: 5px;
+  font-size: 1.5rem;
 }

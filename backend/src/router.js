@@ -1,6 +1,8 @@
 const express = require("express")
+const multer = require("multer")
 
 const router = express.Router()
+const upload = multer({ dest: "./public/assets/image/avatar" })
 
 const objetsControllers = require("./controllers/objetsControllers")
 const utilisateurControllers = require("./controllers/utilisateurControllers")
@@ -13,6 +15,7 @@ const panierControllers = require("./controllers/panierControllers")
 const utilisateurcategorieControllers = require("./controllers/utilisateurcategorieControllers")
 const utilisateurobjetsControllers = require("./controllers/utilisateurobjetsControllers")
 const categorieobjetsControllers = require("./controllers/categorieobjetsControllers")
+const uploadControllers = require("./controllers/uploadControllers")
 
 router.get("/utilisateur", utilisateurControllers.browse)
 router.get("/utilisateur/:id", utilisateurControllers.read)
@@ -83,5 +86,7 @@ router.get("/categorie_has_objets", categorieobjetsControllers.read)
 router.post("/categorie_has_objets", categorieobjetsControllers.add)
 router.put("/categorie_has_objets", categorieobjetsControllers.edit)
 router.delete("/categorie_has_objets", categorieobjetsControllers.destroy)
+
+router.post("/upload", upload.single("myfile"), uploadControllers.upload)
 
 module.exports = router
