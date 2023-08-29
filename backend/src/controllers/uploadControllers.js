@@ -1,26 +1,22 @@
 const fs = require("fs")
 
-class uploadControllers {
+class UploadController {
   static upload = (req, res) => {
-    console.log(req.file)
-    console.log(req.body)
-    const imgPath = "${Date.now()}_${req.file.originalname}"
-
     fs.rename(
       req.file.path,
-      "public/assets/images/avatar/${imgPath}",
+      `public/assets/images/avatar/${req.file.originalname}`,
       (err) => {
-        console.log(err)
         if (err) {
           res.status(400).send("Error while uploading")
         } else {
-          res.status(200).json({
-            imageUrl:
-              "http://localhost:4242/public/assets/images/avatar/${imgPath}",
+          res.status(203).json({
+            msg: "Upload success",
+            url: `http://localhost:5050/public/assets/images/avatar/${req.file.originalname}`,
           })
         }
       }
     )
   }
 }
-module.exports = uploadControllers
+
+module.exports = UploadController

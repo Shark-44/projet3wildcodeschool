@@ -4,10 +4,14 @@ import { useState } from "react"
 function Test() {
   const { register, handleSubmit } = useForm()
   const [image, setImage] = useState("./src/assets/avatar.png")
+  const [sonom, setSonom] = useState("")
 
-  const uploadImage = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setImage(URL.createObjectURL(e.target.files[0]))
+  const uploadImage = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      setImage(URL.createObjectURL(event.target.files[0]))
+      setSonom(URL.createObjectURL(event.target.files[0]))
+      // eslint-disable-next-line no-restricted-syntax
+      console.log(setSonom)
     }
   }
   const onSubmit = (data) => {
@@ -31,6 +35,7 @@ function Test() {
           {...register("myfile")}
           type="file"
           accept="image/*"
+          name={sonom}
           onChange={uploadImage}
         />
         <button title="submit">Submit</button>

@@ -1,15 +1,14 @@
 import axios from "axios"
 import { useState } from "react"
 import "./Formulaire.css"
+import Uploadimg from "../components/Uploadimg"
 
 function Formulaire() {
   const [nom, setNom] = useState("")
   const [prenom, setPrenom] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [imageUrl, setImageUrl] = useState("./src/assets/avatar.png") // definir une image icone user
-  const [joueur, setJoueur] = useState(null) // definir si le user est un acheteur ou createur
-  const [isVisible, setIsVisible] = useState(false) // pour cacher les elements joueur/createur
+  const [createur, setCreateur] = useState(false) // pour cacher les elements joueur/createur
   const [selectCategorie, setSelectCategorie] = useState(null) // definir une categorie
   const [description, setDescription] = useState("")
 
@@ -19,24 +18,11 @@ function Formulaire() {
       prenom,
       email,
       password,
+      createur,
     })
   }
-  // Chargement d'image ou delete
-  const uploadImage = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setImageUrl(URL.createObjectURL(e.target.files[0]))
-    }
-  }
-  const cancelImage = (e) => {
-    e.preventDefault()
-    setImageUrl("./src/assets/avatar.png")
-  }
-
   const handleOptionChange = (event) => {
-    setJoueur(event.target.value === "true")
-    if (joueur === true) {
-      setIsVisible(!isVisible)
-    }
+    setCreateur(event.target.value)
   }
   // Selection categorie pour createur
   const handleSelect = (event) => {
@@ -45,7 +31,8 @@ function Formulaire() {
 
   return (
     <div className="contenair">
-      <h1>Je suis sur la page Formulaire</h1>
+      {createur}
+      <h1>Formulaire d'enregistrement</h1>
       <div className="general">
         <label htmlFor="character">Nom:</label>
         <input
@@ -74,32 +61,25 @@ function Formulaire() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <br />
-        <label htmlFor="avatar">Avatar:</label>
-        <img className="icone" src={imageUrl} alt="avatar" />
-        <input type="file" accept="image/*" onChange={uploadImage} />
-        <button onClick={cancelImage}>Annuler</button>
-        <br />
+        <Uploadimg />
         Serez vous? :{selectCategorie}
         <input
           type="radio"
-          value="false"
+          value={false}
           name="type"
-          checked={joueur === false}
           onChange={handleOptionChange}
         />
         Joueur
         <input
           type="radio"
-          value="true"
+          value={true}
           name="type"
-          checked={joueur === true}
           onChange={handleOptionChange}
         />
         Createur
         <br />
       </div>
-      {isVisible && (
+      {createur === "true" && (
         <div className="createur">
           Votre domaine est :
           <input
