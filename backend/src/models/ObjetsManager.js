@@ -7,28 +7,28 @@ class ObjetsManager extends AbstractManager {
 
   insert(objets) {
     return this.database.query(
-      `insert into ${this.table} (nom_objet, prix, quantite, photo_1, photo_2, description_objet) values (?,?,?,?,?,?)`,
+      `insert into ${this.table} (nomObjet, prix, quantite, photo1, photo2, descriptionObjet) values (?,?,?,?,?,?)`,
       [
-        objets.nom_objet,
+        objets.nomObjet,
         objets.prix,
         objets.quantité,
-        objets.photo_1,
-        objets.photo_2,
-        objets.description_objet,
+        objets.photo1,
+        objets.photo2,
+        objets.descriptionObjet,
       ]
     )
   }
 
   update(objets) {
     return this.database.query(
-      `UPDATE ${this.table} SET nom_objet = ?, prix = ?, quantite = ?, photo_1 = ?, photo_2 = ?, description_objet = ? WHERE (id = ?)`,
+      `UPDATE ${this.table} SET nomObjet = ?, prix = ?, quantite = ?, photo1 = ?, photo2 = ?, descriptionObjet = ? WHERE (id = ?)`,
       [
-        objets.nom_objet,
+        objets.nomObjet,
         objets.prix,
         objets.quantite,
-        objets.photo_1,
-        objets.photo_2,
-        objets.description_objet,
+        objets.photo1,
+        objets.photo2,
+        objets.descriptionObjet,
       ]
     )
   }

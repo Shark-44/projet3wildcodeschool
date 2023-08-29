@@ -8,9 +8,9 @@ function Formulaire() {
   const [prenom, setPrenom] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [createur, setCreateur] = useState(false) // pour cacher les elements joueur/createur
+  const [createur, setCreateur] = useState(0) // pour cacher les elements joueur/createur
   const [selectCategorie, setSelectCategorie] = useState(null) // definir une categorie
-  const [description, setDescription] = useState("")
+  const [descriptionCreateur, setDescriptionCreateur] = useState("")
 
   const handleSubmit = () => {
     axios.post("http://localhost:4242/utilisateur", {
@@ -19,6 +19,7 @@ function Formulaire() {
       email,
       password,
       createur,
+      descriptionCreateur,
     })
   }
   const handleOptionChange = (event) => {
@@ -65,21 +66,21 @@ function Formulaire() {
         Serez vous? :{selectCategorie}
         <input
           type="radio"
-          value={false}
+          value={0}
           name="type"
           onChange={handleOptionChange}
         />
         Joueur
         <input
           type="radio"
-          value={true}
+          value={1}
           name="type"
           onChange={handleOptionChange}
         />
         Createur
         <br />
       </div>
-      {createur === "true" && (
+      {createur === "1" && (
         <div className="createur">
           Votre domaine est :
           <input
@@ -108,9 +109,9 @@ function Formulaire() {
           <input
             type="text"
             className="description"
-            value={description}
+            value={descriptionCreateur}
             size="35"
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) => setDescriptionCreateur(e.target.value)}
           />
         </div>
       )}

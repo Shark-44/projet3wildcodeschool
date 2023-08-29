@@ -7,15 +7,15 @@ class PanierManager extends AbstractManager {
 
   insert(panier) {
     return this.database.query(
-      `insert into ${this.table} ( Utilisateur_id, objets_id, quantite_panier) values (?,?,?)`,
-      [panier.Utilisateur_id, panier.Objets_id, panier.quantite_panier]
+      `insert into ${this.table} ( Utilisateur_id, objets_id, quantitePanier) values (?,?,?)`,
+      [panier.Utilisateur_id, panier.Objets_id, panier.quantitePanier]
     )
   }
 
   update(panier) {
     return this.database.query(
-      `update ${this.table} set  Utilisateur_id = ? objet_id = ? quantite_panier = ? where id = ?`,
-      [panier.Utilisateur_id, panier.Objets_id, panier.quantite_panier]
+      `update ${this.table} set  Utilisateur_id = ? objet_id = ? quantitePanier = ? where id = ?`,
+      [panier.Utilisateur_id, panier.Objets_id, panier.quantitePanier]
     )
   }
 }
