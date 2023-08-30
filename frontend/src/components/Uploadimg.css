@@ -1,0 +1,12 @@
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.icone {
+    margin-top: 25px;
+    border-radius: 15px;
+    height: 200px;
+    width: 200px;
+  }
+  

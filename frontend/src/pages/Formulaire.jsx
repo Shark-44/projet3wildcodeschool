@@ -1,17 +1,20 @@
 import axios from "axios"
 import { useState } from "react"
 import "./Formulaire.css"
+import Uploadimg from "../components/Uploadimg"
 
 function Formulaire() {
   const [nom, setNom] = useState("")
   const [prenom, setPrenom] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [imageUrl, setImageUrl] = useState("./src/assets/avatar.png") // definir une image icone user
-  const [joueur, setJoueur] = useState(null) // definir si le user est un acheteur ou createur
-  const [isVisible, setIsVisible] = useState(false) // pour cacher les elements joueur/createur
+  const [adresse, setAdresse] = useState("")
+  const [codePostal, setCodepostal] = useState("")
+  const [ville, setVille] = useState("")
+  const [createur, setCreateur] = useState(0) // pour cacher les elements joueur/createur
   const [selectCategorie, setSelectCategorie] = useState(null) // definir une categorie
-  const [description, setDescription] = useState("")
+  const [descriptionCreateur, setDescriptionCreateur] = useState("")
+  const [photo, setPhoto] = useState("")
 
   const handleSubmit = () => {
     axios.post("http://localhost:4242/utilisateur", {
@@ -19,33 +22,27 @@ function Formulaire() {
       prenom,
       email,
       password,
+      adresse,
+      codePostal,
+      ville,
+      createur,
+      photo,
+      descriptionCreateur,
     })
   }
-  // Chargement d'image ou delete
-  const uploadImage = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setImageUrl(URL.createObjectURL(e.target.files[0]))
-    }
-  }
-  const cancelImage = (e) => {
-    e.preventDefault()
-    setImageUrl("./src/assets/avatar.png")
-  }
-
   const handleOptionChange = (event) => {
-    setJoueur(event.target.value === "true")
-    if (joueur === true) {
-      setIsVisible(!isVisible)
-    }
+    setCreateur(event.target.value)
   }
   // Selection categorie pour createur
   const handleSelect = (event) => {
     setSelectCategorie(event.target.value)
   }
-
+  const handlechargeChange = (newCharge) => {
+    setPhoto(newCharge)
+  }
   return (
     <div className="contenair">
-      <h1>Je suis sur la page Formulaire</h1>
+      <h1>Formulaire d'enregistrement</h1>
       <div className="general">
         <label htmlFor="character">Nom:</label>
         <input
@@ -75,31 +72,45 @@ function Formulaire() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
-        <label htmlFor="avatar">Avatar:</label>
-        <img className="icone" src={imageUrl} alt="avatar" />
-        <input type="file" accept="image/*" onChange={uploadImage} />
-        <button onClick={cancelImage}>Annuler</button>
+        <label htmlFor="character">Adresse:</label>
+        <input
+          type="text"
+          value={adresse}
+          onChange={(e) => setAdresse(e.target.value)}
+        />
         <br />
-        Serez vous? :{selectCategorie}
+        <label htmlFor="character">Code Postal:</label>
+        <input
+          type="text"
+          value={codePostal}
+          onChange={(e) => setCodepostal(e.target.value)}
+        />
+        <br />
+        <label htmlFor="character">Ville :</label>
+        <input
+          type="text"
+          value={ville}
+          onChange={(e) => setVille(e.target.value)}
+        />
+        <Uploadimg nomphotoChange={handlechargeChange} />
+        Serez vous? :
         <input
           type="radio"
-          value="false"
+          value={0}
           name="type"
-          checked={joueur === false}
           onChange={handleOptionChange}
         />
         Joueur
         <input
           type="radio"
-          value="true"
+          value={1}
           name="type"
-          checked={joueur === true}
           onChange={handleOptionChange}
         />
         Createur
         <br />
       </div>
-      {isVisible && (
+      {createur === "1" && (
         <div className="createur">
           Votre domaine est :
           <input
@@ -107,30 +118,31 @@ function Formulaire() {
             value="Graphisme"
             name="style"
             onChange={handleSelect}
-          />{" "}
+          />
           Graphique
           <input
             type="radio"
             value="Mode"
             name="style"
             onChange={handleSelect}
-          />{" "}
+          />
           Mode
           <input
             type="radio"
             value="3DPrint"
             name="style"
             onChange={handleSelect}
-          />{" "}
+          />
           Print 3D
           <br />
+          {selectCategorie}
           <label htmlFor="character">Description personnel</label>
           <input
             type="text"
             className="description"
-            value={description}
+            value={descriptionCreateur}
             size="35"
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) => setDescriptionCreateur(e.target.value)}
           />
         </div>
       )}

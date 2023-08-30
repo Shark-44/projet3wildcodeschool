@@ -58,7 +58,7 @@ const add = (req, res) => {
   models.avisutilisateur
     .insert(avisutilisateur)
     .then(([result]) => {
-      res.location(`/avis_utilisateur/${result.insertId}`).sendStatus(201)
+      res.location(`/avisutilisateur/${result.insertId}`).sendStatus(201)
     })
     .catch((err) => {
       console.error(err)

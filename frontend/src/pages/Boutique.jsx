@@ -15,8 +15,8 @@ function Boutique() {
         {objets.map((objet) => (
           <CardB
             key={objet.id}
-            nom_objet={objet.nom_objet}
-            photo_1={objet.photo_1}
+            nomObjet={objet.nomObjet}
+            photo1={objet.photo1}
           />
         ))}
       </div>

@@ -4,7 +4,7 @@ const Card = (createur) => {
     <div className="Card">
       <div key={createur.id}>
         <img
-          src={`http://localhost:4242${createur.photo}`}
+          src={`http://localhost:4242/assets/images/avatar/${createur.photo}`}
           alt={createur.nom}
         />
         <p>{createur.nom}</p>
