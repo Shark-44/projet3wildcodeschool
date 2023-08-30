@@ -2,9 +2,11 @@ import { useForm } from "react-hook-form"
 import { useState } from "react"
 import "./Uploadimg.css"
 
-const Uploadimg = () => {
+const Uploadimg = ({ nomphotoChange }) => {
   const { register, handleSubmit } = useForm()
   const [image, setImage] = useState("./src/assets/avatar.png")
+  // eslint-disable-next-line no-unused-vars
+  const [charge, setCharge] = useState()
   const [sonom, setSonom] = useState("")
   // Permet de previsualiser l'image
   const uploadImage = (e) => {
@@ -31,7 +33,11 @@ const Uploadimg = () => {
       .then((res) => res.json())
       .catch((err) => console.error(err))
   }
-
+  const updateCharge = () => {
+    const newCharge = sonom
+    setCharge(newCharge)
+    nomphotoChange(newCharge)
+  }
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -42,11 +48,11 @@ const Uploadimg = () => {
           accept="image/*"
           onChange={uploadImage}
         />
-        <button title="submit">Submit</button>
+        <button title="submit" onClick={updateCharge}>
+          Submit
+        </button>
         <button onClick={cancelImage}>Annuler</button>
-        {sonom}
       </form>
-      {setSonom}
     </>
   )
 }

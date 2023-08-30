@@ -8,9 +8,13 @@ function Formulaire() {
   const [prenom, setPrenom] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [adresse, setAdresse] = useState("")
+  const [codePostal, setCodepostal] = useState("")
+  const [ville, setVille] = useState("")
   const [createur, setCreateur] = useState(0) // pour cacher les elements joueur/createur
   const [selectCategorie, setSelectCategorie] = useState(null) // definir une categorie
   const [descriptionCreateur, setDescriptionCreateur] = useState("")
+  const [photo, setPhoto] = useState("")
 
   const handleSubmit = () => {
     axios.post("http://localhost:4242/utilisateur", {
@@ -18,7 +22,11 @@ function Formulaire() {
       prenom,
       email,
       password,
+      adresse,
+      codePostal,
+      ville,
       createur,
+      photo,
       descriptionCreateur,
     })
   }
@@ -29,10 +37,11 @@ function Formulaire() {
   const handleSelect = (event) => {
     setSelectCategorie(event.target.value)
   }
-
+  const handlechargeChange = (newCharge) => {
+    setPhoto(newCharge)
+  }
   return (
     <div className="contenair">
-      {createur}
       <h1>Formulaire d'enregistrement</h1>
       <div className="general">
         <label htmlFor="character">Nom:</label>
@@ -62,8 +71,29 @@ function Formulaire() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Uploadimg />
-        Serez vous? :{selectCategorie}
+        <br />
+        <label htmlFor="character">Adresse:</label>
+        <input
+          type="text"
+          value={adresse}
+          onChange={(e) => setAdresse(e.target.value)}
+        />
+        <br />
+        <label htmlFor="character">Code Postal:</label>
+        <input
+          type="text"
+          value={codePostal}
+          onChange={(e) => setCodepostal(e.target.value)}
+        />
+        <br />
+        <label htmlFor="character">Ville :</label>
+        <input
+          type="text"
+          value={ville}
+          onChange={(e) => setVille(e.target.value)}
+        />
+        <Uploadimg nomphotoChange={handlechargeChange} />
+        Serez vous? :
         <input
           type="radio"
           value={0}
@@ -88,23 +118,24 @@ function Formulaire() {
             value="Graphisme"
             name="style"
             onChange={handleSelect}
-          />{" "}
+          />
           Graphique
           <input
             type="radio"
             value="Mode"
             name="style"
             onChange={handleSelect}
-          />{" "}
+          />
           Mode
           <input
             type="radio"
             value="3DPrint"
             name="style"
             onChange={handleSelect}
-          />{" "}
+          />
           Print 3D
           <br />
+          {selectCategorie}
           <label htmlFor="character">Description personnel</label>
           <input
             type="text"
