@@ -1,5 +1,6 @@
 const express = require("express")
 const multer = require("multer")
+const { hashPassword } = require("./auth.js")
 
 const router = express.Router()
 const upload = multer({ dest: "./public/assets/image/avatar" })
@@ -16,11 +17,22 @@ const utilisateurcategorieControllers = require("./controllers/utilisateurcatego
 const utilisateurobjetsControllers = require("./controllers/utilisateurobjetsControllers")
 const categorieobjetsControllers = require("./controllers/categorieobjetsControllers")
 const uploadControllers = require("./controllers/uploadControllers")
+const validator = require("./validator")
 
 router.get("/utilisateur", utilisateurControllers.browse)
 router.get("/utilisateur/:id", utilisateurControllers.read)
-router.post("/utilisateur", utilisateurControllers.add)
-router.put("/utilisateur/:id", utilisateurControllers.edit)
+router.post(
+  "/utilisateur",
+  validator.validateUtilisateur,
+  hashPassword,
+  utilisateurControllers.add
+)
+router.put(
+  "/utilisateur/:id",
+  validator.validateUtilisateur,
+  hashPassword,
+  utilisateurControllers.edit
+)
 router.delete("/utilisateur/:id", utilisateurControllers.destroy)
 router.get(
   "/utilisateur/with/categorie",

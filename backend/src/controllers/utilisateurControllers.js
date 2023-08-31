@@ -14,9 +14,9 @@ const browse = (req, res) => {
 
 const add = (req, res) => {
   const utilisateur = req.body
+  utilisateur.password = req.body.hashedPassword
 
   // TODO validations (length, format...)
-
   models.utilisateur
     .insert(utilisateur)
     .then(([result]) => {

@@ -27,7 +27,6 @@ function Formulaire() {
       ville,
       createur,
       photo,
-      descriptionCreateur,
     })
   }
   const handleOptionChange = (event) => {
@@ -43,6 +42,8 @@ function Formulaire() {
   return (
     <div className="contenair">
       <h1>Formulaire d'enregistrement</h1>
+      {photo}
+      {createur}
       <div className="general">
         <label htmlFor="character">Nom:</label>
         <input
@@ -60,7 +61,7 @@ function Formulaire() {
         <br />
         <label htmlFor="character">Email:</label>
         <input
-          type="text"
+          type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -81,9 +82,14 @@ function Formulaire() {
         <br />
         <label htmlFor="character">Code Postal:</label>
         <input
-          type="text"
+          type="number"
           value={codePostal}
-          onChange={(e) => setCodepostal(e.target.value)}
+          onChange={(event) => {
+            const newValue = event.target.value
+            if (!isNaN(newValue)) {
+              setCodepostal(newValue)
+            }
+          }}
         />
         <br />
         <label htmlFor="character">Ville :</label>
@@ -92,6 +98,7 @@ function Formulaire() {
           value={ville}
           onChange={(e) => setVille(e.target.value)}
         />
+        {photo}
         <Uploadimg nomphotoChange={handlechargeChange} />
         Serez vous? :
         <input

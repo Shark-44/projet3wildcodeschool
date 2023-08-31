@@ -17,7 +17,8 @@ function Createurs() {
       .get("http://localhost:4242/utilisateur/with/categorie")
       .then((res) => setCreateurs(res.data))
   }, [])
-
+  // eslint-disable-next-line no-restricted-syntax
+  console.log(createurs)
   return (
     <div className="container">
       <h1> Je suis la page createurs</h1>
