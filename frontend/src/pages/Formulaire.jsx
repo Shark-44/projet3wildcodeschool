@@ -12,29 +12,45 @@ function Formulaire() {
   const [codePostal, setCodepostal] = useState("")
   const [ville, setVille] = useState("")
   const [createur, setCreateur] = useState(0) // pour cacher les elements joueur/createur
-  const [selectCategorie, setSelectCategorie] = useState(null) // definir une categorie
+  const [CategorieID, setCategorieID] = useState(null) // definir une categorie
   const [descriptionCreateur, setDescriptionCreateur] = useState("")
   const [photo, setPhoto] = useState("")
 
   const handleSubmit = () => {
-    axios.post("http://localhost:4242/utilisateur", {
-      nom,
-      prenom,
-      email,
-      password,
-      adresse,
-      codePostal,
-      ville,
-      createur,
-      photo,
-    })
+    if (createur === "0") {
+      axios.post("http://localhost:4242/utilisateur", {
+        nom,
+        prenom,
+        email,
+        password,
+        adresse,
+        codePostal,
+        ville,
+        createur,
+        photo,
+      })
+    } else {
+      axios.post("http://localhost:4242/utilisateur/with/categorie", {
+        nom,
+        prenom,
+        email,
+        password,
+        adresse,
+        codePostal,
+        ville,
+        createur,
+        photo,
+        descriptionCreateur,
+        CategorieID,
+      })
+    }
   }
   const handleOptionChange = (event) => {
     setCreateur(event.target.value)
   }
   // Selection categorie pour createur
   const handleSelect = (event) => {
-    setSelectCategorie(event.target.value)
+    setCategorieID(event.target.value)
   }
   const handlechargeChange = (newCharge) => {
     setPhoto(newCharge)
@@ -120,29 +136,14 @@ function Formulaire() {
       {createur === "1" && (
         <div className="createur">
           Votre domaine est :
-          <input
-            type="radio"
-            value="Graphisme"
-            name="style"
-            onChange={handleSelect}
-          />
+          <input type="radio" value={1} name="style" onChange={handleSelect} />
           Graphique
-          <input
-            type="radio"
-            value="Mode"
-            name="style"
-            onChange={handleSelect}
-          />
+          <input type="radio" value={2} name="style" onChange={handleSelect} />
           Mode
-          <input
-            type="radio"
-            value="3DPrint"
-            name="style"
-            onChange={handleSelect}
-          />
+          <input type="radio" value={3} name="style" onChange={handleSelect} />
           Print 3D
           <br />
-          {selectCategorie}
+          {CategorieID}
           <label htmlFor="character">Description personnel</label>
           <input
             type="text"

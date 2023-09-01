@@ -5,17 +5,17 @@ class UtilisateurcategorieManager extends AbstractManager {
     super({ table: "utilisateurhascategorie" })
   }
 
-  insert(Utilisateurcategorie) {
+  insert(utilisateurcategorie) {
     return this.database.query(
-      `insert into ${this.table} ( Utilisateur_id, Categorie_id) values (?,?)`,
-      [Utilisateurcategorie.Utilisateur_id, Utilisateurcategorie.Categorie_id]
+      `insert into ${this.table} ( UtilisateurId, CategorieId) values (?,?)`,
+      [utilisateurcategorie.UtilisateurId, utilisateurcategorie.CategorieId]
     )
   }
 
   update(Utilisateurcategorie) {
     return this.database.query(
-      `update ${this.table} set  Utilisateur_id = ? Categorie_id = ? where id = ?`,
-      [Utilisateurcategorie.Utilisateur_id, Utilisateurcategorie.Categorie_id]
+      `update ${this.table} set  UtilisateurId = ? CategorieId = ? where id = ?`,
+      [Utilisateurcategorie.UtilisateurId, Utilisateurcategorie.CategorieId]
     )
   }
 }

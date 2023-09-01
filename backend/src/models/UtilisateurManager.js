@@ -1,4 +1,5 @@
 const AbstractManager = require("./AbstractManager")
+// const UtilisateurcategorieManager = require("./UtilisateurcategorieManager")
 
 class UtilisateurManager extends AbstractManager {
   constructor() {
@@ -44,6 +45,26 @@ class UtilisateurManager extends AbstractManager {
   readUtilisateurWithCategorie() {
     return this.database.query(
       `SELECT utilisateur.id, utilisateur.nom, utilisateur.prenom, utilisateur.createur, utilisateur.photo, utilisateur.descriptionCreateur, utilisateurhascategorie.Utilisateur_id, utilisateurhascategorie.Categorie_id, categorie.type  FROM ${this.table} JOIN utilisateurhascategorie ON utilisateur.id = utilisateurhascategorie.Utilisateur_id JOIN categorie ON utilisateurhascategorie.Categorie_id = categorie.id;`
+    )
+  }
+
+  editutilisateurcategorie(utilisateur, Utilisateurcategorie) {
+    return this.database.query(
+      `insert into ${this.table} (nom, prenom, email, password, adresse, codePostal, ville, createur, photo, descriptionCreateur, UtilisateurId, CategorieId) values (?,?,?,?,?,?,?,?,?,?,?,?)`,
+      [
+        utilisateur.nom,
+        utilisateur.prenom,
+        utilisateur.email,
+        utilisateur.password,
+        utilisateur.adresse,
+        utilisateur.codePostal,
+        utilisateur.ville,
+        utilisateur.createur,
+        utilisateur.photo,
+        utilisateur.descriptionCreateur,
+        Utilisateurcategorie.UtilisateurId,
+        Utilisateurcategorie.CategorieId,
+      ]
     )
   }
 }
