@@ -42,7 +42,11 @@ const Uploadimg = ({ nomphotoChange }) => {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <img className="icone" src={image} alt="avatar" />
+        <label htmlFor="file" className="label-file">
+          Choisir une image
+        </label>
         <input
+          className="input-file"
           {...register("myfile")}
           type="file"
           accept="image/*"

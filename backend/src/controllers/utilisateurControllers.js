@@ -14,9 +14,9 @@ const browse = (req, res) => {
 
 const add = (req, res) => {
   const utilisateur = req.body
+  utilisateur.password = req.body.hashedPassword
 
   // TODO validations (length, format...)
-
   models.utilisateur
     .insert(utilisateur)
     .then(([result]) => {
@@ -64,6 +64,29 @@ const edit = (req, res) => {
       res.sendStatus(500)
     })
 }
+const editutilisateurcategorie = (req, res) => {
+  const utilisateur = req.body
+
+  // TODO validations (length, format...)
+
+  utilisateur.id = parseInt(req.params.id, 10)
+
+  models.utilisateur
+    .insert(utilisateur)
+    .then(([createduser]) => {
+      const user = {
+        UtilisateurId: createduser.insertId,
+        CategorieId: req.body.CategorieID, // tu devra metre l'information de l'id categorie qui vien du front
+      }
+      models.utilisateurcategorie.insert(user).then(([rows]) => {
+        res.send(rows)
+      })
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
 const destroy = (req, res) => {
   models.utilisateur
     .delete(req.params.id)
@@ -95,6 +118,7 @@ const readUtilisateurWithCategorie = (req, res) => {
       res.sendStatus(500)
     })
 }
+
 module.exports = {
   browse,
   add,
@@ -102,4 +126,5 @@ module.exports = {
   edit,
   destroy,
   readUtilisateurWithCategorie,
+  editutilisateurcategorie,
 }
