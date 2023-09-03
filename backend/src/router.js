@@ -43,6 +43,8 @@ router.get(
 )
 router.post(
   "/utilisateur/with/categorie",
+  validator.validateUtilisateur,
+  hashPassword,
   utilisateurControllers.editutilisateurcategorie
 )
 

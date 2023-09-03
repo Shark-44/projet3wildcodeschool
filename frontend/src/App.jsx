@@ -4,9 +4,10 @@ import Boutique from "./pages/Boutique"
 import Formulaire from "./pages/Formulaire"
 import NavBar from "./components/Navbar"
 import Test from "./pages/Test"
+import Createurs from "./pages/Createurs"
+import CreateurID from "./pages/CreateurID"
 
 import "./App.css"
-import Createurs from "./pages/Createurs"
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/Formulaire" element={<Formulaire />} />
           <Route path="/Createurs" element={<Createurs />} />
           <Route path="/Test" element={<Test />} />
+          <Route path="/Createurs/:id" element={<CreateurID />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,4 +1,5 @@
 import axios from "axios"
+import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import "./Createurs.css"
 import FilterButton from "../components/FilterButton"
@@ -20,7 +21,7 @@ function Createurs() {
 
   return (
     <div className="container">
-      <h1> Je suis la page createurs</h1>
+      <h1> Nos createurs</h1>
       <div className="resultat">
         <div className="filtre">
           <h3>Les filtres</h3>
@@ -48,12 +49,14 @@ function Createurs() {
         </div>
         <div className="rendu">
           {tableFiltre.map((createur) => (
-            <Card
-              key={createur.id}
-              nom={createur.nom}
-              prenom={createur.prenom}
-              photo={createur.photo}
-            />
+            <Link key={createur.id} to={`/Createurs/${createur.id}`}>
+              <Card
+                key={createur.id}
+                nom={createur.nom}
+                prenom={createur.prenom}
+                photo={createur.photo}
+              />
+            </Link>
           ))}
         </div>
       </div>

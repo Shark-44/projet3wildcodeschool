@@ -81,11 +81,6 @@ const editutilisateurcategorie = (req, res) => {
       models.utilisateurcategorie.insert(user).then(([rows]) => {
         res.send(rows)
       })
-      // const utilisateurId = utilisateur.id
-      // const Utilisateurcategorie = {
-      //   utilisateurId,
-      // }
-      // return models.utilisateurcategorie.insert(Utilisateurcategorie)
     })
     .catch((err) => {
       console.error(err)
