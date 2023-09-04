@@ -6,7 +6,7 @@ import NavBar from "./components/Navbar"
 import Test from "./pages/Test"
 import Createurs from "./pages/Createurs"
 import CreateurID from "./pages/CreateurID"
-
+import Login from "./pages/Login"
 import "./App.css"
 
 function App() {
@@ -21,6 +21,7 @@ function App() {
           <Route path="/Createurs" element={<Createurs />} />
           <Route path="/Test" element={<Test />} />
           <Route path="/Createurs/:id" element={<CreateurID />} />
+          <Route path="/Login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </div>

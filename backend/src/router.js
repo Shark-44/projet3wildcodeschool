@@ -1,6 +1,6 @@
 const express = require("express")
 const multer = require("multer")
-const { hashPassword } = require("./auth.js")
+const { hashPassword, verifyPassword } = require("./auth.js")
 
 const router = express.Router()
 const upload = multer({ dest: "./public/assets/image/avatar" })
@@ -120,5 +120,12 @@ router.delete("/categoriehasobjets", categorieobjetsControllers.destroy)
 
 // ROUTE UPLOAD IMAGE DANS BACKEND
 router.post("/upload", upload.single("myfile"), uploadControllers.upload)
+
+// ROUTE de CONNEXION
+router.post(
+  "/utilisateurconnexion",
+  utilisateurControllers.loginUtilisateur,
+  verifyPassword
+)
 
 module.exports = router
