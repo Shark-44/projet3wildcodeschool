@@ -6,11 +6,12 @@ function Login() {
   const [password, setPassword] = useState("")
 
   const handleSubmit = () => {
-    axios.post("http://localhost:4242/utilisateurconnexion", {
-      email,
-      password,
-    })
-    .then(res => console.info(res.data))
+    axios
+      .post("http://localhost:4242/utilisateurconnexion", {
+        email,
+        password,
+      })
+      .then((res) => console.info(res.data))
   }
 
   return (

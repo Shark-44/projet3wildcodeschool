@@ -126,7 +126,7 @@ const loginUtilisateur = (req, res, next) => {
     .then(([utilisateur]) => {
       if (utilisateur[0] != null) {
         req.user = utilisateur[0]
-        console.info([utilisateur])
+        // console.info([utilisateur]) verif si bonne recuperation de l'user
         next()
       } else {
         res.sendStatus(411).send("pas trouvé")

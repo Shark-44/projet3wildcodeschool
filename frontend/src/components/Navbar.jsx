@@ -1,7 +1,10 @@
 import "./NavBar.css"
 import { NavLink } from "react-router-dom"
 
-const NavBar = () => {
+const NavBar = ({ handleLoginClick }) => {
+  const handleClick = () => {
+    handleLoginClick()
+  }
   return (
     <>
       <nav className="navGlobal">
@@ -25,6 +28,9 @@ const NavBar = () => {
             Test
           </NavLink>
         </ul>
+        <span onClick={handleClick} className="loginicon">
+          Sign In
+        </span>
       </nav>
     </>
   )
