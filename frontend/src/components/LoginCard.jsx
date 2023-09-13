@@ -2,18 +2,24 @@ import axios from "axios"
 import { useState } from "react"
 import "./LoginCard.css"
 
-const LoginCard = ({ isShowLogin }, { handleLoginClick }) => {
+const LoginCard = ({ isShowLogin, handleLoginClick }) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
   const handleSubmit = () => {
-    handleLoginClick()
-    axios
-      .post("http://localhost:4242/utilisateurconnexion", {
-        email,
-        password,
-      })
-      .then((res) => console.info(res.data))
+    if (email == null) {
+      alert("votre email !!!")
+    } else if (password == null) {
+      alert(" votre password !!!")
+    } else {
+      handleLoginClick()
+      axios
+        .post("http://localhost:4242/utilisateurconnexion", {
+          email,
+          password,
+        })
+        .then((res) => console.info(res.data))
+    }
   }
   return (
     <div className={`${isShowLogin ? "active" : ""} show`}>

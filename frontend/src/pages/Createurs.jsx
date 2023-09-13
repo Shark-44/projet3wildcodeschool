@@ -47,7 +47,7 @@ function Createurs() {
           />
           <br />
         </div>
-        <div className="rendu">
+        <div className="renduCreateur">
           {tableFiltre.map((createur) => (
             <Link key={createur.id} to={`/Createurs/${createur.id}`}>
               <Card

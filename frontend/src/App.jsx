@@ -19,7 +19,10 @@ function App() {
   return (
     <div className="App">
       <NavBar handleLoginClick={handleLoginClick} />
-      <LoginCard isShowLogin={isShowLogin} />
+      <LoginCard
+        isShowLogin={isShowLogin}
+        handleLoginClick={handleLoginClick}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Boutique" element={<Boutique />} />
