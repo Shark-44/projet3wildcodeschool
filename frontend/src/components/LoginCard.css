@@ -1,13 +1,14 @@
 .login-form{
-    width: 100%;
+    width: 90vw;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    position: absolute;
   }
   .form-box{
     margin-top: 7vh;
-    opacity:80%;
+    /* opacity:80%; */
     background: black;
     padding-right: 80px;
     padding-left: 80px;
@@ -44,7 +45,7 @@
     font-weight: 600;
     margin: 5px;
     font-size: 11pt;
-    background: transparent;
+    background: #ffb232e0;
     transition: 1s;
     outline: none;
   }

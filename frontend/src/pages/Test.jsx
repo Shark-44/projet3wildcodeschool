@@ -1,29 +1,20 @@
 import { useState } from "react"
+import "./Test.css"
 
 function Test() {
-  const [modal, setModal] = useState(false)
-  const toggleModal = () => {
-    setModal(!modal)
-  }
-  return (
-    <div>
-      <button onClick={toggleModal} className="btn-modal">
-        Open
-      </button>
+  const [isOpen, setIsOpen] = useState(false)
 
-      {modal && (
-        <div className="modal">
-          <div className="overlay">
-            <div className="modal-content">
-              <h4>Mon toggleModal</h4>
-            </div>
-            <button onClick={toggleModal} className="close-modal">
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+  const toggleBox = () => {
+    setIsOpen(!isOpen)
+  }
+
+  return (
+    <div className={`container ${isOpen ? "open" : ""}`}>
+      <div className="boxA">Box</div>
+      <div className="boxB">Box</div>
+      <button onClick={toggleBox}>Toggle Box</button>
     </div>
   )
 }
+
 export default Test

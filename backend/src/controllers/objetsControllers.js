@@ -32,7 +32,7 @@ const read = (req, res) => {
     .find(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
-        res.sendStatus(404)
+        res.sendStatus(434)
       } else {
         res.send(rows[0])
       }
@@ -69,10 +69,21 @@ const destroy = (req, res) => {
     .delete(req.params.id)
     .then(([result]) => {
       if (result.affectedRows === 0) {
-        res.sendStatus(404)
+        res.sendStatus(414)
       } else {
         res.sendStatus(204)
       }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+const objetsByUtilisateur = (req, res) => {
+  models.objets
+    .readobjetsByUtilisateur()
+    .then(([rows]) => {
+      res.send(rows)
     })
     .catch((err) => {
       console.error(err)
@@ -86,4 +97,5 @@ module.exports = {
   read,
   edit,
   destroy,
+  objetsByUtilisateur,
 }

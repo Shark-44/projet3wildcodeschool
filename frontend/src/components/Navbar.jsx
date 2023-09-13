@@ -21,16 +21,21 @@ const NavBar = ({ handleLoginClick }) => {
           <NavLink className="navlink" to="/Formulaire">
             Formulaire
           </NavLink>
-          <NavLink className="navlink" to="/Login">
-            Login
-          </NavLink>
           <NavLink className="navlink" to="/Test">
             Test
           </NavLink>
+          <NavLink className="navlink" to="/Login">
+            login
+          </NavLink>
         </ul>
-        <span onClick={handleClick} className="loginicon">
-          Sign In
-        </span>
+        <div className="buttonContainer">
+          <button onClick={handleClick} className="loginicon log">
+            Login
+          </button>
+          <button onClick={handleClick} className="loginicon sig">
+            Sign up
+          </button>
+        </div>
       </nav>
     </>
   )
