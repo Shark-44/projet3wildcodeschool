@@ -2,12 +2,13 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import "./FiltreBoutiquecreateur.css"
 
-const FiltreBoutiquecreateur = () => {
+const FiltreBoutiquecreateur = ({ prenom, setPrenom }) => {
   const [filtreCreateur, setFiltrecreateur] = useState([])
   const [selectedOption, setSelectedOption] = useState()
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value)
+    setPrenom((prenom = event.target.value))
   }
 
   useEffect(() => {
