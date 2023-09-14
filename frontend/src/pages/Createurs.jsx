@@ -20,7 +20,7 @@ function Createurs() {
   }, [])
 
   return (
-    <div className="container">
+    <div className="containerCreateur">
       <h1> Nos createurs</h1>
       <div className="resultat">
         <div className="filtre">
@@ -47,7 +47,7 @@ function Createurs() {
           />
           <br />
         </div>
-        <div className="rendu">
+        <div className="renduCreateur">
           {tableFiltre.map((createur) => (
             <Link key={createur.id} to={`/Createurs/${createur.id}`}>
               <Card

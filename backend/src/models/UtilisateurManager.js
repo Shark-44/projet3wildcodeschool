@@ -26,7 +26,7 @@ class UtilisateurManager extends AbstractManager {
 
   update(utilisateur) {
     return this.database.query(
-      `UPDATE ${this.table} SET nom = ?, prenom = ?, email = ?, password = ?, adresse = ?, codePostal = ?, ville = ?, createur = ?, photo = ?, descriptionCreateur = ? WHERE (id = ?)`,
+      `UPDATE ${this.table} SET nom = ?, prenom = ?, email = ?, password = ?, adresse = ?, codePostal = ?, ville = ?, createur = ?, photo = ?, descriptionCreateur = ? WHERE id = ?`,
       [
         utilisateur.nom,
         utilisateur.prenom,
@@ -66,6 +66,12 @@ class UtilisateurManager extends AbstractManager {
         Utilisateurcategorie.CategorieId,
       ]
     )
+  }
+
+  loginUtilisateur(email) {
+    return this.database.query(`SELECT * FROM ${this.table} WHERE email = ?`, [
+      email,
+    ])
   }
 }
 

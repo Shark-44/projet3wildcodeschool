@@ -32,6 +32,16 @@ class ObjetsManager extends AbstractManager {
       ]
     )
   }
+
+  readobjetsByUtilisateur() {
+    return this.database.query(
+      `SELECT objets.id, objets.nomObjet, objets.prix, objets.quantite, objets.photo1, 
+      objets.photo2, objets.descriptionObjet, utilisateurhasobjets.ObjetsId,
+       utilisateurhasobjets.UtilisateurId, utilisateur.nom, utilisateur.prenom FROM ${this.table} 
+       JOIN utilisateurhasobjets ON objets.id = utilisateurhasobjets.ObjetsId
+       JOIN utilisateur ON utilisateurhasobjets.UtilisateurId = utilisateur.id;`
+    )
+  }
 }
 
 module.exports = ObjetsManager

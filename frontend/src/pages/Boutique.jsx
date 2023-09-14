@@ -2,23 +2,36 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import "./Boutique.css"
 import CardB from "../components/CardB"
+import FiltreBoutiquecreateur from "../components/FiltreBoutiquecreateur"
+import FiltreBoutiquecategorie from "../components/FiltreBoutiquecategorie"
 
 function Boutique() {
   const [objets, setObjets] = useState([])
+
   useEffect(() => {
     axios.get("http://localhost:4242/objets").then((res) => setObjets(res.data))
   }, [])
+
   return (
     <div className="contenaireB">
-      <h1>Je suis dans la Boutique</h1>
-      <div className="renduB">
-        {objets.map((objet) => (
-          <CardB
-            key={objet.id}
-            nomObjet={objet.nomObjet}
-            photo1={objet.photo1}
-          />
-        ))}
+      <h1>Votre boutique</h1>
+      <div className="rendu">
+        <div className="renduA">
+          <div> les filtres</div>
+          <div className="filtreA">
+            <FiltreBoutiquecreateur />
+            <FiltreBoutiquecategorie />
+          </div>
+        </div>
+        <div className="renduB">
+          {objets.map((objet) => (
+            <CardB
+              key={objet.id}
+              nomObjet={objet.nomObjet}
+              photo1={objet.photo1}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )

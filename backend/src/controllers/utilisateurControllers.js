@@ -8,7 +8,7 @@ const browse = (req, res) => {
     })
     .catch((err) => {
       console.error(err)
-      res.sendStatus(500)
+      res.sendStatus(511)
     })
 }
 
@@ -24,7 +24,7 @@ const add = (req, res) => {
     })
     .catch((err) => {
       console.error(err)
-      res.sendStatus(500)
+      res.sendStatus(512)
     })
 }
 const read = (req, res) => {
@@ -39,7 +39,7 @@ const read = (req, res) => {
     })
     .catch((err) => {
       console.error(err)
-      res.sendStatus(500)
+      res.sendStatus(513)
     })
 }
 
@@ -61,7 +61,7 @@ const edit = (req, res) => {
     })
     .catch((err) => {
       console.error(err)
-      res.sendStatus(500)
+      res.sendStatus(514)
     })
 }
 const editutilisateurcategorie = (req, res) => {
@@ -84,7 +84,7 @@ const editutilisateurcategorie = (req, res) => {
     })
     .catch((err) => {
       console.error(err)
-      res.sendStatus(500)
+      res.sendStatus(515)
     })
 }
 const destroy = (req, res) => {
@@ -99,7 +99,7 @@ const destroy = (req, res) => {
     })
     .catch((err) => {
       console.error(err)
-      res.sendStatus(500)
+      res.sendStatus(516)
     })
 }
 
@@ -115,7 +115,28 @@ const readUtilisateurWithCategorie = (req, res) => {
     })
     .catch((err) => {
       console.error(err)
-      res.sendStatus(500)
+      res.sendStatus(517)
+    })
+}
+const loginUtilisateur = (req, res, next) => {
+  const { email } = req.body
+
+  models.utilisateur
+    .loginUtilisateur([email])
+    .then(([utilisateur]) => {
+      if (utilisateur[0] != null) {
+        req.user = utilisateur[0]
+        // console.info([utilisateur]) verif si bonne recuperation de l'user
+        next()
+      } else {
+        res.sendStatus(411).send("pas trouvé")
+      }
+    })
+
+    .catch((err) => {
+      console.error(err)
+
+      res.status(518).send("Error retrieving data from database")
     })
 }
 
@@ -127,4 +148,5 @@ module.exports = {
   destroy,
   readUtilisateurWithCategorie,
   editutilisateurcategorie,
+  loginUtilisateur,
 }

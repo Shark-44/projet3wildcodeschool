@@ -1,8 +1,16 @@
 body {
   margin: 0;
   padding: 0;
-  height: 100vh;
-  width: 90vw;
   background-color: #0e0424;
   color: #f4b346;
+}
+.show {
+  display: block;
+  transition: 800ms;
+  opacity: 1;
+}
+
+.show.active {
+  transform: translateY(100px) scale(0) rotateY(180deg);
+  opacity: 0;
 }
