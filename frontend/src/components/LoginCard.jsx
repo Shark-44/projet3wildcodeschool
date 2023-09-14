@@ -3,13 +3,13 @@ import { useState } from "react"
 import "./LoginCard.css"
 
 const LoginCard = ({ isShowLogin, handleLoginClick }) => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
 
   const handleSubmit = () => {
-    if (email == null) {
+    if (email === undefined) {
       alert("votre email !!!")
-    } else if (password == null) {
+    } else if (password === undefined) {
       alert(" votre password !!!")
     } else {
       handleLoginClick()

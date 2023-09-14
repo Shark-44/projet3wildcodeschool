@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import "./FiltreBoutiquecreateur.css"
 
-const FiltreBoutiquecreateur = () => {
+const FiltreBoutiquecategorie = () => {
   const [filtreCreateur, setFiltrecreateur] = useState([])
   const [selectedOption, setSelectedOption] = useState()
 
@@ -12,21 +12,22 @@ const FiltreBoutiquecreateur = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4242/utilisateur/with/categorie")
+      .get("http://localhost:4242/categorie")
       .then((res) => setFiltrecreateur(res.data))
   }, [])
 
   return (
     <div className="containerfiltre">
       <select value={selectedOption} onChange={handleOptionChange}>
-        <option value="">Createurs</option>
+        <option value="">Categorie</option>
         {filtreCreateur.map((filtre) => (
-          <option key={filtre.id} value={filtre.prenom}>
-            {filtre.prenom}
+          <option key={filtre.id} value={filtre.type}>
+            {filtre.type}
           </option>
         ))}
       </select>
+      {selectedOption}
     </div>
   )
 }
-export default FiltreBoutiquecreateur
+export default FiltreBoutiquecategorie

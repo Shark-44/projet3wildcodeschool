@@ -24,9 +24,6 @@ const NavBar = ({ handleLoginClick }) => {
           <NavLink className="navlink" to="/Test">
             Test
           </NavLink>
-          <NavLink className="navlink" to="/Login">
-            login
-          </NavLink>
         </ul>
         <div className="buttonContainer">
           <button onClick={handleClick} className="loginicon log">

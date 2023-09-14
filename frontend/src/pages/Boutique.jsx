@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import "./Boutique.css"
 import CardB from "../components/CardB"
 import FiltreBoutiquecreateur from "../components/FiltreBoutiquecreateur"
+import FiltreBoutiquecategorie from "../components/FiltreBoutiquecategorie"
 
 function Boutique() {
   const [objets, setObjets] = useState([])
@@ -19,6 +20,7 @@ function Boutique() {
           <div> les filtres</div>
           <div className="filtreA">
             <FiltreBoutiquecreateur />
+            <FiltreBoutiquecategorie />
           </div>
         </div>
         <div className="renduB">
