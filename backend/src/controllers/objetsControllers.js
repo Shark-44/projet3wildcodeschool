@@ -80,8 +80,24 @@ const destroy = (req, res) => {
     })
 }
 const objetsByUtilisateur = (req, res) => {
+  const prenom = req.query.prenom
   models.objets
-    .readobjetsByUtilisateur()
+    .readobjetsByUtilisateur(prenom)
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+const objetsByCategorie = (req, res) => {
+  const type = req.query.type
+
+  console.info(type)
+
+  models.objets
+    .readobjetsByCategorie(type)
     .then(([rows]) => {
       res.send(rows)
     })
@@ -98,4 +114,5 @@ module.exports = {
   edit,
   destroy,
   objetsByUtilisateur,
+  objetsByCategorie,
 }

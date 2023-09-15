@@ -2,12 +2,13 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import "./FiltreBoutiquecreateur.css"
 
-const FiltreBoutiquecategorie = () => {
+const FiltreBoutiquecategorie = ({ type, setType }) => {
   const [filtreCreateur, setFiltrecreateur] = useState([])
   const [selectedOption, setSelectedOption] = useState()
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value)
+    setType((type = event.target.value))
   }
 
   useEffect(() => {
@@ -26,7 +27,6 @@ const FiltreBoutiquecategorie = () => {
           </option>
         ))}
       </select>
-      {selectedOption}
     </div>
   )
 }

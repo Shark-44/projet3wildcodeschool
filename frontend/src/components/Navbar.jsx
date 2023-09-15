@@ -18,9 +18,6 @@ const NavBar = ({ handleLoginClick }) => {
           <NavLink className="navlink" to="/Createurs">
             Createurs
           </NavLink>
-          <NavLink className="navlink" to="/Formulaire">
-            Formulaire
-          </NavLink>
           <NavLink className="navlink" to="/Test">
             Test
           </NavLink>
@@ -29,9 +26,9 @@ const NavBar = ({ handleLoginClick }) => {
           <button onClick={handleClick} className="loginicon log">
             Login
           </button>
-          <button onClick={handleClick} className="loginicon sig">
-            Sign up
-          </button>
+          <a href="/Formulaire">
+            <button className="loginicon sig">Sign up</button>
+          </a>
         </div>
       </nav>
     </>
