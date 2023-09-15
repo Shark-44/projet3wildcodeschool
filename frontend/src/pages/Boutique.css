@@ -1,29 +1,30 @@
 .contenaireB {
-  display: flex;
-flex-direction: column;
-align-items: center;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
 }
 .rendu{
   display: flex;
+  width: 95vw;
 }
 .renduA{
   display: flex;
   flex-direction: column;
+  height: 270px;
   width: 120px;
-  margin: 15px;
+  margin: 20px;
   border: 15px solid #0e0424;
   border-radius: 15px;
   box-shadow: 0 0 0 .6em #f4b346;
   align-items: center;
-
-  
-  
 }
 .renduB {
-  margin: 20px;
   display: flex;
-  flex-grow: 1;
   flex-wrap: wrap;
-  justify-content: space-between;
+  flex-grow: 1;
+  justify-content: space-around;
   gap: 20px;
+}
+.renduA button{
+  margin-top: 15px;
 }

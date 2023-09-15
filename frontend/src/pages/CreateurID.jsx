@@ -3,9 +3,8 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
 function CreateurID() {
-  // eslint-disable-next-line no-unused-vars
   const params = useParams()
-  // eslint-disable-next-line no-unused-vars
+
   const [createurs, setCreateurs] = useState([])
 
   useEffect(() => {

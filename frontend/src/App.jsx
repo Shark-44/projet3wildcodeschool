@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import { useState } from "react"
 import Home from "./pages/Home"
 import Boutique from "./pages/Boutique"
+import ObjetID from "./pages/ObjetsID"
 import Formulaire from "./pages/Formulaire"
 import NavBar from "./components/Navbar"
 import Test from "./pages/Test"
@@ -26,11 +27,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Boutique" element={<Boutique />} />
-        <Route path="/Formulaire" element={<Formulaire />} />
+        <Route path="/Boutique/:id" element={<ObjetID />} />
         <Route path="/Createurs" element={<Createurs />} />
-        <Route path="/Test" element={<Test />} />
         <Route path="/Createurs/:id" element={<CreateurID />} />
+        <Route path="/Test" element={<Test />} />
         <Route path="/Login" element={<Login />} />
+        <Route path="/Formulaire" element={<Formulaire />} />
       </Routes>
     </div>
   )

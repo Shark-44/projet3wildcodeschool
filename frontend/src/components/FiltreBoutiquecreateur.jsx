@@ -8,7 +8,7 @@ const FiltreBoutiquecreateur = ({ prenom, setPrenom }) => {
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value)
-    setPrenom((prenom = event.target.value))
+    setPrenom(event.target.value)
   }
 
   useEffect(() => {
