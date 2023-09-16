@@ -46,7 +46,7 @@ function Boutique() {
         </div>
         <div className="renduB">
           {objets.map((objet) => (
-            <Link key={objet.id} to={`/Boutique/${objet.id}`}>
+            <Link className="link" key={objet.id} to={`/Boutique/${objet.id} `}>
               <CardB
                 key={objet.id}
                 nomObjet={objet.nomObjet}

@@ -2,14 +2,39 @@
   width: 100VW;
   display: flex;
   position: sticky;
-  top: 5px;
+  top: 0.1px;
   justify-content: space-between;
   background-color:#0e0424;
+  border-bottom: 2px solid #325068;
+  box-shadow: 0 0 50px 15px #48abe0;
 }
 .navlink {
+  position: relative;
   color: white;
-  margin: 5px;
   font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 25px;
+  letter-spacing: -0.13px;
+  text-decoration: none;
+  margin-left: 2rem;
+  transition: all 0.5s ease;
+}
+.navlink:hover {
+  color: rgb(168, 239, 255, 0.9);
+}
+.navlink::after {
+  content: "";
+  position: absolute;
+  bottom: -0.3rem;
+  left: 50%;
+  width: 0;
+  height: 0.15rem;
+  transform: translateX(-50%);
+  background-color: rgb(168, 239, 255, 0.9);
+  transition: all 0.5s ease;
+}
+.navlink:hover::after {
+  width: 100%;
 }
 .loginicon {
   width: 80px;
