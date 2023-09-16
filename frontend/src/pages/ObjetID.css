@@ -1,0 +1,60 @@
+.cardObjet{
+    border: 15px solid #0e0424;
+    border-radius: 15px;
+    box-shadow: 0 0 0 .6em #f4b346;
+    margin: 90px 20px 0 20px;
+    display: flex;
+    justify-content: space-around;
+}
+.descriptionObjet{
+    background-color: white;
+    color:#070A09;
+    border-radius: 10px;
+}
+.infoAutre{
+    display: flex;
+    width: 50%;
+}
+.infoCreateur{
+   
+    display:flex;
+    justify-content: center;
+    flex-direction: row;
+    position: absolute;
+    width: 50%;
+    justify-content: flex-start;
+}
+.infoCreateur h2{
+    background-color:#0e0424;
+}
+.infoCreateur img{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+
+.avisutilisateur{
+    display:flex;
+    justify-content: center;
+    flex-direction: row;
+    position: absolute;
+    top: 65%;
+    width: 50%;
+}
+.avisutilisateur h2{
+    background-color: #248795;
+    border: 2px solid #070A09;
+    border-radius: 5px;
+    color: #0e0424;
+    margin: 10px;
+    z-index: 2;
+    position: absolute;
+    right: 200px;
+}
+.avisutilisateur img{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    right: 110px;
+}

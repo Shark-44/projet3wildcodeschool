@@ -79,6 +79,7 @@ const destroy = (req, res) => {
       res.sendStatus(500)
     })
 }
+// objet par utilisateur
 const objetsByUtilisateur = (req, res) => {
   const prenom = req.query.prenom
   models.objets
@@ -91,6 +92,20 @@ const objetsByUtilisateur = (req, res) => {
       res.sendStatus(500)
     })
 }
+const readobjetsByUtilisateur = (req, res) => {
+  const id = req.query.id
+  models.objets
+    .readObjetsByUtilisateur(id)
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
+// objet par categorie
 const objetsByCategorie = (req, res) => {
   const type = req.query.type
 
@@ -98,6 +113,30 @@ const objetsByCategorie = (req, res) => {
 
   models.objets
     .readobjetsByCategorie(type)
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+// avis objet
+const readavisobjet = (req, res) => {
+  models.objets
+    .readavisobjet()
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+const readavisobjetid = (req, res) => {
+  const id = req.query.id
+  models.objets
+    .readavisobjetid(id)
     .then(([rows]) => {
       res.send(rows)
     })
@@ -114,5 +153,8 @@ module.exports = {
   edit,
   destroy,
   objetsByUtilisateur,
+  readobjetsByUtilisateur,
   objetsByCategorie,
+  readavisobjet,
+  readavisobjetid,
 }
