@@ -24,16 +24,18 @@ function App() {
         isShowLogin={isShowLogin}
         handleLoginClick={handleLoginClick}
       />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Boutique" element={<Boutique />} />
-        <Route path="/Boutique/:id" element={<ObjetID />} />
-        <Route path="/Createurs" element={<Createurs />} />
-        <Route path="/Createurs/:id" element={<CreateurID />} />
-        <Route path="/Test" element={<Test />} />
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Formulaire" element={<Formulaire />} />
-      </Routes>
+      <div className="lesroutes">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Boutique" element={<Boutique />} />
+          <Route path="/Boutique/:id" element={<ObjetID />} />
+          <Route path="/Createurs" element={<Createurs />} />
+          <Route path="/Createurs/:id" element={<CreateurID />} />
+          <Route path="/Test" element={<Test />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Formulaire" element={<Formulaire />} />
+        </Routes>
+      </div>
     </div>
   )
 }

@@ -35,7 +35,7 @@ function Boutique() {
   }
 
   return (
-    <div className="contenaireB">
+    <div className="container Boutique">
       <h1>Votre boutique</h1>
       <div className="rendu">
         <div className="renduA">
@@ -46,7 +46,7 @@ function Boutique() {
         </div>
         <div className="renduB">
           {objets.map((objet) => (
-            <Link key={objet.id} to={`/Boutique/${objet.id}`}>
+            <Link className="link" key={objet.id} to={`/Boutique/${objet.id} `}>
               <CardB
                 key={objet.id}
                 nomObjet={objet.nomObjet}

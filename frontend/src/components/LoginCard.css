@@ -1,11 +1,12 @@
 .login-form{
-    width: 90vw;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     position: absolute;
-  }
+    z-index: 5;
+   }
   .form-box{
     margin-top: 7vh;
     /* opacity:80%; */
