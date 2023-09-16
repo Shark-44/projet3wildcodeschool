@@ -47,17 +47,15 @@ function ObjetsID() {
           ))}
         </div>
         <div className="avisutilisateur">
-          <div className="positionavis">
-            {avis.map((avis) => (
-              <div key={avis.id}>
-                <h2>{avis.avisObjet}</h2>
-                <img
-                  src={`http://localhost:4242/assets/images/avatar/${avis.photo}`}
-                  alt={avis.prenom}
-                />
-              </div>
-            ))}
-          </div>
+          {avis.map((avis) => (
+            <div key={avis.id}>
+              <h2>{avis.avisObjet}</h2>
+              <img
+                src={`http://localhost:4242/assets/images/avatar/${avis.photo}`}
+                alt={avis.prenom}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>
