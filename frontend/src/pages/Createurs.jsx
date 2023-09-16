@@ -20,7 +20,7 @@ function Createurs() {
   }, [])
 
   return (
-    <div className="containerCreateur">
+    <div className="container Createur">
       <h1> Nos createurs</h1>
       <div className="resultat">
         <div className="filtre">

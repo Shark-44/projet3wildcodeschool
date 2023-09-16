@@ -1,4 +1,4 @@
-.contenaireB {
+.Boutique {
  display: flex;
  flex-direction: column;
  align-items: center;
@@ -17,6 +17,8 @@
   border-radius: 15px;
   box-shadow: 0 0 0 .6em #f4b346;
   align-items: center;
+  position: sticky;
+  top: 100px;
 }
 .renduB {
   display: flex;
@@ -24,6 +26,7 @@
   flex-grow: 1;
   justify-content: space-around;
   gap: 20px;
+ 
 }
 .renduA button{
   margin-top: 15px;

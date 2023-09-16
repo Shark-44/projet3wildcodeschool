@@ -1,10 +1,17 @@
+.navGlobal{
+  width: 100VW;
+  display: flex;
+  position: sticky;
+  top: 5px;
+  justify-content: space-between;
+  background-color:#0e0424;
+}
 .navlink {
   color: white;
   margin: 5px;
   font-size: 1.5rem;
 }
 .loginicon {
-  position: absolute;
   width: 80px;
   text-decoration: none;
   display: flex;
@@ -23,9 +30,10 @@
 .loginicon:hover{
   color: white;
 }
-.log{
-  left: 80%;
-}
-.sig{
-  left: 90%;
+.buttonContainer{
+  display: flex;
+  align-items: center;
+  margin: 5px;
+  margin-right: 30px;
+  gap: 5px
 }

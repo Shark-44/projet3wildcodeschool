@@ -35,7 +35,7 @@ function Boutique() {
   }
 
   return (
-    <div className="contenaireB">
+    <div className="container Boutique">
       <h1>Votre boutique</h1>
       <div className="rendu">
         <div className="renduA">

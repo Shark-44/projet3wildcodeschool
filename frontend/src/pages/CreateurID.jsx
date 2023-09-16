@@ -14,7 +14,7 @@ function CreateurID() {
   }, [params.id])
 
   return (
-    <div>
+    <div className="container Createur">
       <img
         src={`http://localhost:4242/assets/images/avatar/${createurs.photo}`}
         alt={createurs.nom}

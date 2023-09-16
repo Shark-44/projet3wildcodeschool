@@ -14,7 +14,7 @@ function ObjetsID() {
   }, [params.id])
 
   return (
-    <div className="cardObjet">
+    <div className="container cardObjet">
       <img
         src={`http://localhost:4242/${objets.photo1}`}
         alt={objets.nomObjet}
