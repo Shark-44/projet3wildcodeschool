@@ -33,6 +33,7 @@ class ObjetsManager extends AbstractManager {
     )
   }
 
+  // objet utilisateur
   readobjetsByUtilisateur(prenom) {
     return this.database.query(
       `SELECT objets.id, objets.nomObjet, objets.prix, objets.quantite, objets.photo1, 
@@ -44,6 +45,38 @@ class ObjetsManager extends AbstractManager {
     )
   }
 
+  readObjetsByUtilisateur(id) {
+    return this.database.query(
+      `SELECT objets.id, objets.nomObjet, objets.prix, objets.quantite, objets.photo1, 
+      objets.photo2, objets.descriptionObjet, utilisateurhasobjets.ObjetsId,
+       utilisateurhasobjets.UtilisateurId, utilisateur.nom, utilisateur.prenom, utilisateur.photo FROM ${this.table} 
+       JOIN utilisateurhasobjets ON objets.id = utilisateurhasobjets.ObjetsId
+       JOIN utilisateur ON utilisateurhasobjets.UtilisateurId = utilisateur.id WHERE objets.id = ?`,
+      [id]
+    )
+  }
+
+  // avis objet
+  readavisobjet() {
+    return this.database.query(
+      `SELECT objets.id, avisobjet.ObjetsId, avisobjet.UtilisateurId, avisobjet.avisObjet, avisobjet.dateavisObjet, utilisateur.prenom, utilisateur.nom, utilisateur.photo
+      FROM ${this.table}
+      JOIN avisobjet ON objets.id = avisObjet.ObjetsId 
+      JOIN utilisateur ON avisobjet.UtilisateurId = utilisateur.id`
+    )
+  }
+
+  readavisobjetid(id) {
+    return this.database.query(
+      `SELECT objets.id, avisobjet.ObjetsId, avisobjet.UtilisateurId, avisobjet.avisObjet, avisobjet.dateavisObjet, utilisateur.prenom, utilisateur.nom, utilisateur.photo
+      FROM ${this.table}
+      JOIN avisobjet ON objets.id = avisObjet.ObjetsId 
+      JOIN utilisateur ON avisobjet.UtilisateurId = utilisateur.id WHERE objets.id = ?`,
+      [id]
+    )
+  }
+
+  // objet categorie
   readobjetsByCategorie(type) {
     console.info(type)
     return this.database.query(

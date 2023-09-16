@@ -55,7 +55,13 @@ router.post("/objets", objetsControllers.add)
 router.put("/objets/:id", objetsControllers.edit)
 router.delete("/objets/:id", objetsControllers.destroy)
 router.get("/utilisateur/with/objets", objetsControllers.objetsByUtilisateur)
+router.get(
+  "/utilisateur/avec/objets",
+  objetsControllers.readobjetsByUtilisateur
+)
 router.get("/objets/with/categorie", objetsControllers.objetsByCategorie)
+router.get("/avisurobjet", objetsControllers.readavisobjet)
+router.get("/avisurobjetparid", objetsControllers.readavisobjetid)
 
 // ROUTE CATEGORIE
 router.get("/categorie", categorieControllers.browse)
