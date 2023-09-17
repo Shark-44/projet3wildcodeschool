@@ -22,6 +22,19 @@ const NavBar = ({ handleLoginClick }) => {
             Test
           </NavLink>
         </ul>
+        <img
+          className="imagelogo"
+          src="http://localhost:4242/assets/images/autre/AlterWord.PNG"
+          alt=""
+        />
+        <div className="panier">
+          <a href="/Panier">
+            <img
+              src="http://localhost:4242/assets/images/autre/panier.png"
+              alt=""
+            />
+          </a>
+        </div>
         <div className="buttonContainer">
           <button onClick={handleClick} className="loginicon log">
             Login
