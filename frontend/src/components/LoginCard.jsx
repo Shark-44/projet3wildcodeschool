@@ -2,7 +2,7 @@ import axios from "axios"
 import { useState } from "react"
 import "./LoginCard.css"
 
-const LoginCard = ({ isShowLogin, handleLoginClick }) => {
+const LoginCard = ({ isShowLogin, handleLoginClick, onlogin, setOnlogin }) => {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
 
@@ -19,6 +19,7 @@ const LoginCard = ({ isShowLogin, handleLoginClick }) => {
           password,
         })
         .then((res) => console.info(res.data))
+        .then((res) => setOnlogin(res.data.utilisateur))
     }
   }
   return (

@@ -9,6 +9,7 @@ function ObjetsID() {
   const [objets, setObjets] = useState([])
   const [createur, setCreateur] = useState([])
   const [avis, setAvis] = useState([])
+  const [addpanier, setAddpanier] = useState(0)
 
   useEffect(() => {
     axios
@@ -22,6 +23,10 @@ function ObjetsID() {
       .then((res) => setAvis(res.data))
   }, [params.id])
 
+  const handleAdd = () => {
+    setAddpanier(addpanier + 1)
+  }
+
   return (
     <div className="container cardObjet">
       <div className="descriptionObjet">
@@ -32,6 +37,7 @@ function ObjetsID() {
         <h2>{objets.nomObjet}</h2>
         <p>Prix: {objets.prix} €</p>
         <p>Quantité restante : {objets.quantite}</p>
+        <button onClick={handleAdd}>Ajouter au panier</button>
       </div>
       <div className="infoAutre">
         <div className="infoCreateur">

@@ -19,12 +19,16 @@ function App() {
   const handleLoginClick = () => {
     setIsShowLogin((isShowLogin) => !isShowLogin)
   }
+  const [onlogin, setOnlogin] = useState([])
+
   return (
     <div className="App">
-      <NavBar handleLoginClick={handleLoginClick} />
+      <NavBar handleLoginClick={handleLoginClick} onlogin={onlogin} />
       <LoginCard
         isShowLogin={isShowLogin}
         handleLoginClick={handleLoginClick}
+        onlogin={onlogin}
+        setOnlogin={setOnlogin}
       />
       <Routes>
         <Route path="/" element={<Home />} />

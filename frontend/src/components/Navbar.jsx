@@ -1,7 +1,7 @@
 import "./NavBar.css"
 import { NavLink } from "react-router-dom"
 
-const NavBar = ({ handleLoginClick }) => {
+const NavBar = ({ handleLoginClick, onlogin }) => {
   const handleClick = () => {
     handleLoginClick()
   }
