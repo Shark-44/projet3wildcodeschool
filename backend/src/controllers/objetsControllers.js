@@ -145,6 +145,18 @@ const readavisobjetid = (req, res) => {
       res.sendStatus(500)
     })
 }
+// pour afficher les photos objets les plus commandés
+const vuquantiteobjets = (req, res) => {
+  models.objets
+    .lirequantiteobjets()
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
 
 module.exports = {
   browse,
@@ -157,4 +169,5 @@ module.exports = {
   objetsByCategorie,
   readavisobjet,
   readavisobjetid,
+  vuquantiteobjets,
 }

@@ -62,6 +62,7 @@ router.get(
 router.get("/objets/with/categorie", objetsControllers.objetsByCategorie)
 router.get("/avisurobjet", objetsControllers.readavisobjet)
 router.get("/avisurobjetparid", objetsControllers.readavisobjetid)
+router.get("/quantitecommande", objetsControllers.vuquantiteobjets)
 
 // ROUTE CATEGORIE
 router.get("/categorie", categorieControllers.browse)
