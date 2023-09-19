@@ -1,7 +1,27 @@
+import "./home.css"
+import Cube3D from "./Cube"
+
+import Cardavis from "../components/Cardavis"
+
 const Home = () => {
   return (
-    <div>
-      <h1>Je suis dans la page Home</h1>
+    <div className="containerhome">
+      <div className="presentation">
+        <p>
+          Alterword :Une boutique? Plus que cela, ce site permet de reunir
+          joeurs de jeux de rôle cherchant améliorer leur experience. Et des
+          createurs qui vous proposent de decouvrir leur univers a travers leur
+          collection.
+        </p>
+      </div>
+      <div className="lecube">
+        <p>Les objets les plus vendus</p>
+        <Cube3D />
+      </div>
+      <div className="dernieravis">
+        <p>Quelques avis</p>
+        <Cardavis />
+      </div>
     </div>
   )
 }

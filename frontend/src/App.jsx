@@ -42,6 +42,7 @@ function App() {
         <Route path="/Panier" element={<Panier />} />
         <Route path="/Commande" element={<Commande />} />
       </Routes>
+      <footer>test</footer>
     </div>
   )
 }

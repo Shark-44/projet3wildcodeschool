@@ -1,0 +1,31 @@
+.containerhome {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.presentation {
+  display: flex;
+  margin: 50px 20px 0px 20px;
+  border: 2px solid white;
+  box-shadow: 0 0 10px 5px #48abe0;
+  text-align: center;
+  width: 90vw;
+  color: white;
+  font-size: 2.5rem;
+  font-style: oblique;
+}
+
+
+  .lecube {
+    height: 500px;
+    font-size: 2rem;
+  }
+  .dernieravis{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    font-size: 2rem;
+  }

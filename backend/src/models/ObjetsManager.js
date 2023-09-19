@@ -78,12 +78,16 @@ class ObjetsManager extends AbstractManager {
 
   // objet categorie
   readobjetsByCategorie(type) {
-    console.info(type)
     return this.database.query(
       `SELECT objets.id, objets.nomObjet, objets.prix, objets.quantite, objets.photo1, objets.photo2, objets.descriptionObjet, categoriehasobjets.ObjetsId, categoriehasobjets.CategorieId, categorie.type FROM ${this.table} JOIN categoriehasobjets ON objets.id = categoriehasobjets.ObjetsId JOIN categorie ON categoriehasobjets.CategorieId = categorie.id WHERE type = ?`,
       [type]
     )
   }
-}
 
+  lirequantiteobjets() {
+    return this.database.query(
+      `SELECT objets.id, objets.photo1, commandehasobjets.quantiteCommande FROM ${this.table} JOIN commandehasobjets ON objets.id = commandehasobjets.ObjetsId`
+    )
+  }
+}
 module.exports = ObjetsManager
