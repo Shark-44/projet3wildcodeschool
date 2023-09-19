@@ -11,7 +11,12 @@ function Login() {
         email,
         password,
       })
-      .then((res) => console.info(res.data))
+      .then((res) => {
+        localStorage.setItem("token", res.data.token)
+        localStorage.setItem("usersId", res.data.user.usersId)
+        setUser(res.data.user)
+        console.info(res.data)
+      })
   }
 
   return (
