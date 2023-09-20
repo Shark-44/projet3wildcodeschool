@@ -1,22 +1,44 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
-function Panier() {
-  const UtilisateurId = localStorage.getItem("UtilisateurId")
-
-  // eslint-disable-next-line no-unused-vars
+function Panier({ onlogin }) {
   const [quantitePanier, setQuantitéPanier] = useState()
+  const [objets, setObjets] = useState([])
 
-  axios.post("http://localhost:4242/utilisateur", {
-    UtilisateurId,
-    // eslint-disable-next-line no-undef
-    ObjetId,
-    quantitePanier,
+  useEffect(() => {
+    axios.get("http://localhost:4242/panier").then((res) => setObjets(res.data))
   })
-  useEffect(() => {})
+  const handleAdd = () => {
+    setQuantitéPanier(quantitePanier + 1)
+  }
+  const handleSub = () => {
+    setQuantitéPanier(quantitePanier - 1)
+  }
+  const handledel = () => {
+    setQuantitéPanier(null)
+  }
   return (
     <div className="containerPanier">
-      <button>ajouter + 1</button>
-      <button>Oter - 1</button>
+      <div className="descriptionObjet">
+        {objets.map((objet) => (
+          <div key={objet.id}>
+            <img
+              src={`http://localhost:4242/${objet.photo1}`}
+              alt={objet.nom}
+            />
+            Nom : {objet.nom}
+            Prix :{objet.prix}
+            Quantité: {quantitePanier}
+          </div>
+        ))}
+        <div className="btn">
+          <button onClick={handleAdd}>ajouter + 1</button>
+          <button onClick={handleSub}>Oter - 1</button>
+          <button onClick={handledel}></button>
+        </div>
+      </div>
+      <div className="validation">
+        <button>validation</button>
+      </div>
     </div>
   )
 }

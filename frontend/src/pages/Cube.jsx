@@ -22,7 +22,6 @@ function Cube3D() {
   const img6 = triObjets.length > 5 ? triObjets[5].photo1 : ""
   return (
     <center>
-      {img1}
       <div
         style={{
           width: 300,

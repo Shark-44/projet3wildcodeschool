@@ -8,7 +8,6 @@ import NavBar from "./components/Navbar"
 import Test from "./pages/Test"
 import Createurs from "./pages/Createurs"
 import CreateurID from "./pages/CreateurID"
-import Login from "./pages/Login"
 import Panier from "./pages/Panier"
 import Commande from "./pages/Commande"
 import LoginCard from "./components/LoginCard"
@@ -19,7 +18,8 @@ function App() {
   const handleLoginClick = () => {
     setIsShowLogin((isShowLogin) => !isShowLogin)
   }
-  const [onlogin, setOnlogin] = useState([])
+  const [onlogin, setOnlogin] = useState(false)
+  const [addpanier, setAddpanier] = useState(0)
 
   return (
     <div className="App">
@@ -33,16 +33,24 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Boutique" element={<Boutique />} />
-        <Route path="/Boutique/:id" element={<ObjetID />} />
+        <Route
+          path="/Boutique/:id"
+          element={
+            <ObjetID
+              onlogin={onlogin}
+              setAddpanier={setAddpanier}
+              addpanier={addpanier}
+            />
+          }
+        />
         <Route path="/Createurs" element={<Createurs />} />
         <Route path="/Createurs/:id" element={<CreateurID />} />
         <Route path="/Test" element={<Test />} />
-        <Route path="/Login" element={<Login />} />
         <Route path="/Formulaire" element={<Formulaire />} />
-        <Route path="/Panier" element={<Panier />} />
+        <Route path="/Panier" element={<Panier onlogin={onlogin} />} />
         <Route path="/Commande" element={<Commande />} />
       </Routes>
-      <footer>test</footer>
+      <footer>{onlogin}</footer>
     </div>
   )
 }

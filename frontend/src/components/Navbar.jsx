@@ -5,6 +5,9 @@ const NavBar = ({ handleLoginClick, onlogin }) => {
   const handleClick = () => {
     handleLoginClick()
   }
+  const buttonColor = onlogin ? "#A2FF86" : "#2bc6ff"
+  // eslint-disable-next-line no-restricted-syntax
+  console.log(onlogin)
   return (
     <>
       <nav className="navGlobal">
@@ -36,7 +39,11 @@ const NavBar = ({ handleLoginClick, onlogin }) => {
           </a>
         </div>
         <div className="buttonContainer">
-          <button onClick={handleClick} className="loginicon log">
+          <button
+            onClick={handleClick}
+            className="loginicon log"
+            style={{ backgroundColor: buttonColor }}
+          >
             Login
           </button>
           <a href="/Formulaire">

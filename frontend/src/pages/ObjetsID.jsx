@@ -3,14 +3,17 @@ import "./ObjetID.css"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
-function ObjetsID() {
+function ObjetsID({ onlogin, setAddpanier, addpanier }) {
   const params = useParams()
 
   const [objets, setObjets] = useState([])
   const [createur, setCreateur] = useState([])
   const [avis, setAvis] = useState([])
-  const [addpanier, setAddpanier] = useState(0)
 
+  // pour ajouter au panier
+  const UtilisateurId = onlogin
+  const ObjetsId = objets.id
+  const quantitePanier = 1
   useEffect(() => {
     axios
       .get(`http://localhost:4242/objets/${params.id}`)
@@ -25,6 +28,7 @@ function ObjetsID() {
 
   const handleAdd = () => {
     setAddpanier(addpanier + 1)
+    axios.post("/panier", { UtilisateurId, ObjetsId, quantitePanier })
   }
 
   return (
