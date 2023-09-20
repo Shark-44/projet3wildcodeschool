@@ -1,13 +1,12 @@
 import "./NavBar.css"
 import { NavLink } from "react-router-dom"
 
-const NavBar = ({ handleLoginClick, onlogin }) => {
+const NavBar = ({ handleLoginClick, onlogin, addpanier }) => {
   const handleClick = () => {
     handleLoginClick()
   }
   const buttonColor = onlogin ? "#A2FF86" : "#2bc6ff"
-  // eslint-disable-next-line no-restricted-syntax
-  console.log(onlogin)
+
   return (
     <>
       <nav className="navGlobal">
@@ -36,6 +35,7 @@ const NavBar = ({ handleLoginClick, onlogin }) => {
               src="http://localhost:4242/assets/images/autre/panier.png"
               alt=""
             />
+            {addpanier > 0 && <span className="badge">{addpanier}</span>}
           </a>
         </div>
         <div className="buttonContainer">

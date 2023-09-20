@@ -10,10 +10,6 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
   const [createur, setCreateur] = useState([])
   const [avis, setAvis] = useState([])
 
-  // pour ajouter au panier
-  const UtilisateurId = onlogin
-  const ObjetsId = objets.id
-  const quantitePanier = 1
   useEffect(() => {
     axios
       .get(`http://localhost:4242/objets/${params.id}`)
@@ -27,8 +23,16 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
   }, [params.id])
 
   const handleAdd = () => {
+    // pour ajouter au panier
+    const UtilisateurId = onlogin
+    const ObjetsId = objets.id
+    const quantitePanier = 1
+    axios.post("http://localhost:4242/panier", {
+      UtilisateurId,
+      ObjetsId,
+      quantitePanier,
+    })
     setAddpanier(addpanier + 1)
-    axios.post("/panier", { UtilisateurId, ObjetsId, quantitePanier })
   }
 
   return (

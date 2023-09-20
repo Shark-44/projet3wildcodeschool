@@ -81,3 +81,13 @@
 #a {
   text-decoration: none;
 }
+.badge {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 4px 8px;
+  font-size: 12px;
+  position: relative;
+  top: -8px;
+  left: 5px;
+}

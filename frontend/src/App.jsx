@@ -23,7 +23,11 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar handleLoginClick={handleLoginClick} onlogin={onlogin} />
+      <NavBar
+        handleLoginClick={handleLoginClick}
+        onlogin={onlogin}
+        addpanier={addpanier}
+      />
       <LoginCard
         isShowLogin={isShowLogin}
         handleLoginClick={handleLoginClick}
