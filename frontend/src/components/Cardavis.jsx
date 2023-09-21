@@ -10,13 +10,10 @@ const Cardavis = () => {
     const randomAvisObjet3 = avis[Math.floor(Math.random() * avis.length)]
 
     const newArray = [randomAvisObjet1, randomAvisObjet2, randomAvisObjet3]
-    //   for (let i = 0; newArray.length < 3; i++) {
-    //     newArray.concat(randomAvisObjet)
-    //   }
+
     return newArray
   }
-  // eslint-disable-next-line no-restricted-syntax
-  console.log(newarrayAvisobjet)
+
   useEffect(() => {
     axios
       .get("http://localhost:4242/avisurobjet")

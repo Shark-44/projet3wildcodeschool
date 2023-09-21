@@ -1,12 +1,29 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
-function Panier({ onlogin }) {
+import "./Panier.css"
+function Panier() {
   const [quantitePanier, setQuantitéPanier] = useState()
   const [objets, setObjets] = useState([])
-
+  const UtilisateurId = localStorage.getItem("UtilisateurId")
+  const [panier, setPanier] = useState([])
+  // eslint-disable-next-line no-restricted-syntax
+  console.log(objets)
   useEffect(() => {
-    axios.get("http://localhost:4242/panier").then((res) => setObjets(res.data))
-  })
+    axios
+      .get(`http://localhost:4242/panieruser?UtilisateurId=${UtilisateurId}`)
+      .then((res) => {
+        setPanier(res.data)
+        console.info(res.data)
+      })
+  }, [])
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4242/objetpanier?UtilisateurId=${UtilisateurId}`)
+      .then((res) => {
+        setObjets(res.data)
+        console.info(res.data)
+      })
+  }, [panier])
   const handleAdd = () => {
     setQuantitéPanier(quantitePanier + 1)
   }
@@ -18,16 +35,16 @@ function Panier({ onlogin }) {
   }
   return (
     <div className="containerPanier">
-      <div className="descriptionObjet">
+      <div className="descriptionPanier">
         {objets.map((objet) => (
-          <div key={objet.id}>
+          <div key={objet?.id}>
             <img
-              src={`http://localhost:4242/${objet.photo1}`}
-              alt={objet.nom}
+              src={`http://localhost:4242/${objet?.photo1}`}
+              alt={objet?.nom}
             />
-            Nom : {objet.nom}
-            Prix :{objet.prix}
-            Quantité: {quantitePanier}
+            Nom : {objet?.nomObjet}
+            Prix :{objet?.prix}
+            Quantité:
           </div>
         ))}
         <div className="btn">

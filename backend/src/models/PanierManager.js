@@ -18,6 +18,13 @@ class PanierManager extends AbstractManager {
       [panier.UtilisateurId, panier.ObjetsId, panier.quantitePanier]
     )
   }
+
+  findbyuser(UtilisateurId) {
+    return this.database.query(
+      `SELECT * FROM ${this.table} WHERE UtilisateurId = ?`,
+      [UtilisateurId]
+    )
+  }
 }
 
 module.exports = PanierManager

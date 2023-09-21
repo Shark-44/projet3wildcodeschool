@@ -51,7 +51,7 @@ function App() {
         <Route path="/Createurs/:id" element={<CreateurID />} />
         <Route path="/Test" element={<Test />} />
         <Route path="/Formulaire" element={<Formulaire />} />
-        <Route path="/Panier" element={<Panier onlogin={onlogin} />} />
+        <Route path="/Panier" element={<Panier />} />
         <Route path="/Commande" element={<Commande />} />
       </Routes>
       <footer>{onlogin}</footer>

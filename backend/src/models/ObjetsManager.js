@@ -89,5 +89,14 @@ class ObjetsManager extends AbstractManager {
       `SELECT objets.id, objets.photo1, commandehasobjets.quantiteCommande FROM ${this.table} JOIN commandehasobjets ON objets.id = commandehasobjets.ObjetsId`
     )
   }
+
+  achatbyuser(UtilisateurId) {
+    console.info(UtilisateurId)
+    return this.database.query(
+      `SELECT * FROM objets
+     join panier ON objets.id = panier.ObjetsId WHERE UtilisateurId = ?`,
+      [UtilisateurId]
+    )
+  }
 }
 module.exports = ObjetsManager
