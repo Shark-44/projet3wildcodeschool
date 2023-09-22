@@ -157,6 +157,20 @@ const vuquantiteobjets = (req, res) => {
       res.sendStatus(500)
     })
 }
+// liste des objets achetés par un utilisateur
+const achatbyuser = (req, res) => {
+  const UtilisateurId = req.query.UtilisateurId
+  console.info(UtilisateurId)
+  models.objets
+    .achatbyuser(UtilisateurId)
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
 
 module.exports = {
   browse,
@@ -170,4 +184,5 @@ module.exports = {
   readavisobjet,
   readavisobjetid,
   vuquantiteobjets,
+  achatbyuser,
 }

@@ -81,11 +81,39 @@ const destroy = (req, res) => {
       res.sendStatus(500)
     })
 }
+const byuser = (req, res) => {
+  const UtilisateurId = req.query.UtilisateurId
+  models.panier
+    .findbyuser(UtilisateurId)
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+// Pour supprimer du panier
 
+const objetuser = (req, res) => {
+  const UtilisateurId = req.query.UtilisateurId
+  const ObjetsId = req.query.ObjetsId
+  models.panier
+    .delobjetuser(UtilisateurId, ObjetsId)
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
 module.exports = {
   browse,
   read,
   edit,
   add,
   destroy,
+  byuser,
+  objetuser,
 }

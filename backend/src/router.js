@@ -63,6 +63,7 @@ router.get("/objets/with/categorie", objetsControllers.objetsByCategorie)
 router.get("/avisurobjet", objetsControllers.readavisobjet)
 router.get("/avisurobjetparid", objetsControllers.readavisobjetid)
 router.get("/quantitecommande", objetsControllers.vuquantiteobjets)
+router.get("/objetpanier", objetsControllers.achatbyuser)
 
 // ROUTE CATEGORIE
 router.get("/categorie", categorieControllers.browse)
@@ -101,7 +102,8 @@ router.get("/panier", panierControllers.browse)
 router.get("/panier", panierControllers.read)
 router.post("/panier", panierControllers.add)
 router.put("/panier", panierControllers.edit)
-router.delete("/panier", panierControllers.destroy)
+router.delete("/panier", panierControllers.objetuser)
+router.get("/panieruser", panierControllers.byuser)
 
 // ROUTE liaison CREATEUR CATEGORIE
 router.get("/utilisateurhascategorie", utilisateurcategorieControllers.browse)

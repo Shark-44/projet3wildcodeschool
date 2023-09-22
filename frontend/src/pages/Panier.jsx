@@ -1,22 +1,80 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
+import "./Panier.css"
+
 function Panier() {
+  const [objetspanier, setObjetspanier] = useState([])
   const UtilisateurId = localStorage.getItem("UtilisateurId")
 
-  // eslint-disable-next-line no-unused-vars
-  const [quantitePanier, setQuantitéPanier] = useState()
+  const handleAdd = (index) => {
+    const newObjetpanier = [...objetspanier]
+    newObjetpanier[index].quantitePanier += 1
+    setObjetspanier(newObjetpanier)
+  }
+  const handleSub = (index) => {
+    const newObjetpanier = [...objetspanier]
+    newObjetpanier[index].quantitePanier -= 1
+    setObjetspanier(newObjetpanier)
+  }
+  const handleDel = (index) => {
+    const Deleteid = objetspanier[index].id
+    axios.delete(
+      `http://localhost:4242/panier?UtilisateurId=${UtilisateurId}&ObjetsId=${Deleteid}`
+    )
+  }
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4242/objetpanier?UtilisateurId=${UtilisateurId}`)
+      .then((res) => setObjetspanier(res.data))
+  }, [handleDel])
 
-  axios.post("http://localhost:4242/utilisateur", {
-    UtilisateurId,
-    // eslint-disable-next-line no-undef
-    ObjetId,
-    quantitePanier,
-  })
-  useEffect(() => {})
   return (
     <div className="containerPanier">
-      <button>ajouter + 1</button>
-      <button>Oter - 1</button>
+      <div className="descriptionPanier">
+        {objetspanier.map((objet, index) => (
+          <div className="cardetail" key={index}>
+            <img
+              src={`http://localhost:4242/${objet?.photo1}`}
+              alt={objet?.nomObjet}
+            />
+            <div className="resumepanier">
+              <p> Nom : {objet?.nomObjet}</p>
+              <p> Prix : {objet?.prix} €</p>
+              <div className="quantitedetail">
+                <p> Quantité:{objet.quantitePanier}</p>
+                <div className="btn">
+                  <button
+                    className="btnpanier"
+                    onClick={() => handleAdd(index)}
+                  >
+                    +
+                  </button>
+                  <button
+                    className="btnpanier"
+                    onClick={() => handleSub(index)}
+                  >
+                    -
+                  </button>
+                </div>
+              </div>
+              <div className="calcultotal">
+                <p>Prix Total :{objet?.prix * objet.quantitePanier} €</p>
+              </div>
+            </div>
+            <div className="deletebtn">
+              <input
+                type="image"
+                className="btndelete"
+                onClick={() => handleDel(index)}
+                src="http://localhost:4242/assets/images/autre/delete.png"
+              ></input>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="validation">
+        <button className="validationbtn">validation commande</button>
+      </div>
     </div>
   )
 }

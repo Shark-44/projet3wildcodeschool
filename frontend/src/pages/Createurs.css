@@ -4,6 +4,7 @@
   align-items: center;
   background-color: #0e0424;
   color: #f4b346;
+  margin-top: 80px;
 }
 
 .resultat {
@@ -34,4 +35,12 @@
 
 p {
   text-align: center;
+}
+.collection{
+  display: flex;
+  width: 80%;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  justify-content: space-around;
+  gap: 20px;
 }

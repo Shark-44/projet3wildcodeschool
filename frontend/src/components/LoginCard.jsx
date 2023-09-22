@@ -18,8 +18,12 @@ const LoginCard = ({ isShowLogin, handleLoginClick, onlogin, setOnlogin }) => {
           email,
           password,
         })
-        .then((res) => console.info(res.data))
-        .then((res) => setOnlogin(res.data.utilisateur))
+        .then((res) => {
+          localStorage.setItem("token", res.data.token)
+          localStorage.setItem("UtilisateurId", res.data.utilisateur.id)
+          setOnlogin(res.data.utilisateur.id)
+          console.info(res.data)
+        })
     }
   }
   return (

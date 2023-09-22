@@ -7,17 +7,30 @@ class PanierManager extends AbstractManager {
 
   insert(panier) {
     return this.database.query(
-      `insert into ${this.table} ( Utilisateur_id, objets_id, quantitePanier) values (?,?,?)`,
-      [panier.Utilisateur_id, panier.Objets_id, panier.quantitePanier]
+      `insert into ${this.table} ( UtilisateurId, ObjetsId, quantitePanier) values (?,?,?)`,
+      [panier.UtilisateurId, panier.ObjetsId, panier.quantitePanier]
     )
   }
 
   update(panier) {
     return this.database.query(
-      `update ${this.table} set  Utilisateur_id = ? objet_id = ? quantitePanier = ? where id = ?`,
-      [panier.Utilisateur_id, panier.Objets_id, panier.quantitePanier]
+      `update ${this.table} set  UtilisateurId = ? ObjetsId = ? quantitePanier = ? where id = ?`,
+      [panier.UtilisateurId, panier.ObjetsId, panier.quantitePanier]
+    )
+  }
+
+  findbyuser(UtilisateurId) {
+    return this.database.query(
+      `SELECT * FROM ${this.table} WHERE UtilisateurId = ?`,
+      [UtilisateurId]
+    )
+  }
+
+  delobjetuser(UtilisateurId, ObjetsId) {
+    return this.database.query(
+      `delete from ${this.table} where UtilisateurID = ? AND ObjetsID = ?`,
+      [UtilisateurId, ObjetsId]
     )
   }
 }
-
 module.exports = PanierManager
