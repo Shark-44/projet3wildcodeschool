@@ -102,7 +102,7 @@ router.get("/panier", panierControllers.browse)
 router.get("/panier", panierControllers.read)
 router.post("/panier", panierControllers.add)
 router.put("/panier", panierControllers.edit)
-router.delete("/panier", panierControllers.destroy)
+router.delete("/panier", panierControllers.objetuser)
 router.get("/panieruser", panierControllers.byuser)
 
 // ROUTE liaison CREATEUR CATEGORIE

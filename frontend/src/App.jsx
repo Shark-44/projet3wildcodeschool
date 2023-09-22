@@ -18,15 +18,16 @@ function App() {
   const handleLoginClick = () => {
     setIsShowLogin((isShowLogin) => !isShowLogin)
   }
-  const [onlogin, setOnlogin] = useState(false)
+  const [onlogin, setOnlogin] = useState()
   const [addpanier, setAddpanier] = useState(0)
 
   return (
     <div className="App">
       <NavBar
         handleLoginClick={handleLoginClick}
-        onlogin={onlogin}
         addpanier={addpanier}
+        onlogin={onlogin}
+        setOnlogin={setOnlogin}
       />
       <LoginCard
         isShowLogin={isShowLogin}
@@ -40,11 +41,7 @@ function App() {
         <Route
           path="/Boutique/:id"
           element={
-            <ObjetID
-              onlogin={onlogin}
-              setAddpanier={setAddpanier}
-              addpanier={addpanier}
-            />
+            <ObjetID setAddpanier={setAddpanier} addpanier={addpanier} />
           }
         />
         <Route path="/Createurs" element={<Createurs />} />
@@ -54,7 +51,7 @@ function App() {
         <Route path="/Panier" element={<Panier />} />
         <Route path="/Commande" element={<Commande />} />
       </Routes>
-      <footer>{onlogin}</footer>
+      <footer></footer>
     </div>
   )
 }

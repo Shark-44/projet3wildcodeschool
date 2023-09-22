@@ -25,6 +25,12 @@ class PanierManager extends AbstractManager {
       [UtilisateurId]
     )
   }
-}
 
+  delobjetuser(UtilisateurId, ObjetsId) {
+    return this.database.query(
+      `delete from ${this.table} where UtilisateurID = ? AND ObjetsID = ?`,
+      [UtilisateurId, ObjetsId]
+    )
+  }
+}
 module.exports = PanierManager

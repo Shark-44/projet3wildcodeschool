@@ -1,12 +1,16 @@
 import "./NavBar.css"
 import { NavLink } from "react-router-dom"
 
-const NavBar = ({ handleLoginClick, onlogin, addpanier }) => {
+const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
   const handleClick = () => {
     handleLoginClick()
   }
-  const buttonColor = onlogin ? "#A2FF86" : "#2bc6ff"
 
+  const buttonColor = onlogin ? "#A2FF86" : "#2bc6ff"
+  const logout = () => {
+    localStorage.clear()
+    setOnlogin(false)
+  }
   return (
     <>
       <nav className="navGlobal">
@@ -46,6 +50,12 @@ const NavBar = ({ handleLoginClick, onlogin, addpanier }) => {
           >
             Login
           </button>
+          <input
+            type="image"
+            className="logout"
+            onClick={logout}
+            src="http://localhost:4242/assets/images/autre/deconnexion.png"
+          />
           <a href="/Formulaire">
             <button className="loginicon sig">Sign up</button>
           </a>

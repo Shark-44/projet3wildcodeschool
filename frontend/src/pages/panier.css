@@ -26,6 +26,7 @@ align-items: center;
     justify-content: center;
     align-items: flex-start;
     margin-left: 50px;
+    width: 30%;
 }
 .quantitedetail{
     display:flex;
@@ -119,15 +120,9 @@ align-items: center;
 }
 .deletebtn{
   display: flex;
-  width: 25px;
-  height: 25px;
+  width: 40px;
+  height: 40px;
   box-sizing: border-box;
-  margin-left: 10%;
+  margin-left: 7%;
   
-}
-.Imgdelete{
-  display: flex;
-  object-fit: contain;
-  max-width: 100%;
-  max-height: 100%;
 }

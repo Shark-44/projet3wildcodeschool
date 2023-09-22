@@ -16,11 +16,17 @@ function Panier() {
     newObjetpanier[index].quantitePanier -= 1
     setObjetspanier(newObjetpanier)
   }
+  const handleDel = (index) => {
+    const Deleteid = objetspanier[index].id
+    axios.delete(
+      `http://localhost:4242/panier?UtilisateurId=${UtilisateurId}&ObjetsId=${Deleteid}`
+    )
+  }
   useEffect(() => {
     axios
       .get(`http://localhost:4242/objetpanier?UtilisateurId=${UtilisateurId}`)
       .then((res) => setObjetspanier(res.data))
-  }, [])
+  }, [handleDel])
 
   return (
     <div className="containerPanier">
@@ -56,11 +62,12 @@ function Panier() {
               </div>
             </div>
             <div className="deletebtn">
-              <img
-                className="Imgdelete"
+              <input
+                type="image"
+                className="btndelete"
+                onClick={() => handleDel(index)}
                 src="http://localhost:4242/assets/images/autre/delete.png"
-                alt=""
-              />
+              ></input>
             </div>
           </div>
         ))}
