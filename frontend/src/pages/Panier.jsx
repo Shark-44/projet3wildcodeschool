@@ -1,60 +1,72 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import "./Panier.css"
+
 function Panier() {
-  const [quantitePanier, setQuantitéPanier] = useState()
-  const [objets, setObjets] = useState([])
+  const [objetspanier, setObjetspanier] = useState([])
   const UtilisateurId = localStorage.getItem("UtilisateurId")
-  const [panier, setPanier] = useState([])
-  // eslint-disable-next-line no-restricted-syntax
-  console.log(objets)
-  useEffect(() => {
-    axios
-      .get(`http://localhost:4242/panieruser?UtilisateurId=${UtilisateurId}`)
-      .then((res) => {
-        setPanier(res.data)
-        console.info(res.data)
-      })
-  }, [])
+
+  const handleAdd = (index) => {
+    const newObjetpanier = [...objetspanier]
+    newObjetpanier[index].quantitePanier += 1
+    setObjetspanier(newObjetpanier)
+  }
+  const handleSub = (index) => {
+    const newObjetpanier = [...objetspanier]
+    newObjetpanier[index].quantitePanier -= 1
+    setObjetspanier(newObjetpanier)
+  }
   useEffect(() => {
     axios
       .get(`http://localhost:4242/objetpanier?UtilisateurId=${UtilisateurId}`)
-      .then((res) => {
-        setObjets(res.data)
-        console.info(res.data)
-      })
-  }, [panier])
-  const handleAdd = () => {
-    setQuantitéPanier(quantitePanier + 1)
-  }
-  const handleSub = () => {
-    setQuantitéPanier(quantitePanier - 1)
-  }
-  const handledel = () => {
-    setQuantitéPanier(null)
-  }
+      .then((res) => setObjetspanier(res.data))
+  }, [])
+
   return (
     <div className="containerPanier">
       <div className="descriptionPanier">
-        {objets.map((objet) => (
-          <div key={objet?.id}>
+        {objetspanier.map((objet, index) => (
+          <div className="cardetail" key={index}>
             <img
               src={`http://localhost:4242/${objet?.photo1}`}
-              alt={objet?.nom}
+              alt={objet?.nomObjet}
             />
-            Nom : {objet?.nomObjet}
-            Prix :{objet?.prix}
-            Quantité:
+            <div className="resumepanier">
+              <p> Nom : {objet?.nomObjet}</p>
+              <p> Prix : {objet?.prix} €</p>
+              <div className="quantitedetail">
+                <p> Quantité:{objet.quantitePanier}</p>
+                <div className="btn">
+                  <button
+                    className="btnpanier"
+                    onClick={() => handleAdd(index)}
+                  >
+                    +
+                  </button>
+                  <button
+                    className="btnpanier"
+                    onClick={() => handleSub(index)}
+                  >
+                    -
+                  </button>
+                </div>
+              </div>
+              <div className="calcultotal">
+                <p>Prix Total :{objet?.prix * objet.quantitePanier} €</p>
+              </div>
+            </div>
+            <div className="deletebtn">
+              <img
+                className="Imgdelete"
+                src="http://localhost:4242/assets/images/autre/delete.png"
+                alt=""
+              />
+            </div>
           </div>
         ))}
-        <div className="btn">
-          <button onClick={handleAdd}>ajouter + 1</button>
-          <button onClick={handleSub}>Oter - 1</button>
-          <button onClick={handledel}></button>
-        </div>
       </div>
       <div className="validation">
-        <button>validation</button>
+        <button className="validationbtn">validation commande</button>
       </div>
     </div>
   )
