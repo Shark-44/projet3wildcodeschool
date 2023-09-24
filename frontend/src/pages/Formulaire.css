@@ -5,11 +5,51 @@
 }
 .general {
   margin: 30px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  box-shadow: 0 0 0 .6em #f4b346;
+  overflow: hidden;
+  z-index: -1;
+  position: absolute;
+  top: 15vh;
+}
+.partiegenerale{
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 15px;
 }
 input {
-  margin-top: 10px;
+  margin-top: 15px;
 }
 .description {
   height: 150px;
 }
+.selectioncreateur{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.createur{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 10px;
+}
 
+@keyframes slide-up {
+  0% {
+    transform: translateY(150%);
+    opacity: 0;
+    }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.general {
+  animation: slide-up 3s ease-in-out forwards;
+}

@@ -1,5 +1,5 @@
 import "./NavBar.css"
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
   const handleClick = () => {
@@ -34,13 +34,13 @@ const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
           alt=""
         />
         <div className="panier">
-          <a href="/Panier">
+          <Link to="/Panier">
             <img
               src="http://localhost:4242/assets/images/autre/panier.png"
               alt=""
             />
             {addpanier > 0 && <span className="badge">{addpanier}</span>}
-          </a>
+          </Link>
         </div>
         <div className="buttonContainer">
           <button
@@ -56,9 +56,9 @@ const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
             onClick={logout}
             src="http://localhost:4242/assets/images/autre/deconnexion.png"
           />
-          <a href="/Formulaire">
+          <Link to="/Formulaire">
             <button className="loginicon sig">Sign up</button>
-          </a>
+          </Link>
         </div>
       </nav>
     </>
