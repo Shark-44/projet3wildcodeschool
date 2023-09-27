@@ -21,12 +21,15 @@ function Panier() {
     axios.delete(
       `http://localhost:4242/panier?UtilisateurId=${UtilisateurId}&ObjetsId=${Deleteid}`
     )
+    axios
+      .get(`http://localhost:4242/objetpanier?UtilisateurId=${UtilisateurId}`)
+      .then((res) => setObjetspanier(res.data))
   }
   useEffect(() => {
     axios
       .get(`http://localhost:4242/objetpanier?UtilisateurId=${UtilisateurId}`)
       .then((res) => setObjetspanier(res.data))
-  }, [handleDel])
+  }, [])
 
   return (
     <div className="containerPanier">

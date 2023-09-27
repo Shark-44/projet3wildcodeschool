@@ -1,45 +1,37 @@
-.parent{
+.cardloupe{
   display: flex;
-  height: 600px;
+justify-content: center;
+margin-top: 100px;
+
 }
-.haut{
-  height: 50vh;
-  z-index: 0;
-}
-.bas{
-  width: 100vw;
-  height: 50vh;
-  position: absolute;
-  top: 50vh;
-  background-color: #0e0424;
-}
-.divtest {
+.contient {
   display: flex;
-  position: absolute;
-   top: 10vh;
-  left: 40vw;
-  overflow: hidden;
-  z-index: -1;
+  width: 300px;
   height: 300px;
-  width:300px;
-  justify-content: center;
-  background-color:  #0e0424;
-  border: 15px solid #0e0424;
-  border-radius: 15px;
-  box-shadow: 0 0 0 .6em #f4b346;
+  gap: 5px;
+  
+}
+.zoneA {
+  background-color: beige;
+  width: 95%;
+  height: 100%;
+  transition: width 1s ease-in-out;
 }
 
-@keyframes slide-up {
-  0% {
-    transform: translateY(0%);
-    opacity: 0;
-    }
-  100% {
-    transform: translateY(-140%);
-    opacity: 1;
-  }
+.zoneB {
+  background-color: yellow;
+  width: 5%;
+  height: 100%;
+  transition: width 1s ease-in-out;
 }
-
-.divtest {
-  animation: slide-up 5s ease-in-out forwards;
+.contient:hover{
+  transition: width 500ms ease;
+.zoneA{
+  transition: width 1s ease-in-out;
+  width: 5%;
+}
+.zoneB{
+  transition: width 1s ease-in-out;
+  width:95%;
+}
 }

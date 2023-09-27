@@ -2,9 +2,10 @@
     border: 15px solid #0e0424;
     border-radius: 15px;
     box-shadow: 0 0 0 .6em #f4b346;
-    margin: 90px 20px 0 20px;
+    margin: 90px 30px 0 30px;
     display: flex;
     justify-content: space-around;
+    padding: 5px;
 }
 .descriptionObjet{
     background-color: white;
@@ -13,33 +14,34 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 550px;
+    height: 700px;
+    width: 400px;
 }
 .button {
-    width: 100px;
+    width: 150px;
     height: 50px;
     border-radius: 20px;
 }
 .infoAutre{
     display: flex;
     width: 50%;
+    flex-direction: column;
 }
 .infoCreateur{
-   
     display:flex;
-    justify-content: center;
-    flex-direction: row;
-    position: absolute;
-    width: 50%;
-    justify-content: flex-start;
 }
-.infoCreateur h2{
+.infoCreateur .h2{
     background-color:#0e0424;
 }
 .infoCreateur img{
     border-radius: 50%;
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
+}
+.cadrecreateur{
+    display: flex;
+    align-items: center;
+    margin-left: 10%;
 }
 
 .avisutilisateur{
@@ -47,7 +49,7 @@
     justify-content: center;
     flex-direction: row;
     position: absolute;
-    top: 65%;
+    top: 50%;
     width: 50%;
 }
 .avisutilisateur h2{
@@ -68,6 +70,7 @@
     right: 110px;
 }
 .bdtadpan{
+    width: 150px;
     height: 50px;
     padding: 0;
   background-color: #0078d0;
@@ -108,6 +111,21 @@
   box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
   transform: scale(1.05);
 }
+.notation{
+    display: flex;
+    margin-top:30%;
+}
+.votreavis{
+    display: flex;
+    flex-direction: column;
+}
+.avisuser{
+    margin-top: 15px;
+    height: 30px;
+    font-size: 1.2rem;
+    width: 100%;
+}
+    
 
 @media (min-width: 768px) {
   .bdtadpan{

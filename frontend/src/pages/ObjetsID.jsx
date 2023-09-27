@@ -2,6 +2,8 @@ import axios from "axios"
 import "./ObjetID.css"
 import { useEffect, useState } from "react"
 import { useParams, Link } from "react-router-dom"
+import Cardloupe from "../components/Cardloupe"
+import Stars from "../components/Stars"
 
 function ObjetsID({ onlogin, setAddpanier, addpanier }) {
   const params = useParams()
@@ -9,6 +11,7 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
   const [objets, setObjets] = useState([])
   const [createur, setCreateur] = useState([])
   const [avis, setAvis] = useState([])
+  const [isShowZoom, setIsShowZoom] = useState(true)
 
   useEffect(() => {
     axios
@@ -34,6 +37,9 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
     })
     setAddpanier(addpanier + 1)
   }
+  const handlezoom = () => {
+    setIsShowZoom((isShowZoom) => !isShowZoom)
+  }
 
   return (
     <div className="container cardObjet">
@@ -42,9 +48,10 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
           src={`http://localhost:4242/${objets.photo1}`}
           alt={objets.nomObjet}
         />
-        <h2>{objets.nomObjet}</h2>
-        <p>Prix: {objets.prix} €</p>
-        <p>Quantité restante : {objets.quantite}</p>
+        <p onClick={handlezoom}>zoom</p>
+        <h1>{objets.nomObjet}</h1>
+        <h2>Prix: {objets.prix} €</h2>
+        <h2>Quantité restante : {objets.quantite}</h2>
         <button className="bdtadpan" onClick={handleAdd}>
           Ajouter au panier
         </button>
@@ -53,16 +60,23 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
         <div className="infoCreateur">
           <h2>Ce createur est</h2>
           {createur.map((auteur) => (
-            <div key={auteur.id}>
+            <div key={auteur.id} className="cadrecreateur">
               <Link className="link" to={`/Createurs/${auteur.id} `}>
                 <img
                   src={`http://localhost:4242/assets/images/avatar/${auteur.photo}`}
                   alt={auteur.nom}
                 />
               </Link>
-              <h2>{auteur.prenom}</h2>
+              <h1>{auteur.prenom}</h1>
             </div>
           ))}
+        </div>
+        <div className="positiondepart">
+          <Cardloupe
+            isShowZoom={isShowZoom}
+            handlezoom={handlezoom}
+            params={params.id}
+          />
         </div>
         <div className="avisutilisateur">
           {avis.map((avis) => (
@@ -74,6 +88,14 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
               />
             </div>
           ))}
+        </div>
+        <div className="notation">
+          <h2>Notez cet objet : </h2>
+          <Stars />
+        </div>
+        <div className="votreavis">
+          <h2>Laissez votre avis</h2>
+          <input type="text" className="avisuser" />
         </div>
       </div>
     </div>

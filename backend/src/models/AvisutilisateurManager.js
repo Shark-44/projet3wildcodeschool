@@ -2,12 +2,12 @@ const AbstractManager = require("./AbstractManager")
 
 class AvisutilisateurManager extends AbstractManager {
   constructor() {
-    super({ table: "avis_utilisateur" })
+    super({ table: "avisutilisateur" })
   }
 
   insert(avisutilisateur) {
     return this.database.query(
-      `insert into ${this.table} (Utilisiateur_id, Utilisateur_id1, avisCreateur, dateAvis) values (?,?,?,?)`,
+      `insert into ${this.table} (Utilisateur_id, Utilisateur_id1, avisCreateur, dateAvis) values (?,?,?,?)`,
       [
         avisutilisateur.Utilisateur_id,
         avisutilisateur.Utilisateur_id1,
@@ -26,6 +26,13 @@ class AvisutilisateurManager extends AbstractManager {
         avisutilisateur.avisCreateur,
         avisutilisateur.dateAvis,
       ]
+    )
+  }
+
+  cherchecreateur(UtilisateurId1) {
+    return this.database.query(
+      `SELECT * FROM ${this.table} WHERE Utilisateur_id1 = ?`,
+      [UtilisateurId1]
     )
   }
 }
