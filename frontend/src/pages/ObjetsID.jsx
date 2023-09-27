@@ -56,11 +56,6 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
           Ajouter au panier
         </button>
       </div>
-      <Cardloupe
-        isShowZoom={isShowZoom}
-        handlezoom={handlezoom}
-        params={params.id}
-      />
       <div className="infoAutre">
         <div className="infoCreateur">
           <h2>Ce createur est</h2>
@@ -75,6 +70,13 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
               <h1>{auteur.prenom}</h1>
             </div>
           ))}
+        </div>
+        <div className="positiondepart">
+          <Cardloupe
+            isShowZoom={isShowZoom}
+            handlezoom={handlezoom}
+            params={params.id}
+          />
         </div>
         <div className="avisutilisateur">
           {avis.map((avis) => (

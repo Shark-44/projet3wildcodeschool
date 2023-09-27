@@ -9,18 +9,18 @@
     margin-top: 50px;
     display: flex;
     gap: 5px;
+    margin: auto;
+    transform-origin: center;
     transition: width 1s ease-in-out;
   }
   .right{
     height: 600px;
-    width: 10px;
     transition: width 1s ease-in-out;
     background-position: center;
     background-size: cover,
   }
   .left{
     height: 600px;
-    width: 600px;
     transition: width 1s ease-in-out;
     background-position: center;
     background-size:cover,
