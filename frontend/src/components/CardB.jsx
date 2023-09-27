@@ -4,6 +4,7 @@ const CardB = (objet) => {
     <div className="Card">
       <div key={objet.id}>
         <img
+          className="imageCard"
           src={`http://localhost:4242${objet.photo1}`}
           alt={objet.nomObjet}
         />

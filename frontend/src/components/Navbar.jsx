@@ -56,7 +56,7 @@ const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
             onClick={logout}
             src="http://localhost:4242/assets/images/autre/deconnexion.png"
           />
-          <Link to="/Formulaire">
+          <Link to="/Formulaire" style={{ textDecoration: `none` }}>
             <button className="loginicon sig">Sign up</button>
           </Link>
         </div>

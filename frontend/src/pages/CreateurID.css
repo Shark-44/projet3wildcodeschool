@@ -1,0 +1,56 @@
+.partiepresentation{
+  display:flex;
+  margin-top: 70px;
+}
+.nomcreateur{
+  padding: 40px;
+  font-size: 2rem;;
+  text-decoration: underline;
+  
+}
+.zonetext{
+  width: 500px;
+  height: 250px;
+  }
+  .zoneptext{
+    color: black;
+    font-size: 1.5rem;
+    position: relative;
+    top: -90%;
+    margin: 30px;
+    padding: 25px;
+}
+ .imagebackground{
+  margin: 0;
+  width: 500px;
+  height: 250px;
+ }
+ .collection{
+  margin-top:10px;
+  border: 1px solid white;
+  padding: 10px;
+ }
+ .titrecollection{
+  color: white;
+  width: 80vw;
+ }
+ .lesavis{
+  display: flex;
+  flex-direction: column;
+  
+  align-items: center;
+  width: 70vw;
+ }
+ .mapavis{
+  display:flex;
+  justify-content: flex-start;
+  height: 50px;
+  background-color: aliceblue;
+  align-items: center;
+  margin: 5px;
+  color: black;
+  font-size: 1.5rem;
+  width: 30%;
+  padding-left: 10px;
+  padding-right: 10px;
+ }

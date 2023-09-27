@@ -96,8 +96,6 @@ function Formulaire() {
   return (
     <div className="contenair">
       <h1>Formulaire d'enregistrement</h1>
-      valide nom photo :{photo}
-      valide image : {image}
       <div className="general">
         <div className="partiegenerale">
           <div className="formulaireclass">
