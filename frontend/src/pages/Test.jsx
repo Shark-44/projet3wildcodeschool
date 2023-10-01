@@ -1,6 +1,8 @@
 import "./Test.css"
 import axios from "axios"
 import { useState, useEffect } from "react"
+import Likebtn from "../components/Likebtn"
+import Btnfavoris from "../components/Btnfavoris"
 function Test() {
   // eslint-disable-next-line no-unused-vars
   const [objets, setObjets] = useState([])
@@ -30,6 +32,8 @@ function Test() {
         <div className="right" style={{ width: `${rightreg}px` }}></div>
         <div className="left" style={{ width: `${leftreg}px` }}></div>
       </div>
+      <Likebtn />
+      <Btnfavoris />
     </div>
   )
 }

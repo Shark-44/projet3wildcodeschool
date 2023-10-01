@@ -49,7 +49,11 @@ function Createurs() {
         </div>
         <div className="renduCreateur">
           {tableFiltre.map((createur) => (
-            <Link key={createur.id} to={`/Createurs/${createur.id}`}>
+            <Link
+              key={createur.id}
+              to={`/Createurs/${createur.id}`}
+              style={{ textDecoration: `none` }}
+            >
               <Card
                 key={createur.id}
                 nom={createur.nom}

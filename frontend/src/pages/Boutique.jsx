@@ -14,15 +14,19 @@ function Boutique() {
   useEffect(() => {
     // eslint-disable-next-line no-restricted-syntax
     console.log(prenom)
-    if (prenom === undefined && type === undefined) {
+    if (!prenom && !type) {
       axios
         .get("http://localhost:4242/objets")
         .then((res) => setObjets(res.data))
-    } else if (prenom === undefined && type !== undefined) {
+    } else if (prenom !== undefined && type !== undefined) {
+      axios
+        .get(`http://localhost:4242/utilisateur/with/objets?prenom=${prenom}`)
+        .then((res) => setObjets(res.data))
+    } else if (!prenom && type !== undefined) {
       axios
         .get(`http://localhost:4242/objets/with/categorie?type=${type}`)
         .then((res) => setObjets(res.data))
-    } else if (prenom !== undefined && type === undefined) {
+    } else if (prenom !== undefined && !type) {
       axios
         .get(`http://localhost:4242/utilisateur/with/objets?prenom=${prenom}`)
         .then((res) => setObjets(res.data))
@@ -42,7 +46,9 @@ function Boutique() {
           <h3> les filtres</h3>
           <FiltreBoutiquecategorie type={type} setType={setType} />
           <FiltreBoutiquecreateur prenom={prenom} setPrenom={setPrenom} />
-          <button onClick={onclick}>Reset</button>
+          <button className="bdt-filtre" onClick={onclick}>
+            Reset
+          </button>
         </div>
         <div className="renduB">
           {objets.map((objet) => (

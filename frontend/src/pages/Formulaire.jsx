@@ -103,6 +103,7 @@ function Formulaire() {
             <input
               type="text"
               value={nom}
+              className="formulairebase"
               onChange={(e) => setNom(e.target.value)}
             />
             <br />
@@ -110,6 +111,7 @@ function Formulaire() {
             <input
               type="text"
               value={prenom}
+              className="formulairebase"
               onChange={(e) => setPrenom(e.target.value)}
             />
             <br />
@@ -117,6 +119,7 @@ function Formulaire() {
             <input
               type="email"
               value={email}
+              className="formulairebase"
               onChange={(e) => setEmail(e.target.value)}
             />
             <br />
@@ -124,6 +127,7 @@ function Formulaire() {
             <input
               type="text"
               value={password}
+              className="formulairebase"
               onChange={(e) => setPassword(e.target.value)}
             />
             <br />
@@ -131,6 +135,7 @@ function Formulaire() {
             <input
               type="text"
               value={adresse}
+              className="formulairebase"
               onChange={(e) => setAdresse(e.target.value)}
             />
             <br />
@@ -138,6 +143,7 @@ function Formulaire() {
             <input
               type="number"
               value={codePostal}
+              className="formulairebase"
               onChange={(event) => {
                 const newValue = event.target.value
                 if (!isNaN(newValue)) {
@@ -149,6 +155,7 @@ function Formulaire() {
             <label htmlFor="character">Ville :</label>
             <input
               type="text"
+              className="formulairebase"
               value={ville}
               onChange={(e) => setVille(e.target.value)}
             />
@@ -171,7 +178,7 @@ function Formulaire() {
           </div>
         </div>
         <div className="selectioncreateur">
-          Serez vous? :
+          <h3>Vous êtes ?</h3>
           <input
             type="radio"
             value={0}
@@ -190,38 +197,39 @@ function Formulaire() {
         </div>
         {createur === "1" && (
           <div className="createur">
-            Votre domaine est :
-            <input
-              type="radio"
-              value={1}
-              name="style"
-              onChange={handleSelect}
-            />
-            Graphique
-            <input
-              type="radio"
-              value={2}
-              name="style"
-              onChange={handleSelect}
-            />
-            Mode
-            <input
-              type="radio"
-              value={3}
-              name="style"
-              onChange={handleSelect}
-            />
-            Print 3D
-            <br />
-            {CategorieID}
-            <label htmlFor="character">Description personnel</label>
-            <input
-              type="text"
-              className="description"
-              value={descriptionCreateur}
-              size="35"
-              onChange={(e) => setDescriptionCreateur(e.target.value)}
-            />
+            <div className="selection">
+              <h3>Votre domaine est : </h3>
+              <input
+                type="radio"
+                value={1}
+                name="style"
+                onChange={handleSelect}
+              />
+              Graphique
+              <input
+                type="radio"
+                value={2}
+                name="style"
+                onChange={handleSelect}
+              />
+              Mode
+              <input
+                type="radio"
+                value={3}
+                name="style"
+                onChange={handleSelect}
+              />
+              Print 3D
+              <br />
+              <label htmlFor="character">Description personnel</label>
+              <input
+                type="text"
+                className="description"
+                value={descriptionCreateur}
+                size="35"
+                onChange={(e) => setDescriptionCreateur(e.target.value)}
+              />
+            </div>
           </div>
         )}
         <input type="button" value="Submit" onClick={handleSubmit(onSubmit)} />

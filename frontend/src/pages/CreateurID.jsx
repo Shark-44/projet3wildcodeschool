@@ -4,6 +4,8 @@ import { useParams, Link } from "react-router-dom"
 import "./CreateurID.css"
 import CardB from "../components/CardB"
 import imageback from "../assets/background2.png"
+import Likebtn from "../components/Likebtn"
+import Btnfavoris from "../components/Btnfavoris"
 
 function CreateurID() {
   const params = useParams()
@@ -42,10 +44,14 @@ function CreateurID() {
         <h2 className="nomcreateur">
           {createurs.nom} {createurs.prenom}
         </h2>
-        <div className="zonetext">
-          <img className="imagebackground" src={imageback} alt="" />
-          <p className="zoneptext">{createurs.descriptionCreateur}</p>*
+        <div className="zonefin">
+          <div className="zonetext">
+            <img className="imagebackground" src={imageback} alt="" />
+            <p className="zoneptext">{createurs.descriptionCreateur}</p>*
+          </div>
+          <Likebtn />
         </div>
+        <Btnfavoris />
       </div>
       <h2 className="titrecollection">Collection :</h2>
       <div className="collection">

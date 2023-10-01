@@ -125,7 +125,16 @@
     font-size: 1.2rem;
     width: 100%;
 }
-    
+.validebtn{
+    width: 30px;
+    height: 30px;
+    display: flex;
+}
+.placeinput{
+    display: flex;
+    justify-content: flex-end;
+  }
+
 
 @media (min-width: 768px) {
   .bdtadpan{

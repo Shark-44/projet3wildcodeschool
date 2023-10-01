@@ -2,7 +2,7 @@
     display: flex;
     position: absolute;
     z-index: 5;
-    right: 25%;
+    right: 40%;
    }
 
 .Zoomb{
@@ -17,13 +17,15 @@
     height: 600px;
     transition: width 1s ease-in-out;
     background-position: center;
-    background-size: cover,
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   .left{
     height: 600px;
     transition: width 1s ease-in-out;
     background-position: center;
-    background-size:cover,
+    background-repeat: no-repeat;
+    background-size:cover;
   }
   .close{
     width: 20px;

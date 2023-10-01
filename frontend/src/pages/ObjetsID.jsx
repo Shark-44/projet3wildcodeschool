@@ -40,7 +40,10 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
   const handlezoom = () => {
     setIsShowZoom((isShowZoom) => !isShowZoom)
   }
-
+  const handlevalide = () => {
+    // eslint-disable-next-line no-restricted-syntax
+    console.log("coucouc")
+  }
   return (
     <div className="container cardObjet">
       <div className="descriptionObjet">
@@ -96,6 +99,14 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
         <div className="votreavis">
           <h2>Laissez votre avis</h2>
           <input type="text" className="avisuser" />
+          <div className="placeinput">
+            <input
+              type="image"
+              className="validebtn"
+              onClick={handlevalide}
+              src="http://localhost:4242/assets/images/autre/validationbtn.jpg"
+            />
+          </div>
         </div>
       </div>
     </div>
