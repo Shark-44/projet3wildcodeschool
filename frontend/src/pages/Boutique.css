@@ -1,13 +1,14 @@
 .Boutique {
- display: flex;
- flex-direction: column;
- align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 70px;
 }
-.rendu{
+.rendu {
   display: flex;
   width: 95vw;
 }
-.renduA{
+.renduA {
   display: flex;
   flex-direction: column;
   height: 270px;
@@ -15,10 +16,10 @@
   margin: 20px;
   border: 15px solid #0e0424;
   border-radius: 15px;
-  box-shadow: 0 0 0 .6em #f4b346;
+  box-shadow: 0 0 0 0.6em #f4b346;
   align-items: center;
   position: sticky;
-  top: 100px;
+  top: 225px;
 }
 .renduB {
   display: flex;
@@ -27,12 +28,15 @@
   justify-content: space-around;
   gap: 20px;
 }
-.link{
- text-decoration:none;
+.link {
+  text-decoration: none;
 }
-.renduA button{
+.renduA button {
   margin-top: 15px;
 }
-.bdt-filtre{
+#bdt-filtre {
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
   font-size: 1rem;
 }

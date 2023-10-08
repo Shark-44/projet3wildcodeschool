@@ -1,58 +1,55 @@
-.containerPanier{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 80px;
+.containerPanier {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px;
 }
-.descriptionPanier{
-
-color: #070A09;
-border-radius: 10px;
-display: flex;
-flex-direction: column;
-align-items: center;
+.descriptionPanier {
+  color: #070a09;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.cardetail{
-    display: flex;
-    width: 30vw;
-    gap: 10px;
-    margin: 10px;
-    background-color: white;
-    border-radius: 10px;
+.cardetail {
+  display: flex;
+  width: 30vw;
+  gap: 10px;
+  margin: 10px;
+  background-color: white;
+  border-radius: 10px;
 }
-.resumepanier{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    margin-left: 50px;
-    width: 30%;
+.resumepanier {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 50px;
+  width: 30%;
 }
-.quantitedetail{
-    display:flex;
-    width: 50px;
+.quantitedetail {
+  display: flex;
+  width: 50px;
 }
-.btn{
-    display: flex;
-    flex-direction: column;
+.btn {
+  display: flex;
+  flex-direction: column;
 }
-.btnpanier{
-    width: 20px;
-    height: 20px;
-    border-radius: 0px;
+.btnpanier {
+  width: 20px;
+  height: 20px;
+  border-radius: 0px;
 }
-.calcultotal{
-    border-top: 2px solid black;
-}
-
-.validationbtn{
-    height: 50px;
-    width: 140px;
-    font-size: 1rem;
-    margin-top: 10px;
+.calcultotal {
+  border-top: 2px solid black;
 }
 
-
+.validationbtn {
+  height: 50px;
+  width: 140px;
+  font-size: 1rem;
+  margin-top: 10px;
+}
 
 .validationbtn {
   padding: 0.6em 2em;
@@ -73,7 +70,6 @@ align-items: center;
   content: "";
   background: linear-gradient(
     45deg,
- 
     #48ff00,
     #00ffd5,
     #002bff,
@@ -118,11 +114,10 @@ align-items: center;
   top: 0;
   border-radius: 10px;
 }
-.deletebtn{
+.deletebtn {
   display: flex;
   width: 40px;
   height: 40px;
   box-sizing: border-box;
   margin-left: 7%;
-  
 }

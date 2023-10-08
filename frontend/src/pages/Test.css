@@ -1,37 +1,5 @@
-.cardloupe{
-  display: flex;
-justify-content: center;
-margin-top: 100px;
-
-}
-.contient {
-  display: flex;
-  width: 300px;
-  height: 300px;
-  gap: 5px;
-  
-}
-.zoneA {
-  background-color: beige;
-  width: 95%;
-  height: 100%;
-  transition: width 1s ease-in-out;
-}
-
-.zoneB {
-  background-color: yellow;
-  width: 5%;
-  height: 100%;
-  transition: width 1s ease-in-out;
-}
-.contient:hover{
-  transition: width 500ms ease;
-.zoneA{
-  transition: width 1s ease-in-out;
-  width: 5%;
-}
-.zoneB{
-  transition: width 1s ease-in-out;
-  width:95%;
-}
+.test{
+  width: 1900px;
+  height: auto;
+  margin: auto;
 }

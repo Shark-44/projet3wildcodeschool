@@ -4,7 +4,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "echo '----- Checking Frontend...' && prettier --debug-check . && eslint --ext .jsx . && echo '----- Done!'",
-    "fix": "prettier --write . && eslint --fix --ext .jsx ."
+    "fix": "prettier --write . && eslint --fix --ext .jsx .",
+    "start": "craco start",
+    "test": "craco test",
+    "eject": "react-scripts eject"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^3.0.1",

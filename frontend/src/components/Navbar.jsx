@@ -24,6 +24,9 @@ const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
           <NavLink className="navlink" to="/Createurs">
             Createurs
           </NavLink>
+          <NavLink className="navlink" to="/Commande">
+            Commande
+          </NavLink>
           <NavLink className="navlink" to="/Test">
             Test
           </NavLink>

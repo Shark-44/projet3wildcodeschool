@@ -9,31 +9,31 @@
   display: flex;
   flex-direction: column;
   border-radius: 15px;
-  box-shadow: 0 0 0 .6em #f4b346;
+  box-shadow: 0 0 0 0.6em #f4b346;
   overflow: hidden;
   z-index: -1;
   position: absolute;
   top: 15vh;
 }
-.partiegenerale{
+.partiegenerale {
   display: flex;
   flex-direction: column;
   margin: 10px;
   padding: 15px;
 }
-.formulaireclass{
+.formulaireclass {
   display: flex;
   flex-direction: column;
   color: #2bc6ff;
   font-size: 1.5rem;
   align-items: center;
 }
-.formulairebase{
+.formulairebase {
   height: 20px;
   width: 60%;
 }
-.importimg{
-  display:flex;
+.importimg {
+  display: flex;
 }
 input {
   margin-top: 15px;
@@ -41,14 +41,14 @@ input {
 .description {
   height: 150px;
 }
-.selectioncreateur{
+.selectioncreateur {
   display: flex;
   align-items: center;
   justify-content: center;
   color: #2bc6ff;
   font-size: 1.5rem;
 }
-.createur{
+.createur {
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -61,7 +61,7 @@ input {
   0% {
     transform: translateY(150%);
     opacity: 0;
-    }
+  }
   100% {
     transform: translateY(0%);
     opacity: 1;

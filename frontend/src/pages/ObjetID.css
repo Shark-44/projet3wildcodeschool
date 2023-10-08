@@ -1,85 +1,86 @@
-.cardObjet{
-    border: 15px solid #0e0424;
-    border-radius: 15px;
-    box-shadow: 0 0 0 .6em #f4b346;
-    margin: 90px 30px 0 30px;
-    display: flex;
-    justify-content: space-around;
-    padding: 5px;
+.cardObjet {
+  border: 15px solid #0e0424;
+  border-radius: 15px;
+  box-shadow: 0 0 0 0.6em #f4b346;
+  margin: 90px 30px 0 30px;
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
 }
-.descriptionObjet{
-    background-color: white;
-    color:#070A09;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 700px;
-    width: 400px;
+.descriptionObjet {
+  background-color: white;
+  color: #070a09;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 700px;
+  width: 400px;
 }
 .button {
-    width: 150px;
-    height: 50px;
-    border-radius: 20px;
+  width: 150px;
+  height: 50px;
+  border-radius: 20px;
 }
-.infoAutre{
-    display: flex;
-    width: 50%;
-    flex-direction: column;
+.infoAutre {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
 }
-.infoCreateur{
-    display:flex;
+.infoCreateur {
+  display: flex;
 }
-.infoCreateur .h2{
-    background-color:#0e0424;
+.infoCreateur .h2 {
+  background-color: #0e0424;
 }
-.infoCreateur img{
-    border-radius: 50%;
-    height: 150px;
-    width: 150px;
+.infoCreateur img {
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
 }
-.cadrecreateur{
-    display: flex;
-    align-items: center;
-    margin-left: 10%;
+.cadrecreateur {
+  display: flex;
+  align-items: center;
+  margin-left: 10%;
 }
 
-.avisutilisateur{
-    display:flex;
-    justify-content: center;
-    flex-direction: row;
-    position: absolute;
-    top: 50%;
-    width: 50%;
+.avisutilisateur {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  position: absolute;
+  top: 50%;
+  width: 50%;
 }
-.avisutilisateur h2{
-    background-color: #248795;
-    border: 2px solid #070A09;
-    border-radius: 5px;
-    color: #0e0424;
-    margin: 10px;
-    z-index: 2;
-    position: absolute;
-    right: 200px;
+.avisutilisateur h2 {
+  background-color: #248795;
+  border: 2px solid #070a09;
+  border-radius: 5px;
+  color: #0e0424;
+  margin: 10px;
+  z-index: 2;
+  position: absolute;
+  right: 200px;
 }
-.avisutilisateur img{
-    border-radius: 50%;
-    height: 100px;
-    width: 100px;
-    position: absolute;
-    right: 110px;
+.avisutilisateur img {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  right: 110px;
 }
-.bdtadpan{
-    width: 150px;
-    height: 50px;
-    padding: 0;
+.bdtadpan {
+  width: 150px;
+  height: 50px;
+  padding: 0;
   background-color: #0078d0;
   border: 0;
   border-radius: 56px;
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
+  font-family: system-ui, -apple-system, system-ui, "Segoe UI", Roboto, Ubuntu,
+    "Helvetica Neue", sans-serif;
   font-size: 18px;
   font-weight: 600;
   outline: 0;
@@ -87,7 +88,7 @@
   position: relative;
   text-align: center;
   text-decoration: none;
-  transition: all .3s;
+  transition: all 0.3s;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -100,44 +101,44 @@
   content: "";
   height: 50%;
   left: 4%;
-  opacity: .5;
+  opacity: 0.5;
   position: absolute;
   top: 0;
-  transition: all .3s;
+  transition: all 0.3s;
   width: 92%;
 }
 
 .bdtadpan:hover {
-  box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
+  box-shadow: rgba(255, 255, 255, 0.2) 0 3px 15px inset,
+    rgba(0, 0, 0, 0.1) 0 3px 5px, rgba(0, 0, 0, 0.1) 0 10px 13px;
   transform: scale(1.05);
 }
-.notation{
-    display: flex;
-    margin-top:30%;
+.notation {
+  display: flex;
+  margin-top: 30%;
 }
-.votreavis{
-    display: flex;
-    flex-direction: column;
+.votreavis {
+  display: flex;
+  flex-direction: column;
 }
-.avisuser{
-    margin-top: 15px;
-    height: 30px;
-    font-size: 1.2rem;
-    width: 100%;
+.avisuser {
+  margin-top: 15px;
+  height: 30px;
+  font-size: 1.2rem;
+  width: 100%;
 }
-.validebtn{
-    width: 30px;
-    height: 30px;
-    display: flex;
+.validebtn {
+  width: 30px;
+  height: 30px;
+  display: flex;
 }
-.placeinput{
-    display: flex;
-    justify-content: flex-end;
-  }
-
+.placeinput {
+  display: flex;
+  justify-content: flex-end;
+}
 
 @media (min-width: 768px) {
-  .bdtadpan{
+  .bdtadpan {
     height: 50px;
     padding: 0;
   }

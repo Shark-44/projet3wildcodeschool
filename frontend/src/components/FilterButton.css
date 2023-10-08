@@ -1,5 +1,6 @@
-button{
-    width: 100px;
-    height: 30px;
-    border-radius: 20px;
+#btnfiltre {
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  font-size: 1rem;
 }

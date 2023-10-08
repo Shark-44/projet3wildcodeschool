@@ -46,7 +46,7 @@ function Boutique() {
           <h3> les filtres</h3>
           <FiltreBoutiquecategorie type={type} setType={setType} />
           <FiltreBoutiquecreateur prenom={prenom} setPrenom={setPrenom} />
-          <button className="bdt-filtre" onClick={onclick}>
+          <button id="bdt-filtre" onClick={onclick}>
             Reset
           </button>
         </div>

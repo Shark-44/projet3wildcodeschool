@@ -18,12 +18,15 @@ function Panier() {
   }
   const handleDel = (index) => {
     const Deleteid = objetspanier[index].id
-    axios.delete(
-      `http://localhost:4242/panier?UtilisateurId=${UtilisateurId}&ObjetsId=${Deleteid}`
-    )
     axios
-      .get(`http://localhost:4242/objetpanier?UtilisateurId=${UtilisateurId}`)
-      .then((res) => setObjetspanier(res.data))
+      .delete(
+        `http://localhost:4242/panier?UtilisateurId=${UtilisateurId}&ObjetsId=${Deleteid}`
+      )
+      .then((res) => {
+        const newObjetpanier = [...objetspanier]
+        newObjetpanier.splice(index, 1)
+        setObjetspanier(newObjetpanier)
+      })
   }
   useEffect(() => {
     axios

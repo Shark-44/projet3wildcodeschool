@@ -1,12 +1,12 @@
-.Container-favoris{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;
-    padding: 20px;
+.Container-favoris {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  padding: 20px;
 }
 
-#btnfavoris{
-    width: 75px;
-    height: 75px;
+#btnfavoris {
+  width: 75px;
+  height: 75px;
 }

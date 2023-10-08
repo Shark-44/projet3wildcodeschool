@@ -77,7 +77,10 @@ function CreateurID() {
                 marginLeft: index % 2 === 0 ? "-30%" : "30%",
               }}
             >
-              <div className="placeavis">{avis.avisCreateur}</div>
+              <div className="placeavis">
+                <p id="prenom">{avis.prenom} : </p>
+                <p>{avis.avisCreateur}</p>
+              </div>
             </div>
           ))}
         </div>

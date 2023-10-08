@@ -22,7 +22,7 @@ const Cardavis = () => {
   return (
     <div className="renduAvis">
       {newarrayAvisobjet().map((randomAvis) => (
-        <div key={randomAvis?.id}>
+        <div key={randomAvis?.id} className="cardavis">
           <h2>{randomAvis?.avisObjet}</h2>
           <img
             src={`http://localhost:4242/assets/images/avatar/${randomAvis?.photo}`}
