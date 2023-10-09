@@ -23,14 +23,47 @@
   display:flex;
   align-items: center;
   justify-content: space-around;
-  width: 700px;
+  width: 90vw;
 }
 .Imagesite{
-   width: 250px;
-   height: 70px;
+  width: 250px;
+  height: 70px;
+}
+.cardetail{
+  display: flex;
+  width: 80vw;
+  gap: 10px;
+  margin: 10px;
+  align-items: flex-end;
+  justify-content: space-between;
+  font-size: 1.2rem;
+}
+.imagecardetail{
+  width: 100px;
+  height: 100px;
+}
+#sommedetail{
+  font-size: 1.4rem;
+}
+.totalcommande{
+  display:flex;
+  width: 85vw;
+  justify-content: space-between;
+  border-top: 4px solid black;
 }
 
-
+.souligne-titre{
+  border-bottom: 2px solid black;
+}
+.tva{
+  display: flex;
+  font-size: 1rem;
+  margin-left: 70%;
+  align-items: center;
+}
+.prixtotal{
+  margin-right: 4vw;
+}
 .btncommande {
     display:  flex;
     padding: 20px;

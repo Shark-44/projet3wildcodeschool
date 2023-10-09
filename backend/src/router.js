@@ -102,9 +102,9 @@ router.delete("/commandehasobjets", commandeobjetsControllers.destroy)
 router.get("/panier", panierControllers.browse)
 router.get("/panier", panierControllers.read)
 router.post("/panier", panierControllers.add)
-router.put("/panier", panierControllers.edit)
 router.delete("/panier", panierControllers.objetuser)
 router.get("/panieruser", panierControllers.byuser)
+router.put("/panier", panierControllers.upanier)
 
 // ROUTE liaison CREATEUR CATEGORIE
 router.get("/utilisateurhascategorie", utilisateurcategorieControllers.browse)

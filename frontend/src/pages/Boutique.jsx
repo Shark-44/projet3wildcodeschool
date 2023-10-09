@@ -12,8 +12,6 @@ function Boutique() {
   const [type, setType] = useState()
 
   useEffect(() => {
-    // eslint-disable-next-line no-restricted-syntax
-    console.log(prenom)
     if (!prenom && !type) {
       axios
         .get("http://localhost:4242/objets")

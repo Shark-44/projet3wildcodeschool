@@ -11,6 +11,7 @@ import CreateurID from "./pages/CreateurID"
 import Panier from "./pages/Panier"
 import Commande from "./pages/Commande"
 import LoginCard from "./components/LoginCard"
+import PDFvu from "./pages/PDFvu"
 import "./App.css"
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
         <Route path="/Formulaire" element={<Formulaire />} />
         <Route path="/Panier" element={<Panier />} />
         <Route path="/Commande" element={<Commande />} />
+        <Route path="/PDFvu/:id" element={<PDFvu />} />
       </Routes>
       <footer></footer>
     </div>

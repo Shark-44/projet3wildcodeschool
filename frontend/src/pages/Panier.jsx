@@ -10,11 +10,17 @@ function Panier() {
     const newObjetpanier = [...objetspanier]
     newObjetpanier[index].quantitePanier += 1
     setObjetspanier(newObjetpanier)
+    axios.put(
+      `http://localhost:4242/panier?UtilisateurId=${UtilisateurId}&ObjetsId=${objetspanier[index].ObjetsId}&quantitePanier=${objetspanier[index].quantitePanier}`
+    )
   }
   const handleSub = (index) => {
     const newObjetpanier = [...objetspanier]
     newObjetpanier[index].quantitePanier -= 1
     setObjetspanier(newObjetpanier)
+    axios.put(
+      `http://localhost:4242/panier?UtilisateurId=${UtilisateurId}&ObjetsId=${objetspanier[index].ObjetsId}&quantitePanier=${objetspanier[index].quantitePanier}`
+    )
   }
   const handleDel = (index) => {
     const Deleteid = objetspanier[index].id
@@ -33,6 +39,8 @@ function Panier() {
       .get(`http://localhost:4242/objetpanier?UtilisateurId=${UtilisateurId}`)
       .then((res) => setObjetspanier(res.data))
   }, [])
+  // eslint-disable-next-line no-restricted-syntax
+  console.log(objetspanier)
 
   return (
     <div className="containerPanier">

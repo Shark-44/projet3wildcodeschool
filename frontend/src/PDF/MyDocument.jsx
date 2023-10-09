@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
   page: {
     flexDirection: "column",
     backgroundColor: "white",
+    color: "black",
   },
   imageCB: {
     height: 50,
@@ -92,8 +93,12 @@ const MyDocument = () => {
       .get(`http://localhost:4242/utilisateur/${UtilisateurId}`)
       .then((res) => setUtilisateur(res.data))
   }, [])
+  // eslint-disable-next-line no-restricted-syntax
+  console.log(objetspanier)
+  // eslint-disable-next-line no-restricted-syntax
+  console.log(utilisateur)
   return (
-    <Document title="Facture" onRender="facture">
+    <Document title="Facture">
       <Page size="A4" style={styles.page}>
         <View style={styles.sectionA}>
           <Image id="codebarre" src={codebarre} style={styles.imageCB} />

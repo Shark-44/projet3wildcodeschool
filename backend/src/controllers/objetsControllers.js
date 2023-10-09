@@ -109,8 +109,6 @@ const readobjetsByUtilisateur = (req, res) => {
 const objetsByCategorie = (req, res) => {
   const type = req.query.type
 
-  console.info(type)
-
   models.objets
     .readobjetsByCategorie(type)
     .then(([rows]) => {
@@ -160,7 +158,6 @@ const vuquantiteobjets = (req, res) => {
 // liste des objets achetés par un utilisateur
 const achatbyuser = (req, res) => {
   const UtilisateurId = req.query.UtilisateurId
-  console.info(UtilisateurId)
   models.objets
     .achatbyuser(UtilisateurId)
     .then(([rows]) => {

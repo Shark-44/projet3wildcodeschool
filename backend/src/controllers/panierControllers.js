@@ -108,6 +108,21 @@ const objetuser = (req, res) => {
       res.sendStatus(500)
     })
 }
+const upanier = (req, res) => {
+  const UtilisateurId = req.query.UtilisateurId
+  const ObjetsId = req.query.ObjetsId
+  const quantitePanier = req.query.quantitePanier
+  console.info(UtilisateurId, ObjetsId, quantitePanier)
+  models.panier
+    .upanier(UtilisateurId, ObjetsId, quantitePanier)
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
 module.exports = {
   browse,
   read,
@@ -116,4 +131,5 @@ module.exports = {
   destroy,
   byuser,
   objetuser,
+  upanier,
 }
