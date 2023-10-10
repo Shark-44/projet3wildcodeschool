@@ -3,17 +3,16 @@ import logo from "../assets/AlterWord.png"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import { Link } from "react-router-dom"
+import Cookies from "js-cookie"
 
 function Commande() {
   const date = new Date()
   const formattedDate = date.toLocaleDateString("fr-FR")
 
-  // eslint-disable-next-line no-unused-vars
-  const [loader, setLoader] = useState(false)
   const handleValide = () => {}
 
   const [objetspanier, setObjetspanier] = useState([])
-  const UtilisateurId = localStorage.getItem("UtilisateurId")
+  const UtilisateurId = Cookies.get("UtilisateurId")
   const [utilisateur, setUtilisateur] = useState([])
 
   const sommetotal = objetspanier.reduce((somme, a) => {

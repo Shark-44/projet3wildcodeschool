@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import "./LoginCard.css"
+import Cookies from "js-cookie"
 
 const LoginCard = ({ isShowLogin, handleLoginClick, onlogin, setOnlogin }) => {
   const [email, setEmail] = useState()
@@ -19,8 +20,8 @@ const LoginCard = ({ isShowLogin, handleLoginClick, onlogin, setOnlogin }) => {
           password,
         })
         .then((res) => {
-          localStorage.setItem("token", res.data.token)
-          localStorage.setItem("UtilisateurId", res.data.utilisateur.id)
+          Cookies.set("token", res.data.token)
+          Cookies.set("UtilisateurId", res.data.utilisateur.id)
           setOnlogin(res.data.utilisateur.id)
           console.info(res.data)
         })

@@ -2,10 +2,11 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import "./Panier.css"
+import Cookies from "js-cookie"
 
 function Panier() {
   const [objetspanier, setObjetspanier] = useState([])
-  const UtilisateurId = localStorage.getItem("UtilisateurId")
+  const UtilisateurId = Cookies.get("UtilisateurId")
 
   const handleAdd = (index) => {
     const newObjetpanier = [...objetspanier]

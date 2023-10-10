@@ -14,6 +14,7 @@ import Commande from "./pages/Commande"
 import LoginCard from "./components/LoginCard"
 import PDFvu from "./pages/PDFvu"
 import "./App.css"
+import Cookies from "js-cookie"
 
 function App() {
   const [isShowLogin, setIsShowLogin] = useState(true)
@@ -23,8 +24,7 @@ function App() {
   const [danspanier, setDanspanier] = useState([])
   const [onlogin, setOnlogin] = useState()
   const [addpanier, setAddpanier] = useState(0)
-  const UtilisateurId = localStorage.getItem("UtilisateurId")
-
+  const UtilisateurId = Cookies.get("UtilisateurId")
   useEffect(() => {
     if (!UtilisateurId) {
       setAddpanier(0)

@@ -10,6 +10,7 @@ import {
 } from "@react-pdf/renderer"
 import logo from "../assets/AlterWord.png"
 import codebarre from "../assets/codebarre.png"
+import Cookies from "js-cookie"
 
 // Create styles
 const styles = StyleSheet.create({
@@ -76,7 +77,7 @@ const formattedDate = date.toLocaleDateString("fr-FR")
 // Create Document Component
 const MyDocument = () => {
   const [objetspanier, setObjetspanier] = useState([])
-  const UtilisateurId = localStorage.getItem("UtilisateurId")
+  const UtilisateurId = Cookies.get("UtilisateurId")
   const [utilisateur, setUtilisateur] = useState([])
   const sommetotal = objetspanier.reduce((somme, a) => {
     return somme + a.prix * a.quantitePanier
