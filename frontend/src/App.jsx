@@ -13,6 +13,7 @@ import Panier from "./pages/Panier"
 import Commande from "./pages/Commande"
 import LoginCard from "./components/LoginCard"
 import PDFvu from "./pages/PDFvu"
+import Paiement from "./pages/Paiement"
 import "./App.css"
 import Cookies from "js-cookie"
 
@@ -66,6 +67,7 @@ function App() {
         <Route path="/Panier" element={<Panier />} />
         <Route path="/Commande" element={<Commande />} />
         <Route path="/PDFvu/:id" element={<PDFvu />} />
+        <Route path="/Paiement" element={<Paiement />} />
       </Routes>
       <footer></footer>
     </div>

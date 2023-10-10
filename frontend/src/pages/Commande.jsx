@@ -9,8 +9,6 @@ function Commande() {
   const date = new Date()
   const formattedDate = date.toLocaleDateString("fr-FR")
 
-  const handleValide = () => {}
-
   const [objetspanier, setObjetspanier] = useState([])
   const UtilisateurId = Cookies.get("UtilisateurId")
   const [utilisateur, setUtilisateur] = useState([])
@@ -85,9 +83,9 @@ function Commande() {
         <Link to="/PDFvu/1" target="_blank">
           <button className="btncommandegenerale print">Print PDF</button>
         </Link>
-        <button className="btncommandegenerale valide" onClick={handleValide}>
-          PAYER
-        </button>
+        <Link to="/Paiement">
+          <button className="btncommandegenerale valide">PAYER</button>
+        </Link>
         <Link to="/Panier">
           <button className="btncommandegenerale annule">Annuler</button>
         </Link>
