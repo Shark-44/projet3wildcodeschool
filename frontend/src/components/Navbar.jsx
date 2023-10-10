@@ -1,3 +1,4 @@
+import Cookies from "js-cookie"
 import "./NavBar.css"
 import { Link, NavLink } from "react-router-dom"
 
@@ -8,7 +9,8 @@ const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
 
   const buttonColor = onlogin ? "#A2FF86" : "#2bc6ff"
   const logout = () => {
-    localStorage.clear()
+    Cookies.remove("UtilisateurId")
+    Cookies.remove("token")
     setOnlogin(false)
   }
   return (
