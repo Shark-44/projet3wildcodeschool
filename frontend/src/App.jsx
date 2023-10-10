@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import axios from "axios"
 import Home from "./pages/Home"
 import Boutique from "./pages/Boutique"
 import ObjetID from "./pages/ObjetsID"
@@ -19,8 +20,21 @@ function App() {
   const handleLoginClick = () => {
     setIsShowLogin((isShowLogin) => !isShowLogin)
   }
+  const [danspanier, setDanspanier] = useState([])
   const [onlogin, setOnlogin] = useState()
   const [addpanier, setAddpanier] = useState(0)
+  const UtilisateurId = localStorage.getItem("UtilisateurId")
+
+  useEffect(() => {
+    if (!UtilisateurId) {
+      setAddpanier(0)
+    } else {
+      axios
+        .get(`http://localhost:4242/objetpanier?UtilisateurId=${UtilisateurId}`)
+        .then((res) => setDanspanier(res.data))
+      setAddpanier(danspanier.length)
+    }
+  }, [UtilisateurId])
 
   return (
     <div className="App">

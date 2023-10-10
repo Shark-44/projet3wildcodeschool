@@ -11,7 +11,6 @@ function Commande() {
   // eslint-disable-next-line no-unused-vars
   const [loader, setLoader] = useState(false)
   const handleValide = () => {}
-  const handleAnnule = () => {}
 
   const [objetspanier, setObjetspanier] = useState([])
   const UtilisateurId = localStorage.getItem("UtilisateurId")
@@ -90,9 +89,9 @@ function Commande() {
         <button className="btncommandegenerale valide" onClick={handleValide}>
           PAYER
         </button>
-        <button className="btncommandegenerale annule" onClick={handleAnnule}>
-          Annuler
-        </button>
+        <Link to="/Panier">
+          <button className="btncommandegenerale annule">Annuler</button>
+        </Link>
       </div>
     </div>
   )

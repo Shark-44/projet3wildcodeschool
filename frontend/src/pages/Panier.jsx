@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 import "./Panier.css"
 
 function Panier() {
@@ -18,9 +19,13 @@ function Panier() {
     const newObjetpanier = [...objetspanier]
     newObjetpanier[index].quantitePanier -= 1
     setObjetspanier(newObjetpanier)
-    axios.put(
-      `http://localhost:4242/panier?UtilisateurId=${UtilisateurId}&ObjetsId=${objetspanier[index].ObjetsId}&quantitePanier=${objetspanier[index].quantitePanier}`
-    )
+    axios
+      .put(
+        `http://localhost:4242/panier?UtilisateurId=${UtilisateurId}&ObjetsId=${objetspanier[index].ObjetsId}&quantitePanier=${objetspanier[index].quantitePanier}`
+      )
+      .catch((err) => {
+        console.error("Error update", err)
+      })
   }
   const handleDel = (index) => {
     const Deleteid = objetspanier[index].id
@@ -33,14 +38,15 @@ function Panier() {
         newObjetpanier.splice(index, 1)
         setObjetspanier(newObjetpanier)
       })
+      .catch((err) => {
+        console.error("Error delete", err)
+      })
   }
   useEffect(() => {
     axios
       .get(`http://localhost:4242/objetpanier?UtilisateurId=${UtilisateurId}`)
       .then((res) => setObjetspanier(res.data))
   }, [])
-  // eslint-disable-next-line no-restricted-syntax
-  console.log(objetspanier)
 
   return (
     <div className="containerPanier">
@@ -87,7 +93,9 @@ function Panier() {
         ))}
       </div>
       <div className="validation">
-        <button className="validationbtn">validation commande</button>
+        <Link to="/Commande">
+          <button className="validationbtn">validation commande</button>
+        </Link>
       </div>
     </div>
   )
