@@ -1,84 +1,64 @@
 import "./Test.css"
-import Cartes from "../assets/cartes.jpg"
-import Carte from "../assets/carte.jpg"
-import Paypal from "../assets/paypal.png"
-import { useState } from "react"
-const mois = [
-  "01",
-  "02",
-  "03",
-  "04",
-  "05",
-  "06",
-  "07",
-  "08",
-  "09",
-  "10",
-  "11",
-  "12",
-]
-const annee = [
-  "2019",
-  "2020",
-  "2021",
-  "2022",
-  "2023",
-  "2024",
-  "2025",
-  "2026",
-  "2027",
-  "2028",
-]
+import Cookies from "js-cookie"
+import { useState, useEffect } from "react"
+import axios from "axios"
+import Edit from "../assets/iconeedit.png"
+
 function Test() {
-  const [selectedOption, setSelectedOption] = useState()
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value)
-  }
+  const UtilisateurId = Cookies.get("UtilisateurId")
+  const [info, setInfo] = useState([])
+  const [histoc, setHistoc] = useState([])
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4242/utilisateur/${UtilisateurId}`)
+      .then((res) => setInfo(res.data))
+  }, [])
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4242/histocommande?UtilisateurId=${UtilisateurId}`)
+      .then((res) => setHistoc(res.data))
+  })
+
   return (
     <div className="test">
-      <div className="paiement">
-        <img className="Cartes" src={Cartes} alt="" />
-        <div className="parcarte">
-          <input type="checkbox" />
-          <img id="carte" src={Carte} alt="" />
-          <div className="formulaire">
-            <div className="zonesaisie">
-              <label htmlFor="character">Numero de carte bancaire</label>
-              <input type="text" />
-            </div>
-            <div className="zonesaisie">
-              <label htmlFor="character">Date d'expiration</label>
-              <select value={selectedOption} onChange={handleOptionChange}>
-                <option value="">Mois</option>
-                {mois.map((mo) => (
-                  <option key={mo.id} value={mo}>
-                    {mo}
-                  </option>
-                ))}
-              </select>
-              <p id="separateur">/</p>
-              <select value={selectedOption} onChange={handleOptionChange}>
-                <option value="">Année</option>
-                {annee.map((an) => (
-                  <option key={an.id} value={an}>
-                    {an}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="zonesaisie">
-              <label htmlFor="character">Code de verification</label>
-              <input type="text" />
-            </div>
-          </div>
+      <h2>Votre compte</h2>
+      <div className="top">
+        <div className="detail">
+          <img
+            src={`http://localhost:4242/assets/images/avatar/${info.photo}`}
+            alt=""
+          />
+          <h2 id="bienvenu">
+            Bienvenu et contant de vous revoir {info.prenom}
+          </h2>
         </div>
-        <div className="paypal">
-          <input type="checkbox" />
-          <img id="iconepaypal" src={Paypal} alt="" />
+        <div className="coordonnees">
+          <h2>Vos coordonnées :</h2>
+          <h4 className="detailcoor">
+            {info.nom} {info.prenom}
+          </h4>
+          <h4 className="detailcoor">
+            Adresse : {info.adresse} {info.codePostal} {info.ville}
+          </h4>
+          <h4 className="detailcoor">Email : {info.email}</h4>
         </div>
+        <img className="edit" src={Edit} alt="" />
       </div>
-      <div id="centrage">
-        <button className="btnpayer">PAYER</button>
+      <div className="histachat">
+        <h2>Historique de vos achats</h2>
+        {histoc.map((histo) => (
+          <div key={histo.id} className="histo">
+            <h4> Numero de commande : {histo.numero}</h4>{" "}
+            <h4>date de la commande : {histo.dateCommande} </h4>
+            <h4>objet commandé : {histo.nomObjet}</h4>
+            <h4>qté commandé {histo.quantiteCommande} </h4>
+            <h4> pour un prix total {histo.prixTotal} €</h4>
+          </div>
+        ))}
+      </div>
+      <div className="favoris">
+        <h2>Vos vendeurs favoris</h2>
       </div>
     </div>
   )

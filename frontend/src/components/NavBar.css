@@ -7,6 +7,7 @@
   background-color: #0e0424;
   border-bottom: 2px solid #325068;
   box-shadow: 0 0 50px 15px #48abe0;
+  height: 60px;
 }
 .navlink {
   position: relative;
@@ -42,6 +43,11 @@
   margin-top: 5px;
   margin-right: 0px;
   width: 200px;
+}
+.panier {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
 }
 .panier img {
   height: 40px;

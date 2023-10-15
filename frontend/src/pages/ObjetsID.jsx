@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { useParams, Link } from "react-router-dom"
 import Cardloupe from "../components/Cardloupe"
 import Stars from "../components/Stars"
+import Cookies from "js-cookie"
 
 function ObjetsID({ onlogin, setAddpanier, addpanier }) {
   const params = useParams()
@@ -27,7 +28,7 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
 
   const handleAdd = () => {
     // pour ajouter au panier
-    const UtilisateurId = localStorage.getItem("UtilisateurId")
+    const UtilisateurId = Cookies.get("UtilisateurId")
     const ObjetsId = objets.id
     const quantitePanier = 1
     axios.post("http://localhost:4242/panier", {

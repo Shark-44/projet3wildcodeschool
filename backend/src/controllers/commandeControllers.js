@@ -81,6 +81,18 @@ const destroy = (req, res) => {
       res.sendStatus(500)
     })
 }
+const cbyuser = (req, res) => {
+  const UtilisateurId = req.query.UtilisateurId
+  models.commande
+    .findbyuser(UtilisateurId)
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
 
 module.exports = {
   browse,
@@ -88,4 +100,5 @@ module.exports = {
   edit,
   add,
   destroy,
+  cbyuser,
 }

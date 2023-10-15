@@ -1,8 +1,13 @@
 import Cookies from "js-cookie"
 import "./NavBar.css"
 import { Link, NavLink } from "react-router-dom"
+// import { useAuthContext } from "../contexts/authContexts"
 
 const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
+  // const { user, setUser } = useAuthContext()
+  // eslint-disable-next-line no-restricted-syntax
+  // console.log(user)
+  const user = Cookies.get("UtilisateurId")
   const handleClick = () => {
     handleLoginClick()
   }
@@ -12,7 +17,10 @@ const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
     Cookies.remove("UtilisateurId")
     Cookies.remove("token")
     setOnlogin(false)
+    // setUser(null)
   }
+  // eslint-disable-next-line no-restricted-syntax
+  console.log("dans la navbar", user)
   return (
     <>
       <nav className="navGlobal">
@@ -35,33 +43,38 @@ const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
           src="http://localhost:4242/assets/images/autre/AlterWord.PNG"
           alt=""
         />
-        <div className="panier">
-          <Link to="/Panier">
-            <img
-              src="http://localhost:4242/assets/images/autre/panier.png"
-              alt=""
+        <div className="onview"></div>
+
+        {user ? (
+          <div className="panier">
+            <Link to="/Panier">
+              <img
+                src="http://localhost:4242/assets/images/autre/panier.png"
+                alt=""
+              />
+              {addpanier > 0 && <span className="badge">{addpanier}</span>}
+            </Link>
+            <input
+              type="image"
+              className="logout"
+              onClick={logout}
+              src="http://localhost:4242/assets/images/autre/deconnexion.png"
             />
-            {addpanier > 0 && <span className="badge">{addpanier}</span>}
-          </Link>
-        </div>
-        <div className="buttonContainer">
-          <button
-            onClick={handleClick}
-            className="loginicon log"
-            style={{ backgroundColor: buttonColor }}
-          >
-            Login
-          </button>
-          <input
-            type="image"
-            className="logout"
-            onClick={logout}
-            src="http://localhost:4242/assets/images/autre/deconnexion.png"
-          />
-          <Link to="/Formulaire" style={{ textDecoration: `none` }}>
-            <button className="loginicon sig">Sign up</button>
-          </Link>
-        </div>
+          </div>
+        ) : (
+          <div className="buttonContainer">
+            <button
+              onClick={handleClick}
+              className="loginicon log"
+              style={{ backgroundColor: buttonColor }}
+            >
+              Login
+            </button>
+            <Link to="/Formulaire" style={{ textDecoration: `none` }}>
+              <button className="loginicon sig">Sign up</button>
+            </Link>
+          </div>
+        )}
       </nav>
     </>
   )

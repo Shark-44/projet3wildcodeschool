@@ -18,6 +18,13 @@ class CommandeManager extends AbstractManager {
       [commande.numero, commande.id, commande.prixTotal]
     )
   }
+
+  findbyuser(UtilisateurId) {
+    return this.database.query(
+      `select commandehasobjets.quantiteCommande, commandehasobjets.dateCommande, commande.prixTotal, commande.numero, objets.nomObjet  from ${this.table}  join commandehasobjets on commande.id = commandehasobjets.CommandeId  join objets on commandehasobjets.ObjetsId = objets.id where UtilisateurId = ?`,
+      [UtilisateurId]
+    )
+  }
 }
 
 module.exports = CommandeManager

@@ -119,7 +119,7 @@ function Formulaire() {
   }
 
   return (
-    <div className="contenair">
+    <div className="contenairformulaire">
       <h1>Formulaire d'enregistrement</h1>
       <div className="general">
         <div className="partiegenerale">
