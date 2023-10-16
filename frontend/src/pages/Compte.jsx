@@ -1,7 +1,7 @@
 import "./Compte.css"
 import Cookies from "js-cookie"
 import { useState, useEffect } from "react"
-import axios from "axios"
+import AlterwordAPI from "../services/AlterwordAPI"
 import Edit from "../assets/iconeedit.png"
 
 function Compte() {
@@ -10,14 +10,14 @@ function Compte() {
   const [histoc, setHistoc] = useState([])
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4242/utilisateur/${UtilisateurId}`)
-      .then((res) => setInfo(res.data))
+    AlterwordAPI.get(`/utilisateur/${UtilisateurId}`).then((res) =>
+      setInfo(res.data)
+    )
   }, [])
   useEffect(() => {
-    axios
-      .get(`http://localhost:4242/histocommande?UtilisateurId=${UtilisateurId}`)
-      .then((res) => setHistoc(res.data))
+    AlterwordAPI.get(`/histocommande?UtilisateurId=${UtilisateurId}`).then(
+      (res) => setHistoc(res.data)
+    )
   })
 
   return (
@@ -25,10 +25,7 @@ function Compte() {
       <h2>Votre compte</h2>
       <div className="top">
         <div className="detail">
-          <img
-            src={`http://localhost:4242/assets/images/avatar/${info.photo}`}
-            alt=""
-          />
+          <img src={`AlterwordAPI/assets/images/avatar/${info.photo}`} alt="" />
           <h2 id="bienvenu">
             Bienvenu et contant de vous revoir {info.prenom}
           </h2>

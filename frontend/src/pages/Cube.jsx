@@ -1,6 +1,6 @@
 import Cube from "react-3d-cube"
 import { useEffect, useState } from "react"
-import axios from "axios"
+import AlterwordAPI from "../services/AlterwordAPI"
 import "./cube.css"
 
 function Cube3D() {
@@ -14,9 +14,7 @@ function Cube3D() {
   const [triObjets, setTriObjets] = useState([])
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4242/quantitecommande")
-      .then((res) => setVuobjets(res.data))
+    AlterwordAPI.get("/quantitecommande").then((res) => setVuobjets(res.data))
   }, [])
 
   useEffect(() => {

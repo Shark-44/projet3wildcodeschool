@@ -33,7 +33,6 @@ function CreateurID() {
       .get(`http://localhost:4242/avislaisse?UtilisateurId1=${params.id}`)
       .then((res) => setLecavis(res.data))
   })
-  console.info(objets)
   return (
     <div className="container Createur">
       <div className="partiepresentation">

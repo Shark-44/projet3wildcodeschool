@@ -1,7 +1,7 @@
 import "./Commande.css"
 import logo from "../assets/AlterWord.png"
 import { useState, useEffect } from "react"
-import axios from "axios"
+import AlterwordAPI from "../services/AlterwordAPI"
 import { Link } from "react-router-dom"
 import Cookies from "js-cookie"
 
@@ -19,14 +19,14 @@ function Commande() {
   const TVA = ((sommetotal * 20) / 100).toFixed(2)
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4242/objetpanier?UtilisateurId=${UtilisateurId}`)
-      .then((res) => setObjetspanier(res.data))
+    AlterwordAPI.get(`/objetpanier?UtilisateurId=${UtilisateurId}`).then(
+      (res) => setObjetspanier(res.data)
+    )
   }, [])
   useEffect(() => {
-    axios
-      .get(`http://localhost:4242/utilisateur/${UtilisateurId}`)
-      .then((res) => setUtilisateur(res.data))
+    AlterwordAPI.get(`/utilisateur/${UtilisateurId}`).then((res) =>
+      setUtilisateur(res.data)
+    )
   }, [])
   return (
     <div className="containerCommande">
@@ -61,7 +61,7 @@ function Commande() {
                 <div key={index} className="cardetail">
                   <img
                     className="imagecardetail"
-                    src={`http://localhost:4242${objetcommande.photo1}`}
+                    src={`AlterwordAPI${objetcommande.photo1}`}
                     alt=""
                   />
                   <div>{objetcommande.nomObjet}</div>

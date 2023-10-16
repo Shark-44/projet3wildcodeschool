@@ -1,4 +1,4 @@
-import axios from "axios"
+import AlterwordAPI from "../services/AlterwordAPI"
 import "./ObjetID.css"
 import { useEffect, useState } from "react"
 import { useParams, Link } from "react-router-dom"
@@ -15,15 +15,13 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
   const [isShowZoom, setIsShowZoom] = useState(true)
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4242/objets/${params.id}`)
-      .then((res) => setObjets(res.data))
-    axios
-      .get(`http://localhost:4242/utilisateur/avec/objets?id=${params.id}`)
-      .then((res) => setCreateur(res.data))
-    axios
-      .get(`http://localhost:4242/avisurobjetparid?id=${params.id}`)
-      .then((res) => setAvis(res.data))
+    AlterwordAPI.get(`/objets/${params.id}`).then((res) => setObjets(res.data))
+    AlterwordAPI.get(`/utilisateur/avec/objets?id=${params.id}`).then((res) =>
+      setCreateur(res.data)
+    )
+    AlterwordAPI.get(`/avisurobjetparid?id=${params.id}`).then((res) =>
+      setAvis(res.data)
+    )
   }, [params.id])
 
   const handleAdd = () => {
@@ -31,7 +29,7 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
     const UtilisateurId = Cookies.get("UtilisateurId")
     const ObjetsId = objets.id
     const quantitePanier = 1
-    axios.post("http://localhost:4242/panier", {
+    AlterwordAPI.post("/panier", {
       UtilisateurId,
       ObjetsId,
       quantitePanier,
@@ -48,10 +46,7 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
   return (
     <div className="container cardObjet">
       <div className="descriptionObjet">
-        <img
-          src={`http://localhost:4242/${objets.photo1}`}
-          alt={objets.nomObjet}
-        />
+        <img src={`AlterwordAPI${objets.photo1}`} alt={objets.nomObjet} />
         <p onClick={handlezoom}>zoom</p>
         <h1>{objets.nomObjet}</h1>
         <h2>Prix: {objets.prix} €</h2>
@@ -67,7 +62,7 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
             <div key={auteur.id} className="cadrecreateur">
               <Link className="link" to={`/Createurs/${auteur.id} `}>
                 <img
-                  src={`http://localhost:4242/assets/images/avatar/${auteur.photo}`}
+                  src={`AlterwordAPI/assets/images/avatar/${auteur.photo}`}
                   alt={auteur.nom}
                 />
               </Link>
@@ -87,7 +82,7 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
             <div key={avis.id}>
               <h2>{avis.avisObjet}</h2>
               <img
-                src={`http://localhost:4242/assets/images/avatar/${avis.photo}`}
+                src={`AlterwordAPI/assets/images/avatar/${avis.photo}`}
                 alt={avis.prenom}
               />
             </div>
@@ -105,7 +100,7 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
               type="image"
               className="validebtn"
               onClick={handlevalide}
-              src="http://localhost:4242/assets/images/autre/validationbtn.jpg"
+              src="AlterwordAPI/assets/images/autre/validationbtn.jpg"
             />
           </div>
         </div>

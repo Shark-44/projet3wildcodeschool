@@ -1,4 +1,4 @@
-import axios from "axios"
+import AlterwordAPI from "../services/AlterwordAPI"
 import { useState } from "react"
 import "./LoginCard.css"
 import Cookies from "js-cookie"
@@ -15,32 +15,26 @@ const LoginCard = ({ isShowLogin, handleLoginClick, onlogin, setOnlogin }) => {
       alert(" votre password !!!")
     } else {
       handleLoginClick()
-      axios
-        .post("http://localhost:4242/utilisateurconnexion", {
-          email,
-          password,
+      AlterwordAPI.post("/utilisateurconnexion", {
+        email,
+        password,
+      }).then((res) => {
+        Cookies.set("token", res.data.token, {
+          expires: 0.5,
+          sameSite: "strict",
         })
-        .then((res) => {
-          Cookies.set("token", res.data.token, {
-            expires: 0.5,
-            sameSite: "strict",
-          })
-          Cookies.set(
-            "UtilisateurId",
-            JSON.stringify(res.data.utilisateur.id),
-            {
-              expires: 0.5,
-              sameSite: "strict",
-            }
-          )
-          Cookies.set("Prenom", JSON.stringify(res.data.utilisateur.prenom), {
-            expires: 0.5,
-            sameSite: "strict",
-          })
-          setUser(res.data)
-          setOnlogin(res.data.utilisateur.id)
-          console.info(res.data)
+        Cookies.set("UtilisateurId", JSON.stringify(res.data.utilisateur.id), {
+          expires: 0.5,
+          sameSite: "strict",
         })
+        Cookies.set("Prenom", JSON.stringify(res.data.utilisateur.prenom), {
+          expires: 0.5,
+          sameSite: "strict",
+        })
+        setUser(res.data)
+        setOnlogin(res.data.utilisateur.id)
+        console.info(res.data)
+      })
     }
   }
   return (

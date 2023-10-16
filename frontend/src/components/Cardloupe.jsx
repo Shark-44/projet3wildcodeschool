@@ -1,4 +1,4 @@
-import axios from "axios"
+import AlterwordAPI from "../services/AlterwordAPI"
 import { useState, useEffect } from "react"
 import "./Cardloupe.css"
 
@@ -17,9 +17,7 @@ const Cardloupe = ({ isShowZoom, handlezoom, params }) => {
   }
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4242/objets/${params}`)
-      .then((res) => setObjets(res.data))
+    AlterwordAPI.get(`/objets/${params}`).then((res) => setObjets(res.data))
   }, [])
   const handleclose = () => {
     handlezoom()

@@ -1,4 +1,4 @@
-import axios from "axios"
+import AlterwordAPI from "../services/AlterwordAPI"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import "./Boutique.css"
@@ -13,21 +13,19 @@ function Boutique() {
 
   useEffect(() => {
     if (!prenom && !type) {
-      axios
-        .get("http://localhost:4242/objets")
-        .then((res) => setObjets(res.data))
+      AlterwordAPI.get("/objets").then((res) => setObjets(res.data))
     } else if (prenom !== undefined && type !== undefined) {
-      axios
-        .get(`http://localhost:4242/utilisateur/with/objets?prenom=${prenom}`)
-        .then((res) => setObjets(res.data))
+      AlterwordAPI.get(`/utilisateur/with/objets?prenom=${prenom}`).then(
+        (res) => setObjets(res.data)
+      )
     } else if (!prenom && type !== undefined) {
-      axios
-        .get(`http://localhost:4242/objets/with/categorie?type=${type}`)
-        .then((res) => setObjets(res.data))
+      AlterwordAPI.get(`/objets/with/categorie?type=${type}`).then((res) =>
+        setObjets(res.data)
+      )
     } else if (prenom !== undefined && !type) {
-      axios
-        .get(`http://localhost:4242/utilisateur/with/objets?prenom=${prenom}`)
-        .then((res) => setObjets(res.data))
+      AlterwordAPI.get(`/utilisateur/with/objets?prenom=${prenom}`).then(
+        (res) => setObjets(res.data)
+      )
     }
   }, [prenom || type])
 

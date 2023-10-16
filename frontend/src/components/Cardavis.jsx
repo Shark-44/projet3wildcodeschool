@@ -1,4 +1,4 @@
-import axios from "axios"
+import AlterwordAPI from "../services/AlterwordAPI"
 import { useEffect, useState } from "react"
 import "./Cardavis.css"
 
@@ -15,9 +15,7 @@ const Cardavis = () => {
   }
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4242/avisurobjet")
-      .then((res) => setAvis(res.data))
+    AlterwordAPI.get("/avisurobjet").then((res) => setAvis(res.data))
   }, [])
   return (
     <div className="renduAvis">

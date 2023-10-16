@@ -1,4 +1,4 @@
-import axios from "axios"
+import AlterwordAPI from "../services/AlterwordAPI"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import "./Formulaire.css"
@@ -58,7 +58,7 @@ function Formulaire() {
         .catch((err) => console.error(err))
         .then((data) => {
           if (createur === "0") {
-            axios.post("http://localhost:4242/utilisateur", {
+            AlterwordAPI.post("/utilisateur", {
               nom,
               prenom,
               email,
@@ -70,7 +70,7 @@ function Formulaire() {
               photo,
             })
           } else {
-            axios.post("http://localhost:4242/utilisateur/with/categorie", {
+            AlterwordAPI.post("/utilisateur/with/categorie", {
               nom,
               prenom,
               email,
@@ -89,7 +89,7 @@ function Formulaire() {
       // eslint-disable-next-line no-restricted-syntax
       console.log("je suis lala")
       if (createur === "0") {
-        axios.post("http://localhost:4242/utilisateur", {
+        AlterwordAPI.post("/utilisateur", {
           nom,
           prenom,
           email,
@@ -101,7 +101,7 @@ function Formulaire() {
           photo,
         })
       } else {
-        axios.post("http://localhost:4242/utilisateur/with/categorie", {
+        AlterwordAPI.post("/utilisateur/with/categorie", {
           nom,
           prenom,
           email,
