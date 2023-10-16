@@ -17,6 +17,7 @@ function Commande() {
     return somme + a.prix * a.quantitePanier
   }, 0)
   const TVA = ((sommetotal * 20) / 100).toFixed(2)
+  const API_URL = import.meta.env.VITE_BACKEND_URL
 
   useEffect(() => {
     AlterwordAPI.get(`/objetpanier?UtilisateurId=${UtilisateurId}`).then(
@@ -61,7 +62,7 @@ function Commande() {
                 <div key={index} className="cardetail">
                   <img
                     className="imagecardetail"
-                    src={`AlterwordAPI${objetcommande.photo1}`}
+                    src={API_URL + objetcommande.photo1}
                     alt=""
                   />
                   <div>{objetcommande.nomObjet}</div>

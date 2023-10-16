@@ -12,6 +12,7 @@ function Cube3D() {
   const [img5, setImg5] = useState("")
   const [img6, setImg6] = useState("")
   const [triObjets, setTriObjets] = useState([])
+  const API_URL = import.meta.env.VITE_BACKEND_URL
 
   useEffect(() => {
     AlterwordAPI.get("/quantitecommande").then((res) => setVuobjets(res.data))
@@ -43,42 +44,42 @@ function Cube3D() {
             <div className="imagecube">
               <img
                 style={{ width: "300px", height: "300px" }}
-                src={`http://localhost:4242${img1}`}
+                src={API_URL + img1}
                 alt="front"
               />
             </div>
             <div className="imagecube">
               <img
                 style={{ width: "300px", height: "300px" }}
-                src={`http://localhost:4242${img2}`}
+                src={API_URL + img2}
                 alt="right"
               />
             </div>
             <div className="imagecube">
               <img
                 style={{ width: "300px", height: "300px" }}
-                src={`http://localhost:4242${img3}`}
+                src={API_URL + img3}
                 alt="back"
               />
             </div>
             <div className="imagecube">
               <img
                 style={{ width: "300px", height: "300px" }}
-                src={`http://localhost:4242${img4}`}
+                src={API_URL + img4}
                 alt="left"
               />
             </div>
             <div className="imagecube">
               <img
                 style={{ width: "300px", height: "300px" }}
-                src={`http://localhost:4242${img5}`}
+                src={API_URL + img5}
                 alt="top"
               />
             </div>
             <div className="imagecube">
               <img
                 style={{ width: "300px", height: "300px" }}
-                src={`http://localhost:4242${img6}`}
+                src={API_URL + img6}
                 alt="bottom"
               />
             </div>

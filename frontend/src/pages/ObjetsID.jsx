@@ -13,6 +13,7 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
   const [createur, setCreateur] = useState([])
   const [avis, setAvis] = useState([])
   const [isShowZoom, setIsShowZoom] = useState(true)
+  const API_URL = import.meta.env.VITE_BACKEND_URL
 
   useEffect(() => {
     AlterwordAPI.get(`/objets/${params.id}`).then((res) => setObjets(res.data))
@@ -46,7 +47,7 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
   return (
     <div className="container cardObjet">
       <div className="descriptionObjet">
-        <img src={`AlterwordAPI${objets.photo1}`} alt={objets.nomObjet} />
+        <img src={API_URL + objets.photo1} alt={objets.nomObjet} />
         <p onClick={handlezoom}>zoom</p>
         <h1>{objets.nomObjet}</h1>
         <h2>Prix: {objets.prix} €</h2>
@@ -62,7 +63,7 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
             <div key={auteur.id} className="cadrecreateur">
               <Link className="link" to={`/Createurs/${auteur.id} `}>
                 <img
-                  src={`AlterwordAPI/assets/images/avatar/${auteur.photo}`}
+                  src={API_URL + "/assets/images/avatar/" + auteur.photo}
                   alt={auteur.nom}
                 />
               </Link>
@@ -82,7 +83,7 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
             <div key={avis.id}>
               <h2>{avis.avisObjet}</h2>
               <img
-                src={`AlterwordAPI/assets/images/avatar/${avis.photo}`}
+                src={API_URL + "/assets/images/avatar/" + avis.photo}
                 alt={avis.prenom}
               />
             </div>
@@ -100,7 +101,7 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
               type="image"
               className="validebtn"
               onClick={handlevalide}
-              src="AlterwordAPI/assets/images/autre/validationbtn.jpg"
+              src={API_URL + "/assets/images/autre/validationbtn.jpg"}
             />
           </div>
         </div>

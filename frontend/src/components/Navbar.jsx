@@ -5,10 +5,9 @@ import { useAuthContext } from "../contexts/authContexts"
 
 const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
   const { user, setUser } = useAuthContext()
-  // eslint-disable-next-line no-restricted-syntax
-  console.log(user)
   // const user = Cookies.get("UtilisateurId")
   const prenom = Cookies.get("Prenom")
+  const API_URL = import.meta.env.VITE_BACKEND_URL
   const handleClick = () => {
     handleLoginClick()
   }
@@ -37,7 +36,7 @@ const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
         </ul>
         <img
           className="imagelogo"
-          src="http://localhost:4242/assets/images/autre/AlterWord.PNG"
+          src={API_URL + "/assets/images/autre/AlterWord.PNG"}
           alt=""
         />
         <div className="onview"></div>
@@ -48,17 +47,14 @@ const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
               Compte : {prenom.replace(/"/g, "")}
             </NavLink>
             <Link to="/Panier">
-              <img
-                src="http://localhost:4242/assets/images/autre/panier.png"
-                alt=""
-              />
+              <img src={API_URL + "/assets/images/autre/panier.png"} alt="" />
               {addpanier > 0 && <span className="badge">{addpanier}</span>}
             </Link>
             <input
               type="image"
               className="logout"
               onClick={logout}
-              src="http://localhost:4242/assets/images/autre/deconnexion.png"
+              src={API_URL + "/assets/images/autre/deconnexion.png"}
             />
           </div>
         ) : (

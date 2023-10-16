@@ -8,6 +8,7 @@ function Compte() {
   const UtilisateurId = Cookies.get("UtilisateurId")
   const [info, setInfo] = useState([])
   const [histoc, setHistoc] = useState([])
+  const API_URL = import.meta.env.VITE_BACKEND_URL
 
   useEffect(() => {
     AlterwordAPI.get(`/utilisateur/${UtilisateurId}`).then((res) =>
@@ -25,7 +26,7 @@ function Compte() {
       <h2>Votre compte</h2>
       <div className="top">
         <div className="detail">
-          <img src={`AlterwordAPI/assets/images/avatar/${info.photo}`} alt="" />
+          <img src={API_URL + "/assets/images/avatar/" + info.photo} alt="" />
           <h2 id="bienvenu">
             Bienvenu et contant de vous revoir {info.prenom}
           </h2>

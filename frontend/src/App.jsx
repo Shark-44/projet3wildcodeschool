@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom"
 import { useState, useEffect } from "react"
-import axios from "axios"
 import Home from "./pages/Home"
 import Boutique from "./pages/Boutique"
 import ObjetID from "./pages/ObjetsID"
@@ -15,10 +14,11 @@ import LoginCard from "./components/LoginCard"
 import PDFvu from "./pages/PDFvu"
 import Paiement from "./pages/Paiement"
 import "./App.css"
-// import Cookies from "js-cookie"
-import { useAuthContext } from "./contexts/authContexts"
+import Cookies from "js-cookie"
+// import { useAuthContext } from "./contexts/authContexts"
 import ProtectedRoute from "./components/ProtectedRoute"
 import Compte from "./pages/Compte"
+import AlterwordAPI from "./services/AlterwordAPI"
 
 function App() {
   const [isShowLogin, setIsShowLogin] = useState(true)
@@ -27,16 +27,16 @@ function App() {
   }
   const [danspanier, setDanspanier] = useState([])
   const [onlogin, setOnlogin] = useState()
-  const [addpanier, setAddpanier] = useState(0)
-  // const user = Cookies.get("UtilisateurId")
-  const { user } = useAuthContext()
+  const [addpanier, setAddpanier] = useState(danspanier)
+  const user = Cookies.get("UtilisateurId")
+  // const { user } = useAuthContext()
   useEffect(() => {
     if (!user) {
       setAddpanier(0)
     } else {
-      axios
-        .get(`http://localhost:4242/objetpanier?UtilisateurId=${user}`)
-        .then((res) => setDanspanier(res.data))
+      AlterwordAPI.get(`/objetpanier?UtilisateurId=${user}`).then((res) =>
+        setDanspanier(res.data)
+      )
       setAddpanier(danspanier.length)
     }
   }, [user])
