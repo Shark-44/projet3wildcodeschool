@@ -16,6 +16,9 @@
   font-size: 2.5rem;
   font-style: oblique;
 }
+#textpresentation {
+  padding: 5px;
+}
 
 .lecube {
   height: 500px;

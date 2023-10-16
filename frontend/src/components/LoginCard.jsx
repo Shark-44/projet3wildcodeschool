@@ -2,12 +2,12 @@ import axios from "axios"
 import { useState } from "react"
 import "./LoginCard.css"
 import Cookies from "js-cookie"
-// import { useAuthContext } from "../contexts/authContexts"
+import { useAuthContext } from "../contexts/authContexts"
 
 const LoginCard = ({ isShowLogin, handleLoginClick, onlogin, setOnlogin }) => {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
-  // const { setUser } = useAuthContext()
+  const { setUser } = useAuthContext()
   const handleSubmit = () => {
     if (email === undefined) {
       alert("votre email !!!")
@@ -37,7 +37,7 @@ const LoginCard = ({ isShowLogin, handleLoginClick, onlogin, setOnlogin }) => {
             expires: 0.5,
             sameSite: "strict",
           })
-          // setUser(res.data)
+          setUser(res.data)
           setOnlogin(res.data.utilisateur.id)
           console.info(res.data)
         })
@@ -54,6 +54,7 @@ const LoginCard = ({ isShowLogin, handleLoginClick, onlogin, setOnlogin }) => {
               type="email"
               className="login-box"
               value={email}
+              placeholder="xxx@xxx.xx"
               onChange={(e) => setEmail(e.target.value)}
             />
             <br></br>
@@ -61,6 +62,7 @@ const LoginCard = ({ isShowLogin, handleLoginClick, onlogin, setOnlogin }) => {
             <input
               type="password"
               className="login-box"
+              placeholder="Password "
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />

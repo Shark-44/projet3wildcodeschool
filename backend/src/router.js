@@ -1,6 +1,6 @@
 const express = require("express")
 const multer = require("multer")
-const { hashPassword, verifyPassword } = require("./auth.js")
+const { hashPassword, verifyPassword, verifyToken } = require("./auth.js")
 
 const router = express.Router()
 const upload = multer({ dest: "./public/assets/image/avatar" })
@@ -34,7 +34,7 @@ router.put(
   hashPassword,
   utilisateurControllers.edit
 )
-router.delete("/utilisateur/:id", utilisateurControllers.destroy)
+router.delete("/utilisateur/:id", verifyToken, utilisateurControllers.destroy)
 
 // ROUTE JOINTURE
 router.get(
@@ -51,8 +51,8 @@ router.post(
 // ROUTE OBJETS
 router.get("/objets", objetsControllers.browse)
 router.get("/objets/:id", objetsControllers.read)
-router.post("/objets", objetsControllers.add)
-router.put("/objets/:id", objetsControllers.edit)
+router.post("/objets", verifyToken, objetsControllers.add)
+router.put("/objets/:id", verifyToken, objetsControllers.edit)
 router.delete("/objets/:id", objetsControllers.destroy)
 router.get("/utilisateur/with/objets", objetsControllers.objetsByUtilisateur)
 router.get(
@@ -72,64 +72,97 @@ router.get("/categorie/:id", categorieControllers.read)
 // ROUTE COMMANDE
 router.get("/commande", commandeControllers.browse)
 router.get("/commande/:id", commandeControllers.read)
-router.post("/commande", commandeControllers.add)
-router.put("/commande/:id", commandeControllers.edit)
-router.delete("/commande/:id", commandeControllers.destroy)
+router.post("/commande", verifyToken, commandeControllers.add)
+router.put("/commande/:id", verifyToken, commandeControllers.edit)
+router.delete("/commande/:id", verifyToken, commandeControllers.destroy)
 router.get("/histocommande", commandeControllers.cbyuser)
 
 // ROUTE AVIS UTILISATEUR A CREATEUR
 router.get("/avisutilisateur", avisutilisateurControllers.browse)
 router.get("/avisutilisateur", avisutilisateurControllers.read)
-router.post("/avisutilisateur", avisutilisateurControllers.add)
-router.put("/avisutilisateur", avisutilisateurControllers.edit)
-router.delete("/avisutilisateur", avisutilisateurControllers.destroy)
+router.post("/avisutilisateur", verifyToken, avisutilisateurControllers.add)
+router.put("/avisutilisateur", verifyToken, avisutilisateurControllers.edit)
+router.delete(
+  "/avisutilisateur",
+  verifyToken,
+  avisutilisateurControllers.destroy
+)
 router.get("/avislaisse", avisutilisateurControllers.surcreateur)
 
 // ROUTE AVIS OBJETS
 router.get("/avisobjet", avisobjetControllers.browse)
 router.get("/avisobjet", avisobjetControllers.read)
-router.post("/avisobjet", avisobjetControllers.add)
-router.put("/avisobjet", avisobjetControllers.edit)
-router.delete("/avisobjet", avisobjetControllers.destroy)
+router.post("/avisobjet", verifyToken, avisobjetControllers.add)
+router.put("/avisobjet", verifyToken, avisobjetControllers.edit)
+router.delete("/avisobjet", verifyToken, avisobjetControllers.destroy)
 
 // ROUTE liaison COMMANDE OBJET
 router.get("/commandehasobjets", commandeobjetsControllers.browse)
 router.get("/commandehasobjets", commandeobjetsControllers.read)
-router.post("/commandehasobjets", commandeobjetsControllers.add)
-router.put("/commandehasobjets", commandeobjetsControllers.edit)
-router.delete("/commandehasobjets", commandeobjetsControllers.destroy)
+router.post("/commandehasobjets", verifyToken, commandeobjetsControllers.add)
+router.put("/commandehasobjets", verifyToken, commandeobjetsControllers.edit)
+router.delete(
+  "/commandehasobjets",
+  verifyToken,
+  commandeobjetsControllers.destroy
+)
 
 // ROUTE PANIER
 router.get("/panier", panierControllers.browse)
 router.get("/panier", panierControllers.read)
-router.post("/panier", panierControllers.add)
-router.delete("/panier", panierControllers.objetuser)
+router.post("/panier", verifyToken, panierControllers.add)
+router.delete("/panier", verifyToken, panierControllers.objetuser)
 router.get("/panieruser", panierControllers.byuser)
-router.put("/panier", panierControllers.upanier)
+router.put("/panier", verifyToken, panierControllers.upanier)
 
 // ROUTE liaison CREATEUR CATEGORIE
 router.get("/utilisateurhascategorie", utilisateurcategorieControllers.browse)
 router.get("/utilisateurhascategorie", utilisateurcategorieControllers.read)
-router.post("/utilisateurhascategorie", utilisateurcategorieControllers.add)
-router.put("/utilisateurhascategorie", utilisateurcategorieControllers.edit)
+router.post(
+  "/utilisateurhascategorie",
+  verifyToken,
+  utilisateurcategorieControllers.add
+)
+router.put(
+  "/utilisateurhascategorie",
+  verifyToken,
+  utilisateurcategorieControllers.edit
+)
 router.delete(
   "/utilisateurhascategorie",
+  verifyToken,
   utilisateurcategorieControllers.destroy
 )
 
 // ROUTE liaison UTILISATEUR OBJETS
 router.get("/utilisateurhasobjets", utilisateurobjetsControllers.browse)
 router.get("/utilisateurhasobjets", utilisateurobjetsControllers.read)
-router.post("/utilisateurhasobjets", utilisateurobjetsControllers.add)
-router.put("/utilisateurhasobjets", utilisateurobjetsControllers.edit)
-router.delete("/utilisateurhasobjets", utilisateurobjetsControllers.destroy)
+router.post(
+  "/utilisateurhasobjets",
+  verifyToken,
+  utilisateurobjetsControllers.add
+)
+router.put(
+  "/utilisateurhasobjets",
+  verifyToken,
+  utilisateurobjetsControllers.edit
+)
+router.delete(
+  "/utilisateurhasobjets",
+  verifyToken,
+  utilisateurobjetsControllers.destroy
+)
 
 // ROUTE liaison CATEGORIE OBJETS
 router.get("/categoriehasobjets", categorieobjetsControllers.browse)
 router.get("/categoriehasobjets", categorieobjetsControllers.read)
-router.post("/categoriehasobjets", categorieobjetsControllers.add)
-router.put("/categoriehasobjets", categorieobjetsControllers.edit)
-router.delete("/categoriehasobjets", categorieobjetsControllers.destroy)
+router.post("/categoriehasobjets", verifyToken, categorieobjetsControllers.add)
+router.put("/categoriehasobjets", verifyToken, categorieobjetsControllers.edit)
+router.delete(
+  "/categoriehasobjets",
+  verifyToken,
+  categorieobjetsControllers.destroy
+)
 
 // ROUTE UPLOAD IMAGE DANS BACKEND
 router.post("/upload", upload.single("myfile"), uploadControllers.upload)

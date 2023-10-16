@@ -6,7 +6,7 @@ import { useAuthContext } from "../contexts/authContexts"
 const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
   const { user, setUser } = useAuthContext()
   // eslint-disable-next-line no-restricted-syntax
-  // console.log(user)
+  console.log(user)
   // const user = Cookies.get("UtilisateurId")
   const prenom = Cookies.get("Prenom")
   const handleClick = () => {
@@ -16,6 +16,7 @@ const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
   const buttonColor = onlogin ? "#A2FF86" : "#2bc6ff"
   const logout = () => {
     Cookies.remove("UtilisateurId")
+    Cookies.remove("Prenom")
     Cookies.remove("token")
     setOnlogin(false)
     setUser(null)
@@ -44,7 +45,7 @@ const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
         {user ? (
           <div className="panier">
             <NavLink id="liencompte" to="/Test">
-              Compte : {prenom}
+              Compte : {prenom.replace(/"/g, "")}
             </NavLink>
             <Link to="/Panier">
               <img
