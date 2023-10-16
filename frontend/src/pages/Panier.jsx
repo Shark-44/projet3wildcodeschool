@@ -1,45 +1,58 @@
-import axios from "axios"
+import AlterwordAPI from "../services/AlterwordAPI"
 import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 import "./Panier.css"
+import Cookies from "js-cookie"
 
 function Panier() {
   const [objetspanier, setObjetspanier] = useState([])
-  const UtilisateurId = localStorage.getItem("UtilisateurId")
-
+  const UtilisateurId = Cookies.get("UtilisateurId")
+  const API_URL = import.meta.env.VITE_BACKEND_URL
   const handleAdd = (index) => {
     const newObjetpanier = [...objetspanier]
     newObjetpanier[index].quantitePanier += 1
     setObjetspanier(newObjetpanier)
+    AlterwordAPI.put(
+      `/panier?UtilisateurId=${UtilisateurId}&ObjetsId=${objetspanier[index].ObjetsId}&quantitePanier=${objetspanier[index].quantitePanier}`
+    )
   }
   const handleSub = (index) => {
     const newObjetpanier = [...objetspanier]
     newObjetpanier[index].quantitePanier -= 1
     setObjetspanier(newObjetpanier)
+    AlterwordAPI.put(
+      `/panier?UtilisateurId=${UtilisateurId}&ObjetsId=${objetspanier[index].ObjetsId}&quantitePanier=${objetspanier[index].quantitePanier}`
+    ).catch((err) => {
+      console.error("Error update", err)
+    })
   }
   const handleDel = (index) => {
     const Deleteid = objetspanier[index].id
-    axios.delete(
-      `http://localhost:4242/panier?UtilisateurId=${UtilisateurId}&ObjetsId=${Deleteid}`
+    AlterwordAPI.delete(
+      `/panier?UtilisateurId=${UtilisateurId}&ObjetsId=${Deleteid}`
     )
-    axios
-      .get(`http://localhost:4242/objetpanier?UtilisateurId=${UtilisateurId}`)
-      .then((res) => setObjetspanier(res.data))
+      .then((res) => {
+        const newObjetpanier = [...objetspanier]
+        newObjetpanier.splice(index, 1)
+        setObjetspanier(newObjetpanier)
+      })
+      .catch((err) => {
+        console.error("Error delete", err)
+      })
   }
   useEffect(() => {
-    axios
-      .get(`http://localhost:4242/objetpanier?UtilisateurId=${UtilisateurId}`)
-      .then((res) => setObjetspanier(res.data))
+    AlterwordAPI.get(`/objetpanier?UtilisateurId=${UtilisateurId}`).then(
+      (res) => setObjetspanier(res.data)
+    )
   }, [])
-
+  // eslint-disable-next-line no-restricted-syntax
+  console.log(objetspanier)
   return (
     <div className="containerPanier">
       <div className="descriptionPanier">
         {objetspanier.map((objet, index) => (
           <div className="cardetail" key={index}>
-            <img
-              src={`http://localhost:4242/${objet?.photo1}`}
-              alt={objet?.nomObjet}
-            />
+            <img src={API_URL + objet?.photo1} alt={objet?.nomObjet} />
             <div className="resumepanier">
               <p> Nom : {objet?.nomObjet}</p>
               <p> Prix : {objet?.prix} €</p>
@@ -69,14 +82,16 @@ function Panier() {
                 type="image"
                 className="btndelete"
                 onClick={() => handleDel(index)}
-                src="http://localhost:4242/assets/images/autre/delete.png"
+                src={API_URL + "/assets/images/autre/delete.png"}
               ></input>
             </div>
           </div>
         ))}
       </div>
       <div className="validation">
-        <button className="validationbtn">validation commande</button>
+        <Link to="/Commande">
+          <button className="validationbtn">validation commande</button>
+        </Link>
       </div>
     </div>
   )

@@ -1,37 +1,64 @@
-.cardloupe{
+.test {
+  display:flex;
+  justify-content: center;
+  margin-top: 90px;
+  flex-direction: column;
+  width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: flex-end
+}
+.top{
   display: flex;
-justify-content: center;
-margin-top: 100px;
+  gap: 25px;
+}
+#bienvenu{
+  color: white;
+}
+.coordonnees {
+  border-radius: 15px;
+  box-shadow: 0 0 0 0.6em #f4b346;
+  padding: 5px;
+  width: 60vw;
+}
+.detailcoor{
+  color: white;
+  margin-left: 50px;
 
 }
-.contient {
+.edit {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 540px;
+  right: 100px;
+}
+.histachat{
   display: flex;
-  width: 300px;
-  height: 300px;
-  gap: 5px;
-  
+  flex-direction: column;
+  border-radius: 15px;
+  box-shadow: 0 0 0 0.6em #f4b346;
+  padding: 5px;
+  margin: 20px;
+  margin-top: 40px;
+  min-height: 20vh;
+  width: 85vw;
+  margin-right: 0;
 }
-.zoneA {
-  background-color: beige;
-  width: 95%;
-  height: 100%;
-  transition: width 1s ease-in-out;
+.histo {
+  color: white;
+  margin-left: 50px;
+  display: flex;
+  width: 100%;
+  gap: 25px;
 }
-
-.zoneB {
-  background-color: yellow;
-  width: 5%;
-  height: 100%;
-  transition: width 1s ease-in-out;
-}
-.contient:hover{
-  transition: width 500ms ease;
-.zoneA{
-  transition: width 1s ease-in-out;
-  width: 5%;
-}
-.zoneB{
-  transition: width 1s ease-in-out;
-  width:95%;
-}
+.favoris{
+  border-radius: 15px;
+  box-shadow: 0 0 0 0.6em #f4b346;
+  padding: 5px;
+  width: 60vw;
+  margin: 20px;
+  min-height: 20vh;
+  width: 85vw;
+  margin-right: 0;
 }

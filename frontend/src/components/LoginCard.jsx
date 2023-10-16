@@ -1,11 +1,13 @@
-import axios from "axios"
+import AlterwordAPI from "../services/AlterwordAPI"
 import { useState } from "react"
 import "./LoginCard.css"
+import Cookies from "js-cookie"
+import { useAuthContext } from "../contexts/authContexts"
 
 const LoginCard = ({ isShowLogin, handleLoginClick, onlogin, setOnlogin }) => {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
-
+  const { setUser } = useAuthContext()
   const handleSubmit = () => {
     if (email === undefined) {
       alert("votre email !!!")
@@ -13,17 +15,26 @@ const LoginCard = ({ isShowLogin, handleLoginClick, onlogin, setOnlogin }) => {
       alert(" votre password !!!")
     } else {
       handleLoginClick()
-      axios
-        .post("http://localhost:4242/utilisateurconnexion", {
-          email,
-          password,
+      AlterwordAPI.post("/utilisateurconnexion", {
+        email,
+        password,
+      }).then((res) => {
+        Cookies.set("token", res.data.token, {
+          expires: 0.5,
+          sameSite: "strict",
         })
-        .then((res) => {
-          localStorage.setItem("token", res.data.token)
-          localStorage.setItem("UtilisateurId", res.data.utilisateur.id)
-          setOnlogin(res.data.utilisateur.id)
-          console.info(res.data)
+        Cookies.set("UtilisateurId", JSON.stringify(res.data.utilisateur.id), {
+          expires: 0.5,
+          sameSite: "strict",
         })
+        Cookies.set("Prenom", JSON.stringify(res.data.utilisateur.prenom), {
+          expires: 0.5,
+          sameSite: "strict",
+        })
+        setUser(res.data)
+        setOnlogin(res.data.utilisateur.id)
+        console.info(res.data)
+      })
     }
   }
   return (
@@ -37,6 +48,7 @@ const LoginCard = ({ isShowLogin, handleLoginClick, onlogin, setOnlogin }) => {
               type="email"
               className="login-box"
               value={email}
+              placeholder="xxx@xxx.xx"
               onChange={(e) => setEmail(e.target.value)}
             />
             <br></br>
@@ -44,6 +56,7 @@ const LoginCard = ({ isShowLogin, handleLoginClick, onlogin, setOnlogin }) => {
             <input
               type="password"
               className="login-box"
+              placeholder="Password "
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />

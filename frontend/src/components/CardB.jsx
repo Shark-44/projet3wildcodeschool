@@ -1,11 +1,12 @@
 import "./Card.css"
 const CardB = (objet) => {
+  const API_URL = import.meta.env.VITE_BACKEND_URL
   return (
     <div className="Card">
       <div key={objet.id}>
         <img
           className="imageCard"
-          src={`http://localhost:4242${objet.photo1}`}
+          src={API_URL + objet.photo1}
           alt={objet.nomObjet}
         />
         <p>{objet.nomObjet}</p>

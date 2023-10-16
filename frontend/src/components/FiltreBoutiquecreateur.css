@@ -1,7 +1,12 @@
-.containerfiltre{
+.containerfiltre {
   width: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+}
+
+.containerfiltre select {
+  height: 30px;
+  font-size: 1rem;
 }

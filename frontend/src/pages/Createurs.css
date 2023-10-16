@@ -4,7 +4,7 @@
   align-items: center;
   background-color: #0e0424;
   color: #f4b346;
-  margin-top: 80px;
+  margin-top: 70px;
 }
 
 .resultat {
@@ -21,7 +21,7 @@
   gap: 20px;
   border: 15px solid #0e0424;
   border-radius: 15px;
-  box-shadow: 0 0 0 .6em #f4b346;
+  box-shadow: 0 0 0 0.6em #f4b346;
   position: sticky;
   top: 100px;
 }
@@ -36,7 +36,7 @@
 p {
   text-align: center;
 }
-.collection{
+.collection {
   display: flex;
   width: 80%;
   flex-wrap: wrap;

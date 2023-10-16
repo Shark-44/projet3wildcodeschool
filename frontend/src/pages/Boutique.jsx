@@ -1,4 +1,4 @@
-import axios from "axios"
+import AlterwordAPI from "../services/AlterwordAPI"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import "./Boutique.css"
@@ -12,20 +12,20 @@ function Boutique() {
   const [type, setType] = useState()
 
   useEffect(() => {
-    // eslint-disable-next-line no-restricted-syntax
-    console.log(prenom)
-    if (prenom === undefined && type === undefined) {
-      axios
-        .get("http://localhost:4242/objets")
-        .then((res) => setObjets(res.data))
-    } else if (prenom === undefined && type !== undefined) {
-      axios
-        .get(`http://localhost:4242/objets/with/categorie?type=${type}`)
-        .then((res) => setObjets(res.data))
-    } else if (prenom !== undefined && type === undefined) {
-      axios
-        .get(`http://localhost:4242/utilisateur/with/objets?prenom=${prenom}`)
-        .then((res) => setObjets(res.data))
+    if (!prenom && !type) {
+      AlterwordAPI.get("/objets").then((res) => setObjets(res.data))
+    } else if (prenom !== undefined && type !== undefined) {
+      AlterwordAPI.get(`/utilisateur/with/objets?prenom=${prenom}`).then(
+        (res) => setObjets(res.data)
+      )
+    } else if (!prenom && type !== undefined) {
+      AlterwordAPI.get(`/objets/with/categorie?type=${type}`).then((res) =>
+        setObjets(res.data)
+      )
+    } else if (prenom !== undefined && !type) {
+      AlterwordAPI.get(`/utilisateur/with/objets?prenom=${prenom}`).then(
+        (res) => setObjets(res.data)
+      )
     }
   }, [prenom || type])
 
@@ -42,7 +42,9 @@ function Boutique() {
           <h3> les filtres</h3>
           <FiltreBoutiquecategorie type={type} setType={setType} />
           <FiltreBoutiquecreateur prenom={prenom} setPrenom={setPrenom} />
-          <button onClick={onclick}>Reset</button>
+          <button id="bdt-filtre" onClick={onclick}>
+            Reset
+          </button>
         </div>
         <div className="renduB">
           {objets.map((objet) => (

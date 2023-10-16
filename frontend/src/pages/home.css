@@ -3,7 +3,6 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  
 }
 
 .presentation {
@@ -17,15 +16,17 @@
   font-size: 2.5rem;
   font-style: oblique;
 }
+#textpresentation {
+  padding: 5px;
+}
 
-
-  .lecube {
-    height: 500px;
-    font-size: 2rem;
-  }
-  .dernieravis{
-    display: flex;
-    flex-direction: column;
-    margin-top: 50px;
-    font-size: 2rem;
-  }
+.lecube {
+  height: 500px;
+  font-size: 2rem;
+}
+.dernieravis {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  font-size: 2rem;
+}

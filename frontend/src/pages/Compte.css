@@ -1,0 +1,64 @@
+.test {
+    display:flex;
+    justify-content: center;
+    margin-top: 90px;
+    flex-direction: column;
+    width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: flex-end
+  }
+  .top{
+    display: flex;
+    gap: 25px;
+  }
+  #bienvenu{
+    color: white;
+  }
+  .coordonnees {
+    border-radius: 15px;
+    box-shadow: 0 0 0 0.6em #f4b346;
+    padding: 5px;
+    width: 60vw;
+  }
+  .detailcoor{
+    color: white;
+    margin-left: 50px;
+  
+  }
+  .edit {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 540px;
+    right: 100px;
+  }
+  .histachat{
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    box-shadow: 0 0 0 0.6em #f4b346;
+    padding: 5px;
+    margin: 20px;
+    margin-top: 40px;
+    min-height: 20vh;
+    width: 85vw;
+    margin-right: 0;
+  }
+  .histo {
+    color: white;
+    margin-left: 50px;
+    display: flex;
+    width: 100%;
+    gap: 25px;
+  }
+  .favoris{
+    border-radius: 15px;
+    box-shadow: 0 0 0 0.6em #f4b346;
+    padding: 5px;
+    width: 60vw;
+    margin: 20px;
+    min-height: 20vh;
+    width: 85vw;
+    margin-right: 0;
+  }

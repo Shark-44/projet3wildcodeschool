@@ -1,29 +1,32 @@
-.renduAvis{
-    display:flex;
-    justify-content: center;
-    flex-direction: row;
-/*     position: absolute;
+.renduAvis {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  /*     position: absolute;
     top: 65%; */
-    width: 100%;
+  width: 100%;
 }
-.renduAvis h2{
-    background-color: #248795;
-    border: 2px solid #070A09;
-    border-radius: 5px;
-    color: #0e0424;
-    margin: 10px;
-    font-size: 1.7rem;
-/*     z-index: 2;
+.cardavis {
+  width: 400px;
+  margin-left: 50px;
+}
+.renduAvis h2 {
+  background-color: #248795;
+  border: 2px solid #070a09;
+  border-radius: 5px;
+  color: #0e0424;
+  margin: 10px;
+  font-size: 1.7rem;
+  /*     z-index: 2;
     position: absolute;
     right: 200px; */
 }
-.renduAvis img{
-    border-radius: 50%;
-    height: 100px;
-    width: 100px;
- /*    position: absolute;
+.renduAvis img {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  /*    position: absolute;
     right: 110px; */
-    margin-top: -15px;
-    margin-left: -30px;
-
+  margin-top: -15px;
+  margin-left: -30px;
 }

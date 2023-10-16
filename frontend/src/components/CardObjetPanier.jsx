@@ -3,12 +3,10 @@ import "./CardObjetPanier.css"
 function CardObjetPanier({ objet, handleAdd }) {
   const handleSub = () => {}
   const handledel = () => {}
+  const API_URL = import.meta.env.VITE_BACKEND_URL
   return (
     <div className="cardObjetpanier">
-      <img
-        src={`http://localhost:4242/${objet?.photo1}`}
-        alt={objet?.nomObjet}
-      />
+      <img src={API_URL + objet?.photo1} alt={objet?.nomObjet} />
       Nom : {objet?.nomObjet}
       Prix : {objet?.prix}
       Quantité:{objet.quantitePanier}

@@ -1,51 +1,54 @@
-import axios from "axios"
+import AlterwordAPI from "../services/AlterwordAPI"
 import { useEffect, useState } from "react"
 import { useParams, Link } from "react-router-dom"
 import "./CreateurID.css"
 import CardB from "../components/CardB"
 import imageback from "../assets/background2.png"
+import Likebtn from "../components/Likebtn"
+import Btnfavoris from "../components/Btnfavoris"
 
 function CreateurID() {
   const params = useParams()
-
   const [createurs, setCreateurs] = useState([])
   const [objets, setObjets] = useState([])
   // eslint-disable-next-line no-unused-vars
   const Byprenom = createurs.nom
   // Pour les avis
   const [lecavis, setLecavis] = useState([])
+  const API_URL = import.meta.env.VITE_BACKEND_URL
   useEffect(() => {
-    axios
-      .get(`http://localhost:4242/utilisateur/${params.id}`)
-      .then((res) => setCreateurs(res.data))
+    AlterwordAPI.get(`/utilisateur/${params.id}`).then((res) =>
+      setCreateurs(res.data)
+    )
   }, [params.id])
   useEffect(() => {
-    axios
-      .get(
-        `http://localhost:4242/utilisateur/with/objets?prenom=${createurs.prenom}`
-      )
-      .then((res) => setObjets(res.data))
+    AlterwordAPI.get(
+      `/utilisateur/with/objets?prenom=${createurs.prenom}`
+    ).then((res) => setObjets(res.data))
   }, [createurs])
   useEffect(() => {
-    axios
-      .get(`http://localhost:4242/avislaisse?UtilisateurId1=${params.id}`)
-      .then((res) => setLecavis(res.data))
+    AlterwordAPI.get(`/avislaisse?UtilisateurId1=${params.id}`).then((res) =>
+      setLecavis(res.data)
+    )
   })
-  console.info(objets)
   return (
     <div className="container Createur">
       <div className="partiepresentation">
         <img
-          src={`http://localhost:4242/assets/images/avatar/${createurs.photo}`}
+          src={API_URL + "/assets/images/avatar/" + createurs.photo}
           alt={createurs.nom}
         />
         <h2 className="nomcreateur">
           {createurs.nom} {createurs.prenom}
         </h2>
-        <div className="zonetext">
-          <img className="imagebackground" src={imageback} alt="" />
-          <p className="zoneptext">{createurs.descriptionCreateur}</p>*
+        <div className="zonefin">
+          <div className="zonetext">
+            <img className="imagebackground" src={imageback} alt="" />
+            <p className="zoneptext">{createurs.descriptionCreateur}</p>*
+          </div>
+          <Likebtn />
         </div>
+        <Btnfavoris />
       </div>
       <h2 className="titrecollection">Collection :</h2>
       <div className="collection">
@@ -71,7 +74,10 @@ function CreateurID() {
                 marginLeft: index % 2 === 0 ? "-30%" : "30%",
               }}
             >
-              <div className="placeavis">{avis.avisCreateur}</div>
+              <div className="placeavis">
+                <p id="prenom">{avis.prenom} : </p>
+                <p>{avis.avisCreateur}</p>
+              </div>
             </div>
           ))}
         </div>

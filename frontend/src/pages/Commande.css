@@ -1,0 +1,141 @@
+
+.containerCommande{
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+.receipt-box{
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  border: 2px solid #e4e4e4;
+  color: black;
+
+}
+.actual-receipt{
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  background-color: white;
+}
+.toppage{
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 90vw;
+}
+.Imagesite{
+  width: 250px;
+  height: 70px;
+}
+.cardetail{
+  display: flex;
+  width: 80vw;
+  gap: 10px;
+  margin: 10px;
+  align-items: flex-end;
+  justify-content: space-between;
+  font-size: 1.2rem;
+}
+.imagecardetail{
+  width: 100px;
+  height: 100px;
+}
+#sommedetail{
+  font-size: 1.4rem;
+}
+.totalcommande{
+  display:flex;
+  width: 85vw;
+  justify-content: space-between;
+  border-top: 4px solid black;
+}
+
+.souligne-titre{
+  border-bottom: 2px solid black;
+}
+.tva{
+  display: flex;
+  font-size: 1rem;
+  margin-left: 70%;
+  align-items: center;
+}
+.prixtotal{
+  margin-right: 4vw;
+}
+.btncommande {
+    display:  flex;
+    padding: 20px;
+    justify-content: space-around;
+    width: 600px;
+}
+.btncommandegenerale {
+    backface-visibility: hidden;
+    border: 0;
+    border-radius: .375rem;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Circular,Helvetica,sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    line-height: 1.3;
+    padding: 10px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transform: translateZ(0) scale(1);
+    transition: transform .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    height: 50px;
+    }
+  
+  .btncommandegenerale:disabled {
+    color: #787878;
+    cursor: auto;
+  }
+  
+  .btncommandegenerale:not(:disabled):hover {
+    transform: scale(1.05);
+  }
+  
+  .btncommandegenerale:not(:disabled):hover:active {
+    transform: scale(1.05) translateY(.125rem);
+  }
+  
+  .btncommandegenerale:focus {
+    outline: 0 solid transparent;
+  }
+  
+  .btncommandegenerale:focus:before {
+    border-width: .125rem;
+    content: "";
+    left: calc(-1*.375rem);
+    pointer-events: none;
+    position: absolute;
+    top: calc(-1*.375rem);
+    transition: border-radius;
+    user-select: none;
+  }
+  
+  .btncommandegenerale:focus:not(:focus-visible) {
+    outline: 0 solid transparent;
+  }
+  
+  .btncommandegenerale:not(:disabled):active {
+    transform: translateY(.125rem);
+  }
+ .print {
+    background-color: #332cf2;
+  }
+  .annule {
+    background-color: red;
+  }
+  .valide {
+    background-color: rgb(10, 204, 10);
+  }

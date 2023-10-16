@@ -1,15 +1,24 @@
+import Cookies from "js-cookie"
 import "./NavBar.css"
 import { Link, NavLink } from "react-router-dom"
+import { useAuthContext } from "../contexts/authContexts"
 
 const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
+  const { user, setUser } = useAuthContext()
+  // const user = Cookies.get("UtilisateurId")
+  const prenom = Cookies.get("Prenom")
+  const API_URL = import.meta.env.VITE_BACKEND_URL
   const handleClick = () => {
     handleLoginClick()
   }
 
   const buttonColor = onlogin ? "#A2FF86" : "#2bc6ff"
   const logout = () => {
-    localStorage.clear()
+    Cookies.remove("UtilisateurId")
+    Cookies.remove("Prenom")
+    Cookies.remove("token")
     setOnlogin(false)
+    setUser(null)
   }
   return (
     <>
@@ -24,42 +33,44 @@ const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
           <NavLink className="navlink" to="/Createurs">
             Createurs
           </NavLink>
-          <NavLink className="navlink" to="/Test">
-            Test
-          </NavLink>
         </ul>
         <img
           className="imagelogo"
-          src="http://localhost:4242/assets/images/autre/AlterWord.PNG"
+          src={API_URL + "/assets/images/autre/AlterWord.PNG"}
           alt=""
         />
-        <div className="panier">
-          <Link to="/Panier">
-            <img
-              src="http://localhost:4242/assets/images/autre/panier.png"
-              alt=""
+        <div className="onview"></div>
+
+        {user ? (
+          <div className="panier">
+            <NavLink id="liencompte" to="/Test">
+              Compte : {prenom.replace(/"/g, "")}
+            </NavLink>
+            <Link to="/Panier">
+              <img src={API_URL + "/assets/images/autre/panier.png"} alt="" />
+              {addpanier > 0 && <span className="badge">{addpanier}</span>}
+            </Link>
+            <input
+              type="image"
+              className="logout"
+              onClick={logout}
+              src={API_URL + "/assets/images/autre/deconnexion.png"}
             />
-            {addpanier > 0 && <span className="badge">{addpanier}</span>}
-          </Link>
-        </div>
-        <div className="buttonContainer">
-          <button
-            onClick={handleClick}
-            className="loginicon log"
-            style={{ backgroundColor: buttonColor }}
-          >
-            Login
-          </button>
-          <input
-            type="image"
-            className="logout"
-            onClick={logout}
-            src="http://localhost:4242/assets/images/autre/deconnexion.png"
-          />
-          <Link to="/Formulaire" style={{ textDecoration: `none` }}>
-            <button className="loginicon sig">Sign up</button>
-          </Link>
-        </div>
+          </div>
+        ) : (
+          <div className="buttonContainer">
+            <button
+              onClick={handleClick}
+              className="loginicon log"
+              style={{ backgroundColor: buttonColor }}
+            >
+              Login
+            </button>
+            <Link to="/Formulaire" style={{ textDecoration: `none` }}>
+              <button className="loginicon sig">Sign up</button>
+            </Link>
+          </div>
+        )}
       </nav>
     </>
   )

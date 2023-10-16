@@ -91,7 +91,6 @@ class ObjetsManager extends AbstractManager {
   }
 
   achatbyuser(UtilisateurId) {
-    console.info(UtilisateurId)
     return this.database.query(
       `SELECT * FROM objets
      join panier ON objets.id = panier.ObjetsId WHERE UtilisateurId = ?`,

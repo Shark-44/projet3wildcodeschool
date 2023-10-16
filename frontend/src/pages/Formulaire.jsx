@@ -1,4 +1,4 @@
-import axios from "axios"
+import AlterwordAPI from "../services/AlterwordAPI"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import "./Formulaire.css"
@@ -18,44 +18,11 @@ function Formulaire() {
   const [verify, setVerify] = useState(false)
   // pour img
   const [image, setImage] = useState("./src/assets/avatar.png")
+  const [visuel, setVisuel] = useState("./src/assets/avatar.png")
+
   // pour soumettre a la bdd
-  const { register, handleSubmit } = useForm()
-  // eslint-disable-next-line no-unused-vars
-  const handlevalided = () => {
-    // eslint-disable-next-line no-restricted-syntax
-    console.log("je suis la")
-    if (createur === "0") {
-      // eslint-disable-next-line no-restricted-syntax
-      console.log("axios en cours")
-      axios.post("http://localhost:4242/utilisateur", {
-        nom,
-        prenom,
-        email,
-        password,
-        adresse,
-        codePostal,
-        ville,
-        createur,
-        photo,
-      })
-    } else {
-      // eslint-disable-next-line no-restricted-syntax
-      console.log("pas normal")
-      axios.post("http://localhost:4242/utilisateur/with/categorie", {
-        nom,
-        prenom,
-        email,
-        password,
-        adresse,
-        codePostal,
-        ville,
-        createur,
-        photo,
-        descriptionCreateur,
-        CategorieID,
-      })
-    }
-  }
+  const { register } = useForm()
+
   // Affiche ou nom section createur
   const handleOptionChange = (event) => {
     setCreateur(event.target.value)
@@ -67,34 +34,92 @@ function Formulaire() {
 
   // Permet de previsualiser l'image
   const uploadImage = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setImage(URL.createObjectURL(e.target.files[0]))
-      setVerify(true)
-    }
+    setImage(e.target.files[0])
+    setVisuel(URL.createObjectURL(e.target.files[0]))
+    setVerify(true)
   }
   const cancelImage = (e) => {
     e.preventDefault()
-    setImage("./src/assets/avatar.png")
+    setVisuel("./src/assets/avatar.png")
     setVerify(false)
   }
   // .................
-  const onSubmit = (data) => {
-    const formData = new FormData()
-    formData.append("myfile", data.myfile[0])
-    const fileInput = data.myfile[0] // Récupérer le premier élément du tableau, qui est le fichier
-    setPhoto(fileInput.name) // Obtenir le nom du fichier
-
-    fetch("http://localhost:4242/upload", {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .catch((err) => console.error(err))
+  const handleSubmit = (data) => {
+    if (verify) {
+      const formData = new FormData()
+      formData.append("myfile", image)
+      const fileInput = image // Récupérer le premier élément du tableau, qui est le fichier
+      setPhoto(fileInput.name) // Obtenir le nom du fichier
+      fetch("http://localhost:4242/upload", {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .catch((err) => console.error(err))
+        .then((data) => {
+          if (createur === "0") {
+            AlterwordAPI.post("/utilisateur", {
+              nom,
+              prenom,
+              email,
+              password,
+              adresse,
+              codePostal,
+              ville,
+              createur,
+              photo,
+            })
+          } else {
+            AlterwordAPI.post("/utilisateur/with/categorie", {
+              nom,
+              prenom,
+              email,
+              password,
+              adresse,
+              codePostal,
+              ville,
+              createur,
+              photo,
+              descriptionCreateur,
+              CategorieID,
+            })
+          }
+        })
+    } else {
+      // eslint-disable-next-line no-restricted-syntax
+      console.log("je suis lala")
+      if (createur === "0") {
+        AlterwordAPI.post("/utilisateur", {
+          nom,
+          prenom,
+          email,
+          password,
+          adresse,
+          codePostal,
+          ville,
+          createur,
+          photo,
+        })
+      } else {
+        AlterwordAPI.post("/utilisateur/with/categorie", {
+          nom,
+          prenom,
+          email,
+          password,
+          adresse,
+          codePostal,
+          ville,
+          createur,
+          photo,
+          descriptionCreateur,
+          CategorieID,
+        })
+      }
+    }
   }
-  // eslint-disable-next-line no-restricted-syntax
-  console.log(verify)
+
   return (
-    <div className="contenair">
+    <div className="contenairformulaire">
       <h1>Formulaire d'enregistrement</h1>
       <div className="general">
         <div className="partiegenerale">
@@ -103,6 +128,7 @@ function Formulaire() {
             <input
               type="text"
               value={nom}
+              className="formulairebase"
               onChange={(e) => setNom(e.target.value)}
             />
             <br />
@@ -110,6 +136,7 @@ function Formulaire() {
             <input
               type="text"
               value={prenom}
+              className="formulairebase"
               onChange={(e) => setPrenom(e.target.value)}
             />
             <br />
@@ -117,6 +144,7 @@ function Formulaire() {
             <input
               type="email"
               value={email}
+              className="formulairebase"
               onChange={(e) => setEmail(e.target.value)}
             />
             <br />
@@ -124,6 +152,7 @@ function Formulaire() {
             <input
               type="text"
               value={password}
+              className="formulairebase"
               onChange={(e) => setPassword(e.target.value)}
             />
             <br />
@@ -131,6 +160,7 @@ function Formulaire() {
             <input
               type="text"
               value={adresse}
+              className="formulairebase"
               onChange={(e) => setAdresse(e.target.value)}
             />
             <br />
@@ -138,6 +168,7 @@ function Formulaire() {
             <input
               type="number"
               value={codePostal}
+              className="formulairebase"
               onChange={(event) => {
                 const newValue = event.target.value
                 if (!isNaN(newValue)) {
@@ -149,13 +180,14 @@ function Formulaire() {
             <label htmlFor="character">Ville :</label>
             <input
               type="text"
+              className="formulairebase"
               value={ville}
               onChange={(e) => setVille(e.target.value)}
             />
           </div>
           <div className="importimg">
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <img className="icone" src={image} alt="avatar" />
+            <form>
+              <img className="icone" src={visuel} alt="avatar" />
               <label htmlFor="file" className="label-file">
                 Choisir une image
               </label>
@@ -171,7 +203,7 @@ function Formulaire() {
           </div>
         </div>
         <div className="selectioncreateur">
-          Serez vous? :
+          <h3>Vous êtes ?</h3>
           <input
             type="radio"
             value={0}
@@ -190,41 +222,47 @@ function Formulaire() {
         </div>
         {createur === "1" && (
           <div className="createur">
-            Votre domaine est :
-            <input
-              type="radio"
-              value={1}
-              name="style"
-              onChange={handleSelect}
-            />
-            Graphique
-            <input
-              type="radio"
-              value={2}
-              name="style"
-              onChange={handleSelect}
-            />
-            Mode
-            <input
-              type="radio"
-              value={3}
-              name="style"
-              onChange={handleSelect}
-            />
-            Print 3D
-            <br />
-            {CategorieID}
-            <label htmlFor="character">Description personnel</label>
-            <input
-              type="text"
-              className="description"
-              value={descriptionCreateur}
-              size="35"
-              onChange={(e) => setDescriptionCreateur(e.target.value)}
-            />
+            <div className="selection">
+              <h3>Votre domaine est : </h3>
+              <input
+                type="radio"
+                value={1}
+                name="style"
+                onChange={handleSelect}
+              />
+              Graphique
+              <input
+                type="radio"
+                value={2}
+                name="style"
+                onChange={handleSelect}
+              />
+              Mode
+              <input
+                type="radio"
+                value={3}
+                name="style"
+                onChange={handleSelect}
+              />
+              Print 3D
+              <br />
+              <label htmlFor="character">Description personnel</label>
+              <input
+                type="text"
+                className="description"
+                value={descriptionCreateur}
+                size="35"
+                onChange={(e) => setDescriptionCreateur(e.target.value)}
+              />
+            </div>
           </div>
         )}
-        <input type="button" value="Submit" onClick={handleSubmit(onSubmit)} />
+        <input
+          type="button"
+          title="submit"
+          value="Soumettre"
+          onClick={handleSubmit}
+        />
       </div>
     </div>
   )

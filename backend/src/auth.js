@@ -73,6 +73,7 @@ const verifyToken = (req, res, next) => {
     res.sendStatus(431)
   }
 }
+
 module.exports = {
   hashPassword,
   verifyPassword,

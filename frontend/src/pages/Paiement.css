@@ -1,0 +1,131 @@
+.Containerpaid {
+    display:flex;
+    justify-content: center;
+    margin-top: 90px;
+    flex-direction: column;
+    width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .paiement {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    }
+  .Cartes {
+    width: 500px;
+    height: 150px;
+  }
+  .parcarte{
+    display: flex;
+    align-items: center;
+    margin: 5vw;
+    border: 2px solid black;
+    border-radius: 10px;
+    color: black;
+    width: 90%;
+   }
+  #carte {
+    width: 150px;
+    height: 150px;
+  }
+  .formulaire {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+    gap: 20px;
+    font-size: 1.2rem;
+    margin-left: 10%;
+  }
+  .zonesaisie {
+    display: flex;
+    align-items: flex-end;
+  }
+  #separateur {
+    display: contents;
+  }
+  .paypal {
+    display: flex;
+    align-items: center;
+    margin: 5vw;
+    border: 2px solid black;
+    border-radius: 10px;
+    color: black;
+    width: 90%;
+  }
+  #iconepaypal {
+    width: 200px;
+    height: 100px;
+  }
+  #centrage {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .btnpayer {
+    width: 200px;
+    
+    backface-visibility: hidden;
+    border: 0;
+    border-radius: .375rem;
+    box-sizing: border-box;
+    color: #5d5865;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Circular,Helvetica,sans-serif;
+    font-size: 1.175rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    line-height: 1.3;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transform: translateZ(0) scale(1);
+    transition: transform .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    height: 50px;
+    background-color: rgb(10, 204, 10)
+  }
+  
+  .btnpayer:disabled {
+    color: #787878;
+    cursor: auto;
+  }
+  
+  .btnpayer:not(:disabled):hover {
+    transform: scale(1.05);
+  }
+  
+  .btnpaye:not(:disabled):hover:active {
+    transform: scale(1.05) translateY(.125rem);
+  }
+  
+  .btnpayer:focus {
+    outline: 0 solid transparent;
+  }
+  
+  .btnpayer:focus:before {
+    border-width: .125rem;
+    content: "";
+    left: calc(-1*.375rem);
+    pointer-events: none;
+    position: absolute;
+    top: calc(-1*.375rem);
+    transition: border-radius;
+    user-select: none;
+  }
+  
+  .btnpaye:focus:not(:focus-visible) {
+    outline: 0 solid transparent;
+  }
+  
+  .btnpaye:not(:disabled):active {
+    transform: translateY(.125rem);
+  }

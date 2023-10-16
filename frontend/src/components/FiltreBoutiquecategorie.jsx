@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import axios from "axios"
+import AlterwordAPI from "../services/AlterwordAPI"
 import "./FiltreBoutiquecreateur.css"
 
 const FiltreBoutiquecategorie = ({ type, setType }) => {
@@ -12,9 +12,7 @@ const FiltreBoutiquecategorie = ({ type, setType }) => {
   }
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4242/categorie")
-      .then((res) => setFiltrecreateur(res.data))
+    AlterwordAPI.get("/categorie").then((res) => setFiltrecreateur(res.data))
   }, [])
 
   return (

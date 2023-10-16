@@ -31,7 +31,7 @@ class AvisutilisateurManager extends AbstractManager {
 
   cherchecreateur(UtilisateurId1) {
     return this.database.query(
-      `SELECT * FROM ${this.table} WHERE Utilisateur_id1 = ?`,
+      `select utilisateur.prenom, avisutilisateur.avisCreateur, avisutilisateur.Utilisateur_id1 from utilisateur join ${this.table} on utilisateur.id = avisutilisateur.Utilisateur_id where Utilisateur_id1= ?`,
       [UtilisateurId1]
     )
   }

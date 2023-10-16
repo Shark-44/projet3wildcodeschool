@@ -1,4 +1,4 @@
-import axios from "axios"
+import AlterwordAPI from "../services/AlterwordAPI"
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import "./Createurs.css"
@@ -14,9 +14,9 @@ function Createurs() {
       : createurs.filter((createur) => createur.type === filter)
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4242/utilisateur/with/categorie")
-      .then((res) => setCreateurs(res.data))
+    AlterwordAPI.get("/utilisateur/with/categorie").then((res) =>
+      setCreateurs(res.data)
+    )
   }, [])
 
   return (
@@ -49,7 +49,11 @@ function Createurs() {
         </div>
         <div className="renduCreateur">
           {tableFiltre.map((createur) => (
-            <Link key={createur.id} to={`/Createurs/${createur.id}`}>
+            <Link
+              key={createur.id}
+              to={`/Createurs/${createur.id}`}
+              style={{ textDecoration: `none` }}
+            >
               <Card
                 key={createur.id}
                 nom={createur.nom}

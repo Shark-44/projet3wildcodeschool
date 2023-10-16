@@ -1,32 +1,34 @@
-.containerzoom{
-    display: flex;
-    position: absolute;
-    z-index: 5;
-    right: 25%;
-   }
+.containerzoom {
+  display: flex;
+  position: absolute;
+  z-index: 5;
+  right: 40%;
+}
 
-.Zoomb{
-    margin-top: 50px;
-    display: flex;
-    gap: 5px;
-    margin: auto;
-    transform-origin: center;
-    transition: width 1s ease-in-out;
-  }
-  .right{
-    height: 600px;
-    transition: width 1s ease-in-out;
-    background-position: center;
-    background-size: cover,
-  }
-  .left{
-    height: 600px;
-    transition: width 1s ease-in-out;
-    background-position: center;
-    background-size:cover,
-  }
-  .close{
-    width: 20px;
-    height: 20px;
-    border-radius: 0px;
+.Zoomb {
+  margin-top: 50px;
+  display: flex;
+  gap: 5px;
+  margin: auto;
+  transform-origin: center;
+  transition: width 1s ease-in-out;
+}
+.right {
+  height: 600px;
+  transition: width 1s ease-in-out;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.left {
+  height: 600px;
+  transition: width 1s ease-in-out;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.close {
+  width: 20px;
+  height: 20px;
+  border-radius: 0px;
 }

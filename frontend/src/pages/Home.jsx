@@ -1,4 +1,4 @@
-import "./home.css"
+import "./Home.css"
 import Cube3D from "./Cube"
 
 import Cardavis from "../components/Cardavis"
@@ -7,9 +7,9 @@ const Home = () => {
   return (
     <div className="containerhome">
       <div className="presentation">
-        <p>
+        <p id="textpresentation">
           Alterword :Une boutique? Plus que cela, ce site permet de reunir
-          joeurs de jeux de rôle cherchant améliorer leur experience. Et des
+          joeurs de jeux de rôle cherchant à améliorer leur experience. Et des
           createurs qui vous proposent de decouvrir leur univers a travers leur
           collection.
         </p>
