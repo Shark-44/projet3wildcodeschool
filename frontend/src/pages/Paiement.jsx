@@ -36,7 +36,7 @@ function Paiement() {
     setSelectedOption(event.target.value)
   }
   return (
-    <div className="test">
+    <div className="Containerpaid">
       <div className="paiement">
         <img className="Cartes" src={Cartes} alt="" />
         <div className="parcarte">

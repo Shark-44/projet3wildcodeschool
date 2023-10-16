@@ -15,9 +15,10 @@ import LoginCard from "./components/LoginCard"
 import PDFvu from "./pages/PDFvu"
 import Paiement from "./pages/Paiement"
 import "./App.css"
-import Cookies from "js-cookie"
-// import { useAuthContext } from "./contexts/authContexts"
+// import Cookies from "js-cookie"
+import { useAuthContext } from "./contexts/authContexts"
 import ProtectedRoute from "./components/ProtectedRoute"
+import Compte from "./pages/Compte"
 
 function App() {
   const [isShowLogin, setIsShowLogin] = useState(true)
@@ -27,8 +28,8 @@ function App() {
   const [danspanier, setDanspanier] = useState([])
   const [onlogin, setOnlogin] = useState()
   const [addpanier, setAddpanier] = useState(0)
-  const user = Cookies.get("UtilisateurId")
-  // const { user } = useAuthContext()
+  // const user = Cookies.get("UtilisateurId")
+  const { user } = useAuthContext()
   useEffect(() => {
     if (!user) {
       setAddpanier(0)
@@ -72,6 +73,7 @@ function App() {
           <Route path="/Commande" element={<Commande />} />
           <Route path="/PDFvu/:id" element={<PDFvu />} />
           <Route path="/Paiement" element={<Paiement />} />
+          <Route path="/Compte" element={<Compte />} />
         </Route>
       </Routes>
       <footer></footer>

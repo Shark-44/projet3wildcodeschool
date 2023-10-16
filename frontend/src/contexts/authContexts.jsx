@@ -13,5 +13,3 @@ export const CurrentUserContextProvider = ({ children }) => {
     </CurrentUserContext.Provider>
   )
 }
-
-export default useAuthContext

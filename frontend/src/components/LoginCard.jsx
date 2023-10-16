@@ -33,6 +33,10 @@ const LoginCard = ({ isShowLogin, handleLoginClick, onlogin, setOnlogin }) => {
               sameSite: "strict",
             }
           )
+          Cookies.set("Prenom", JSON.stringify(res.data.utilisateur.prenom), {
+            expires: 0.5,
+            sameSite: "strict",
+          })
           // setUser(res.data)
           setOnlogin(res.data.utilisateur.id)
           console.info(res.data)

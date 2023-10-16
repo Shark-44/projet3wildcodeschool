@@ -1,13 +1,14 @@
 import Cookies from "js-cookie"
 import "./NavBar.css"
 import { Link, NavLink } from "react-router-dom"
-// import { useAuthContext } from "../contexts/authContexts"
+import { useAuthContext } from "../contexts/authContexts"
 
 const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
-  // const { user, setUser } = useAuthContext()
+  const { user, setUser } = useAuthContext()
   // eslint-disable-next-line no-restricted-syntax
   // console.log(user)
-  const user = Cookies.get("UtilisateurId")
+  // const user = Cookies.get("UtilisateurId")
+  const prenom = Cookies.get("Prenom")
   const handleClick = () => {
     handleLoginClick()
   }
@@ -17,10 +18,8 @@ const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
     Cookies.remove("UtilisateurId")
     Cookies.remove("token")
     setOnlogin(false)
-    // setUser(null)
+    setUser(null)
   }
-  // eslint-disable-next-line no-restricted-syntax
-  console.log("dans la navbar", user)
   return (
     <>
       <nav className="navGlobal">
@@ -34,9 +33,6 @@ const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
           <NavLink className="navlink" to="/Createurs">
             Createurs
           </NavLink>
-          <NavLink className="navlink" to="/Test">
-            Test
-          </NavLink>
         </ul>
         <img
           className="imagelogo"
@@ -47,6 +43,9 @@ const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
 
         {user ? (
           <div className="panier">
+            <NavLink id="liencompte" to="/Test">
+              Compte : {prenom}
+            </NavLink>
             <Link to="/Panier">
               <img
                 src="http://localhost:4242/assets/images/autre/panier.png"
