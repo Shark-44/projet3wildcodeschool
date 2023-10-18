@@ -1,6 +1,6 @@
 const express = require("express")
 const multer = require("multer")
-const { hashPassword, verifyPassword, verifyToken } = require("./auth.js")
+const { hashPassword, verifyPassword, checkToken } = require("./auth.js")
 
 const router = express.Router()
 const upload = multer({ dest: "./public/assets/image/avatar" })
@@ -34,7 +34,7 @@ router.put(
   hashPassword,
   utilisateurControllers.edit
 )
-router.delete("/utilisateur/:id", verifyToken, utilisateurControllers.destroy)
+router.delete("/utilisateur/:id", checkToken, utilisateurControllers.destroy)
 
 // ROUTE JOINTURE
 router.get(
@@ -51,8 +51,8 @@ router.post(
 // ROUTE OBJETS
 router.get("/objets", objetsControllers.browse)
 router.get("/objets/:id", objetsControllers.read)
-router.post("/objets", verifyToken, objetsControllers.add)
-router.put("/objets/:id", verifyToken, objetsControllers.edit)
+router.post("/objets", checkToken, objetsControllers.add)
+router.put("/objets/:id", checkToken, objetsControllers.edit)
 router.delete("/objets/:id", objetsControllers.destroy)
 router.get("/utilisateur/with/objets", objetsControllers.objetsByUtilisateur)
 router.get(
@@ -72,19 +72,19 @@ router.get("/categorie/:id", categorieControllers.read)
 // ROUTE COMMANDE
 router.get("/commande", commandeControllers.browse)
 router.get("/commande/:id", commandeControllers.read)
-router.post("/commande", verifyToken, commandeControllers.add)
-router.put("/commande/:id", verifyToken, commandeControllers.edit)
-router.delete("/commande/:id", verifyToken, commandeControllers.destroy)
+router.post("/commande", checkToken, commandeControllers.add)
+router.put("/commande/:id", checkToken, commandeControllers.edit)
+router.delete("/commande/:id", checkToken, commandeControllers.destroy)
 router.get("/histocommande", commandeControllers.cbyuser)
 
 // ROUTE AVIS UTILISATEUR A CREATEUR
 router.get("/avisutilisateur", avisutilisateurControllers.browse)
 router.get("/avisutilisateur", avisutilisateurControllers.read)
-router.post("/avisutilisateur", verifyToken, avisutilisateurControllers.add)
-router.put("/avisutilisateur", verifyToken, avisutilisateurControllers.edit)
+router.post("/avisutilisateur", checkToken, avisutilisateurControllers.add)
+router.put("/avisutilisateur", checkToken, avisutilisateurControllers.edit)
 router.delete(
   "/avisutilisateur",
-  verifyToken,
+  checkToken,
   avisutilisateurControllers.destroy
 )
 router.get("/avislaisse", avisutilisateurControllers.surcreateur)
@@ -92,45 +92,45 @@ router.get("/avislaisse", avisutilisateurControllers.surcreateur)
 // ROUTE AVIS OBJETS
 router.get("/avisobjet", avisobjetControllers.browse)
 router.get("/avisobjet", avisobjetControllers.read)
-router.post("/avisobjet", verifyToken, avisobjetControllers.add)
-router.put("/avisobjet", verifyToken, avisobjetControllers.edit)
-router.delete("/avisobjet", verifyToken, avisobjetControllers.destroy)
+router.post("/avisobjet", checkToken, avisobjetControllers.add)
+router.put("/avisobjet", checkToken, avisobjetControllers.edit)
+router.delete("/avisobjet", checkToken, avisobjetControllers.destroy)
 
 // ROUTE liaison COMMANDE OBJET
 router.get("/commandehasobjets", commandeobjetsControllers.browse)
 router.get("/commandehasobjets", commandeobjetsControllers.read)
-router.post("/commandehasobjets", verifyToken, commandeobjetsControllers.add)
-router.put("/commandehasobjets", verifyToken, commandeobjetsControllers.edit)
+router.post("/commandehasobjets", checkToken, commandeobjetsControllers.add)
+router.put("/commandehasobjets", checkToken, commandeobjetsControllers.edit)
 router.delete(
   "/commandehasobjets",
-  verifyToken,
+  checkToken,
   commandeobjetsControllers.destroy
 )
 
 // ROUTE PANIER
 router.get("/panier", panierControllers.browse)
 router.get("/panier", panierControllers.read)
-router.post("/panier", verifyToken, panierControllers.add)
-router.delete("/panier", verifyToken, panierControllers.objetuser)
+router.post("/panier", checkToken, panierControllers.add)
+router.delete("/panier", checkToken, panierControllers.objetuser)
 router.get("/panieruser", panierControllers.byuser)
-router.put("/panier", verifyToken, panierControllers.upanier)
+router.put("/panier", checkToken, panierControllers.upanier)
 
 // ROUTE liaison CREATEUR CATEGORIE
 router.get("/utilisateurhascategorie", utilisateurcategorieControllers.browse)
 router.get("/utilisateurhascategorie", utilisateurcategorieControllers.read)
 router.post(
   "/utilisateurhascategorie",
-  verifyToken,
+  checkToken,
   utilisateurcategorieControllers.add
 )
 router.put(
   "/utilisateurhascategorie",
-  verifyToken,
+  checkToken,
   utilisateurcategorieControllers.edit
 )
 router.delete(
   "/utilisateurhascategorie",
-  verifyToken,
+  checkToken,
   utilisateurcategorieControllers.destroy
 )
 
@@ -139,28 +139,28 @@ router.get("/utilisateurhasobjets", utilisateurobjetsControllers.browse)
 router.get("/utilisateurhasobjets", utilisateurobjetsControllers.read)
 router.post(
   "/utilisateurhasobjets",
-  verifyToken,
+  checkToken,
   utilisateurobjetsControllers.add
 )
 router.put(
   "/utilisateurhasobjets",
-  verifyToken,
+  checkToken,
   utilisateurobjetsControllers.edit
 )
 router.delete(
   "/utilisateurhasobjets",
-  verifyToken,
+  checkToken,
   utilisateurobjetsControllers.destroy
 )
 
 // ROUTE liaison CATEGORIE OBJETS
 router.get("/categoriehasobjets", categorieobjetsControllers.browse)
 router.get("/categoriehasobjets", categorieobjetsControllers.read)
-router.post("/categoriehasobjets", verifyToken, categorieobjetsControllers.add)
-router.put("/categoriehasobjets", verifyToken, categorieobjetsControllers.edit)
+router.post("/categoriehasobjets", checkToken, categorieobjetsControllers.add)
+router.put("/categoriehasobjets", checkToken, categorieobjetsControllers.edit)
 router.delete(
   "/categoriehasobjets",
-  verifyToken,
+  checkToken,
   categorieobjetsControllers.destroy
 )
 
@@ -173,5 +173,6 @@ router.post(
   utilisateurControllers.loginUtilisateur,
   verifyPassword
 )
+router.get("/utilisateurconnexion", utilisateurControllers.logoutUtilisateur)
 
 module.exports = router
