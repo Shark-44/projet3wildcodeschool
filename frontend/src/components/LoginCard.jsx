@@ -19,10 +19,6 @@ const LoginCard = ({ isShowLogin, handleLoginClick, onlogin, setOnlogin }) => {
         email,
         password,
       }).then((res) => {
-        Cookies.set("token", res.data.token, {
-          expires: 0.5,
-          sameSite: "strict",
-        })
         Cookies.set("UtilisateurId", JSON.stringify(res.data.utilisateur.id), {
           expires: 0.5,
           sameSite: "strict",

@@ -1,5 +1,6 @@
 const argon2 = require("argon2")
 const jwt = require("jsonwebtoken")
+const { decodeJWT } = require("./helper/jwtHelper")
 
 const hashingOptions = {
   type: argon2.argon2id,
@@ -37,10 +38,10 @@ const verifyPassword = (req, res, next) => {
         })
 
         delete req.user.password
-
-        res.send({ token, utilisateur: req.user })
+        res.cookie("auth_token", token, { httpOnly: true, secure: false })
+        res.send({ utilisateur: req.user })
       } else {
-        res.sendStatus(401)
+        res.sendStatus(401).send("Ivalid Credential")
       }
     })
     .catch((err) => {
@@ -49,33 +50,26 @@ const verifyPassword = (req, res, next) => {
       res.sendStatus(520)
     })
 }
-
-const verifyToken = (req, res, next) => {
+const checkToken = async (req, res, next) => {
   try {
-    const authorizationHeader = req.get("Authorization")
+    // eslint-disable-next-line dot-notation
+    const token = req.cookies["auth_token"]
+    // eslint-disable-next-line no-undef, new-cap
+    if (!token) throw new error()
 
-    if (authorizationHeader == null) {
-      throw new Error("Authorization header is missing")
+    const data = decodeJWT(token)
+    if (!data) {
+      return res.status(401).send("Invalid Credentials")
     }
-
-    const [type, token] = authorizationHeader.split(" ")
-
-    if (type !== "Bearer") {
-      throw new Error("Authorization header has not the 'Bearer' type")
-    }
-
-    req.payload = jwt.verify(token, process.env.JWT_SECRET)
-
-    next()
+    return next()
   } catch (err) {
     console.error(err)
-
-    res.sendStatus(431)
+    res.sendStatus(401)
   }
 }
 
 module.exports = {
   hashPassword,
   verifyPassword,
-  verifyToken,
+  checkToken,
 }

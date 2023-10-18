@@ -86,8 +86,6 @@ function Formulaire() {
           }
         })
     } else {
-      // eslint-disable-next-line no-restricted-syntax
-      console.log("je suis lala")
       if (createur === "0") {
         AlterwordAPI.post("/utilisateur", {
           nom,

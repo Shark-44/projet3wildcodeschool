@@ -1,9 +1,11 @@
 import Cookies from "js-cookie"
 import "./NavBar.css"
-import { Link, NavLink } from "react-router-dom"
+import { Link, NavLink, useNavigate } from "react-router-dom"
 import { useAuthContext } from "../contexts/authContexts"
+import AlterwordAPI from "../services/AlterwordAPI"
 
 const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
+  const navigate = useNavigate()
   const { user, setUser } = useAuthContext()
   // const user = Cookies.get("UtilisateurId")
   const prenom = Cookies.get("Prenom")
@@ -14,11 +16,11 @@ const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
 
   const buttonColor = onlogin ? "#A2FF86" : "#2bc6ff"
   const logout = () => {
-    Cookies.remove("UtilisateurId")
-    Cookies.remove("Prenom")
-    Cookies.remove("token")
-    setOnlogin(false)
-    setUser(null)
+    AlterwordAPI.get("/utilisateurconnexion").then(
+      () => setOnlogin(false),
+      setUser(null),
+      navigate("/")
+    )
   }
   return (
     <>

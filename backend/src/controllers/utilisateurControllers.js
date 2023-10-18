@@ -139,7 +139,13 @@ const loginUtilisateur = (req, res, next) => {
       res.status(518).send("Error retrieving data from database")
     })
 }
-
+const logoutUtilisateur = (req, res) => {
+  res
+    .clearCookie("auth_token")
+    .clearCookie("Prenom")
+    .clearCookie("UtilisateurId")
+    .sendStatus(200)
+}
 module.exports = {
   browse,
   add,
@@ -149,4 +155,5 @@ module.exports = {
   readUtilisateurWithCategorie,
   editutilisateurcategorie,
   loginUtilisateur,
+  logoutUtilisateur,
 }
