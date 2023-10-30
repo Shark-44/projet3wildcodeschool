@@ -49,12 +49,14 @@ function App() {
         onlogin={onlogin}
         setOnlogin={setOnlogin}
       />
+
       <LoginCard
         isShowLogin={isShowLogin}
         handleLoginClick={handleLoginClick}
         onlogin={onlogin}
         setOnlogin={setOnlogin}
       />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Boutique" element={<Boutique />} />

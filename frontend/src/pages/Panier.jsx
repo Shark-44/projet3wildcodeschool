@@ -45,8 +45,7 @@ function Panier() {
       (res) => setObjetspanier(res.data)
     )
   }, [])
-  // eslint-disable-next-line no-restricted-syntax
-  console.log(objetspanier)
+
   return (
     <div className="containerPanier">
       <div className="descriptionPanier">

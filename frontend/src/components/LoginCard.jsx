@@ -3,8 +3,9 @@ import { useState } from "react"
 import "./LoginCard.css"
 import Cookies from "js-cookie"
 import { useAuthContext } from "../contexts/authContexts"
+import CookieConsent from "./CookieConsent"
 
-const LoginCard = ({ isShowLogin, handleLoginClick, onlogin, setOnlogin }) => {
+const LoginCard = ({ isShowLogin, handleLoginClick, setOnlogin, cookies }) => {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   const { setUser } = useAuthContext()
@@ -64,6 +65,7 @@ const LoginCard = ({ isShowLogin, handleLoginClick, onlogin, setOnlogin }) => {
               className="login-btn"
             />
           </form>
+          <CookieConsent />
         </div>
       </div>
     </div>
