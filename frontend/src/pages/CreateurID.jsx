@@ -47,6 +47,7 @@ function CreateurID() {
             <p className="zoneptext">{createurs.descriptionCreateur}</p>*
           </div>
           <Likebtn />
+          <input type="hidden" id="custId" name="custId" value="3487" />
         </div>
         <Btnfavoris />
       </div>

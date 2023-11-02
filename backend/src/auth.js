@@ -25,7 +25,6 @@ const hashPassword = (req, res, next) => {
 }
 
 const verifyPassword = (req, res, next) => {
-  // console.info(" verif apres email: ", req.body)
   argon2
     .verify(req.user.password, req.body.password)
 

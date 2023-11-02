@@ -3,6 +3,7 @@ import "./NavBar.css"
 import { Link, NavLink, useNavigate } from "react-router-dom"
 import { useAuthContext } from "../contexts/authContexts"
 import AlterwordAPI from "../services/AlterwordAPI"
+import Burger from "./Burger"
 
 const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
   const navigate = useNavigate()
@@ -36,43 +37,53 @@ const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
             Createurs
           </NavLink>
         </ul>
+        <Burger />
         <img
           className="imagelogo"
           src={API_URL + "/assets/images/autre/AlterWord.PNG"}
           alt=""
         />
-        <div className="onview"></div>
-
-        {user ? (
-          <div className="panier">
-            <NavLink id="liencompte" to="/Test">
-              Compte : {prenom.replace(/"/g, "")}
-            </NavLink>
-            <Link to="/Panier">
-              <img src={API_URL + "/assets/images/autre/panier.png"} alt="" />
-              {addpanier > 0 && <span className="badge">{addpanier}</span>}
-            </Link>
-            <input
-              type="image"
-              className="logout"
-              onClick={logout}
-              src={API_URL + "/assets/images/autre/deconnexion.png"}
-            />
-          </div>
-        ) : (
-          <div className="buttonContainer">
-            <button
-              onClick={handleClick}
-              className="loginicon log"
-              style={{ backgroundColor: buttonColor }}
-            >
-              Login
-            </button>
-            <Link to="/Formulaire" style={{ textDecoration: `none` }}>
-              <button className="loginicon sig">Sign up</button>
-            </Link>
-          </div>
-        )}
+        <div className="connexion">
+          {user ? (
+            <div className="panier">
+              <NavLink id="liencompte" to="/Test">
+                Compte : {prenom.replace(/"/g, "")}
+              </NavLink>
+              <div className="moderesponsive">
+                <Link to="/Panier">
+                  <div className="blockpanier">
+                    <img
+                      src={API_URL + "/assets/images/autre/panier.png"}
+                      alt=""
+                    />
+                    {addpanier > 0 && (
+                      <span className="badge">{addpanier}</span>
+                    )}
+                  </div>
+                </Link>
+                <input
+                  type="image"
+                  className="logout"
+                  onClick={logout}
+                  src={API_URL + "/assets/images/autre/deconnexion.png"}
+                />
+              </div>
+            </div>
+          ) : (
+            <div className="buttonContainer">
+              <button
+                onClick={handleClick}
+                className="loginicon log"
+                style={{ backgroundColor: buttonColor }}
+              >
+                Login
+              </button>
+              <Link to="/Formulaire" style={{ textDecoration: `none` }}>
+                <button className="loginicon sig">Sign up</button>
+              </Link>
+            </div>
+          )}
+        </div>
       </nav>
     </>
   )

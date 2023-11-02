@@ -1,5 +1,4 @@
 .navGlobal {
-  width: 100vw;
   display: flex;
   position: sticky;
   top: 0.1px;
@@ -12,7 +11,7 @@
 .navlink {
   position: relative;
   color: white;
-  font-size: 1.7rem;
+  font-size: 1.7em;
   font-weight: 500;
   line-height: 25px;
   letter-spacing: -0.13px;
@@ -42,19 +41,28 @@
   margin: 0;
   margin-top: 5px;
   margin-right: 0px;
-  width: 200px;
+  max-width: 25%;
+}
+.connexion{
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
 }
 .panier {
   display: flex;
   align-items: center;
   margin-right: 10px;
 }
-.panier img {
+.blockpanier{
+  display:flex;
+  align-items: flex-end;
+}
+.blockpanier img {
   height: 40px;
   width: 40px;
   margin: 0;
-  margin-top: 10px;
-  margin-left: 75px;
+  /*margin-top: 10px;
+  margin-left: 75px;*/
 }
 .loginicon {
   width: 80px;
@@ -97,7 +105,7 @@ a:-webkit-any-link {
   font-size: 12px;
   position: relative;
   top: -8px;
-  left: 5px;
+  /* left: 100%;*/
 }
 .logout {
   width: 80px;
@@ -108,5 +116,28 @@ a:-webkit-any-link {
 }
 #liencompte {
   color: white;
-  font-size: 1.7rem;
+  font-size: 1.4em;
+}
+
+@media screen  and (max-width : 768px){
+  .liste {
+    display: none;
+  }
+  .buttonContainer{
+    flex-direction: column;
+  }
+  .loginicon{
+    height: 20px;
+  }
+  .panier{
+    display: flex;
+    flex-direction: column;
+    font-size: 0.6rem;
+  }
+  .moderesponsive{
+    display: flex;
+    align-items: center;
+    width: 70%;
+    height: 80%;
+  }
 }

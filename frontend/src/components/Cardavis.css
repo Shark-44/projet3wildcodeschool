@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   flex-direction: row;
+  flex-wrap: wrap;
   /*     position: absolute;
     top: 65%; */
   width: 100%;
@@ -29,4 +30,9 @@
     right: 110px; */
   margin-top: -15px;
   margin-left: -30px;
+}
+@media screen  and (max-width : 768px){
+  .cardavis{
+    width: 300px;
+  }
 }
