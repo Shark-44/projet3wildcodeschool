@@ -46,7 +46,7 @@ const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
         <div className="connexion">
           {user ? (
             <div className="panier">
-              <NavLink id="liencompte" to="/Test">
+              <NavLink id="liencompte" to="/Compte">
                 Compte : {prenom.replace(/"/g, "")}
               </NavLink>
               <div className="moderesponsive">

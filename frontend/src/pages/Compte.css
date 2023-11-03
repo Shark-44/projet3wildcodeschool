@@ -29,6 +29,12 @@
     margin-left: 50px;
   
   }
+  .editbt {
+    display: flex;
+    align-items: flex-end;
+    margin-left: -4em;
+    margin-bottom: -2em;
+  }
   .edit {
     width: 30px;
     height: 30px;

@@ -42,7 +42,9 @@ function Compte() {
             </h4>
             <h4 className="detailcoor">Email : {info.email}</h4>
           </div>
-          <img className="edit" src={Edit} alt="" />
+          <div className="editbt">
+            <img className="edit" src={Edit} alt="" />
+          </div>
         </div>
       </div>
       <div className="histachat">
