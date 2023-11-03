@@ -22,7 +22,7 @@ function Compte() {
   })
 
   return (
-    <div className="test">
+    <div className="containerCompte">
       <h2>Votre compte</h2>
       <div className="top">
         <div className="detail">
@@ -31,17 +31,19 @@ function Compte() {
             Bienvenu et contant de vous revoir {info.prenom}
           </h2>
         </div>
-        <div className="coordonnees">
-          <h2>Vos coordonnées :</h2>
-          <h4 className="detailcoor">
-            {info.nom} {info.prenom}
-          </h4>
-          <h4 className="detailcoor">
-            Adresse : {info.adresse} {info.codePostal} {info.ville}
-          </h4>
-          <h4 className="detailcoor">Email : {info.email}</h4>
+        <div className="blockcoor">
+          <div className="coordonnees">
+            <h2>Vos coordonnées :</h2>
+            <h4 className="detailcoor">
+              {info.nom} {info.prenom}
+            </h4>
+            <h4 className="detailcoor">
+              Adresse : {info.adresse} {info.codePostal} {info.ville}
+            </h4>
+            <h4 className="detailcoor">Email : {info.email}</h4>
+          </div>
+          <img className="edit" src={Edit} alt="" />
         </div>
-        <img className="edit" src={Edit} alt="" />
       </div>
       <div className="histachat">
         <h2>Historique de vos achats</h2>

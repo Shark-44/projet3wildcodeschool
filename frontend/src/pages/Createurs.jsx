@@ -19,34 +19,50 @@ function Createurs() {
     )
   }, [])
 
+  function toggleFilterVisibility() {
+    const renduA = document.querySelector(".renduFiltre")
+    renduA.classList.toggle("hidden-responsive")
+    renduA.classList.toggle("visible-responsive")
+  }
+
   return (
     <div className="container Createur">
       <h1> Nos createurs</h1>
-      <div className="resultat">
-        <div className="filtre">
-          <h3>Les filtres</h3>
-          <FilterButton
-            label="Tous"
-            onClick={() => setFilter("all")}
-            active={filter === "all"}
-          />
-          <FilterButton
-            label="Graphique"
-            onClick={() => setFilter("Graphisme")}
-            active={filter === "Graphisme"}
-          />
-          <FilterButton
-            label="Mode"
-            onClick={() => setFilter("Mode")}
-            active={filter === "Mode"}
-          />
-          <FilterButton
-            label="3D-Print"
-            onClick={() => setFilter("3DPrint")}
-            active={filter === "3DPrint"}
-          />
-          <br />
+      <div className="rendu">
+        <div className="renduFiltre hidden-responsive">
+          <div className="filtre">
+            <h3>Les filtres</h3>
+            <FilterButton
+              label="Tous"
+              onClick={() => setFilter("all")}
+              active={filter === "all"}
+            />
+            <FilterButton
+              label="Graphique"
+              onClick={() => setFilter("Graphisme")}
+              active={filter === "Graphisme"}
+            />
+            <FilterButton
+              label="Mode"
+              onClick={() => setFilter("Mode")}
+              active={filter === "Mode"}
+            />
+            <FilterButton
+              label="3D-Print"
+              onClick={() => setFilter("3DPrint")}
+              active={filter === "3DPrint"}
+            />
+            <br />
+          </div>
         </div>
+        <button id="showFilter" onClick={toggleFilterVisibility}>
+          F <br />
+          I <br />
+          L <br />
+          T <br />
+          R <br />
+          E <br />
+        </button>
         <div className="renduCreateur">
           {tableFiltre.map((createur) => (
             <Link

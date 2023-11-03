@@ -33,12 +33,17 @@ function Boutique() {
     setPrenom(undefined)
     setType(undefined)
   }
+  function toggleFilterVisibility() {
+    const renduA = document.querySelector(".renduA")
+    renduA.classList.toggle("hidden-responsive")
+    renduA.classList.toggle("visible-responsive")
+  }
 
   return (
     <div className="container Boutique">
       <h1>Votre boutique</h1>
       <div className="rendu">
-        <div className="renduA">
+        <div className="renduA hidden-responsive">
           <h3> les filtres</h3>
           <FiltreBoutiquecategorie type={type} setType={setType} />
           <FiltreBoutiquecreateur prenom={prenom} setPrenom={setPrenom} />
@@ -46,6 +51,14 @@ function Boutique() {
             Reset
           </button>
         </div>
+        <button id="showFilter" onClick={toggleFilterVisibility}>
+          F <br />
+          I <br />
+          L <br />
+          T <br />
+          R <br />
+          E <br />
+        </button>
         <div className="renduB">
           {objets.map((objet) => (
             <Link className="link" key={objet.id} to={`/Boutique/${objet.id} `}>

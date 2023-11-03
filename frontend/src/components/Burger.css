@@ -4,7 +4,7 @@
     height: 60px;
     display: none;
     margin-top: 7px;
-}
+    }
 .burger-menu {
     height: 75%;
     width: 20%;
@@ -23,12 +23,13 @@
 }
 
 .menu {
-    width: 50%;
-    height: 20vh;
+    width: 60%;
+    height: 30vh;
     background-color: #0e0424;
     position: absolute;
     top: 0;
     z-index: -1;
+    box-shadow: 0 0 20px 7px #48abe0;
 }
 
 /* ------------- sliding menu ------------------ */
@@ -68,6 +69,10 @@
 @media screen and (max-width : 768px){
     .Menuburger {
         display: flex;
+    }
+    .listeburger{
+        font-size: 1rem;
+    line-height: 2.5em;
     }
     
 }

@@ -21,6 +21,9 @@
   position: sticky;
   top: 225px;
 }
+#showFilter{
+  display: none;
+}
 .renduB {
   display: flex;
   flex-wrap: wrap;
@@ -39,4 +42,40 @@
   height: 30px;
   border-radius: 20px;
   font-size: 1rem;
+}
+
+@media screen  and (max-width : 768px){
+  #showFilter{
+    display:block;
+    height: 100px;
+    position: sticky;
+    top: 225px;
+    border-radius: 10px;
+    background-color: #7fd4ff;
+   /* writing-mode: vertical-rl;
+    text-orientation: mixed;
+    white-space: nowrap;*/
+   }
+  
+  .renduA.hidden-responsive {
+   visibility: hidden;
+   position: absolute;
+   z-index: 10;
+  }
+  .renduA.visible-responsive {
+    
+    animation: slide-up 0.3s;
+  }
+  @keyframes slide-up {
+    0% {
+      display: none;
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      display: block;
+      transform: translateX(0%);
+      opacity: 1;
+    }
+  }
 }

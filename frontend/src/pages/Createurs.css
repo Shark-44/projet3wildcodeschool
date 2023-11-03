@@ -2,12 +2,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #0e0424;
-  color: #f4b346;
   margin-top: 70px;
 }
 
-.resultat {
+.renduFiltre {
   display: flex;
   width: 95vw;
 }
@@ -43,4 +41,37 @@ p {
   flex-grow: 1;
   justify-content: space-around;
   gap: 20px;
+}
+
+@media screen  and (max-width : 768px){
+  #showFilter{
+    display:block;
+    height: 100px;
+    position: sticky;
+    top: 225px;
+    border-radius: 10px;
+    background-color: #7fd4ff;
+   }
+  
+  .renduFiltre.hidden-responsive {
+   visibility: hidden;
+   position: absolute;
+   z-index: 10;
+  }
+  .renduFiltre.visible-responsive {
+    
+    animation: slide-up 0.3s;
+  }
+  @keyframes slide-up {
+    0% {
+      display: none;
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      display: block;
+      transform: translateX(0%);
+      opacity: 1;
+    }
+  }
 }
