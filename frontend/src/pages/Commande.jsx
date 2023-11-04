@@ -59,7 +59,7 @@ function Commande() {
             {objetspanier.map((objetcommande, index) => {
               const somme = objetcommande.prix * objetcommande.quantitePanier
               return (
-                <div key={index} className="cardetail">
+                <div key={index} className="details">
                   <img
                     className="imagecardetail"
                     src={API_URL + objetcommande.photo1}

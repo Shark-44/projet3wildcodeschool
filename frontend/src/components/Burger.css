@@ -1,0 +1,78 @@
+.Menuburger{
+   /* background-color: brown;*/
+    width: 60px;
+    height: 60px;
+    display: none;
+    margin-top: 7px;
+    }
+.burger-menu {
+    height: 75%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    cursor: pointer;
+   }
+
+.burger-bar {
+    width: 3.7em;
+    height: 0.4em;
+    background-color:#48abe0;
+    border-radius: 0.5em;
+}
+
+.menu {
+    width: 60%;
+    height: 30vh;
+    background-color: #0e0424;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    box-shadow: 0 0 20px 7px #48abe0;
+}
+
+/* ------------- sliding menu ------------------ */
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: inherit;
+}
+
+/* ----- animations--------- */
+/* clicked */
+.burger-bar.clicked:nth-child(1){
+    transform: rotate(45deg) translate(0.75em, 1.25em);
+    transition: ease-out 0.5s;
+}
+
+.burger-bar.clicked:nth-child(2){
+    transform: scale(0.1);
+    transition: ease-out 0.5s;
+}
+
+.burger-bar.clicked:nth-child(3){
+    transform: rotate(135deg) translate(-0.5em, 1em);
+    transition: ease-out 0.5s;
+}
+
+/* unclicked */
+.burger-bar.unclicked {
+    transform: rotate(0) translate(0);
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+} 
+.listeburger {
+    margin-top: 8vh;
+}
+@media screen and (max-width : 768px){
+    .Menuburger {
+        display: flex;
+    }
+    .listeburger{
+        font-size: 1rem;
+    line-height: 2.5em;
+    }
+    
+}

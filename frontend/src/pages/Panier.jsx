@@ -45,14 +45,17 @@ function Panier() {
       (res) => setObjetspanier(res.data)
     )
   }, [])
-  // eslint-disable-next-line no-restricted-syntax
-  console.log(objetspanier)
+
   return (
     <div className="containerPanier">
       <div className="descriptionPanier">
         {objetspanier.map((objet, index) => (
           <div className="cardetail" key={index}>
-            <img src={API_URL + objet?.photo1} alt={objet?.nomObjet} />
+            <img
+              className="imgpanier"
+              src={API_URL + objet?.photo1}
+              alt={objet?.nomObjet}
+            />
             <div className="resumepanier">
               <p> Nom : {objet?.nomObjet}</p>
               <p> Prix : {objet?.prix} €</p>

@@ -34,7 +34,6 @@ class PanierManager extends AbstractManager {
   }
 
   upanier(UtilisateurId, ObjetsId, quantitePanier) {
-    console.info(UtilisateurId, ObjetsId, quantitePanier)
     return this.database.query(
       `update ${this.table} set quantitePanier = ? where UtilisateurId = ? AND ObjetsId = ?`,
       [quantitePanier, UtilisateurId, ObjetsId]

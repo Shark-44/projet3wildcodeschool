@@ -1,6 +1,7 @@
 import AlterwordAPI from "../services/AlterwordAPI"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router"
 import "./Formulaire.css"
 
 function Formulaire() {
@@ -14,7 +15,7 @@ function Formulaire() {
   const [createur, setCreateur] = useState(0) // pour cacher les elements joueur/createur
   const [CategorieID, setCategorieID] = useState(null) // definir une categorie
   const [descriptionCreateur, setDescriptionCreateur] = useState("")
-  const [photo, setPhoto] = useState("")
+  const [photo, setPhoto] = useState("") // nom de la photo
   const [verify, setVerify] = useState(false)
   // pour img
   const [image, setImage] = useState("./src/assets/avatar.png")
@@ -22,6 +23,8 @@ function Formulaire() {
 
   // pour soumettre a la bdd
   const { register } = useForm()
+
+  const navigate = useNavigate()
 
   // Affiche ou nom section createur
   const handleOptionChange = (event) => {
@@ -37,19 +40,19 @@ function Formulaire() {
     setImage(e.target.files[0])
     setVisuel(URL.createObjectURL(e.target.files[0]))
     setVerify(true)
+    setPhoto(e.target.files[0].name)
   }
   const cancelImage = (e) => {
     e.preventDefault()
     setVisuel("./src/assets/avatar.png")
     setVerify(false)
+    setPhoto("")
   }
   // .................
   const handleSubmit = (data) => {
     if (verify) {
       const formData = new FormData()
       formData.append("myfile", image)
-      const fileInput = image // Récupérer le premier élément du tableau, qui est le fichier
-      setPhoto(fileInput.name) // Obtenir le nom du fichier
       fetch("http://localhost:4242/upload", {
         method: "POST",
         body: formData,
@@ -114,11 +117,13 @@ function Formulaire() {
         })
       }
     }
+    navigate("/")
   }
 
   return (
     <div className="contenairformulaire">
       <h1>Formulaire d'enregistrement</h1>
+      {photo}
       <div className="general">
         <div className="partiegenerale">
           <div className="formulaireclass">

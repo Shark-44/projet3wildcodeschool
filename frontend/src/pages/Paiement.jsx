@@ -41,8 +41,8 @@ function Paiement() {
         <img className="Cartes" src={Cartes} alt="" />
         <div className="parcarte">
           <input type="checkbox" />
-          <img id="carte" src={Carte} alt="" />
-          <div className="formulaire">
+          <img id="cartepaid" src={Carte} alt="" />
+          <div className="formulairepaid">
             <div className="zonesaisie">
               <label htmlFor="character">Numero de carte bancaire</label>
               <input type="text" />

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import axios from "axios"
+import AlterwordAPI from "../services/AlterwordAPI"
 import {
   Page,
   Text,
@@ -85,19 +85,16 @@ const MyDocument = () => {
   const TVA = ((sommetotal * 20) / 100).toFixed(2)
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4242/objetpanier?UtilisateurId=${UtilisateurId}`)
-      .then((res) => setObjetspanier(res.data))
+    AlterwordAPI.get(`/objetpanier?UtilisateurId=${UtilisateurId}`).then(
+      (res) => setObjetspanier(res.data)
+    )
   }, [])
   useEffect(() => {
-    axios
-      .get(`http://localhost:4242/utilisateur/${UtilisateurId}`)
-      .then((res) => setUtilisateur(res.data))
+    AlterwordAPI.get(`/utilisateur/${UtilisateurId}`).then((res) =>
+      setUtilisateur(res.data)
+    )
   }, [])
-  // eslint-disable-next-line no-restricted-syntax
-  console.log(objetspanier)
-  // eslint-disable-next-line no-restricted-syntax
-  console.log(utilisateur)
+
   return (
     <Document title="Facture">
       <Page size="A4" style={styles.page}>

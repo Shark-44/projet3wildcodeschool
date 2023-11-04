@@ -29,7 +29,7 @@
   width: 250px;
   height: 70px;
 }
-.cardetail{
+.details{
   display: flex;
   width: 80vw;
   gap: 10px;
@@ -138,4 +138,21 @@
   }
   .valide {
     background-color: rgb(10, 204, 10);
+  }
+  @media screen  and (max-width : 768px){
+    .details {
+      align-items: stretch;
+      font-size: 0.7rem;
+      gap: 5px;
+      align-items: center;
+    }
+    .actual-receipt {
+      padding: 0;
+    }
+    .tva {
+      margin-left: 0;
+    }
+    .btncommande {
+      width: 90%;
+    }
   }

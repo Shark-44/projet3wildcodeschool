@@ -3,8 +3,9 @@ import { useState } from "react"
 import "./LoginCard.css"
 import Cookies from "js-cookie"
 import { useAuthContext } from "../contexts/authContexts"
+import CookieConsent from "./CookieConsent"
 
-const LoginCard = ({ isShowLogin, handleLoginClick, onlogin, setOnlogin }) => {
+const LoginCard = ({ isShowLogin, handleLoginClick, setOnlogin, cookies }) => {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   const { setUser } = useAuthContext()
@@ -45,7 +46,15 @@ const LoginCard = ({ isShowLogin, handleLoginClick, onlogin, setOnlogin }) => {
               className="login-box"
               value={email}
               placeholder="xxx@xxx.xx"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(event) => {
+                if (
+                  event.target.value.includes(">") ||
+                  event.target.value.includes("<")
+                ) {
+                  return
+                }
+                setEmail(event.target.value)
+              }}
             />
             <br></br>
             <label htmlFor="login-input">Password</label>
@@ -54,7 +63,15 @@ const LoginCard = ({ isShowLogin, handleLoginClick, onlogin, setOnlogin }) => {
               className="login-box"
               placeholder="Password "
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(event) => {
+                if (
+                  event.target.value.includes(">") ||
+                  event.target.value.includes("<")
+                ) {
+                  return
+                }
+                setPassword(event.target.value)
+              }}
             />
             <br></br>
             <input
@@ -64,6 +81,7 @@ const LoginCard = ({ isShowLogin, handleLoginClick, onlogin, setOnlogin }) => {
               className="login-btn"
             />
           </form>
+          <CookieConsent />
         </div>
       </div>
     </div>
