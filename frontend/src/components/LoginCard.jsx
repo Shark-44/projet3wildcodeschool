@@ -46,7 +46,15 @@ const LoginCard = ({ isShowLogin, handleLoginClick, setOnlogin, cookies }) => {
               className="login-box"
               value={email}
               placeholder="xxx@xxx.xx"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(event) => {
+                if (
+                  event.target.value.includes(">") ||
+                  event.target.value.includes("<")
+                ) {
+                  return
+                }
+                setEmail(event.target.value)
+              }}
             />
             <br></br>
             <label htmlFor="login-input">Password</label>
@@ -55,7 +63,15 @@ const LoginCard = ({ isShowLogin, handleLoginClick, setOnlogin, cookies }) => {
               className="login-box"
               placeholder="Password "
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(event) => {
+                if (
+                  event.target.value.includes(">") ||
+                  event.target.value.includes("<")
+                ) {
+                  return
+                }
+                setPassword(event.target.value)
+              }}
             />
             <br></br>
             <input

@@ -13,8 +13,10 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
   const [createur, setCreateur] = useState([])
   const [avis, setAvis] = useState([])
   const [isShowZoom, setIsShowZoom] = useState(true)
+  const [avislaisse, setAvislaisse] = useState()
   const API_URL = import.meta.env.VITE_BACKEND_URL
-
+  // eslint-disable-next-line no-restricted-syntax
+  console.log(avislaisse)
   useEffect(() => {
     AlterwordAPI.get(`/objets/${params.id}`).then((res) => setObjets(res.data))
     AlterwordAPI.get(`/utilisateur/avec/objets?id=${params.id}`).then((res) =>
@@ -40,9 +42,11 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
   const handlezoom = () => {
     setIsShowZoom((isShowZoom) => !isShowZoom)
   }
-  const handlevalide = () => {
-    // eslint-disable-next-line no-restricted-syntax
-    console.log("coucouc")
+  const handlevalide = (event) => {
+    if (event.target.value.includes("<")) {
+      return
+    }
+    setAvislaisse(event.target.value)
   }
   return (
     <div className="container cardObjet">
@@ -95,7 +99,22 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
         </div>
         <div className="votreavis">
           <h2>Laissez votre avis</h2>
-          <input type="text" className="avisuser" />
+          <input
+            type="text"
+            className="avisuser"
+            value={avislaisse}
+            onChange={(event) => {
+              if (
+                event.target.value.includes(">") ||
+                event.target.value.includes("<")
+              ) {
+                return
+              }
+              setAvislaisse(event.target.value)
+              // eslint-disable-next-line no-restricted-syntax
+              console.log(avislaisse)
+            }}
+          />
           <div className="placeinput">
             <input
               type="image"

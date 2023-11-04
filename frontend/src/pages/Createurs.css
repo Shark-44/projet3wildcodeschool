@@ -4,12 +4,11 @@
   align-items: center;
   margin-top: 70px;
 }
-
-.renduFiltre {
+.rendu {
   display: flex;
   width: 95vw;
 }
-.filtre {
+.renduFiltre {
   display: flex;
   justify-content: space-between;
   height: 270px;
