@@ -41,9 +41,11 @@ function Panier() {
       })
   }
   useEffect(() => {
-    AlterwordAPI.get(`/objetpanier?UtilisateurId=${UtilisateurId}`).then(
-      (res) => setObjetspanier(res.data)
-    )
+    AlterwordAPI.get(`/objetpanier?UtilisateurId=${UtilisateurId}`)
+      .then((res) => setObjetspanier(res.data))
+      .catch((err) => {
+        console.error("Error lead", err)
+      })
   }, [])
 
   return (

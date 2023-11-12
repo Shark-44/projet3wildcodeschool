@@ -18,6 +18,7 @@ import Cookies from "js-cookie"
 import ProtectedRoute from "./components/ProtectedRoute"
 import Compte from "./pages/Compte"
 import AlterwordAPI from "./services/AlterwordAPI"
+import Footer from "./components/Footer"
 
 function App() {
   const [isShowLogin, setIsShowLogin] = useState(true)
@@ -76,7 +77,7 @@ function App() {
           <Route path="/Compte" element={<Compte />} />
         </Route>
       </Routes>
-      <footer></footer>
+      <Footer />
     </div>
   )
 }

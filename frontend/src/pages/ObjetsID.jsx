@@ -13,7 +13,7 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
   const [createur, setCreateur] = useState([])
   const [avis, setAvis] = useState([])
   const [isShowZoom, setIsShowZoom] = useState(true)
-  const [avislaisse, setAvislaisse] = useState()
+  const [avislaisse, setAvislaisse] = useState("")
   const API_URL = import.meta.env.VITE_BACKEND_URL
   // eslint-disable-next-line no-restricted-syntax
   console.log(avislaisse)
@@ -43,7 +43,7 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
     setIsShowZoom((isShowZoom) => !isShowZoom)
   }
   const handlevalide = (event) => {
-    if (event.target.value.includes("<")) {
+    if (event.target.value.includes(">") || event.target.value.includes("<")) {
       return
     }
     setAvislaisse(event.target.value)
@@ -112,7 +112,7 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
               }
               setAvislaisse(event.target.value)
               // eslint-disable-next-line no-restricted-syntax
-              console.log(avislaisse)
+              console.log("coucou", avislaisse)
             }}
           />
           <div className="placeinput">

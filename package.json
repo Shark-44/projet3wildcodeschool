@@ -39,6 +39,7 @@
     "browserify-zlib": "^0.2.0",
     "buffer": "^6.0.3",
     "cookie-parser": "^1.4.6",
+    "helmet": "^7.0.0",
     "joi": "^17.10.0",
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",

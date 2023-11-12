@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router"
 import "./Formulaire.css"
+const API_URL = import.meta.env.VITE_BACKEND_URL
 
 function Formulaire() {
   const [nom, setNom] = useState("")
@@ -53,7 +54,7 @@ function Formulaire() {
     if (verify) {
       const formData = new FormData()
       formData.append("myfile", image)
-      fetch("http://localhost:4242/upload", {
+      fetch(API_URL + "/upload", {
         method: "POST",
         body: formData,
       })

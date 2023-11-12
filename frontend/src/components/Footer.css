@@ -1,0 +1,21 @@
+.footer-container {
+    color: aliceblue;
+    text-align: center;
+    background-color: rgba(49, 49, 54, 0.993);
+    font-size: 15px;
+    width: 100%;
+    height: 4rem;
+    display: grid;
+    grid-template-columns: 3fr 6fr 1fr 1fr 1fr;
+    margin-top: 20px;
+    align-items: center;
+}
+.lien {
+    width: 50px;
+}
+.imgfooter {
+    width: 100px;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+}

@@ -3,6 +3,8 @@
 const fs = require("node:fs")
 const path = require("node:path")
 
+const helmet = require("helmet")
+
 // create express app
 
 const express = require("express")
@@ -12,6 +14,8 @@ const app = express()
 // use some application-level middlewares
 
 app.use(express.json())
+app.use(helmet.xssFilter())
+app.use(helmet.frameguard({ action: "deny" }))
 
 const cors = require("cors")
 const cookieParser = require("cookie-parser")

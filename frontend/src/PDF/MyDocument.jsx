@@ -11,6 +11,7 @@ import {
 import logo from "../assets/AlterWord.png"
 import codebarre from "../assets/codebarre.png"
 import Cookies from "js-cookie"
+const API_URL = import.meta.env.VITE_BACKEND_URL
 
 // Create styles
 const styles = StyleSheet.create({
@@ -126,7 +127,7 @@ const MyDocument = () => {
             <View key={index} style={styles.card}>
               <Image
                 style={styles.imagecard}
-                source={`http://localhost:4242/${a.photo1}`}
+                source={API_URL + `${a.photo1}`}
               />
               <Text style={styles.textcard}> {a.nomObjet} </Text>
               <Text style={styles.textcard}>prix u. {a.prix} €</Text>

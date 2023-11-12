@@ -1,11 +1,22 @@
-img {
+.Card img {
   height: 250px;
   width: 250px;
   margin: 20px;
+  box-shadow: rgba(17, 17, 26, 0.415) 0px 4px 16px, rgba(17, 17, 26, 0.518) 0px 8px 32px;
 }
 .Card {
   background-color: aliceblue;
   height: 400px;
   color: black;
   border-radius: 10px;
+}
+@font-face {
+  font-family: 'Lobster-Regular';
+  src: url('../fonts/Lobster-Regular.ttf') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+.Card p {
+  font-family: "Lobster-Regular", cursive;
+  font-size: 1.4em;
 }
