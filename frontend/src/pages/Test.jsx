@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react"
 
 function Test() {
   const [mousePos, setMousePos] = useState({})
+  const [stylelang, setStylelang] = useState("hidden")
+  const API_URL = import.meta.env.VITE_BACKEND_URL
 
   useEffect(() => {
     const handleMouseMove = (event) => {
@@ -33,12 +35,20 @@ function Test() {
   const centerEyeStyle2 = {
     left: `${((mousePos.x + 50) / 100) * 40 + 260}px`,
   }
+  const toggle = () => {
+    setStylelang((prevStylelang) =>
+      prevStylelang === "visible" ? "hidden" : "visible"
+    )
+  }
 
+  const visible = {
+    visibility: stylelang,
+  }
   return (
     <>
       <div className="containerTest">
         <h1>MERCI DE M'AVOIR ECOUTE</h1>
-        <div className="tete">
+        <div className="head">
           <div className="eyes">
             <div className="eye left">
               <div
@@ -54,6 +64,19 @@ function Test() {
             </div>
           </div>
           <div className="mouth"></div>
+          <div className="langue" style={visible}>
+            <img
+              className="langueimg"
+              src={API_URL + "/assets/images/autre/langue.png"}
+              alt=""
+            />
+          </div>
+        </div>
+        <div className="switchzone">
+          <label className="switch">
+            <input type="checkbox" onChange={toggle} />
+            <span></span>
+          </label>
         </div>
       </div>
     </>
