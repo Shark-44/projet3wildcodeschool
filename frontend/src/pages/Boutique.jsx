@@ -67,6 +67,7 @@ function Boutique() {
                 nomObjet={objet.nomObjet}
                 photo1={objet.photo1}
               />
+              <div className="blanc"></div>
             </Link>
           ))}
         </div>

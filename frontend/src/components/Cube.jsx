@@ -1,7 +1,7 @@
 import Cube from "react-3d-cube"
 import { useEffect, useState } from "react"
 import AlterwordAPI from "../services/AlterwordAPI"
-import "./cube.css"
+import "./Cube.css"
 
 function Cube3D() {
   const [vuobjets, setVuobjets] = useState([])

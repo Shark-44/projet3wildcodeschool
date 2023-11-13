@@ -12,6 +12,7 @@ import Commande from "./pages/Commande"
 import LoginCard from "./components/LoginCard"
 import PDFvu from "./pages/PDFvu"
 import Paiement from "./pages/Paiement"
+import Test from "./pages/Test"
 import "./App.css"
 import Cookies from "js-cookie"
 // import { useAuthContext } from "./contexts/authContexts"
@@ -63,6 +64,7 @@ function App() {
         <Route path="/Createurs" element={<Createurs />} />
         <Route path="/Createurs/:id" element={<CreateurID />} />
         <Route path="/Formulaire" element={<Formulaire />} />
+        <Route path="/Test" element={<Test />} />
         <Route element={<ProtectedRoute user={user} />}>
           <Route
             path="/Boutique/:id"

@@ -1,4 +1,8 @@
 .footer-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     color: aliceblue;
     text-align: center;
     background-color: rgba(49, 49, 54, 0.993);

@@ -124,7 +124,6 @@ function Formulaire() {
   return (
     <div className="contenairformulaire">
       <h1>Formulaire d'enregistrement</h1>
-      {photo}
       <div className="general">
         <div className="partiegenerale">
           <div className="formulaireclass">
@@ -189,9 +188,9 @@ function Formulaire() {
               onChange={(e) => setVille(e.target.value)}
             />
           </div>
-          <div className="importimg">
-            <form>
-              <img className="icone" src={visuel} alt="avatar" />
+          <div>
+            <form className="importimg">
+              <img className="imgavatar" src={visuel} alt="avatar" />
               <label htmlFor="file" className="label-file">
                 Choisir une image
               </label>
@@ -268,6 +267,7 @@ function Formulaire() {
           onClick={handleSubmit}
         />
       </div>
+      <div className="blancF"></div>
     </div>
   )
 }

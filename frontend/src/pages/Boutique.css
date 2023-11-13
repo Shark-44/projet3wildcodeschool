@@ -10,17 +10,20 @@
 }
 .renduA {
   display: flex;
-  flex-direction: column;
   height: 270px;
   width: 120px;
   margin: 20px;
   border: 15px solid #0e0424;
   border-radius: 15px;
   box-shadow: 0 0 0 0.6em #f4b346;
-  align-items: center;
   position: sticky;
   top: 225px;
-}
+  flex-direction: column;
+  align-items: center;
+ }
+ .blanc {
+  height: 100px;
+ }
 #showFilter{
   display: none;
 }
