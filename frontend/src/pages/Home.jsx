@@ -1,5 +1,5 @@
 import "./Home.css"
-import Cube3D from "./Cube"
+import Cube3D from "../components/Cube"
 
 import Cardavis from "../components/Cardavis"
 

@@ -21,6 +21,12 @@
   align-items: center;
   justify-content: space-between;
 }
+.imgpanier{
+  width: 250px;
+  height: 250px;
+  margin: 20px;
+  box-shadow: rgba(17, 17, 26, 0.415) 0px 4px 16px, rgba(17, 17, 26, 0.518) 0px 8px 32px;
+}
 .resumepanier {
   display: flex;
   flex-direction: column;
