@@ -37,7 +37,7 @@ const verifyPassword = (req, res, next) => {
         })
 
         delete req.user.password
-        res.cookie("auth_token", token, { httpOnly: true, secure: false })
+        res.cookie("auth_token", token, { httpOnly: true, secure: true })
         res.send({ utilisateur: req.user })
       } else {
         res.sendStatus(401).send("Ivalid Credential")
