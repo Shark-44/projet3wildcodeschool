@@ -2,18 +2,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+  margin-top: 100px;
+ }
 .general {
-  margin: 30px;
-  width: 500px;
-  display: flex;
-  flex-direction: column;
   border-radius: 15px;
   box-shadow: 0 0 0 0.6em #f4b346;
   overflow: hidden;
-  z-index: -1;
-  position: absolute;
-  top: 15vh;
+  margin-top: 50px;
+  animation: slide-up 3s ease-in-out forwards;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
 }
 .partiegenerale {
   display: flex;
@@ -34,6 +33,15 @@
 }
 .importimg {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.imgavatar{
+  margin-top: 20px;
+  width: 200px;
+  height: 200px;
 }
 input {
   margin-top: 15px;
@@ -44,7 +52,7 @@ input {
 .selectioncreateur {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   color: #2bc6ff;
   font-size: 1.5rem;
 }
@@ -55,6 +63,10 @@ input {
   margin: 10px;
   color: #2bc6ff;
   font-size: 1.5rem;
+}
+.blancF {
+  height: 100px;
+
 }
 
 @keyframes slide-up {
@@ -68,6 +80,4 @@ input {
   }
 }
 
-.general {
-  animation: slide-up 3s ease-in-out forwards;
-}
+

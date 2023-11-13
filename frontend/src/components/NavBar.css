@@ -1,12 +1,15 @@
 .navGlobal {
   display: flex;
-  position: sticky;
+  position: fixed;
+  width: 100vw;
   top: 0.1px;
   justify-content: space-between;
   background-color: #0e0424;
   border-bottom: 2px solid #325068;
   box-shadow: 0 0 50px 15px #48abe0;
   height: 60px;
+  align-items: center;
+  z-index: 10;
 }
 .navlink {
   position: relative;

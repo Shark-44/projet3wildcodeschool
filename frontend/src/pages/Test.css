@@ -1,0 +1,56 @@
+.containerTest {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+}
+.containerTest h1 {
+    margin-bottom: 40px;
+    color: white;
+    font-size: 3rem;
+}
+.tete {
+    width: 400px;
+    height: 400px;
+    background-color: goldenrod;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.eyes{
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    top: 100px;
+    width: 400px;
+}
+.eye {
+    display: flex;
+    width: 90px;
+    height: 90px;
+    background-color: white;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+}
+.centereye {
+    display: flex;
+    background-color: black;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    position: absolute;
+}
+.mouth {
+    display: flex;
+    height: 150px;
+    width: 300px;
+    margin-bottom: 20%;
+    border-bottom: 10px solid black;
+    border-radius: 50%;
+}
