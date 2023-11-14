@@ -20,6 +20,7 @@ import ProtectedRoute from "./components/ProtectedRoute"
 import Compte from "./pages/Compte"
 import AlterwordAPI from "./services/AlterwordAPI"
 import Footer from "./components/Footer"
+import HappyEnd from "./pages/HappyEnd"
 
 function App() {
   const [isShowLogin, setIsShowLogin] = useState(true)
@@ -65,6 +66,7 @@ function App() {
         <Route path="/Createurs/:id" element={<CreateurID />} />
         <Route path="/Formulaire" element={<Formulaire />} />
         <Route path="/Test" element={<Test />} />
+        <Route path="/HappyEnd" element={<HappyEnd />} />
         <Route element={<ProtectedRoute user={user} />}>
           <Route
             path="/Boutique/:id"
