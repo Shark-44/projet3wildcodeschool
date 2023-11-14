@@ -1,7 +1,7 @@
-import "./Test.css"
+import "./HappyEnd.css"
 import React, { useEffect, useState } from "react"
 
-function Test() {
+function HappyEnd() {
   const [mousePos, setMousePos] = useState({})
   const [stylelang, setStylelang] = useState("hidden")
   const API_URL = import.meta.env.VITE_BACKEND_URL
@@ -23,7 +23,7 @@ function Test() {
       window.removeEventListener("mousemove", handleMouseMove)
     }
   }, [])
-
+  /* variable de style sur valeur calculée */
   const eyeStyle = {
     top: `${((mousePos.y + 50) / 100) * 40 + 5}px`,
   }
@@ -42,7 +42,8 @@ function Test() {
   }
 
   const visible = {
-    visibility: stylelang,
+    opacity: stylelang === "visible" ? 1 : 0,
+    transition: "opacity 0.2s ease",
   }
   return (
     <>
@@ -83,4 +84,4 @@ function Test() {
   )
 }
 
-export default Test
+export default HappyEnd

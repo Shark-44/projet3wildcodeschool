@@ -1,4 +1,5 @@
 import "./Footer.css"
+import { Link } from "react-router-dom"
 const API_URL = import.meta.env.VITE_BACKEND_URL
 const Footer = () => {
   return (
@@ -17,6 +18,9 @@ const Footer = () => {
             alt=""
           />
         </a>
+        <Link to="/HappyEnd" style={{ textDecoration: `none` }}>
+          <p id="happyend">Happy End</p>
+        </Link>
       </div>
     </footer>
   )

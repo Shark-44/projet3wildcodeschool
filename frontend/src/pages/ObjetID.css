@@ -17,6 +17,11 @@
   height: 700px;
   width: 400px;
 }
+.descriptionObjet img {
+  width: 250px;
+  height: 250px;
+  margin: 20px;
+}
 .button {
   width: 150px;
   height: 50px;
