@@ -23,6 +23,8 @@ const Cardavis = () => {
       { length: 3 },
       () => avisuser[Math.floor(Math.random() * avisuser.length)]
     )
+  // eslint-disable-next-line no-restricted-syntax
+  console.log(getRandomAvisObjet)
   useEffect(() => {
     AlterwordAPI.get("/avisurobjet").then((res) => setAvisuser(res.data))
   }, [])

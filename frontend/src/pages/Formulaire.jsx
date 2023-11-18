@@ -1,124 +1,102 @@
+import React, { useState, useEffect } from "react"
 import AlterwordAPI from "../services/AlterwordAPI"
-import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router"
 import "./Formulaire.css"
+
 const API_URL = import.meta.env.VITE_BACKEND_URL
 
 function Formulaire() {
-  const [nom, setNom] = useState("")
-  const [prenom, setPrenom] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [adresse, setAdresse] = useState("")
-  const [codePostal, setCodepostal] = useState("")
-  const [ville, setVille] = useState("")
-  const [createur, setCreateur] = useState(0) // pour cacher les elements joueur/createur
-  const [CategorieID, setCategorieID] = useState(null) // definir une categorie
-  const [descriptionCreateur, setDescriptionCreateur] = useState("")
-  const [photo, setPhoto] = useState("") // nom de la photo
-  const [verify, setVerify] = useState(false)
-  // pour img
+  const [formData, setFormData] = useState({
+    nom: "",
+    prenom: "",
+    email: "",
+    password: "",
+    adresse: "",
+    codePostal: "",
+    ville: "",
+    createur: 0,
+    CategorieID: null,
+    descriptionCreateur: "",
+    photo: "",
+  })
+
   const [image, setImage] = useState("./src/assets/avatar.png")
   const [visuel, setVisuel] = useState("./src/assets/avatar.png")
 
-  // pour soumettre a la bdd
-  const { register } = useForm()
-
+  const { register, handleSubmit, setValue } = useForm()
   const navigate = useNavigate()
 
-  // Affiche ou nom section createur
+  useEffect(() => {
+    register("myfile") // Enregistrez le champ après le rendu initial
+  }, [register])
+
   const handleOptionChange = (event) => {
-    setCreateur(event.target.value)
-  }
-  // Selection categorie pour createur
-  const handleSelect = (event) => {
-    setCategorieID(event.target.value)
+    setFormData({
+      ...formData,
+      createur: String(event.target.value),
+    })
   }
 
-  // Permet de previsualiser l'image
-  const uploadImage = (e) => {
-    setImage(e.target.files[0])
-    setVisuel(URL.createObjectURL(e.target.files[0]))
-    setVerify(true)
-    setPhoto(e.target.files[0].name)
+  const handleSelect = (event) => {
+    setFormData({
+      ...formData,
+      CategorieID: String(event.target.value),
+    })
   }
+
+  const uploadImage = (e) => {
+    const file = e.target.files[0]
+
+    if (file) {
+      const objectURL = URL.createObjectURL(file)
+      setValue("myfile", file) // Mettez à jour la valeur du champ de fichier
+      setImage(file)
+      setVisuel(objectURL)
+      setFormData({
+        ...formData,
+        photo: file.name,
+      })
+    }
+  }
+
   const cancelImage = (e) => {
     e.preventDefault()
     setVisuel("./src/assets/avatar.png")
-    setVerify(false)
-    setPhoto("")
+    setFormData({
+      ...formData,
+      photo: "",
+    })
   }
-  // .................
-  const handleSubmit = (data) => {
-    if (verify) {
+
+  const onSubmit = async () => {
+    try {
       const formData = new FormData()
       formData.append("myfile", image)
-      fetch(API_URL + "/upload", {
+
+      const response = await fetch(API_URL + "/upload", {
         method: "POST",
         body: formData,
       })
-        .then((res) => res.json())
-        .catch((err) => console.error(err))
-        .then((data) => {
-          if (createur === "0") {
-            AlterwordAPI.post("/utilisateur", {
-              nom,
-              prenom,
-              email,
-              password,
-              adresse,
-              codePostal,
-              ville,
-              createur,
-              photo,
-            })
-          } else {
-            AlterwordAPI.post("/utilisateur/with/categorie", {
-              nom,
-              prenom,
-              email,
-              password,
-              adresse,
-              codePostal,
-              ville,
-              createur,
-              photo,
-              descriptionCreateur,
-              CategorieID,
-            })
-          }
-        })
-    } else {
-      if (createur === "0") {
-        AlterwordAPI.post("/utilisateur", {
-          nom,
-          prenom,
-          email,
-          password,
-          adresse,
-          codePostal,
-          ville,
-          createur,
-          photo,
+
+      // eslint-disable-next-line no-unused-vars
+      const data = await response.json()
+
+      if (formData.createur === "0") {
+        await AlterwordAPI.post("/utilisateur", {
+          ...formData,
         })
       } else {
-        AlterwordAPI.post("/utilisateur/with/categorie", {
-          nom,
-          prenom,
-          email,
-          password,
-          adresse,
-          codePostal,
-          ville,
-          createur,
-          photo,
-          descriptionCreateur,
-          CategorieID,
+        await AlterwordAPI.post("/utilisateur/with/categorie", {
+          ...formData,
         })
       }
+
+      navigate("/")
+    } catch (error) {
+      console.error("Error submitting form:", error)
+      // Gérer les erreurs de manière appropriée
     }
-    navigate("/")
   }
 
   return (
@@ -130,62 +108,85 @@ function Formulaire() {
             <label htmlFor="character">Nom:</label>
             <input
               type="text"
-              value={nom}
               className="formulairebase"
-              onChange={(e) => setNom(e.target.value)}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  nom: e.target.value,
+                })
+              }
             />
             <br />
             <label htmlFor="character">Prenom:</label>
             <input
               type="text"
-              value={prenom}
               className="formulairebase"
-              onChange={(e) => setPrenom(e.target.value)}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  prenom: e.target.value,
+                })
+              }
             />
             <br />
             <label htmlFor="character">Email:</label>
             <input
               type="email"
-              value={email}
               className="formulairebase"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  email: e.target.value,
+                })
+              }
             />
             <br />
             <label htmlFor="character">Mot de passe:</label>
             <input
               type="text"
-              value={password}
               className="formulairebase"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  password: e.target.value,
+                })
+              }
             />
             <br />
             <label htmlFor="character">Adresse:</label>
             <input
               type="text"
-              value={adresse}
               className="formulairebase"
-              onChange={(e) => setAdresse(e.target.value)}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  adresse: e.target.value,
+                })
+              }
             />
             <br />
             <label htmlFor="character">Code Postal:</label>
             <input
               type="number"
-              value={codePostal}
               className="formulairebase"
-              onChange={(event) => {
-                const newValue = event.target.value
-                if (!isNaN(newValue)) {
-                  setCodepostal(newValue)
-                }
-              }}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  codePostal: e.target.value,
+                })
+              }
             />
             <br />
             <label htmlFor="character">Ville :</label>
             <input
               type="text"
               className="formulairebase"
-              value={ville}
-              onChange={(e) => setVille(e.target.value)}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  ville: e.target.value,
+                })
+              }
             />
           </div>
           <div>
@@ -223,7 +224,7 @@ function Formulaire() {
           Createur
           <br />
         </div>
-        {createur === "1" && (
+        {formData.createur === "1" && (
           <div className="createur">
             <div className="selection">
               <h3>Votre domaine est : </h3>
@@ -253,9 +254,13 @@ function Formulaire() {
               <input
                 type="text"
                 className="description"
-                value={descriptionCreateur}
                 size="35"
-                onChange={(e) => setDescriptionCreateur(e.target.value)}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    descriptionCreateur: e.target.value,
+                  })
+                }
               />
             </div>
           </div>
@@ -264,7 +269,7 @@ function Formulaire() {
           type="button"
           title="submit"
           value="Soumettre"
-          onClick={handleSubmit}
+          onClick={handleSubmit(onSubmit)}
         />
       </div>
       <div className="blancF"></div>
