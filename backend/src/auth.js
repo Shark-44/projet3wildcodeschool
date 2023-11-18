@@ -10,6 +10,7 @@ const hashingOptions = {
 }
 
 const hashPassword = (req, res, next) => {
+  console.info(req.body)
   argon2
     .hash(req.body.password, hashingOptions)
     .then((hashedPassword) => {
@@ -20,7 +21,7 @@ const hashPassword = (req, res, next) => {
     })
     .catch((err) => {
       console.error(err)
-      res.sendStatus(530)
+      res.sendStatus(536)
     })
 }
 
