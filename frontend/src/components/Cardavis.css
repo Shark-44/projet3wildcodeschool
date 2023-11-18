@@ -8,8 +8,34 @@
   width: 100%;
 }
 .cardavis {
+  display: flex;
+  background-color: white;
   width: 400px;
   margin-left: 50px;
+  padding: 5px;
+  gap: 5px;
+  border-radius: 15px;
+  /* flex-direction: row-reverse; */
+  justify-content: flex-end;
+  display: flex;
+  background-color: white;
+  width: 400px;
+  margin-left: 50px;
+  padding: 5px;
+  gap: 5px;
+  border-radius: 15px;
+  /* flex-direction: row-reverse; */
+  justify-content: flex-end;
+  display: flex;
+  background-color: white;
+  width: 400px;
+  margin-left: 50px;
+  padding: 5px;
+  gap: 5px;
+  border-radius: 15px;
+  /* flex-direction: row-reverse; */
+  justify-content: flex-end;
+  box-shadow: 2px 2px 7px 5px #48abe0;
 }
 .renduAvis h2 {
   background-color: #248795;
@@ -18,9 +44,12 @@
   color: #0e0424;
   margin: 10px;
   font-size: 1.7rem;
+  margin-right: 40px;
   /*     z-index: 2;
     position: absolute;
     right: 200px; */
+    width: 100%;
+    text-align: center;
 }
 .renduAvis img {
   border-radius: 50%;

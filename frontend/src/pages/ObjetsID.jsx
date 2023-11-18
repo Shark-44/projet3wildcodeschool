@@ -15,8 +15,7 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
   const [isShowZoom, setIsShowZoom] = useState(true)
   const [avislaisse, setAvislaisse] = useState("")
   const API_URL = import.meta.env.VITE_BACKEND_URL
-  // eslint-disable-next-line no-restricted-syntax
-  console.log(avislaisse)
+
   useEffect(() => {
     AlterwordAPI.get(`/objets/${params.id}`).then((res) => setObjets(res.data))
     AlterwordAPI.get(`/utilisateur/avec/objets?id=${params.id}`).then((res) =>
@@ -49,7 +48,7 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
     setAvislaisse(event.target.value)
   }
   return (
-    <div className="container cardObjet">
+    <div className="container-cardObjet">
       <div className="descriptionObjet">
         <img src={API_URL + objets.photo1} alt={objets.nomObjet} />
         <p onClick={handlezoom}>zoom</p>
@@ -62,7 +61,7 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
       </div>
       <div className="infoAutre">
         <div className="infoCreateur">
-          <h2>Ce createur est</h2>
+          <h2>Ce produit est fabriqué par :</h2>
           {createur.map((auteur) => (
             <div key={auteur.id} className="cadrecreateur">
               <Link className="link" to={`/Createurs/${auteur.id} `}>
@@ -83,15 +82,22 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
           />
         </div>
         <div className="avisutilisateur">
-          {avis.map((avis) => (
-            <div key={avis.id}>
-              <h2>{avis.avisObjet}</h2>
-              <img
-                src={API_URL + "/assets/images/avatar/" + avis.photo}
-                alt={avis.prenom}
-              />
-            </div>
-          ))}
+          <div className="titreavis">
+            <h3>Des avis</h3>
+          </div>
+          <div className="blockavisObjet">
+            {avis.map((avis) => (
+              <div key={avis.id}>
+                <div className="avisrecadre">
+                  <h2>{avis.avisObjet}</h2>
+                  <img
+                    src={API_URL + "/assets/images/avatar/" + avis.photo}
+                    alt={avis.prenom}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
         <div className="notation">
           <h2>Notez cet objet : </h2>
@@ -125,6 +131,7 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
           </div>
         </div>
       </div>
+      <div className="complement"></div>
     </div>
   )
 }

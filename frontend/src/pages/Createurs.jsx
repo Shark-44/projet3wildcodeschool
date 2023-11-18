@@ -76,6 +76,7 @@ function Createurs() {
                 prenom={createur.prenom}
                 photo={createur.photo}
               />
+              <div className="blanc"></div>
             </Link>
           ))}
         </div>
