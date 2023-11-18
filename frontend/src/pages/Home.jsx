@@ -15,12 +15,13 @@ const Home = () => {
         </p>
       </div>
       <div className="lecube">
-        <p>Les objets les plus vendus</p>
+        <p>Les meilleures ventes</p>
         <Cube3D />
       </div>
       <div className="dernieravis">
         <p>Quelques avis</p>
         <Cardavis />
+        <div className="complement"></div>
       </div>
     </div>
   )

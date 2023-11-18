@@ -98,6 +98,7 @@ function Panier() {
           <button className="validationbtn">validation commande</button>
         </Link>
       </div>
+      <div className="complement"></div>
     </div>
   )
 }

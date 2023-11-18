@@ -1,3 +1,10 @@
+.container-cardObjet{
+  display: flex;
+  margin-top: 100px;
+  justify-content: center;
+  gap: 10%;
+}
+
 .cardObjet {
   border: 15px solid #0e0424;
   border-radius: 15px;
@@ -51,28 +58,43 @@
 
 .avisutilisateur {
   display: flex;
-  justify-content: center;
-  flex-direction: row;
-  position: absolute;
-  top: 50%;
-  width: 50%;
+  flex-direction: column;
+  height: 100%;
+  align-items: flex-end;
+  margin-bottom: 25%;
 }
-.avisutilisateur h2 {
+.titreavis{
+  display: flex;
+  width: 100%;
+  border-bottom: 2px solid  #48abe0;
+  margin-bottom: 5%;
+}
+.blockavisObjet {
+  display: flex;
+  background-color: white;
+  height: 50%;
+  align-items: center;
+}
+
+.blockavisObjet h2 {
   background-color: #248795;
   border: 2px solid #070a09;
   border-radius: 5px;
   color: #0e0424;
-  margin: 10px;
-  z-index: 2;
-  position: absolute;
-  right: 200px;
+  text-align: center;
 }
-.avisutilisateur img {
+.blockavisObjet img {
   border-radius: 50%;
   height: 100px;
   width: 100px;
-  position: absolute;
-  right: 110px;
+  margin-left: 8%;
+  margin-right: -10%;
+}
+.avisrecadre{
+  display: flex;
+  justify-content: flex-end;
+ 
+  gap: 15px;
 }
 .bdtadpan {
   width: 150px;
@@ -120,7 +142,7 @@
 }
 .notation {
   display: flex;
-  margin-top: 30%;
+  border-bottom: 2px solid #48abe0;
 }
 .votreavis {
   display: flex;
@@ -142,7 +164,21 @@
   justify-content: flex-end;
 }
 
-@media (min-width: 768px) {
+@media screen  and (max-width : 768px) {
+  .container-cardObjet {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+ .infoCreateur {
+  flex-direction: column;
+ }
+ .notation {
+  flex-direction: column;
+ }
+ .descriptionObjet {
+  width: auto;
+ }
   .bdtadpan {
     height: 50px;
     padding: 0;

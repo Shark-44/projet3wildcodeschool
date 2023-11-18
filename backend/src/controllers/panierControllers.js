@@ -112,7 +112,6 @@ const upanier = (req, res) => {
   const UtilisateurId = req.query.UtilisateurId
   const ObjetsId = req.query.ObjetsId
   const quantitePanier = req.query.quantitePanier
-  console.info(UtilisateurId, ObjetsId, quantitePanier)
   models.panier
     .upanier(UtilisateurId, ObjetsId, quantitePanier)
     .then(([rows]) => {
