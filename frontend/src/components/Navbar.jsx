@@ -11,11 +11,11 @@ const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
   // const user = Cookies.get("UtilisateurId")
   const prenom = Cookies.get("Prenom")
   const API_URL = import.meta.env.VITE_BACKEND_URL
+
   const handleClick = () => {
     handleLoginClick()
   }
 
-  const buttonColor = onlogin ? "#A2FF86" : "#2bc6ff"
   const logout = () => {
     AlterwordAPI.get("/utilisateurconnexion").then(
       () => setOnlogin(false),
@@ -71,11 +71,7 @@ const NavBar = ({ handleLoginClick, addpanier, onlogin, setOnlogin }) => {
             </div>
           ) : (
             <div className="buttonContainer">
-              <button
-                onClick={handleClick}
-                className="loginicon log"
-                style={{ backgroundColor: buttonColor }}
-              >
+              <button onClick={handleClick} className="loginicon log">
                 Login
               </button>
               <Link to="/Formulaire" style={{ textDecoration: `none` }}>

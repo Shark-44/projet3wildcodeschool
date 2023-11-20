@@ -33,14 +33,19 @@ function App() {
   const user = Cookies.get("UtilisateurId")
   // const { user } = useAuthContext()
   useEffect(() => {
-    if (!user) {
-      setAddpanier(0)
-    } else {
-      AlterwordAPI.get(`/objetpanier?UtilisateurId=${user}`).then((res) =>
-        setDanspanier(res.data)
-      )
-      setAddpanier(danspanier.length)
+    const fetchData = async () => {
+      if (!user) {
+        setAddpanier(0)
+      } else {
+        const response = await AlterwordAPI.get(
+          `/objetpanier?UtilisateurId=${user}`
+        )
+        setDanspanier(response.data)
+        setAddpanier(response.data.length)
+      }
     }
+
+    fetchData()
   }, [user])
 
   return (
@@ -50,6 +55,7 @@ function App() {
         addpanier={addpanier}
         onlogin={onlogin}
         setOnlogin={setOnlogin}
+        user={user}
       />
 
       <LoginCard

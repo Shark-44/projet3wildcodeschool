@@ -18,6 +18,7 @@ const utilisateurobjetsControllers = require("./controllers/utilisateurobjetsCon
 const categorieobjetsControllers = require("./controllers/categorieobjetsControllers")
 const uploadControllers = require("./controllers/uploadControllers")
 const validator = require("./validator")
+const favorisControlers = require("./controllers/favorisControllers")
 
 // ROUTES UTILISATEUR
 router.get("/utilisateur", utilisateurControllers.browse)
@@ -133,6 +134,10 @@ router.delete(
   checkToken,
   utilisateurcategorieControllers.destroy
 )
+// ROUTE favoris
+router.get("/favoris", favorisControlers.lirefavoris)
+router.post("/favoris", favorisControlers.ajoutfavoris)
+router.delete("/favoris", favorisControlers.supfavoris)
 
 // ROUTE liaison UTILISATEUR OBJETS
 router.get("/utilisateurhasobjets", utilisateurobjetsControllers.browse)
