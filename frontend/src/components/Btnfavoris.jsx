@@ -9,12 +9,12 @@ const Btnfavoris = ({ params }) => {
   const [favorites, setFavorites] = useState(0)
   const imageSrc = favorites ? favoris : nofavoris
   const UtilisateurID = Cookies.get("UtilisateurId")
-  const UtilisateurID1 = params
+  const UtilisateurID1 = params.id
   // const UtilisateurID = 1
   // const UtilisateurID1 = 2
 
   useEffect(() => {
-    if (favorites === 0) {
+    if (favorites === 0 && UtilisateurID) {
       AlterwordAPI.get(
         `/favoris?UtilisateurID=${UtilisateurID}&UtilisateurID1=${UtilisateurID1}`
       )
@@ -35,7 +35,7 @@ const Btnfavoris = ({ params }) => {
   }, [favorites, UtilisateurID, UtilisateurID1])
 
   const handleFavoriteClick = () => {
-    if (favorites === 1) {
+    if (favorites === 1 && UtilisateurID) {
       AlterwordAPI.delete(
         `/favoris?UtilisateurID=${UtilisateurID}&UtilisateurID1=${UtilisateurID1}`
       )
@@ -45,7 +45,7 @@ const Btnfavoris = ({ params }) => {
         .catch((error) => {
           console.error("Erreur lors de la suppression des favoris:", error)
         })
-    } else {
+    } else if (favorites === 0 && UtilisateurID) {
       AlterwordAPI.post(
         `/favoris?UtilisateurID=${UtilisateurID}&UtilisateurID1=${UtilisateurID1}&favoris=1`
       )
@@ -53,7 +53,7 @@ const Btnfavoris = ({ params }) => {
           setFavorites((favorites) => 1 + favorites)
         })
         .catch((error) => {
-          console.error("Erreur lors de la suppression des favoris:", error)
+          console.error("Erreur lors de l'ajout des favoris:", error)
         })
     }
   }

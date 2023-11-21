@@ -11,8 +11,7 @@ function CreateurID() {
   const params = useParams()
   const [createurs, setCreateurs] = useState([])
   const [objets, setObjets] = useState([])
-  // eslint-disable-next-line no-unused-vars
-  const Byprenom = createurs.nom
+
   // Pour les avis
   const [lecavis, setLecavis] = useState([])
   const API_URL = import.meta.env.VITE_BACKEND_URL
@@ -35,7 +34,11 @@ function CreateurID() {
     <div className="container Createur">
       <div className="partiepresentation">
         <img
-          src={API_URL + "/assets/images/avatar/" + createurs.photo}
+          src={
+            createurs && createurs.photo
+              ? API_URL + "/assets/images/avatar/" + createurs.photo
+              : ""
+          }
           alt={createurs.nom}
         />
         <h2 className="nomcreateur">
