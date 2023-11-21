@@ -40,6 +40,7 @@ const PanierManager = require("./PanierManager")
 const UtilisateurcategorieManager = require("./UtilisateurcategorieManager")
 const UtilisateurManager = require("./UtilisateurManager")
 const UtilisateurobjetsManager = require("./UtilisateurobjetsManager")
+const FavorisManager = require("./FavorisManager")
 
 models.avisobjet = new AvisobjetManager()
 models.avisobjet.setDatabase(pool)
@@ -74,6 +75,8 @@ models.utilisateur.setDatabase(pool)
 models.utilisateurobjets = new UtilisateurobjetsManager()
 models.utilisateurobjets.setDatabase(pool)
 
+models.favoris = new FavorisManager()
+models.favoris.setDatabase(pool)
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 

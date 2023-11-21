@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import AlterwordAPI from "../services/AlterwordAPI"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router"
+import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons"
 import "./Formulaire.css"
 
 const API_URL = import.meta.env.VITE_BACKEND_URL
@@ -23,6 +24,7 @@ function Formulaire() {
 
   const [image, setImage] = useState("./src/assets/avatar.png")
   const [visuel, setVisuel] = useState("./src/assets/avatar.png")
+  const [visiblePW, setVisiblePW] = useState(false)
 
   const { register, handleSubmit, setValue } = useForm()
   const navigate = useNavigate()
@@ -71,12 +73,12 @@ function Formulaire() {
 
   const onSubmit = async () => {
     try {
-      const formData = new FormData()
-      formData.append("myfile", image)
+      const formPayload = new FormData()
+      formPayload.append("myfile", image)
 
       const response = await fetch(API_URL + "/upload", {
         method: "POST",
-        body: formData,
+        body: formPayload,
       })
 
       // eslint-disable-next-line no-unused-vars
@@ -142,16 +144,21 @@ function Formulaire() {
             />
             <br />
             <label htmlFor="character">Mot de passe:</label>
-            <input
-              type="text"
-              className="formulairebase"
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  password: e.target.value,
-                })
-              }
-            />
+            <div className="cachepassword">
+              <input
+                type={visiblePW ? "text" : "password"}
+                className="formulairebase"
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    password: e.target.value,
+                  })
+                }
+              />
+              <div onClick={() => setVisiblePW(!visiblePW)} id="btPW">
+                {visiblePW ? <EyeOutlined /> : <EyeInvisibleOutlined />}
+              </div>
+            </div>
             <br />
             <label htmlFor="character">Adresse:</label>
             <input
@@ -266,6 +273,7 @@ function Formulaire() {
           </div>
         )}
         <input
+          id="SoumettreF"
           type="button"
           title="submit"
           value="Soumettre"
