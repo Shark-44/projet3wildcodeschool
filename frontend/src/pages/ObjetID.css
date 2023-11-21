@@ -1,8 +1,13 @@
 .container-cardObjet{
   display: flex;
   margin-top: 100px;
-  justify-content: center;
-  gap: 10%;
+  flex-direction: column;
+}
+.cardObjetgeneral{
+  display: flex;
+  gap:20px;
+  align-items: center;
+  justify-content:space-around;
 }
 
 .cardObjet {
@@ -60,7 +65,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  align-items: flex-end;
+  align-items: center;
   margin-bottom: 25%;
 }
 .titreavis{
@@ -71,9 +76,11 @@
 }
 .blockavisObjet {
   display: flex;
-  background-color: white;
-  height: 50%;
+  flex-direction: column;
   align-items: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .blockavisObjet h2 {
@@ -82,6 +89,10 @@
   border-radius: 5px;
   color: #0e0424;
   text-align: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 .blockavisObjet img {
   border-radius: 50%;
@@ -93,12 +104,11 @@
 .avisrecadre{
   display: flex;
   justify-content: flex-end;
- 
-  gap: 15px;
+  background-color: white;
 }
 .bdtadpan {
   width: 150px;
-  height: 50px;
+  height: 75px;
   padding: 0;
   background-color: #0078d0;
   border: 0;
@@ -184,3 +194,10 @@
     padding: 0;
   }
 }
+@media screen  and (max-width : 768px){
+  .cardObjetgeneral {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
