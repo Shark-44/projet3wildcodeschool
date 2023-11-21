@@ -13,7 +13,7 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
   const [createur, setCreateur] = useState([])
   const [avis, setAvis] = useState([])
   const [isShowZoom, setIsShowZoom] = useState(true)
-  const [avislaisse, setAvislaisse] = useState("")
+  const [avisObjet, setAvisObjet] = useState("")
   const API_URL = import.meta.env.VITE_BACKEND_URL
 
   useEffect(() => {
@@ -42,92 +42,106 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
     setIsShowZoom((isShowZoom) => !isShowZoom)
   }
   const handlevalide = (event) => {
+    const UtilisateurId = Cookies.get("UtilisateurId")
+    const ObjetsId = objets.id
+    const dateObj = new Date()
+
+    const annee = dateObj.getFullYear()
+    const mois = ("0" + (dateObj.getMonth() + 1)).slice(-2)
+    const jour = ("0" + dateObj.getDate()).slice(-2)
+    // Former la date au format souhaité (AAAA-MM-JJ)
+    const dateavisObjet = annee + "-" + mois + "-" + jour
     if (event.target.value.includes(">") || event.target.value.includes("<")) {
       return
     }
-    setAvislaisse(event.target.value)
+    AlterwordAPI.post("/avisobjet", {
+      UtilisateurId,
+      ObjetsId,
+      avisObjet,
+      dateavisObjet,
+    })
   }
   return (
     <div className="container-cardObjet">
-      <div className="descriptionObjet">
-        <img src={API_URL + objets.photo1} alt={objets.nomObjet} />
-        <p onClick={handlezoom}>zoom</p>
-        <h1>{objets.nomObjet}</h1>
-        <h2>Prix: {objets.prix} €</h2>
-        <h2>Quantité restante : {objets.quantite}</h2>
-        <button className="bdtadpan" onClick={handleAdd}>
-          Ajouter au panier
-        </button>
-      </div>
-      <div className="infoAutre">
-        <div className="infoCreateur">
-          <h2>Ce produit est fabriqué par :</h2>
-          {createur.map((auteur) => (
-            <div key={auteur.id} className="cadrecreateur">
-              <Link className="link" to={`/Createurs/${auteur.id} `}>
-                <img
-                  src={API_URL + "/assets/images/avatar/" + auteur.photo}
-                  alt={auteur.nom}
-                />
-              </Link>
-              <h1>{auteur.prenom}</h1>
-            </div>
-          ))}
+      <div className="cardObjetgeneral">
+        <div className="descriptionObjet">
+          <img src={API_URL + objets.photo1} alt={objets.nomObjet} />
+          <p onClick={handlezoom}>zoom</p>
+          <h1>{objets.nomObjet}</h1>
+          <h2>Prix: {objets.prix} €</h2>
+          <h2>Quantité restante : {objets.quantite}</h2>
+          <button className="bdtadpan" onClick={handleAdd}>
+            Ajouter au panier
+          </button>
         </div>
-        <div className="positiondepart">
-          <Cardloupe
-            isShowZoom={isShowZoom}
-            handlezoom={handlezoom}
-            params={params.id}
-          />
-        </div>
-        <div className="avisutilisateur">
-          <div className="titreavis">
-            <h3>Des avis</h3>
-          </div>
-          <div className="blockavisObjet">
-            {avis.map((avis) => (
-              <div key={avis.id}>
-                <div className="avisrecadre">
-                  <h2>{avis.avisObjet}</h2>
+        <div className="infoAutre">
+          <div className="infoCreateur">
+            <h2>Ce produit est fabriqué par :</h2>
+            {createur.map((auteur) => (
+              <div key={auteur.id} className="cadrecreateur">
+                <Link className="link" to={`/Createurs/${auteur.id} `}>
                   <img
-                    src={API_URL + "/assets/images/avatar/" + avis.photo}
-                    alt={avis.prenom}
+                    src={API_URL + "/assets/images/avatar/" + auteur.photo}
+                    alt={auteur.nom}
                   />
-                </div>
+                </Link>
+                <h1>{auteur.prenom}</h1>
               </div>
             ))}
           </div>
-        </div>
-        <div className="notation">
-          <h2>Notez cet objet : </h2>
-          <Stars />
-        </div>
-        <div className="votreavis">
-          <h2>Laissez votre avis</h2>
-          <input
-            type="text"
-            className="avisuser"
-            value={avislaisse}
-            onChange={(event) => {
-              if (
-                event.target.value.includes(">") ||
-                event.target.value.includes("<")
-              ) {
-                return
-              }
-              setAvislaisse(event.target.value)
-              // eslint-disable-next-line no-restricted-syntax
-              console.log("coucou", avislaisse)
-            }}
-          />
-          <div className="placeinput">
-            <input
-              type="image"
-              className="validebtn"
-              onClick={handlevalide}
-              src={API_URL + "/assets/images/autre/validationbtn.jpg"}
+          <div className="positiondepart">
+            <Cardloupe
+              isShowZoom={isShowZoom}
+              handlezoom={handlezoom}
+              params={params.id}
             />
+          </div>
+          <div className="avisutilisateur">
+            <div className="titreavis">
+              <h3>Des avis</h3>
+            </div>
+            <div className="blockavisObjet">
+              {avis.map((avis) => (
+                <div key={avis.id}>
+                  <div className="avisrecadre">
+                    <h2>{avis.avisObjet}</h2>
+                    <img
+                      src={API_URL + "/assets/images/avatar/" + avis.photo}
+                      alt={avis.prenom}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="notation">
+            <h2>Notez cet objet : </h2>
+            <Stars />
+          </div>
+          <div className="votreavis">
+            <h2>Laissez votre avis</h2>
+            <input
+              type="text"
+              className="avisuser"
+              value={avisObjet}
+              onChange={(event) => {
+                if (
+                  event.target.value.includes(">") ||
+                  event.target.value.includes("<")
+                ) {
+                  return
+                }
+                setAvisObjet(event.target.value)
+              }}
+            />
+            <div className="placeinput">
+              <input
+                type="image"
+                className="validebtn"
+                onClick={handlevalide}
+                src={API_URL + "/assets/images/autre/validationbtn.jpg"}
+              />
+            </div>
           </div>
         </div>
       </div>
