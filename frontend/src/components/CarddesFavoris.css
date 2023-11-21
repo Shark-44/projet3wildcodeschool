@@ -1,0 +1,26 @@
+.ContenairdesFavoris{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+
+}
+.Cardetailfavoris {
+    display: flex;
+    width: 50%;
+    border-radius: 10px;
+    background-color: white;
+    justify-content: space-around;
+    align-items: center;
+    color: black;
+}
+
+.Cardetailfavoris p {
+    font-family: "Lobster-Regular", cursive;
+    font-size: 1.4em;
+}
+@media screen  and (max-width : 768px){
+    .Cardetailfavoris{
+        width: 90%;
+    }
+}

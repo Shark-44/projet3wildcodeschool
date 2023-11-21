@@ -25,5 +25,12 @@ class FavorisManager extends AbstractManager {
       [utilisateurId, utilisateurId1]
     )
   }
+
+  lirefavorisuser(utilisateurId) {
+    return this.database.query(
+      `select favoris.Utilisateur_id, favoris.Utilisateur_id1, favoris.favoris, utilisateur.prenom, utilisateur.photo from ${this.table} join utilisateur on favoris.Utilisateur_id1 = utilisateur.id WHERE Utilisateur_id = ?`,
+      [utilisateurId]
+    )
+  }
 }
 module.exports = FavorisManager

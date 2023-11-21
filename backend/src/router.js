@@ -138,6 +138,8 @@ router.delete(
 router.get("/favoris", favorisControlers.lirefavoris)
 router.post("/favoris", favorisControlers.ajoutfavoris)
 router.delete("/favoris", favorisControlers.supfavoris)
+router.get("/favorispouruser", favorisControlers.favorisuser)
+router.delete("/favorispouruser", favorisControlers.delfavorisuser)
 
 // ROUTE liaison UTILISATEUR OBJETS
 router.get("/utilisateurhasobjets", utilisateurobjetsControllers.browse)
