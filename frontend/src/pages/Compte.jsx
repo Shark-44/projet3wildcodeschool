@@ -3,7 +3,7 @@ import Cookies from "js-cookie"
 import { useState, useEffect } from "react"
 import AlterwordAPI from "../services/AlterwordAPI"
 import Edit from "../assets/iconeedit.png"
-
+import CarddesFavoris from "../components/CarddesFavoris"
 function Compte() {
   const UtilisateurId = Cookies.get("UtilisateurId")
   const [info, setInfo] = useState([])
@@ -61,6 +61,7 @@ function Compte() {
       </div>
       <div className="favoris">
         <h2>Vos vendeurs favoris</h2>
+        <CarddesFavoris />
       </div>
     </div>
   )
