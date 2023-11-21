@@ -85,12 +85,16 @@
   transform: rotateX(-90deg) translateZ(100px);
 }
 
-.imagecube img {
+.imagecube {
   margin: 0;
   border: 1px solid black;
   border-radius: 20px;
+  width: 300Px;
+  height: 300px;
 }
 
 label {
   margin-right: 10px;
 }
+
+

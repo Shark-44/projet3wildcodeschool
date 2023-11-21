@@ -42,46 +42,22 @@ function Cube3D() {
         >
           <Cube size={300} index="front">
             <div className="imagecube">
-              <img
-                style={{ width: "300px", height: "300px" }}
-                src={API_URL + img1}
-                alt="front"
-              />
+              <img src={API_URL + img1} alt="front" />
             </div>
             <div className="imagecube">
-              <img
-                style={{ width: "300px", height: "300px" }}
-                src={API_URL + img2}
-                alt="right"
-              />
+              <img src={API_URL + img2} alt="right" />
             </div>
             <div className="imagecube">
-              <img
-                style={{ width: "300px", height: "300px" }}
-                src={API_URL + img3}
-                alt="back"
-              />
+              <img src={API_URL + img3} alt="back" />
             </div>
             <div className="imagecube">
-              <img
-                style={{ width: "300px", height: "300px" }}
-                src={API_URL + img4}
-                alt="left"
-              />
+              <img src={API_URL + img4} alt="left" />
             </div>
             <div className="imagecube">
-              <img
-                style={{ width: "300px", height: "300px" }}
-                src={API_URL + img5}
-                alt="top"
-              />
+              <img src={API_URL + img5} alt="top" />
             </div>
             <div className="imagecube">
-              <img
-                style={{ width: "300px", height: "300px" }}
-                src={API_URL + img6}
-                alt="bottom"
-              />
+              <img src={API_URL + img6} alt="bottom" />
             </div>
           </Cube>
         </div>

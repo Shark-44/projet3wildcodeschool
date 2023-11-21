@@ -135,11 +135,11 @@ router.delete(
   utilisateurcategorieControllers.destroy
 )
 // ROUTE favoris
-router.get("/favoris", favorisControlers.lirefavoris)
-router.post("/favoris", favorisControlers.ajoutfavoris)
-router.delete("/favoris", favorisControlers.supfavoris)
-router.get("/favorispouruser", favorisControlers.favorisuser)
-router.delete("/favorispouruser", favorisControlers.delfavorisuser)
+router.get("/favoris", checkToken, favorisControlers.lirefavoris)
+router.post("/favoris", checkToken, favorisControlers.ajoutfavoris)
+router.delete("/favoris", checkToken, favorisControlers.supfavoris)
+router.get("/favorispouruser", checkToken, favorisControlers.favorisuser)
+router.delete("/favorispouruser", checkToken, favorisControlers.delfavorisuser)
 
 // ROUTE liaison UTILISATEUR OBJETS
 router.get("/utilisateurhasobjets", utilisateurobjetsControllers.browse)

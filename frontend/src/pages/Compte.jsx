@@ -19,8 +19,11 @@ function Compte() {
     AlterwordAPI.get(`/histocommande?UtilisateurId=${UtilisateurId}`).then(
       (res) => setHistoc(res.data)
     )
-  })
-
+  }, [UtilisateurId])
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "2-digit", day: "2-digit" }
+    return new Date(dateString).toLocaleDateString("en-US", options)
+  }
   return (
     <div className="containerCompte">
       <h2>Votre compte</h2>
@@ -52,7 +55,7 @@ function Compte() {
         {histoc.map((histo) => (
           <div key={histo.id} className="histo">
             <h4> Numero de commande : {histo.numero}</h4>{" "}
-            <h4>date de la commande : {histo.dateCommande} </h4>
+            <h4>date de la commande : {formatDate(histo.dateCommande)} </h4>
             <h4>objet commandé : {histo.nomObjet}</h4>
             <h4>qté commandé {histo.quantiteCommande} </h4>
             <h4> pour un prix total {histo.prixTotal} €</h4>
@@ -63,6 +66,7 @@ function Compte() {
         <h2>Vos vendeurs favoris</h2>
         <CarddesFavoris />
       </div>
+      <div className="complement"></div>
     </div>
   )
 }

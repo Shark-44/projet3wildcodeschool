@@ -32,7 +32,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-left: 50px;
+  /* margin-left: 50px; */
   width: 30%;
 }
 .quantitedetail {
@@ -47,6 +47,7 @@
   width: 20px;
   height: 20px;
   border-radius: 0px;
+  margin-left: 5px;
 }
 .calcultotal {
   border-top: 2px solid black;
@@ -132,7 +133,7 @@
 
 @media screen  and (max-width : 768px){
   .cardetail {
-    width: 100%;
+    width: 90%;
   }
   .imgpanier {
     width:150px;
