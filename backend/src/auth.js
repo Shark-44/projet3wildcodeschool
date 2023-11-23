@@ -16,12 +16,11 @@ const hashPassword = (req, res, next) => {
     .then((hashedPassword) => {
       req.body.hashedPassword = hashedPassword
       delete req.body.password
-
       next()
     })
     .catch((err) => {
       console.error(err)
-      res.sendStatus(536)
+      res.sendStatus(530).send("Internal Server Error")
     })
 }
 
@@ -38,7 +37,7 @@ const verifyPassword = (req, res, next) => {
         })
 
         delete req.user.password
-        res.cookie("auth_token", token, { httpOnly: true, secure: true })
+        res.cookie("auth_token", token, { httpOnly: true, secure: false })
         res.send({ utilisateur: req.user })
       } else {
         res.sendStatus(401).send("Ivalid Credential")

@@ -1,9 +1,15 @@
+import AlterwordAPI from "../services/AlterwordAPI"
 import "./Paiement.css"
+// eslint-disable-next-line no-unused-vars
 import Cartes from "../assets/cartes.jpg"
+// eslint-disable-next-line no-unused-vars
 import Carte from "../assets/carte.jpg"
+// eslint-disable-next-line no-unused-vars
 import Paypal from "../assets/paypal.png"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import Cookies from "js-cookie"
+// eslint-disable-next-line no-unused-vars
 const mois = [
   "01",
   "02",
@@ -18,6 +24,7 @@ const mois = [
   "11",
   "12",
 ]
+// eslint-disable-next-line no-unused-vars
 const annee = [
   "2019",
   "2020",
@@ -31,10 +38,68 @@ const annee = [
   "2028",
 ]
 function Paiement() {
+  // eslint-disable-next-line no-unused-vars
   const [selectedOption, setSelectedOption] = useState()
+  const UtilisateurId = Cookies.get("UtilisateurId")
+  const [lastId, setLastId] = useState()
+  const [objetspanier, setObjetspanier] = useState([])
+
+  const valeur = { lastId }
+  const etat = valeur.lastId
+  const nombre = etat + 1
+  const numero = nombre.toString().padStart(6, "0")
+
+  useEffect(() => {
+    AlterwordAPI.get(`/commandelastID`)
+      .then((res) => {
+        const lastId = res.data.last_id
+        setLastId(lastId)
+      })
+      .catch((err) => {
+        console.error("Error fetching lastId", err)
+      })
+  }, [])
+  useEffect(() => {
+    AlterwordAPI.get(`/objetpanier?UtilisateurId=${UtilisateurId}`).then(
+      (res) => setObjetspanier(res.data)
+    )
+  }, [])
+
+  // eslint-disable-next-line no-unused-vars
+  const prixTotal = objetspanier.reduce((somme, a) => {
+    return somme + a.prix * a.quantitePanier
+  }, 0)
+  // eslint-disable-next-line no-unused-vars
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value)
   }
+  const handlevalide = () => {
+    objetspanier.forEach((objet, index) => {
+      const date = new Date()
+      const dateCommande = date.toLocaleDateString("fr-FR")
+
+      const data = {
+        numero,
+        UtilisateurId,
+        prixTotal,
+        ObjetsId: objet.id,
+        quantiteCommande: objet.quantitePanier,
+        dateCommande,
+      }
+      AlterwordAPI.post(`/commandeandobjet/${index}`, data)
+        .then((response) => {
+          // eslint-disable-next-line no-restricted-syntax
+          console.log(`Commande pour l'objet ${index} réussie!`)
+        })
+        .catch((error) => {
+          console.error(
+            `Erreur lors de la commande pour l'objet ${index}:`,
+            error
+          )
+        })
+    })
+  }
+
   return (
     <div className="Containerpaid">
       <div className="paiement">
@@ -78,11 +143,15 @@ function Paiement() {
           <img id="iconepaypal" src={Paypal} alt="" />
         </div>
       </div>
+
       <div id="centrage">
         <Link to="/">
-          <button className="btnpayer">PAYER</button>
+          <button className="btnpayer" onClick={handlevalide}>
+            PAYER
+          </button>
         </Link>
       </div>
+      <div className="ajustement"></div>
     </div>
   )
 }

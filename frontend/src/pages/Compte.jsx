@@ -9,7 +9,7 @@ function Compte() {
   const [info, setInfo] = useState([])
   const [histoc, setHistoc] = useState([])
   const API_URL = import.meta.env.VITE_BACKEND_URL
-
+  console.info(UtilisateurId)
   useEffect(() => {
     AlterwordAPI.get(`/utilisateur/${UtilisateurId}`).then((res) =>
       setInfo(res.data)
