@@ -74,7 +74,7 @@ function Paiement() {
     setSelectedOption(event.target.value)
   }
   const handlevalide = () => {
-    objetspanier.forEach((objet, index) => {
+    const postPromises = objetspanier.map((objet, index) => {
       const date = new Date()
       const dateCommande = date.toLocaleDateString("fr-FR")
 
@@ -86,10 +86,9 @@ function Paiement() {
         quantiteCommande: objet.quantitePanier,
         dateCommande,
       }
-      AlterwordAPI.post(`/commandeandobjet/${index}`, data)
+      return AlterwordAPI.post(`/commandeandobjet/${index}`, data)
         .then((response) => {
-          // eslint-disable-next-line no-restricted-syntax
-          console.log(`Commande pour l'objet ${index} réussie!`)
+          console.info(`Commande pour l'objet ${index} réussie!`)
         })
         .catch((error) => {
           console.error(
@@ -98,6 +97,17 @@ function Paiement() {
           )
         })
     })
+
+    Promise.all(postPromises)
+      .then(() => {
+        return AlterwordAPI.delete(`/panier?UtilisateurId=${UtilisateurId}`)
+      })
+      .then(() => {
+        console.info("Suppression du panier réussie!")
+      })
+      .catch((error) => {
+        console.error("Une erreur s'est produite:", error)
+      })
   }
 
   return (
