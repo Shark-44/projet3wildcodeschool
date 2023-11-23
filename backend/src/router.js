@@ -77,6 +77,8 @@ router.post("/commande", checkToken, commandeControllers.add)
 router.put("/commande/:id", checkToken, commandeControllers.edit)
 router.delete("/commande/:id", checkToken, commandeControllers.destroy)
 router.get("/histocommande", commandeControllers.cbyuser)
+router.get("/commandelastID", commandeControllers.dernierID)
+router.post("/commandeandobjet/:id", commandeControllers.validecommande)
 
 // ROUTE AVIS UTILISATEUR A CREATEUR
 router.get("/avisutilisateur", avisutilisateurControllers.browse)

@@ -16,7 +16,6 @@ const add = (req, res) => {
   const utilisateur = req.body
   utilisateur.password = req.body.hashedPassword
 
-  // TODO validations (length, format...)
   models.utilisateur
     .insert(utilisateur)
     .then(([result]) => {
@@ -46,8 +45,6 @@ const read = (req, res) => {
 const edit = (req, res) => {
   const utilisateur = req.body
 
-  // TODO validations (length, format...)
-
   utilisateur.id = parseInt(req.params.id, 10)
 
   models.utilisateur
@@ -66,9 +63,7 @@ const edit = (req, res) => {
 }
 const editutilisateurcategorie = (req, res) => {
   const utilisateur = req.body
-
-  // TODO validations (length, format...)
-
+  utilisateur.password = req.body.hashedPassword
   utilisateur.id = parseInt(req.params.id, 10)
 
   models.utilisateur
@@ -76,7 +71,7 @@ const editutilisateurcategorie = (req, res) => {
     .then(([createduser]) => {
       const user = {
         UtilisateurId: createduser.insertId,
-        CategorieId: req.body.CategorieID, // tu devra metre l'information de l'id categorie qui vien du front
+        CategorieId: req.body.CategorieID, // tu devras mettre l'information de l'id catégorie qui vient du front
       }
       models.utilisateurcategorie.insert(user).then(([rows]) => {
         res.send(rows)

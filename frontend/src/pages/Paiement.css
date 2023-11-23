@@ -13,6 +13,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: sticky;
     }
   .Cartes {
     width: 32em;
@@ -128,6 +129,9 @@
   
   .btnpaye:not(:disabled):active {
     transform: translateY(.125rem);
+  }
+  .ajustement {
+    height: 80px;
   }
   @media screen  and (max-width : 768px){
     .Cartes {

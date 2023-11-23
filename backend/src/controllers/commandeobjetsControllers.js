@@ -58,7 +58,7 @@ const add = (req, res) => {
   models.commandeobjets
     .insert(commandeobjets)
     .then(([result]) => {
-      res.location(`/commande_has_objets/${result.insertId}`).sendStatus(201)
+      res.location(`/commandehasobjets/${result.insertId}`).sendStatus(201)
     })
     .catch((err) => {
       console.error(err)

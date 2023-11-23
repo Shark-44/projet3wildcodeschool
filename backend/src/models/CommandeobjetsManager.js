@@ -7,10 +7,10 @@ class CommandeobjetsManager extends AbstractManager {
 
   insert(commandeobjets) {
     return this.database.query(
-      `insert into ${this.table} (Commande_id, Objet_id, quantiteCommande, dateCommande) values (?,?,?,?)`,
+      `insert into ${this.table} (CommandeId, ObjetsId, quantiteCommande, dateCommande) values (?,?,?,?)`,
       [
-        commandeobjets.Commande_id,
-        commandeobjets.Objet_id,
+        commandeobjets.CommandeId,
+        commandeobjets.ObjetsId,
         commandeobjets.quantiteCommande,
         commandeobjets.dateCommande,
       ]
@@ -19,10 +19,10 @@ class CommandeobjetsManager extends AbstractManager {
 
   update(commandeobjets) {
     return this.database.query(
-      `update ${this.table} set Commande_id = ?, Objet_id =? quantiteCommande= ?, dateCommande = ? where id = ?`,
+      `update ${this.table} set CommandeId = ?, ObjetId =? quantiteCommande= ?, dateCommande = ? where id = ?`,
       [
-        commandeobjets.Commande_id,
-        commandeobjets.Objet_id,
+        commandeobjets.CommandeId,
+        commandeobjets.ObjetsId,
         commandeobjets.quantiteCommande,
         commandeobjets.dateCommande,
       ]
