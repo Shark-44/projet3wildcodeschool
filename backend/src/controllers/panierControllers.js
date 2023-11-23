@@ -93,6 +93,18 @@ const byuser = (req, res) => {
       res.sendStatus(500)
     })
 }
+const delbyuser = (req, res) => {
+  const UtilisateurId = req.query.UtilisateurId
+  models.panier
+    .delebyuser(UtilisateurId)
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
 // Pour supprimer du panier
 
 const objetuser = (req, res) => {
@@ -131,4 +143,5 @@ module.exports = {
   byuser,
   objetuser,
   upanier,
+  delbyuser,
 }

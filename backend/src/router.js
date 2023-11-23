@@ -115,6 +115,7 @@ router.get("/panier", panierControllers.browse)
 router.get("/panier", panierControllers.read)
 router.post("/panier", checkToken, panierControllers.add)
 router.delete("/panier", checkToken, panierControllers.objetuser)
+router.delete("/panieruser", checkToken, panierControllers.delbyuser)
 router.get("/panieruser", panierControllers.byuser)
 router.put("/panier", checkToken, panierControllers.upanier)
 
