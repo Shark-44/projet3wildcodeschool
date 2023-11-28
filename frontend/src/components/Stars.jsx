@@ -7,9 +7,7 @@ const Stars = () => {
   // Catch Rating value
   const handleRating = (rate) => {
     setRating(rate)
-    // other logic
-    // eslint-disable-next-line no-restricted-syntax
-    console.log(rate)
+    console.info(rate)
   }
 
   return (
