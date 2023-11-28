@@ -141,6 +141,7 @@ function Formulaire() {
                   email: e.target.value,
                 })
               }
+              pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
             />
             <br />
             <label htmlFor="character">Mot de passe:</label>
