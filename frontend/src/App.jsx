@@ -21,6 +21,7 @@ import Compte from "./pages/Compte"
 import AlterwordAPI from "./services/AlterwordAPI"
 import Footer from "./components/Footer"
 import HappyEnd from "./pages/HappyEnd"
+import Ajoutobjet from "./components/Ajoutobjet"
 
 function App() {
   const [isShowLogin, setIsShowLogin] = useState(true)
@@ -84,6 +85,7 @@ function App() {
           <Route path="/PDFvu/:id" element={<PDFvu />} />
           <Route path="/Paiement" element={<Paiement />} />
           <Route path="/Compte" element={<Compte />} />
+          <Route path="/Ajoutobjet" element={<Ajoutobjet />} />
         </Route>
       </Routes>
       <Footer />
