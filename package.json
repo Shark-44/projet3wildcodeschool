@@ -44,6 +44,7 @@
     "cookie-parser": "^1.4.6",
     "helmet": "^7.0.0",
     "joi": "^17.10.0",
+    "joi-password-complexity": "^5.2.0",
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "jspdf": "^2.5.1",
@@ -60,6 +61,7 @@
     "react-router-dom": "^6.15.0",
     "react-simple-star-rating": "^5.1.7",
     "stream-browserify": "^3.0.0",
-    "util": "^0.12.5"
+    "util": "^0.12.5",
+    "zxcvbn": "^4.4.2"
   }
 }
