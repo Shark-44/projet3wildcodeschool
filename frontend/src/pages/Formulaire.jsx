@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router"
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons"
 import "./Formulaire.css"
+import zxcvbn from "zxcvbn"
 
 const API_URL = import.meta.env.VITE_BACKEND_URL
 
@@ -25,6 +26,7 @@ function Formulaire() {
   const [image, setImage] = useState("./src/assets/avatar.png")
   const [visuel, setVisuel] = useState("./src/assets/avatar.png")
   const [visiblePW, setVisiblePW] = useState(false)
+  const [passwordStrength, setPasswordStrength] = useState(0)
 
   const { register, handleSubmit, setValue } = useForm()
   const navigate = useNavigate()
@@ -100,7 +102,16 @@ function Formulaire() {
       // Gérer les erreurs de manière appropriée
     }
   }
+  const handlePasswordChange = (e) => {
+    const newPassword = e.target.value
+    setFormData({
+      ...formData,
+      password: newPassword,
+    })
 
+    const result = zxcvbn(newPassword)
+    setPasswordStrength(result.score)
+  }
   return (
     <div className="contenairformulaire">
       <h1>Formulaire d'enregistrement</h1>
@@ -149,15 +160,14 @@ function Formulaire() {
               <input
                 type={visiblePW ? "text" : "password"}
                 className="formulairebase"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    password: e.target.value,
-                  })
-                }
+                placeholder="!-m-M-1 et plus de 8 caracteres"
+                onChange={handlePasswordChange}
               />
               <div onClick={() => setVisiblePW(!visiblePW)} id="btPW">
                 {visiblePW ? <EyeOutlined /> : <EyeInvisibleOutlined />}
+              </div>
+              <div className="password-strength">
+                Strength: {passwordStrength}/4
               </div>
             </div>
             <br />
