@@ -1,0 +1,36 @@
+.contenairaddcollection {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+.Positionformulaire {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.Positionformulaire label {
+    margin-top: 14px;
+    color: azure;
+}
+.imputobjet {
+    height: 15px;
+}
+.imporimage {
+    display: flex;
+    color: white;
+    font-size: 2em;
+    padding: 20px;
+}
+.importimg{
+    margin-left: 20px;
+}
+.objetimg {
+    width: 250px;
+    height: 250px;
+    background-color: white;
+    padding: 5px;
+}
+#enregistreobjet {
+    font-size: 1.7em;
+    background-color: yellow;
+}

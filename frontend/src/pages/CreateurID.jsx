@@ -1,6 +1,7 @@
 import AlterwordAPI from "../services/AlterwordAPI"
 import { useEffect, useState } from "react"
 import { useParams, Link } from "react-router-dom"
+import Cookies from "js-cookie"
 import "./CreateurID.css"
 import CardB from "../components/CardB"
 import imageback from "../assets/background2.png"
@@ -11,6 +12,10 @@ function CreateurID() {
   const params = useParams()
   const [createurs, setCreateurs] = useState([])
   const [objets, setObjets] = useState([])
+  const UtilisateurId = Cookies.get("UtilisateurId")
+  const condition = () => {
+    return UtilisateurId === params.id
+  }
 
   // Pour les avis
   const [lecavis, setLecavis] = useState([])
@@ -66,6 +71,13 @@ function CreateurID() {
             />
           </Link>
         ))}
+      </div>
+      <div className="pourcreateur">
+        {condition() && (
+          <Link to="/Ajoutobjet">
+            <button id="liencreateur">Ajout d'un nouvel objet</button>
+          </Link>
+        )}
       </div>
       <div className="lesavis">
         <h2 className="titrecollection">les avis :</h2>
