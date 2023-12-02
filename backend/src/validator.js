@@ -2,8 +2,8 @@ const Joi = require("joi")
 const passwordComplexity = require("joi-password-complexity")
 
 const passwordComplexityOptions = {
-  min: 8, // longueur minimale
-  max: 100, // longueur maximale
+  min: 6, // longueur minimale origine 8
+  max: 10, // longueur maximale
   lowerCase: 1, // au moins 1 lettre minuscule
   upperCase: 1, // au moins 1 lettre majuscule
   numeric: 1, // au moins 1 chiffre
