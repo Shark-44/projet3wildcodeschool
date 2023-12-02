@@ -84,18 +84,30 @@ function Formulaire() {
   const isEmailExists = async (email) => {
     try {
       const response = await AlterwordAPI.get(
-        `/utilisateur/email-exists/${email}`
+        `/utilisateuremailexists?email=${email}`
       )
-      return response.data.exists
+      const status = response.status
+      if (status === 200) {
+        return
+      } else if (status === 401) {
+        console.info("401")
+      } else {
+        throw new Error(`Unexpected HTTP status: ${status}`)
+      }
     } catch (error) {
-      console.error("Error checking email existence:", error)
-      throw error // Handle the error as needed
+      alert("Cette email existe déjà")
+      if (error.response) {
+        console.error("Error status:", error.response.status)
+      }
+      throw error
     }
   }
   const onSubmit = async () => {
     try {
       const emailExists = await isEmailExists(formData.email)
+      console.info("je suis la")
       if (emailExists) {
+        alert("Your file is being uploaded!")
         // Handle the case where the email already exists
         console.error("Email already exists")
         return

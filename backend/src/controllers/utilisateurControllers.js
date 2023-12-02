@@ -141,6 +141,24 @@ const logoutUtilisateur = (req, res) => {
     .clearCookie("UtilisateurId")
     .sendStatus(200)
 }
+const findemail = (req, res) => {
+  const email = req.query.email
+  models.utilisateur
+    .findemailuser(email)
+    .then(([utilisateur]) => {
+      if (utilisateur[0] == null) {
+        res.sendStatus(200)
+      } else if (utilisateur[0] != null) {
+        res.sendStatus(401)
+      }
+    })
+
+    .catch((err) => {
+      console.error(err)
+
+      res.status(518).send("Error retrieving data from database")
+    })
+}
 module.exports = {
   browse,
   add,
@@ -151,4 +169,5 @@ module.exports = {
   editutilisateurcategorie,
   loginUtilisateur,
   logoutUtilisateur,
+  findemail,
 }

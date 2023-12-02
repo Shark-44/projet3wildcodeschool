@@ -36,6 +36,7 @@ router.put(
   utilisateurControllers.edit
 )
 router.delete("/utilisateur/:id", checkToken, utilisateurControllers.destroy)
+router.get("/utilisateuremailexists", utilisateurControllers.findemail)
 
 // ROUTE JOINTURE
 router.get(
