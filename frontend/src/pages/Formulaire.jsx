@@ -5,6 +5,7 @@ import { useNavigate } from "react-router"
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons"
 import "./Formulaire.css"
 import zxcvbn from "zxcvbn"
+import Progressbar from "../components/Progressbar"
 
 const API_URL = import.meta.env.VITE_BACKEND_URL
 
@@ -25,21 +26,29 @@ function Formulaire() {
 
   const [image, setImage] = useState("./src/assets/avatar.png")
   const [visuel, setVisuel] = useState("./src/assets/avatar.png")
-  const [visiblePW, setVisiblePW] = useState(false)
-  const [passwordStrength, setPasswordStrength] = useState(0)
-
+  // Partie enregistrement
   const { register, handleSubmit, setValue } = useForm()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    register("myfile") // Enregistrez le champ après le rendu initial
-  }, [register])
+  // Pour construire la complexité du password
+  const [passwordStrength, setPasswordStrength] = useState(0)
+  const [password, setPassword] = useState("")
+  const [hasUppercase, setHasUppercase] = useState(false)
+  const [hasLowercase, setHasLowercase] = useState(false)
+  const [hasDigit, setHasDigit] = useState(false)
+  const [isLengthValid, setIsLengthValid] = useState(false)
+  const [selectedOption, setSelectedOption] = useState(0)
 
+  useEffect(() => {
+    register("myfile") // Pour enregistrer une image
+  }, [register])
+  // pour choix d'un joueur ou createur
   const handleOptionChange = (event) => {
     setFormData({
       ...formData,
       createur: String(event.target.value),
     })
+    setSelectedOption(parseInt(event.target.value, 10))
   }
 
   const handleSelect = (event) => {
@@ -72,9 +81,37 @@ function Formulaire() {
       photo: "",
     })
   }
-
+  const isEmailExists = async (email) => {
+    try {
+      const response = await AlterwordAPI.get(
+        `/utilisateuremailexists?email=${email}`
+      )
+      const status = response.status
+      if (status === 200) {
+        return
+      } else if (status === 401) {
+        console.info("401")
+      } else {
+        throw new Error(`Unexpected HTTP status: ${status}`)
+      }
+    } catch (error) {
+      alert("Cette email existe déjà")
+      if (error.response) {
+        console.error("Error status:", error.response.status)
+      }
+      throw error
+    }
+  }
   const onSubmit = async () => {
     try {
+      const emailExists = await isEmailExists(formData.email)
+      console.info("je suis la")
+      if (emailExists) {
+        alert("Your file is being uploaded!")
+        // Handle the case where the email already exists
+        console.error("Email already exists")
+        return
+      }
       const formPayload = new FormData()
       formPayload.append("myfile", image)
 
@@ -102,16 +139,47 @@ function Formulaire() {
       // Gérer les erreurs de manière appropriée
     }
   }
+  const handleInputChange = (field, value) => {
+    setFormData({
+      ...formData,
+      [field]: value,
+    })
+  }
   const handlePasswordChange = (e) => {
     const newPassword = e.target.value
+    setPassword(newPassword)
     setFormData({
       ...formData,
       password: newPassword,
     })
 
-    const result = zxcvbn(newPassword)
+    const uppercaseRegex = /[A-Z]/
+    const lowercaseRegex = /[a-z]/
+    const digitRegex = /\d/
+
+    setHasUppercase(uppercaseRegex.test(newPassword))
+    setHasLowercase(lowercaseRegex.test(newPassword))
+    setHasDigit(digitRegex.test(newPassword))
+    setIsLengthValid(newPassword.length >= 8)
+
+    const result = zxcvbn(newPassword) // Valide la complexité du password
     setPasswordStrength(result.score)
+    // eslint-disable-next-line no-unused-vars
+    const passwordStrength = Math.min(
+      result.score, // Zxcvbn score
+      hasUppercase,
+      hasLowercase,
+      hasDigit,
+      isLengthValid
+    )
   }
+  const handleChange = (field, value) => {
+    setFormData({
+      ...formData,
+      [field]: value,
+    })
+  }
+
   return (
     <div className="contenairformulaire">
       <h1>Formulaire d'enregistrement</h1>
@@ -122,12 +190,7 @@ function Formulaire() {
             <input
               type="text"
               className="formulairebase"
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  nom: e.target.value,
-                })
-              }
+              onChange={(e) => handleInputChange("nom", e.target.value)}
             />
             <br />
             <label htmlFor="character">Prenom:</label>
@@ -158,18 +221,44 @@ function Formulaire() {
             <label htmlFor="character">Mot de passe:</label>
             <div className="cachepassword">
               <input
-                type={visiblePW ? "text" : "password"}
+                type={formData.visiblePW ? "text" : "password"}
                 className="formulairebase"
                 placeholder="!-m-M-1 et plus de 8 caracteres"
-                onChange={handlePasswordChange}
+                onChange={(e) => handlePasswordChange(e)}
               />
-              <div onClick={() => setVisiblePW(!visiblePW)} id="btPW">
-                {visiblePW ? <EyeOutlined /> : <EyeInvisibleOutlined />}
-              </div>
-              <div className="password-strength">
-                Strength: {passwordStrength}/4
+              <div
+                onClick={() => handleChange("visiblePW", !formData.visiblePW)}
+                id="btPW"
+              >
+                {formData.visiblePW ? (
+                  <EyeOutlined />
+                ) : (
+                  <EyeInvisibleOutlined />
+                )}
               </div>
             </div>
+            <div className="Pourprogressbar">
+              <Progressbar
+                value={passwordStrength}
+                max="4"
+                passwordStrength={passwordStrength}
+              ></Progressbar>
+            </div>
+
+            {password && (
+              <div className="Condition">
+                {hasUppercase && hasLowercase && hasDigit && isLengthValid ? (
+                  <h6>condition remplies</h6>
+                ) : (
+                  <div>
+                    {hasUppercase ? "✅" : "❌"} Au moins une majuscule
+                    {hasLowercase ? "✅" : "❌"} Au moins une minuscule
+                    {hasDigit ? "✅" : "❌"} Au moins un chiffre
+                    {isLengthValid ? "✅" : "❌"} Et plus de 10 caractères
+                  </div>
+                )}
+              </div>
+            )}
             <br />
             <label htmlFor="character">Adresse:</label>
             <input
@@ -226,60 +315,77 @@ function Formulaire() {
         </div>
         <div className="selectioncreateur">
           <h3>Vous êtes ?</h3>
-          <input
-            type="radio"
-            value={0}
-            name="type"
-            onChange={handleOptionChange}
-          />
-          Joueur
-          <input
-            type="radio"
-            value={1}
-            name="type"
-            onChange={handleOptionChange}
-          />
-          Createur
+          <div
+            className={`selectionne ${selectedOption === 0 ? "selected" : ""}`}
+          >
+            <input
+              type="radio"
+              value={0}
+              name="type"
+              onChange={handleOptionChange}
+            />
+            Joueur
+          </div>
+          <div
+            className={`selectionne ${selectedOption === 1 ? "selected" : ""}`}
+          >
+            <input
+              type="radio"
+              value={1}
+              name="type"
+              onChange={handleOptionChange}
+            />
+            Createur
+          </div>
+
           <br />
         </div>
         {formData.createur === "1" && (
           <div className="createur">
             <div className="selection">
               <h3>Votre domaine est : </h3>
-              <input
-                type="radio"
-                value={1}
-                name="style"
-                onChange={handleSelect}
-              />
-              Graphique
-              <input
-                type="radio"
-                value={2}
-                name="style"
-                onChange={handleSelect}
-              />
-              Mode
-              <input
-                type="radio"
-                value={3}
-                name="style"
-                onChange={handleSelect}
-              />
-              Print 3D
+              <div className="choixcreateur">
+                <input
+                  type="radio"
+                  value={1}
+                  name="style"
+                  onChange={handleSelect}
+                />
+                Graphique
+              </div>
+              <div className="choixcreateur">
+                <input
+                  type="radio"
+                  value={2}
+                  name="style"
+                  onChange={handleSelect}
+                />
+                Mode
+              </div>
+              <div className="choixcreateur">
+                <input
+                  type="radio"
+                  value={3}
+                  name="style"
+                  onChange={handleSelect}
+                />
+                Print 3D
+              </div>
               <br />
-              <label htmlFor="character">Description personnel</label>
-              <input
-                type="text"
-                className="description"
-                size="35"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    descriptionCreateur: e.target.value,
-                  })
-                }
-              />
+              <div className="reponse">
+                <label htmlFor="character">Description personnel</label>
+                <input
+                  type="text"
+                  className="description"
+                  size="35"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      descriptionCreateur: e.target.value,
+                    })
+                  }
+                />
+              </div>
             </div>
           </div>
         )}
