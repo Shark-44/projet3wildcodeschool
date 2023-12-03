@@ -88,7 +88,7 @@ function Formulaire() {
       )
       const status = response.status
       if (status === 200) {
-        return
+        console.info("ok")
       } else if (status === 401) {
         console.info("401")
       } else {
