@@ -3,7 +3,7 @@ const multer = require("multer")
 const { hashPassword, verifyPassword, checkToken } = require("./auth.js")
 
 const router = express.Router()
-const upload = multer({ dest: "./public/assets/image/avatar" })
+const upload = multer({ dest: "./public/assets/images" })
 
 const objetsControllers = require("./controllers/objetsControllers")
 const utilisateurControllers = require("./controllers/utilisateurControllers")
@@ -70,6 +70,7 @@ router.get("/objetpanier", objetsControllers.achatbyuser)
 // ROUTE CATEGORIE
 router.get("/categorie", categorieControllers.browse)
 router.get("/categorie/:id", categorieControllers.read)
+router.get("/categriebyuser", categorieControllers.finduserC)
 
 // ROUTE COMMANDE
 router.get("/commande", commandeControllers.browse)
@@ -177,6 +178,11 @@ router.delete(
 
 // ROUTE UPLOAD IMAGE DANS BACKEND
 router.post("/upload", upload.single("myfile"), uploadControllers.upload)
+router.post(
+  "/upload/:dossier",
+  upload.single("myfile"),
+  uploadControllers.uploadavecdossier
+)
 
 // ROUTE de CONNEXION
 router.post(
