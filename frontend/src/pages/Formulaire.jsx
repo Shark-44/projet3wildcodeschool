@@ -173,6 +173,7 @@ function Formulaire() {
       isLengthValid
     )
   }
+  // Pour rendre visible le password
   const handleChange = (field, value) => {
     setFormData({
       ...formData,

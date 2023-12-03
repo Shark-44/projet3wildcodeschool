@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
+import AlterwordAPI from "../services/AlterwordAPI"
+import Cookies from "js-cookie"
 import "./Ajoutobjet.css"
 
 const API_URL = import.meta.env.VITE_BACKEND_URL
@@ -18,36 +20,18 @@ function Ajoutobjet() {
   const [visuel1, setVisuel1] = useState("./src/assets/iconeobjet.png")
   const [visuel2, setVisuel2] = useState("./src/assets/iconeobjet.png")
   const [image, setImage] = useState()
-  // eslint-disable-next-line no-unused-vars
   const [image2, setImage2] = useState()
-  const saveImages = async () => {
-    try {
-      if (image) {
-        const formPayload = new FormData()
-        formPayload.append("myfile", image)
-
-        fetch(API_URL + "/upload", {
-          method: "POST",
-          body: formPayload,
-        })
-      }
-      if (image2) {
-        const formPayload = new FormData()
-        formPayload.append("myfile", image2)
-
-        fetch(API_URL + "/upload", {
-          method: "POST",
-          body: formPayload,
-        })
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error)
-      // Gérer les erreurs de manière appropriée
-    }
-  }
+  const [categorie, setCategorie] = useState()
+  const UtilisateurId = Cookies.get("UtilisateurId")
+  const categorie2 = "print"
+  console.info(categorie)
+  // Les fonctions
   useEffect(() => {
-    saveImages()
-  }, [formData])
+    AlterwordAPI.get(`/categriebyuser?UtilisateurId=${UtilisateurId}`).then(
+      (res) => setCategorie(res.data)
+    )
+  }, [UtilisateurId])
+  // gestion des inputs
   const handleChange = (e) => {
     const { name, value } = e.target // Utilisez name au lieu de nomObjet
     setFormData({
@@ -56,15 +40,9 @@ function Ajoutobjet() {
     })
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    saveImages()
-
-    console.info(`Form submitted with data:`, formData)
-  }
+  // gestion des images
   const uploadImage = (e, photoNumber) => {
     const file = e.target.files[0]
-
     if (file) {
       const objectURL = URL.createObjectURL(file)
       const fileName = file.name
@@ -85,20 +63,56 @@ function Ajoutobjet() {
       }
     }
   }
-  const cancelImage = (photoNumber) => {
+  const cancelImage1 = (photoNumber) => {
     if (photoNumber === 1) {
       setVisuel1("./src/assets/iconeobjet.png")
       setFormData((prevFormData) => ({
         ...prevFormData,
         photo1: "",
       }))
-    } else if (photoNumber === 2) {
+    } else {
+      console.info("1")
+    }
+  }
+  const cancelImage2 = (photoNumber) => {
+    if (photoNumber === 2) {
       setVisuel2("./src/assets/iconeobjet.png")
       setFormData((prevFormData) => ({
         ...prevFormData,
         photo2: "",
       }))
+    } else {
+      console.info("2")
     }
+  }
+  // l'enregistrement
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    try {
+      if (image) {
+        const formPayload = new FormData()
+        formPayload.append("myfile", image)
+        const uploadUrl = `${API_URL}/upload/${categorie2}`
+        fetch(uploadUrl, {
+          method: "POST",
+          body: formPayload,
+        })
+      }
+      if (image2) {
+        const formPayload = new FormData()
+        formPayload.append("myfile", image2)
+
+        const uploadUrl = `${API_URL}/upload/${categorie2}`
+        fetch(uploadUrl, {
+          method: "POST",
+          body: formPayload,
+        })
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error)
+    }
+
+    console.info(`Form submitted with data:`, formData)
   }
 
   return (
@@ -151,9 +165,12 @@ function Ajoutobjet() {
             className="input-file"
             type="file"
             accept="image/*"
+            id="fileInput1"
             onChange={(e) => uploadImage(e, 1)}
           />
-          <button onClick={() => cancelImage(1)}>Annuler</button>
+          <button type="button" onClick={() => cancelImage1(1)}>
+            Annuler la 1
+          </button>
         </form>
         <form className="importimg">
           <img className="objetimg" src={visuel2} alt="avatar" />
@@ -164,9 +181,12 @@ function Ajoutobjet() {
             className="input-file"
             type="file"
             accept="image/*"
+            id="fileInput2"
             onChange={(e) => uploadImage(e, 2)}
           />
-          <button onClick={() => cancelImage(2)}>Annuler</button>
+          <button type="button" onClick={() => cancelImage2(2)}>
+            Annuler la 2
+          </button>
         </form>
       </div>
     </div>

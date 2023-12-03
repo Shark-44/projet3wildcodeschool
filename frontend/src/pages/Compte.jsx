@@ -30,7 +30,7 @@ function Compte() {
         <div className="detail">
           <img src={API_URL + "/assets/images/avatar/" + info.photo} alt="" />
           <h2 id="bienvenu">
-            Bienvenu et contant de vous revoir {info.prenom}
+            Bienvenu et content de vous revoir {info.prenom}
           </h2>
         </div>
         <div className="blockcoor">
