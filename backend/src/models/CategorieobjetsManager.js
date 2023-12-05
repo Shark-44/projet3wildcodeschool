@@ -5,17 +5,17 @@ class CategorieobjetsManager extends AbstractManager {
     super({ table: "categoriehasobjets" })
   }
 
-  insert(Categorieobjets) {
+  insert(CategorieId, ObjetsId) {
     return this.database.query(
-      `insert into ${this.table} ( Categorie_id, Objets_id) values (?,?)`,
-      [Categorieobjets.Utilisateur_id, Categorieobjets.Objets_id]
+      `insert into ${this.table} ( CategorieId, ObjetsId) values (?,?)`,
+      [CategorieId, ObjetsId]
     )
   }
 
   update(Categorieobjets) {
     return this.database.query(
-      `update ${this.table} set  Categorie_id = ? Objets_id = ? where id = ?`,
-      [Categorieobjets.Categorie_id, Categorieobjets.Objets_id]
+      `update ${this.table} set  CategorieId = ? ObjetsId = ? where id = ?`,
+      [Categorieobjets.CategorieId, Categorieobjets.ObjetsId]
     )
   }
 }

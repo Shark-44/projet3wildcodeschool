@@ -11,9 +11,11 @@ function Ajoutobjet() {
     nomObjet: "",
     prix: "",
     quantite: "",
-    descriptionObjet: "",
     photo1: "",
     photo2: "",
+    descriptionObjet: "",
+    UtilisateurId: "",
+    CategorieId: "",
   })
   // eslint-disable-next-line no-unused-vars
   const { register } = useForm()
@@ -21,10 +23,18 @@ function Ajoutobjet() {
   const [visuel2, setVisuel2] = useState("./src/assets/iconeobjet.png")
   const [image, setImage] = useState()
   const [image2, setImage2] = useState()
-  const [categorie, setCategorie] = useState()
   const UtilisateurId = Cookies.get("UtilisateurId")
-  const categorie2 = "print"
-  console.info(categorie)
+  const [categorie, setCategorie] = useState("")
+  // Pour adapter la bdd et les dossiers images
+  let dossier = "default"
+  if (categorie.id === 1) {
+    dossier = "map"
+  } else if (categorie.id === 2) {
+    dossier = "mode"
+  } else if (categorie.id === 3) {
+    dossier = "print"
+  }
+  console.info("UtilisateurId:", UtilisateurId)
   // Les fonctions
   useEffect(() => {
     AlterwordAPI.get(`/categriebyuser?UtilisateurId=${UtilisateurId}`).then(
@@ -37,6 +47,8 @@ function Ajoutobjet() {
     setFormData({
       ...formData,
       [name]: value,
+      UtilisateurId,
+      CategorieId: categorie.id,
     })
   }
 
@@ -86,13 +98,15 @@ function Ajoutobjet() {
     }
   }
   // l'enregistrement
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    formData.UtilisateurId = Number(UtilisateurId)
+    formData.CategorieId = categorie.id
     try {
       if (image) {
         const formPayload = new FormData()
         formPayload.append("myfile", image)
-        const uploadUrl = `${API_URL}/upload/${categorie2}`
+        const uploadUrl = `${API_URL}/upload/${dossier}`
         fetch(uploadUrl, {
           method: "POST",
           body: formPayload,
@@ -102,12 +116,14 @@ function Ajoutobjet() {
         const formPayload = new FormData()
         formPayload.append("myfile", image2)
 
-        const uploadUrl = `${API_URL}/upload/${categorie2}`
+        const uploadUrl = `${API_URL}/upload/${dossier}`
         fetch(uploadUrl, {
           method: "POST",
           body: formPayload,
         })
       }
+      const formDataUpload = "/objetbycreateur"
+      await AlterwordAPI.post(formDataUpload, formData)
     } catch (error) {
       console.error("Error submitting form:", error)
     }

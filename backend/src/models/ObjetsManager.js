@@ -11,7 +11,7 @@ class ObjetsManager extends AbstractManager {
       [
         objets.nomObjet,
         objets.prix,
-        objets.quantité,
+        objets.quantite,
         objets.photo1,
         objets.photo2,
         objets.descriptionObjet,

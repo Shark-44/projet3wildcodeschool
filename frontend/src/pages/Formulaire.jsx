@@ -105,7 +105,6 @@ function Formulaire() {
   const onSubmit = async () => {
     try {
       const emailExists = await isEmailExists(formData.email)
-      console.info("je suis la")
       if (emailExists) {
         alert("Your file is being uploaded!")
         // Handle the case where the email already exists

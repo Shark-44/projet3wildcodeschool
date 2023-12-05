@@ -5,17 +5,17 @@ class UtilisateurobjetsManager extends AbstractManager {
     super({ table: "utilisateurhasobjets" })
   }
 
-  insert(utilisateurobjets) {
+  insert(UtilisateurId, ObjetsId) {
     return this.database.query(
-      `insert into ${this.table} ( Utilisateur_id, Objets_id) values (?,?)`,
-      [utilisateurobjets.Utilisateur_id, utilisateurobjets.Objets_id]
+      `insert into ${this.table} (UtilisateurId, ObjetsId) values (?,?)`,
+      [UtilisateurId, ObjetsId]
     )
   }
 
   update(utilisateurobjets) {
     return this.database.query(
-      `update ${this.table} set  Utilisateur_id = ? Objets_id = ? where id = ?`,
-      [utilisateurobjets.Utilisateur_id, utilisateurobjets.Objets_id]
+      `update ${this.table} set  UtilisateurId = ? ObjetsId = ? where id = ?`,
+      [utilisateurobjets.UtilisateurId, utilisateurobjets.ObjetsId]
     )
   }
 }
