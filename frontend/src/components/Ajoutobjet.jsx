@@ -58,19 +58,20 @@ function Ajoutobjet() {
     if (file) {
       const objectURL = URL.createObjectURL(file)
       const fileName = file.name
+      const fullPath = `/assets/images/${dossier}/${fileName}`
       if (photoNumber === 1) {
         setVisuel1(objectURL)
         setImage(file)
         setFormData((prevFormData) => ({
           ...prevFormData,
-          photo1: fileName,
+          photo1: fullPath,
         }))
       } else if (photoNumber === 2) {
         setVisuel2(objectURL)
         setImage2(file)
         setFormData((prevFormData) => ({
           ...prevFormData,
-          photo2: fileName,
+          photo2: fullPath,
         }))
       }
     }
