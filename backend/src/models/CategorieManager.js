@@ -7,7 +7,7 @@ class CategorieManager extends AbstractManager {
 
   findtype(UtilisateurId) {
     return this.database.query(
-      `Select categorie.type from ${this.table} join utilisateurhascategorie on utilisateurhascategorie.CategorieId = categorie.id where UtilisateurId= ? `,
+      `Select * from ${this.table} join utilisateurhascategorie on utilisateurhascategorie.CategorieId = categorie.id where UtilisateurId= ? `,
       [UtilisateurId]
     )
   }

@@ -168,6 +168,25 @@ const achatbyuser = (req, res) => {
       res.sendStatus(500)
     })
 }
+const ajoutbycreateur = (req, res) => {
+  const objets = req.body
+  models.objets
+    .insert(objets)
+    .then(([liaisonobjet]) => {
+      const UtilisateurId = req.body.UtilisateurId
+      const ObjetsId = liaisonobjet.insertId
+
+      models.utilisateurobjets.insert(UtilisateurId, ObjetsId)
+
+      const CategorieId = req.body.CategorieId
+
+      models.categorieobjets.insert(CategorieId, ObjetsId)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
 
 module.exports = {
   browse,
@@ -182,4 +201,5 @@ module.exports = {
   readavisobjetid,
   vuquantiteobjets,
   achatbyuser,
+  ajoutbycreateur,
 }

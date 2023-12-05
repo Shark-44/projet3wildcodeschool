@@ -66,6 +66,7 @@ router.get("/avisurobjet", objetsControllers.readavisobjet)
 router.get("/avisurobjetparid", objetsControllers.readavisobjetid)
 router.get("/quantitecommande", objetsControllers.vuquantiteobjets)
 router.get("/objetpanier", objetsControllers.achatbyuser)
+router.post("/objetbycreateur", objetsControllers.ajoutbycreateur)
 
 // ROUTE CATEGORIE
 router.get("/categorie", categorieControllers.browse)
