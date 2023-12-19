@@ -78,7 +78,6 @@ class ObjetsManager extends AbstractManager {
 
   // objet categorie
   readobjetsByCategorie(type) {
-    console.info(type)
     return this.database.query(
       `SELECT objets.id, objets.nomObjet, objets.prix, objets.quantite, objets.photo1, objets.photo2, objets.descriptionObjet FROM ${this.table} WHERE categorie_id = ?`,
       [type]
