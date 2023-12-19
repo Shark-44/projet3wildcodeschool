@@ -98,9 +98,9 @@ const destroy = (req, res) => {
     })
 }
 
-const readUtilisateurWithCategorie = (req, res) => {
+const toutlescreateurs = (req, res) => {
   models.utilisateur
-    .readUtilisateurWithCategorie()
+    .readallcreateur()
     .then(([rows]) => {
       if (rows[0] == null) {
         res.sendStatus(404)
@@ -165,7 +165,7 @@ module.exports = {
   read,
   edit,
   destroy,
-  readUtilisateurWithCategorie,
+  toutlescreateurs,
   editutilisateurcategorie,
   loginUtilisateur,
   logoutUtilisateur,

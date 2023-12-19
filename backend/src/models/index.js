@@ -31,13 +31,11 @@ const models = {}
 
 const AvisobjetManager = require("./AvisobjetManager")
 const AvisutilisateurManager = require("./AvisutilisateurManager")
-const CategorieobjetsManager = require("./CategorieobjetsManager")
 const CategorieManager = require("./CategorieManager")
 const CommandeManager = require("./CommandeManager")
 const CommandeobjetsManager = require("./CommandeobjetsManager")
 const ObjetsManager = require("./ObjetsManager")
 const PanierManager = require("./PanierManager")
-const UtilisateurcategorieManager = require("./UtilisateurcategorieManager")
 const UtilisateurManager = require("./UtilisateurManager")
 const UtilisateurobjetsManager = require("./UtilisateurobjetsManager")
 const FavorisManager = require("./FavorisManager")
@@ -51,9 +49,6 @@ models.avisutilisateur.setDatabase(pool)
 models.categorie = new CategorieManager()
 models.categorie.setDatabase(pool)
 
-models.categorieobjets = new CategorieobjetsManager()
-models.categorieobjets.setDatabase(pool)
-
 models.commande = new CommandeManager()
 models.commande.setDatabase(pool)
 
@@ -65,9 +60,6 @@ models.objets.setDatabase(pool)
 
 models.panier = new PanierManager()
 models.panier.setDatabase(pool)
-
-models.utilisateurcategorie = new UtilisateurcategorieManager()
-models.utilisateurcategorie.setDatabase(pool)
 
 models.utilisateur = new UtilisateurManager()
 models.utilisateur.setDatabase(pool)

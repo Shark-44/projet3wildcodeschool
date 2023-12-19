@@ -15,7 +15,7 @@ const FiltreBoutiquecreateur = ({ prenom, setPrenom }) => {
     AlterwordAPI.get("/utilisateur/with/categorie").then((res) =>
       setFiltrecreateur(res.data)
     )
-  }, [])
+  }, [prenom])
 
   return (
     <div className="containerfiltre">

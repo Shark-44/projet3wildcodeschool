@@ -41,7 +41,7 @@ router.get("/utilisateuremailexists", utilisateurControllers.findemail)
 // ROUTE JOINTURE
 router.get(
   "/utilisateur/with/categorie",
-  utilisateurControllers.readUtilisateurWithCategorie
+  utilisateurControllers.toutlescreateurs
 )
 router.post(
   "/utilisateur/with/categorie",
@@ -56,7 +56,7 @@ router.get("/objets/:id", objetsControllers.read)
 router.post("/objets", checkToken, objetsControllers.add)
 router.put("/objets/:id", checkToken, objetsControllers.edit)
 router.delete("/objets/:id", objetsControllers.destroy)
-router.get("/utilisateur/with/objets", objetsControllers.objetsByUtilisateur)
+router.get("/utilisateur/with/objets", objetsControllers.allobjetcreateur)
 router.get(
   "/utilisateur/avec/objets",
   objetsControllers.readobjetsByUtilisateur

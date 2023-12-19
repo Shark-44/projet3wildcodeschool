@@ -80,10 +80,10 @@ const destroy = (req, res) => {
     })
 }
 // objet par utilisateur
-const objetsByUtilisateur = (req, res) => {
+const allobjetcreateur = (req, res) => {
   const prenom = req.query.prenom
   models.objets
-    .readobjetsByUtilisateur(prenom)
+    .readallobjetcreateur(prenom)
     .then(([rows]) => {
       res.send(rows)
     })
@@ -194,7 +194,7 @@ module.exports = {
   read,
   edit,
   destroy,
-  objetsByUtilisateur,
+  allobjetcreateur,
   readobjetsByUtilisateur,
   objetsByCategorie,
   readavisobjet,

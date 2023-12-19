@@ -34,13 +34,13 @@ class ObjetsManager extends AbstractManager {
   }
 
   // objet utilisateur
-  readobjetsByUtilisateur(prenom) {
+  readallobjetcreateur(prenom) {
     return this.database.query(
       `SELECT objets.id, objets.nomObjet, objets.prix, objets.quantite, objets.photo1, 
-      objets.photo2, objets.descriptionObjet, utilisateurhasobjets.ObjetsId,
-       utilisateurhasobjets.UtilisateurId, utilisateur.nom, utilisateur.prenom FROM ${this.table} 
-       JOIN utilisateurhasobjets ON objets.id = utilisateurhasobjets.ObjetsId
-       JOIN utilisateur ON utilisateurhasobjets.UtilisateurId = utilisateur.id WHERE prenom = ?`,
+      objets.photo2, objets.descriptionObjet, utilisateur_has_objets.Objets_id,
+       utilisateur_has_objets.Utilisateur_id, utilisateur.nom, utilisateur.prenom FROM ${this.table} 
+       JOIN utilisateur_has_objets ON objets.id = utilisateur_has_objets.Objets_id
+       JOIN utilisateur ON utilisateur_has_objets.Utilisateur_id = utilisateur.id WHERE prenom = ?`,
       [prenom]
     )
   }
@@ -48,10 +48,10 @@ class ObjetsManager extends AbstractManager {
   readObjetsByUtilisateur(id) {
     return this.database.query(
       `SELECT objets.id, objets.nomObjet, objets.prix, objets.quantite, objets.photo1, 
-      objets.photo2, objets.descriptionObjet, utilisateurhasobjets.ObjetsId,
-       utilisateurhasobjets.UtilisateurId, utilisateur.nom, utilisateur.prenom, utilisateur.photo FROM ${this.table} 
-       JOIN utilisateurhasobjets ON objets.id = utilisateurhasobjets.ObjetsId
-       JOIN utilisateur ON utilisateurhasobjets.UtilisateurId = utilisateur.id WHERE objets.id = ?`,
+      objets.photo2, objets.descriptionObjet, utilisateur_has_objets.Objets_id,
+       utilisateur_has_objets.Utilisateur_id, utilisateur.nom, utilisateur.prenom, utilisateur.photo FROM ${this.table} 
+       JOIN utilisateur_has_objets ON objets.id = utilisateur_has_objets.Objets_id
+       JOIN utilisateur ON utilisateur_has_objets.Utilisateur_id = utilisateur.id WHERE objets.id = ?`,
       [id]
     )
   }
@@ -78,8 +78,9 @@ class ObjetsManager extends AbstractManager {
 
   // objet categorie
   readobjetsByCategorie(type) {
+    console.info(type)
     return this.database.query(
-      `SELECT objets.id, objets.nomObjet, objets.prix, objets.quantite, objets.photo1, objets.photo2, objets.descriptionObjet, categoriehasobjets.ObjetsId, categoriehasobjets.CategorieId, categorie.type FROM ${this.table} JOIN categoriehasobjets ON objets.id = categoriehasobjets.ObjetsId JOIN categorie ON categoriehasobjets.CategorieId = categorie.id WHERE type = ?`,
+      `SELECT objets.id, objets.nomObjet, objets.prix, objets.quantite, objets.photo1, objets.photo2, objets.descriptionObjet FROM ${this.table} WHERE categorie_id = ?`,
       [type]
     )
   }

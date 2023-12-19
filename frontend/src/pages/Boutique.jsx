@@ -9,29 +9,29 @@ import FiltreBoutiquecategorie from "../components/FiltreBoutiquecategorie"
 function Boutique() {
   const [objets, setObjets] = useState([])
   const [prenom, setPrenom] = useState()
-  const [type, setType] = useState()
+  const [idCategorie, setidCategorie] = useState()
 
   useEffect(() => {
-    if (!prenom && !type) {
+    if (!prenom && !idCategorie) {
       AlterwordAPI.get("/objets").then((res) => setObjets(res.data))
-    } else if (prenom !== undefined && type !== undefined) {
+    } else if (prenom !== undefined && idCategorie !== undefined) {
       AlterwordAPI.get(`/utilisateur/with/objets?prenom=${prenom}`).then(
         (res) => setObjets(res.data)
       )
-    } else if (!prenom && type !== undefined) {
-      AlterwordAPI.get(`/objets/with/categorie?type=${type}`).then((res) =>
-        setObjets(res.data)
+    } else if (!prenom && idCategorie !== undefined) {
+      AlterwordAPI.get(`/objets/with/categorie?type=${idCategorie}`).then(
+        (res) => setObjets(res.data)
       )
-    } else if (prenom !== undefined && !type) {
+    } else if (prenom !== undefined && !idCategorie) {
       AlterwordAPI.get(`/utilisateur/with/objets?prenom=${prenom}`).then(
         (res) => setObjets(res.data)
       )
     }
-  }, [prenom || type])
+  }, [prenom || idCategorie])
 
   const onclick = () => {
     setPrenom(undefined)
-    setType(undefined)
+    setidCategorie(undefined)
   }
   function toggleFilterVisibility() {
     const renduA = document.querySelector(".renduA")
@@ -45,7 +45,10 @@ function Boutique() {
       <div className="rendu">
         <div className="renduA hidden-responsive">
           <h3> les filtres</h3>
-          <FiltreBoutiquecategorie type={type} setType={setType} />
+          <FiltreBoutiquecategorie
+            idCategorie={idCategorie}
+            setidCategorie={setidCategorie}
+          />
           <FiltreBoutiquecreateur prenom={prenom} setPrenom={setPrenom} />
           <button id="bdt-filtre" onClick={onclick}>
             Reset

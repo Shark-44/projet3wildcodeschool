@@ -20,8 +20,6 @@ class UploadController {
 
   static uploadavecdossier = (req, res) => {
     const { dossier } = req.params
-    console.info(dossier)
-
     if (!dossier) {
       return res.status(400).send("Missing 'dossier' in the request body")
     }
