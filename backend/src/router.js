@@ -98,6 +98,7 @@ router.get("/avislaisse", avisutilisateurControllers.surcreateur)
 // ROUTE AVIS OBJETS
 router.get("/avisobjet", avisobjetControllers.browse)
 router.get("/avisobjet", avisobjetControllers.read)
+router.get("/avisutilisateurhome", avisobjetControllers.readavis)
 router.post("/avisobjet", checkToken, avisobjetControllers.add)
 router.put("/avisobjet", checkToken, avisobjetControllers.edit)
 router.delete("/avisobjet", checkToken, avisobjetControllers.destroy)

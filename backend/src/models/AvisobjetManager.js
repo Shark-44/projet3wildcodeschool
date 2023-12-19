@@ -28,6 +28,12 @@ class AvisobjetManager extends AbstractManager {
       ]
     )
   }
+
+  readavisuser() {
+    return this.database.query(
+      `SELECT avis_objet.avisObjet, utilisateur.photo from ${this.table} join utilisateur on  avis_objet.utilisateur_id = utilisateur.id`
+    )
+  }
 }
 
 module.exports = AvisobjetManager

@@ -24,7 +24,9 @@ const Cardavis = () => {
       () => avisuser[Math.floor(Math.random() * avisuser.length)]
     )
   useEffect(() => {
-    AlterwordAPI.get("/avisurobjet").then((res) => setAvisuser(res.data))
+    AlterwordAPI.get("/avisutilisateurhome").then((res) =>
+      setAvisuser(res.data)
+    )
   }, [])
   // les conditions ligne 20 s'assure que "avisuser" est bien chargé ainsi que la ligne 24 */
   return (

@@ -121,6 +121,7 @@ const objetsByCategorie = (req, res) => {
 }
 // avis objet
 const readavisobjet = (req, res) => {
+  console.info("je suis la")
   models.objets
     .readavisobjet()
     .then(([rows]) => {
