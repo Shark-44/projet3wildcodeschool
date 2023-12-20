@@ -7,8 +7,8 @@ class PanierManager extends AbstractManager {
 
   insert(panier) {
     return this.database.query(
-      `insert into ${this.table} ( UtilisateurId, ObjetsId, quantitePanier) values (?,?,?)`,
-      [panier.UtilisateurId, panier.ObjetsId, panier.quantitePanier]
+      `insert into ${this.table} ( utilisateur_id, quantite_panier) values (?,?)`,
+      [panier.UtilisateurId, panier.quantitePanier]
     )
   }
 

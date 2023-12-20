@@ -52,13 +52,17 @@ const edit = (req, res) => {
 
 const add = (req, res) => {
   const panier = req.body
-
-  // TODO validations (length, format...)
-
+  panier.id = parseInt(req.params.id, 10)
   models.panier
     .insert(panier)
     .then(([result]) => {
-      res.location(`/panier/${result.insertId}`).sendStatus(201)
+      const addobjet = {
+        objets_id: req.body.ObjetsId,
+        panier_id: result.insertId,
+      }
+      models.panierobjet.insert(addobjet).then(([rows]) => {
+        res.send(rows)
+      })
     })
     .catch((err) => {
       console.error(err)

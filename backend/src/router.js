@@ -63,7 +63,7 @@ router.get(
 )
 router.get("/objets/with/categorie", objetsControllers.objetsByCategorie)
 router.get("/avisurobjet", objetsControllers.readavisobjet)
-router.get("/avisurobjetparid", avisobjetControllers.readavisobjetid) // le 20 dec
+router.get("/avisurobjetparid", avisobjetControllers.readavisobjetid) // dec 2023
 router.get("/quantitecommande", objetsControllers.vuquantiteobjets)
 
 router.post("/objetbycreateur", objetsControllers.ajoutbycreateur)
@@ -117,7 +117,7 @@ router.delete(
 // ROUTE PANIER
 router.get("/panier", panierControllers.browse)
 router.get("/panier", panierControllers.read)
-router.post("/panier", checkToken, panierControllers.add)
+router.post("/panier", checkToken, panierControllers.add) // le 20 dec
 router.delete("/panier", checkToken, panierControllers.objetuser)
 router.delete("/panieruser", checkToken, panierControllers.delbyuser)
 router.get("/panieruser", panierControllers.byuser)
