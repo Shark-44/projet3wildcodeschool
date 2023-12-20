@@ -132,18 +132,7 @@ const readavisobjet = (req, res) => {
       res.sendStatus(500)
     })
 }
-const readavisobjetid = (req, res) => {
-  const id = req.query.id
-  models.objets
-    .readavisobjetid(id)
-    .then(([rows]) => {
-      res.send(rows)
-    })
-    .catch((err) => {
-      console.error(err)
-      res.sendStatus(500)
-    })
-}
+
 // pour afficher les photos objets les plus commandés
 const vuquantiteobjets = (req, res) => {
   models.objets
@@ -187,7 +176,6 @@ module.exports = {
   readobjetsByUtilisateur,
   objetsByCategorie,
   readavisobjet,
-  readavisobjetid,
   vuquantiteobjets,
   ajoutbycreateur,
 }

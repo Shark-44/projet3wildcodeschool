@@ -63,7 +63,7 @@ router.get(
 )
 router.get("/objets/with/categorie", objetsControllers.objetsByCategorie)
 router.get("/avisurobjet", objetsControllers.readavisobjet)
-router.get("/avisurobjetparid", objetsControllers.readavisobjetid)
+router.get("/avisurobjetparid", avisobjetControllers.readavisobjetid) // le 20 dec
 router.get("/quantitecommande", objetsControllers.vuquantiteobjets)
 
 router.post("/objetbycreateur", objetsControllers.ajoutbycreateur)
@@ -79,7 +79,7 @@ router.get("/commande/:id", commandeControllers.read)
 router.post("/commande", checkToken, commandeControllers.add)
 router.put("/commande/:id", checkToken, commandeControllers.edit)
 router.delete("/commande/:id", checkToken, commandeControllers.destroy)
-router.get("/histocommande", commandeControllers.cbyuser) // le 20 dec
+router.get("/histocommande", commandeControllers.cbyuser) // dec 2023
 router.get("/commandelastID", commandeControllers.dernierID)
 router.post("/commandeandobjet/:id", commandeControllers.validecommande)
 
@@ -180,7 +180,7 @@ router.delete(
 )
 
 // ROUTE UPLOAD IMAGE DANS BACKEND
-router.post("/upload", upload.single("myfile"), uploadControllers.upload)
+router.post("/upload", upload.single("myfile"), uploadControllers.upload) // dec 2023
 router.post(
   "/upload/:dossier",
   upload.single("myfile"),
@@ -192,7 +192,7 @@ router.post(
   "/utilisateurconnexion",
   utilisateurControllers.loginUtilisateur,
   verifyPassword
-)
-router.get("/utilisateurconnexion", utilisateurControllers.logoutUtilisateur)
+) // dec 2023
+router.get("/utilisateurconnexion", utilisateurControllers.logoutUtilisateur) // dec 2023
 
 module.exports = router

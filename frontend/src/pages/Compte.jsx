@@ -28,7 +28,9 @@ function Compte() {
       <h2>Votre compte</h2>
       <div className="top">
         <div className="detail">
-          <img src={API_URL + "/assets/images/avatar/" + info.photo} alt="" />
+          {info.photo && (
+            <img src={API_URL + "/assets/images/avatar/" + info.photo} alt="" />
+          )}
           <h2 id="bienvenu">
             Bienvenu et content de vous revoir {info.prenom}
           </h2>
@@ -51,8 +53,8 @@ function Compte() {
       </div>
       <div className="histachat">
         <h2>Historique de vos achats</h2>
-        {histoc.map((histo) => (
-          <div key={histo.id} className="histo">
+        {histoc.map((histo, index) => (
+          <div key={index} className="histo">
             <h4> Numero de commande : {histo.numero}</h4>{" "}
             <h4>date de la commande : {formatDate(histo.dateCommande)} </h4>
             <h4>objet commandé : {histo.nomObjet}</h4>

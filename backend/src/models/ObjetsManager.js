@@ -66,16 +66,6 @@ class ObjetsManager extends AbstractManager {
     )
   }
 
-  readavisobjetid(id) {
-    return this.database.query(
-      `SELECT objets.id, avisobjet.ObjetsId, avisobjet.UtilisateurId, avisobjet.avisObjet, avisobjet.dateavisObjet, utilisateur.prenom, utilisateur.nom, utilisateur.photo
-      FROM ${this.table}
-      JOIN avisobjet ON objets.id = avisObjet.ObjetsId 
-      JOIN utilisateur ON avisobjet.UtilisateurId = utilisateur.id WHERE objets.id = ?`,
-      [id]
-    )
-  }
-
   // objet categorie
   readobjetsByCategorie(type) {
     return this.database.query(
