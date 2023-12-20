@@ -28,7 +28,7 @@ router.post(
   validator.validateUtilisateur,
   hashPassword,
   utilisateurControllers.add
-)
+) // dec 2023
 router.put(
   "/utilisateur/:id",
   validator.validateUtilisateur,
@@ -36,13 +36,13 @@ router.put(
   utilisateurControllers.edit
 )
 router.delete("/utilisateur/:id", checkToken, utilisateurControllers.destroy)
-router.get("/utilisateuremailexists", utilisateurControllers.findemail)
+router.get("/utilisateuremailexists", utilisateurControllers.findemail) // dec 2023
 
 // ROUTE JOINTURE
 router.get(
   "/utilisateur/with/categorie",
-  utilisateurControllers.readUtilisateurWithCategorie
-)
+  utilisateurControllers.toutlescreateurs
+) // dec 2023
 router.post(
   "/utilisateur/with/categorie",
   validator.validateUtilisateur,
@@ -56,16 +56,16 @@ router.get("/objets/:id", objetsControllers.read)
 router.post("/objets", checkToken, objetsControllers.add)
 router.put("/objets/:id", checkToken, objetsControllers.edit)
 router.delete("/objets/:id", objetsControllers.destroy)
-router.get("/utilisateur/with/objets", objetsControllers.objetsByUtilisateur)
+router.get("/utilisateur/with/objets", objetsControllers.allobjetcreateur) // dec 2023
 router.get(
   "/utilisateur/avec/objets",
   objetsControllers.readobjetsByUtilisateur
 )
 router.get("/objets/with/categorie", objetsControllers.objetsByCategorie)
 router.get("/avisurobjet", objetsControllers.readavisobjet)
-router.get("/avisurobjetparid", objetsControllers.readavisobjetid)
+router.get("/avisurobjetparid", avisobjetControllers.readavisobjetid) // dec 2023
 router.get("/quantitecommande", objetsControllers.vuquantiteobjets)
-router.get("/objetpanier", objetsControllers.achatbyuser)
+
 router.post("/objetbycreateur", objetsControllers.ajoutbycreateur)
 
 // ROUTE CATEGORIE
@@ -79,7 +79,7 @@ router.get("/commande/:id", commandeControllers.read)
 router.post("/commande", checkToken, commandeControllers.add)
 router.put("/commande/:id", checkToken, commandeControllers.edit)
 router.delete("/commande/:id", checkToken, commandeControllers.destroy)
-router.get("/histocommande", commandeControllers.cbyuser)
+router.get("/histocommande", commandeControllers.cbyuser) // dec 2023
 router.get("/commandelastID", commandeControllers.dernierID)
 router.post("/commandeandobjet/:id", commandeControllers.validecommande)
 
@@ -98,6 +98,7 @@ router.get("/avislaisse", avisutilisateurControllers.surcreateur)
 // ROUTE AVIS OBJETS
 router.get("/avisobjet", avisobjetControllers.browse)
 router.get("/avisobjet", avisobjetControllers.read)
+router.get("/avisutilisateurhome", avisobjetControllers.readavis) // dec 2023
 router.post("/avisobjet", checkToken, avisobjetControllers.add)
 router.put("/avisobjet", checkToken, avisobjetControllers.edit)
 router.delete("/avisobjet", checkToken, avisobjetControllers.destroy)
@@ -116,11 +117,12 @@ router.delete(
 // ROUTE PANIER
 router.get("/panier", panierControllers.browse)
 router.get("/panier", panierControllers.read)
-router.post("/panier", checkToken, panierControllers.add)
-router.delete("/panier", checkToken, panierControllers.objetuser)
+router.post("/panier", checkToken, panierControllers.add) // dec 2023
+router.delete("/panier", checkToken, panierControllers.objetuser) // le 20 dec
 router.delete("/panieruser", checkToken, panierControllers.delbyuser)
 router.get("/panieruser", panierControllers.byuser)
-router.put("/panier", checkToken, panierControllers.upanier)
+router.put("/panier", checkToken, panierControllers.upanier) // dec 2023
+router.get("/objetpanier", panierControllers.achatbyuser) // dec 2023
 
 // ROUTE liaison CREATEUR CATEGORIE
 router.get("/utilisateurhascategorie", utilisateurcategorieControllers.browse)
@@ -178,7 +180,7 @@ router.delete(
 )
 
 // ROUTE UPLOAD IMAGE DANS BACKEND
-router.post("/upload", upload.single("myfile"), uploadControllers.upload)
+router.post("/upload", upload.single("myfile"), uploadControllers.upload) // dec 2023
 router.post(
   "/upload/:dossier",
   upload.single("myfile"),
@@ -190,7 +192,7 @@ router.post(
   "/utilisateurconnexion",
   utilisateurControllers.loginUtilisateur,
   verifyPassword
-)
-router.get("/utilisateurconnexion", utilisateurControllers.logoutUtilisateur)
+) // dec 2023
+router.get("/utilisateurconnexion", utilisateurControllers.logoutUtilisateur) // dec 2023
 
 module.exports = router

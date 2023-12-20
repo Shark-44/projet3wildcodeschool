@@ -21,7 +21,7 @@ class CommandeManager extends AbstractManager {
 
   findbyuser(UtilisateurId) {
     return this.database.query(
-      `select commandehasobjets.quantiteCommande, commandehasobjets.dateCommande, commande.prixTotal, commande.numero, objets.nomObjet  from ${this.table}  join commandehasobjets on commande.id = commandehasobjets.CommandeId  join objets on commandehasobjets.ObjetsId = objets.id where UtilisateurId = ?`,
+      `select commandehasobjets.quantiteCommande, commandehasobjets.dateCommande, commande.prixTotal, commande.numero, objets.nomObjet  from ${this.table}  join commandehasobjets on commande.id = commandehasobjets.CommandeId  join objets on commandehasobjets.ObjetsId = objets.id where utilisateur_id = ?`,
       [UtilisateurId]
     )
   }

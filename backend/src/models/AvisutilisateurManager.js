@@ -2,7 +2,7 @@ const AbstractManager = require("./AbstractManager")
 
 class AvisutilisateurManager extends AbstractManager {
   constructor() {
-    super({ table: "avisutilisateur" })
+    super({ table: "avis_utilisateur" })
   }
 
   insert(avisutilisateur) {

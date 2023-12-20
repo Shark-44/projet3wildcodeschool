@@ -11,7 +11,7 @@ function Createurs() {
   const tableFiltre =
     filter === "all"
       ? createurs
-      : createurs.filter((createur) => createur.type === filter)
+      : createurs.filter((createur) => createur.categorie_id === filter)
 
   useEffect(() => {
     AlterwordAPI.get("/utilisateur/with/categorie").then((res) =>
@@ -39,17 +39,17 @@ function Createurs() {
             />
             <FilterButton
               label="Graphique"
-              onClick={() => setFilter("Graphisme")}
+              onClick={() => setFilter(1)}
               active={filter === "Graphisme"}
             />
             <FilterButton
               label="Mode"
-              onClick={() => setFilter("Mode")}
+              onClick={() => setFilter(2)}
               active={filter === "Mode"}
             />
             <FilterButton
               label="3D-Print"
-              onClick={() => setFilter("3DPrint")}
+              onClick={() => setFilter(3)}
               active={filter === "3DPrint"}
             />
             <br />

@@ -2,7 +2,7 @@ const AbstractManager = require("./AbstractManager")
 
 class UtilisateurobjetsManager extends AbstractManager {
   constructor() {
-    super({ table: "utilisateurhasobjets" })
+    super({ table: "utilisateur_has_objets" })
   }
 
   insert(UtilisateurId, ObjetsId) {

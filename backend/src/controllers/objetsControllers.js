@@ -80,10 +80,10 @@ const destroy = (req, res) => {
     })
 }
 // objet par utilisateur
-const objetsByUtilisateur = (req, res) => {
+const allobjetcreateur = (req, res) => {
   const prenom = req.query.prenom
   models.objets
-    .readobjetsByUtilisateur(prenom)
+    .readallobjetcreateur(prenom)
     .then(([rows]) => {
       res.send(rows)
     })
@@ -121,6 +121,7 @@ const objetsByCategorie = (req, res) => {
 }
 // avis objet
 const readavisobjet = (req, res) => {
+  console.info("je suis la")
   models.objets
     .readavisobjet()
     .then(([rows]) => {
@@ -131,18 +132,7 @@ const readavisobjet = (req, res) => {
       res.sendStatus(500)
     })
 }
-const readavisobjetid = (req, res) => {
-  const id = req.query.id
-  models.objets
-    .readavisobjetid(id)
-    .then(([rows]) => {
-      res.send(rows)
-    })
-    .catch((err) => {
-      console.error(err)
-      res.sendStatus(500)
-    })
-}
+
 // pour afficher les photos objets les plus commandés
 const vuquantiteobjets = (req, res) => {
   models.objets
@@ -155,19 +145,7 @@ const vuquantiteobjets = (req, res) => {
       res.sendStatus(500)
     })
 }
-// liste des objets achetés par un utilisateur
-const achatbyuser = (req, res) => {
-  const UtilisateurId = req.query.UtilisateurId
-  models.objets
-    .achatbyuser(UtilisateurId)
-    .then(([rows]) => {
-      res.send(rows)
-    })
-    .catch((err) => {
-      console.error(err)
-      res.sendStatus(500)
-    })
-}
+
 const ajoutbycreateur = (req, res) => {
   const objets = req.body
   models.objets
@@ -194,12 +172,10 @@ module.exports = {
   read,
   edit,
   destroy,
-  objetsByUtilisateur,
+  allobjetcreateur,
   readobjetsByUtilisateur,
   objetsByCategorie,
   readavisobjet,
-  readavisobjetid,
   vuquantiteobjets,
-  achatbyuser,
   ajoutbycreateur,
 }

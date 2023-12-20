@@ -101,8 +101,8 @@ function ObjetsID({ onlogin, setAddpanier, addpanier }) {
               <h3>Des avis</h3>
             </div>
             <div className="blockavisObjet">
-              {avis.map((avis) => (
-                <div key={avis.id}>
+              {avis.map((avis, index) => (
+                <div key={index}>
                   <div className="avisrecadre">
                     <h2>{avis.avisObjet}</h2>
                     <img

@@ -10,26 +10,28 @@ function Panier() {
   const API_URL = import.meta.env.VITE_BACKEND_URL
   const handleAdd = (index) => {
     const newObjetpanier = [...objetspanier]
-    newObjetpanier[index].quantitePanier += 1
+    newObjetpanier[index].quantite_panier += 1
     setObjetspanier(newObjetpanier)
     AlterwordAPI.put(
-      `/panier?UtilisateurId=${UtilisateurId}&ObjetsId=${objetspanier[index].ObjetsId}&quantitePanier=${objetspanier[index].quantitePanier}`
-    )
+      `/panier?utilisateur_id=${UtilisateurId}&objets_id=${objetspanier[index].objets_id}&quantite_panier=${objetspanier[index].quantite_panier}`
+    ).catch((err) => {
+      console.error("Error update", err)
+    })
   }
   const handleSub = (index) => {
     const newObjetpanier = [...objetspanier]
-    newObjetpanier[index].quantitePanier -= 1
+    newObjetpanier[index].quantite_panier -= 1
     setObjetspanier(newObjetpanier)
     AlterwordAPI.put(
-      `/panier?UtilisateurId=${UtilisateurId}&ObjetsId=${objetspanier[index].ObjetsId}&quantitePanier=${objetspanier[index].quantitePanier}`
+      `/panier?utilisateur_id=${UtilisateurId}&objets_id=${objetspanier[index].objets_id}&quantite_panier=${objetspanier[index].quantite_panier}`
     ).catch((err) => {
       console.error("Error update", err)
     })
   }
   const handleDel = (index) => {
-    const Deleteid = objetspanier[index].id
+    const Deleteid = objetspanier[index].objets_id
     AlterwordAPI.delete(
-      `/panier?UtilisateurId=${UtilisateurId}&ObjetsId=${Deleteid}`
+      `/panier?utilisateur_id=${UtilisateurId}&objets_id=${Deleteid}`
     )
       .then((res) => {
         const newObjetpanier = [...objetspanier]
@@ -47,7 +49,6 @@ function Panier() {
         console.error("Error lead", err)
       })
   }, [])
-
   return (
     <div className="containerPanier">
       <div className="descriptionPanier">
@@ -62,7 +63,7 @@ function Panier() {
               <p> Nom : {objet?.nomObjet}</p>
               <p> Prix : {objet?.prix} €</p>
               <div className="quantitedetail">
-                <p> Quantité:{objet.quantitePanier}</p>
+                <p> Quantité:{objet.quantite_panier}</p>
                 <div className="btn">
                   <button
                     className="btnpanier"
@@ -79,7 +80,7 @@ function Panier() {
                 </div>
               </div>
               <div className="calcultotal">
-                <p>Prix Total :{objet?.prix * objet.quantitePanier} €</p>
+                <p>Prix Total :{objet?.prix * objet.quantite_panier} €</p>
               </div>
             </div>
             <div className="deletebtn">

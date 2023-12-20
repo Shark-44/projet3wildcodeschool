@@ -2,13 +2,13 @@ import { useEffect, useState } from "react"
 import AlterwordAPI from "../services/AlterwordAPI"
 import "./FiltreBoutiquecreateur.css"
 
-const FiltreBoutiquecategorie = ({ type, setType }) => {
+const FiltreBoutiquecategorie = ({ idCategorie, setidCategorie }) => {
   const [filtreCreateur, setFiltrecreateur] = useState([])
   const [selectedOption, setSelectedOption] = useState()
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value)
-    setType((type = event.target.value))
+    setidCategorie((idCategorie = event.target.value))
   }
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const FiltreBoutiquecategorie = ({ type, setType }) => {
       <select value={selectedOption} onChange={handleOptionChange}>
         <option value="">Categorie</option>
         {filtreCreateur.map((filtre) => (
-          <option key={filtre.id} value={filtre.type}>
+          <option key={filtre.id} value={filtre.id}>
             {filtre.type}
           </option>
         ))}

@@ -52,13 +52,17 @@ const edit = (req, res) => {
 
 const add = (req, res) => {
   const panier = req.body
-
-  // TODO validations (length, format...)
-
+  panier.id = parseInt(req.params.id, 10)
   models.panier
     .insert(panier)
     .then(([result]) => {
-      res.location(`/panier/${result.insertId}`).sendStatus(201)
+      const addobjet = {
+        objets_id: req.body.ObjetsId,
+        panier_id: result.insertId,
+      }
+      models.panierobjet.insert(addobjet).then(([rows]) => {
+        res.send(rows)
+      })
     })
     .catch((err) => {
       console.error(err)
@@ -105,13 +109,10 @@ const delbyuser = (req, res) => {
       res.sendStatus(500)
     })
 }
-// Pour supprimer du panier
-
-const objetuser = (req, res) => {
-  const UtilisateurId = req.query.UtilisateurId
-  const ObjetsId = req.query.ObjetsId
+const upanier = (req, res) => {
+  const panier = req.query
   models.panier
-    .delobjetuser(UtilisateurId, ObjetsId)
+    .upanier(panier)
     .then(([rows]) => {
       res.send(rows)
     })
@@ -120,18 +121,30 @@ const objetuser = (req, res) => {
       res.sendStatus(500)
     })
 }
-const upanier = (req, res) => {
-  const UtilisateurId = req.query.UtilisateurId
-  const ObjetsId = req.query.ObjetsId
-  const quantitePanier = req.query.quantitePanier
+const objetuser = (req, res) => {
+  const objetdel = req.query
+  console.info("pour delete")
   models.panier
-    .upanier(UtilisateurId, ObjetsId, quantitePanier)
+    .delobjetuser(objetdel)
     .then(([rows]) => {
       res.send(rows)
     })
     .catch((err) => {
       console.error(err)
       res.sendStatus(500)
+    })
+}
+// Contrôle du panier d'un utilisateur
+const achatbyuser = (req, res) => {
+  const UtilisateurId = req.query.UtilisateurId
+  models.panier
+    .achatbyuser(UtilisateurId)
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(523)
     })
 }
 module.exports = {
@@ -141,7 +154,8 @@ module.exports = {
   add,
   destroy,
   byuser,
-  objetuser,
   upanier,
+  objetuser,
   delbyuser,
+  achatbyuser,
 }

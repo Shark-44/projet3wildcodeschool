@@ -7,8 +7,8 @@ class PanierManager extends AbstractManager {
 
   insert(panier) {
     return this.database.query(
-      `insert into ${this.table} ( UtilisateurId, ObjetsId, quantitePanier) values (?,?,?)`,
-      [panier.UtilisateurId, panier.ObjetsId, panier.quantitePanier]
+      `insert into ${this.table} ( utilisateur_id, quantite_panier) values (?,?)`,
+      [panier.UtilisateurId, panier.quantitePanier]
     )
   }
 
@@ -33,17 +33,29 @@ class PanierManager extends AbstractManager {
     )
   }
 
-  delobjetuser(UtilisateurId, ObjetsId) {
+  upanier(panier) {
     return this.database.query(
-      `delete from ${this.table} where UtilisateurID = ? AND ObjetsID = ?`,
-      [UtilisateurId, ObjetsId]
+      `update ${this.table} INNER JOIN panier_has_objets ON panier.id = panier_has_objets.panier_id set panier.quantite_panier = ? where panier.utilisateur_id = ? AND panier_has_objets.objets_id = ?`,
+      [panier.quantite_panier, panier.utilisateur_id, panier.objets_id]
     )
   }
 
-  upanier(UtilisateurId, ObjetsId, quantitePanier) {
+  delobjetuser(objetdel) {
+    console.info("je suis dans panier m", objetdel)
     return this.database.query(
-      `update ${this.table} set quantitePanier = ? where UtilisateurId = ? AND ObjetsId = ?`,
-      [quantitePanier, UtilisateurId, ObjetsId]
+      `DELETE panier
+      FROM ${this.table}
+      INNER JOIN panier_has_objets ON panier.id = panier_has_objets.panier_id
+      WHERE panier.utilisateur_id = ? AND panier_has_objets.objets_id = ?;`,
+      [objetdel.utilisateur_id, objetdel.objets_id]
+    )
+  }
+
+  achatbyuser(UtilisateurId) {
+    return this.database.query(
+      `SELECT panier.quantite_panier, objets.photo1, objets.nomObjet, objets.prix, panier_has_objets.objets_id FROM ${this.table} join panier_has_objets on panier.id = panier_has_objets.panier_id join objets on panier_has_objets.objets_id = objets.id
+      WHERE utilisateur_id = ?`,
+      [UtilisateurId]
     )
   }
 }

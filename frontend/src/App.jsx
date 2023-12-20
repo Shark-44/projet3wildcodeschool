@@ -33,6 +33,7 @@ function App() {
   const [addpanier, setAddpanier] = useState(danspanier)
   const user = Cookies.get("UtilisateurId")
   // const { user } = useAuthContext()
+  console.info(" info", danspanier)
   useEffect(() => {
     const fetchData = async () => {
       if (!user) {
