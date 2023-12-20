@@ -117,11 +117,11 @@ router.delete(
 // ROUTE PANIER
 router.get("/panier", panierControllers.browse)
 router.get("/panier", panierControllers.read)
-router.post("/panier", checkToken, panierControllers.add) // le 20 dec
-router.delete("/panier", checkToken, panierControllers.objetuser)
+router.post("/panier", checkToken, panierControllers.add) // dec 2023
+router.delete("/panier", checkToken, panierControllers.objetuser) // le 20 dec
 router.delete("/panieruser", checkToken, panierControllers.delbyuser)
 router.get("/panieruser", panierControllers.byuser)
-router.put("/panier", checkToken, panierControllers.upanier)
+router.put("/panier", checkToken, panierControllers.upanier) // dec 2023
 router.get("/objetpanier", panierControllers.achatbyuser) // dec 2023
 
 // ROUTE liaison CREATEUR CATEGORIE

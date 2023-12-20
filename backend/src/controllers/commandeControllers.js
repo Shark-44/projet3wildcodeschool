@@ -83,7 +83,6 @@ const destroy = (req, res) => {
 }
 const cbyuser = (req, res) => {
   const UtilisateurId = req.query.UtilisateurId
-  console.info("pour controle de l'historique commande", UtilisateurId)
   models.commande
     .findbyuser(UtilisateurId)
     .then(([rows]) => {

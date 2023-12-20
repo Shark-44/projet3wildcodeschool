@@ -109,13 +109,10 @@ const delbyuser = (req, res) => {
       res.sendStatus(500)
     })
 }
-// Pour supprimer du panier
-
-const objetuser = (req, res) => {
-  const UtilisateurId = req.query.UtilisateurId
-  const ObjetsId = req.query.ObjetsId
+const upanier = (req, res) => {
+  const panier = req.query
   models.panier
-    .delobjetuser(UtilisateurId, ObjetsId)
+    .upanier(panier)
     .then(([rows]) => {
       res.send(rows)
     })
@@ -124,12 +121,11 @@ const objetuser = (req, res) => {
       res.sendStatus(500)
     })
 }
-const upanier = (req, res) => {
-  const UtilisateurId = req.query.UtilisateurId
-  const ObjetsId = req.query.ObjetsId
-  const quantitePanier = req.query.quantitePanier
+const objetuser = (req, res) => {
+  const objetdel = req.query
+  console.info("pour delete")
   models.panier
-    .upanier(UtilisateurId, ObjetsId, quantitePanier)
+    .delobjetuser(objetdel)
     .then(([rows]) => {
       res.send(rows)
     })
@@ -141,7 +137,6 @@ const upanier = (req, res) => {
 // Contrôle du panier d'un utilisateur
 const achatbyuser = (req, res) => {
   const UtilisateurId = req.query.UtilisateurId
-  console.info("je suis la", UtilisateurId)
   models.panier
     .achatbyuser(UtilisateurId)
     .then(([rows]) => {
@@ -159,8 +154,8 @@ module.exports = {
   add,
   destroy,
   byuser,
-  objetuser,
   upanier,
+  objetuser,
   delbyuser,
   achatbyuser,
 }
