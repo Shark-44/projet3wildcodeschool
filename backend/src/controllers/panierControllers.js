@@ -134,6 +134,20 @@ const upanier = (req, res) => {
       res.sendStatus(500)
     })
 }
+// Contrôle du panier d'un utilisateur
+const achatbyuser = (req, res) => {
+  const UtilisateurId = req.query.UtilisateurId
+  console.info("je suis la", UtilisateurId)
+  models.panier
+    .achatbyuser(UtilisateurId)
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(523)
+    })
+}
 module.exports = {
   browse,
   read,
@@ -144,4 +158,5 @@ module.exports = {
   objetuser,
   upanier,
   delbyuser,
+  achatbyuser,
 }
