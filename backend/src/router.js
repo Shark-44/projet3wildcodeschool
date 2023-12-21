@@ -66,12 +66,12 @@ router.get("/avisurobjet", objetsControllers.readavisobjet)
 router.get("/avisurobjetparid", avisobjetControllers.readavisobjetid) // dec 2023
 router.get("/quantitecommande", objetsControllers.vuquantiteobjets)
 
-router.post("/objetbycreateur", objetsControllers.ajoutbycreateur)
+router.post("/objetbycreateur", objetsControllers.ajoutbycreateur) // le 21 dec
 
 // ROUTE CATEGORIE
 router.get("/categorie", categorieControllers.browse)
 router.get("/categorie/:id", categorieControllers.read)
-router.get("/categriebyuser", categorieControllers.finduserC)
+router.get("/categriebyuser", utilisateurControllers.finduserC) // dec 2023
 
 // ROUTE COMMANDE
 router.get("/commande", commandeControllers.browse)
@@ -81,7 +81,7 @@ router.put("/commande/:id", checkToken, commandeControllers.edit)
 router.delete("/commande/:id", checkToken, commandeControllers.destroy)
 router.get("/histocommande", commandeControllers.cbyuser) // dec 2023
 router.get("/commandelastID", commandeControllers.dernierID)
-router.post("/commandeandobjet/:id", commandeControllers.validecommande) // le 21 dec
+router.post("/commandeandobjet/:id", commandeControllers.validecommande) // dec 2023
 
 // ROUTE AVIS UTILISATEUR A CREATEUR
 router.get("/avisutilisateur", avisutilisateurControllers.browse)
@@ -143,11 +143,11 @@ router.delete(
   utilisateurcategorieControllers.destroy
 )
 // ROUTE favoris
-router.get("/favoris", checkToken, favorisControlers.lirefavoris)
-router.post("/favoris", checkToken, favorisControlers.ajoutfavoris)
-router.delete("/favoris", checkToken, favorisControlers.supfavoris)
-router.get("/favorispouruser", checkToken, favorisControlers.favorisuser)
-router.delete("/favorispouruser", checkToken, favorisControlers.delfavorisuser)
+router.get("/favoris", checkToken, favorisControlers.lirefavoris) // dec 2023
+router.post("/favoris", checkToken, favorisControlers.ajoutfavoris) // dec 2023
+router.delete("/favoris", checkToken, favorisControlers.supfavoris) // dec 2023
+router.get("/favorispouruser", checkToken, favorisControlers.favorisuser) // dec 2023
+router.delete("/favorispouruser", checkToken, favorisControlers.delfavorisuser) // dec 2023
 
 // ROUTE liaison UTILISATEUR OBJETS
 router.get("/utilisateurhasobjets", utilisateurobjetsControllers.browse)

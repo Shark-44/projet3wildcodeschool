@@ -27,25 +27,8 @@ const read = (req, res) => {
       res.sendStatus(500)
     })
 }
-const finduserC = (req, res) => {
-  const UtilisateurId = req.query.UtilisateurId
-  models.categorie
-    .findtype(UtilisateurId)
-    .then(([rows]) => {
-      if (rows[0] == null) {
-        res.sendStatus(404)
-      } else {
-        res.send(rows[0])
-      }
-    })
-    .catch((err) => {
-      console.error(err)
-      res.sendStatus(500)
-    })
-}
 
 module.exports = {
   browse,
   read,
-  finduserC,
 }

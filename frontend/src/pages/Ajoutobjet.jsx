@@ -25,13 +25,15 @@ function Ajoutobjet() {
   const [image2, setImage2] = useState()
   const UtilisateurId = Cookies.get("UtilisateurId")
   const [categorie, setCategorie] = useState("")
+  const CategorieId = categorie.categorie_id
+  console.info("la categorie enregistre", CategorieId)
   // Pour adapter la bdd et les dossiers images
   let dossier = "default"
-  if (categorie.id === 1) {
+  if (categorie.categorie_id === 1) {
     dossier = "map"
-  } else if (categorie.id === 2) {
+  } else if (categorie.categorie_id === 2) {
     dossier = "mode"
-  } else if (categorie.id === 3) {
+  } else if (categorie.categorie_id === 3) {
     dossier = "print"
   }
   console.info("UtilisateurId:", UtilisateurId)
@@ -48,10 +50,11 @@ function Ajoutobjet() {
       ...formData,
       [name]: value,
       UtilisateurId,
-      CategorieId: categorie.id,
+      CategorieId,
     })
   }
-
+  console.info("dans la categorie", CategorieId)
+  console.info(formData)
   // gestion des images
   const uploadImage = (e, photoNumber) => {
     const file = e.target.files[0]
@@ -102,7 +105,7 @@ function Ajoutobjet() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     formData.UtilisateurId = Number(UtilisateurId)
-    formData.CategorieId = categorie.id
+    formData.CategorieId = categorie.categorie_id
     try {
       if (image) {
         const formPayload = new FormData()

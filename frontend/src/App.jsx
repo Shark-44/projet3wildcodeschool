@@ -21,7 +21,7 @@ import Compte from "./pages/Compte"
 import AlterwordAPI from "./services/AlterwordAPI"
 import Footer from "./components/Footer"
 import HappyEnd from "./pages/HappyEnd"
-import Ajoutobjet from "./components/Ajoutobjet"
+import Ajoutobjet from "./pages/Ajoutobjet"
 
 function App() {
   const [isShowLogin, setIsShowLogin] = useState(true)
