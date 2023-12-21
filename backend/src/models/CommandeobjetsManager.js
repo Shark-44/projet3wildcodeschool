@@ -16,18 +16,6 @@ class CommandeobjetsManager extends AbstractManager {
       ]
     )
   }
-
-  update(commandeobjets) {
-    return this.database.query(
-      `update ${this.table} set CommandeId = ?, ObjetId =? quantiteCommande= ?, dateCommande = ? where id = ?`,
-      [
-        commandeobjets.CommandeId,
-        commandeobjets.ObjetsId,
-        commandeobjets.quantiteCommande,
-        commandeobjets.dateCommande,
-      ]
-    )
-  }
 }
 
 module.exports = CommandeobjetsManager

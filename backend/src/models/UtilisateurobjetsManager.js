@@ -11,13 +11,6 @@ class UtilisateurobjetsManager extends AbstractManager {
       [UtilisateurId, ObjetsId]
     )
   }
-
-  update(utilisateurobjets) {
-    return this.database.query(
-      `update ${this.table} set  UtilisateurId = ? ObjetsId = ? where id = ?`,
-      [utilisateurobjets.UtilisateurId, utilisateurobjets.ObjetsId]
-    )
-  }
 }
 
 module.exports = UtilisateurobjetsManager

@@ -85,18 +85,6 @@ const destroy = (req, res) => {
       res.sendStatus(500)
     })
 }
-const byuser = (req, res) => {
-  const UtilisateurId = req.query.UtilisateurId
-  models.panier
-    .findbyuser(UtilisateurId)
-    .then(([rows]) => {
-      res.send(rows)
-    })
-    .catch((err) => {
-      console.error(err)
-      res.sendStatus(500)
-    })
-}
 const delbyuser = (req, res) => {
   const UtilisateurId = req.query.UtilisateurId
   models.panier
@@ -153,7 +141,6 @@ module.exports = {
   edit,
   add,
   destroy,
-  byuser,
   upanier,
   objetuser,
   delbyuser,

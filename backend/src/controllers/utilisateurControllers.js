@@ -61,27 +61,7 @@ const edit = (req, res) => {
       res.sendStatus(514)
     })
 }
-const editutilisateurcategorie = (req, res) => {
-  const utilisateur = req.body
-  utilisateur.password = req.body.hashedPassword
-  utilisateur.id = parseInt(req.params.id, 10)
 
-  models.utilisateur
-    .insert(utilisateur)
-    .then(([createduser]) => {
-      const user = {
-        UtilisateurId: createduser.insertId,
-        CategorieId: req.body.CategorieID, // tu devras mettre l'information de l'id catégorie qui vient du front
-      }
-      models.utilisateurcategorie.insert(user).then(([rows]) => {
-        res.send(rows)
-      })
-    })
-    .catch((err) => {
-      console.error(err)
-      res.sendStatus(515)
-    })
-}
 const destroy = (req, res) => {
   models.utilisateur
     .delete(req.params.id)
@@ -182,7 +162,6 @@ module.exports = {
   edit,
   destroy,
   toutlescreateurs,
-  editutilisateurcategorie,
   loginUtilisateur,
   logoutUtilisateur,
   findemail,
