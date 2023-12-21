@@ -53,12 +53,12 @@ const edit = (req, res) => {
 const add = (req, res) => {
   const avisobjet = req.body
 
-  // TODO validations (length, format...)
-
   models.avisobjet
     .insert(avisobjet)
-    .then(([result]) => {
-      res.location(`/avisobjet/${result.insertId}`).sendStatus(201)
+    .then(([liaison]) => {
+      const avid = liaison.insertId
+      const ObjetsId = req.body.ObjetsId
+      models.avishasobjets.insert(avid, ObjetsId)
     })
     .catch((err) => {
       console.error(err)

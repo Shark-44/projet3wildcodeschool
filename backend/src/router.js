@@ -99,7 +99,7 @@ router.get("/avislaisse", avisutilisateurControllers.surcreateur) // dec 2023
 router.get("/avisobjet", avisobjetControllers.browse)
 router.get("/avisobjet", avisobjetControllers.read)
 router.get("/avisutilisateurhome", avisobjetControllers.readavis) // dec 2023
-router.post("/avisobjet", checkToken, avisobjetControllers.add)
+router.post("/avisobjet", checkToken, avisobjetControllers.add) // le 21 dec
 router.put("/avisobjet", checkToken, avisobjetControllers.edit)
 router.delete("/avisobjet", checkToken, avisobjetControllers.destroy)
 
