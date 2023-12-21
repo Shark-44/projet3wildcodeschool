@@ -66,6 +66,13 @@ class UtilisateurManager extends AbstractManager {
     )
   }
 
+  findtype(UtilisateurId) {
+    return this.database.query(
+      `Select utilisateur.categorie_id from ${this.table} where id= ? `,
+      [UtilisateurId]
+    )
+  }
+
   loginUtilisateur(email) {
     return this.database.query(`SELECT * FROM ${this.table} WHERE email = ?`, [
       email,

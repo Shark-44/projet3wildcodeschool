@@ -113,6 +113,22 @@ const toutlescreateurs = (req, res) => {
       res.sendStatus(517)
     })
 }
+const finduserC = (req, res) => {
+  const UtilisateurId = req.query.UtilisateurId
+  models.utilisateur
+    .findtype(UtilisateurId)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404)
+      } else {
+        res.send(rows[0])
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
 const loginUtilisateur = (req, res, next) => {
   const { email } = req.body
 
@@ -170,4 +186,5 @@ module.exports = {
   loginUtilisateur,
   logoutUtilisateur,
   findemail,
+  finduserC,
 }

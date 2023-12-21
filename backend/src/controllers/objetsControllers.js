@@ -121,7 +121,6 @@ const objetsByCategorie = (req, res) => {
 }
 // avis objet
 const readavisobjet = (req, res) => {
-  console.info("je suis la")
   models.objets
     .readavisobjet()
     .then(([rows]) => {
@@ -148,6 +147,7 @@ const vuquantiteobjets = (req, res) => {
 
 const ajoutbycreateur = (req, res) => {
   const objets = req.body
+
   models.objets
     .insert(objets)
     .then(([liaisonobjet]) => {
@@ -155,10 +155,6 @@ const ajoutbycreateur = (req, res) => {
       const ObjetsId = liaisonobjet.insertId
 
       models.utilisateurobjets.insert(UtilisateurId, ObjetsId)
-
-      const CategorieId = req.body.CategorieId
-
-      models.categorieobjets.insert(CategorieId, ObjetsId)
     })
     .catch((err) => {
       console.error(err)

@@ -37,7 +37,7 @@ const annee = [
   "2027",
   "2028",
 ]
-function Paiement() {
+function Paiement({ setAddpanier, addpanier }) {
   // eslint-disable-next-line no-unused-vars
   const [selectedOption, setSelectedOption] = useState()
   const UtilisateurId = Cookies.get("UtilisateurId")
@@ -67,7 +67,7 @@ function Paiement() {
 
   // eslint-disable-next-line no-unused-vars
   const prixTotal = objetspanier.reduce((somme, a) => {
-    return somme + a.prix * a.quantitePanier
+    return somme + a.prix * a.quantite_panier
   }, 0)
   // eslint-disable-next-line no-unused-vars
   const handleOptionChange = (event) => {
@@ -76,16 +76,17 @@ function Paiement() {
   const handlevalide = () => {
     const postPromises = objetspanier.map((objet, index) => {
       const date = new Date()
-      const dateCommande = date.toLocaleDateString("fr-FR")
+      const dateCommande = date.toLocaleDateString()
 
       const data = {
         numero,
         UtilisateurId,
         prixTotal,
-        ObjetsId: objet.id,
-        quantiteCommande: objet.quantitePanier,
+        ObjetsId: objet.objets_id,
+        quantiteCommande: objet.quantite_panier,
         dateCommande,
       }
+      console.info(data)
       return AlterwordAPI.post(`/commandeandobjet/${index}`, data)
         .then((response) => {
           console.info(`Commande pour l'objet ${index} réussie!`)
@@ -100,10 +101,13 @@ function Paiement() {
 
     Promise.all(postPromises)
       .then(() => {
-        return AlterwordAPI.delete(`/panier?UtilisateurId=${UtilisateurId}`)
+        return AlterwordAPI.delete(
+          `/panierbyuser?UtilisateurId=${UtilisateurId}`
+        )
       })
       .then(() => {
         console.info("Suppression du panier réussie!")
+        setAddpanier((addpanier = 0))
       })
       .catch((error) => {
         console.error("Une erreur s'est produite:", error)
@@ -126,8 +130,8 @@ function Paiement() {
               <label htmlFor="character">Date d'expiration</label>
               <select value={selectedOption} onChange={handleOptionChange}>
                 <option value="">Mois</option>
-                {mois.map((mo) => (
-                  <option key={mo.id} value={mo}>
+                {mois.map((mo, index) => (
+                  <option key={index} value={mo}>
                     {mo}
                   </option>
                 ))}

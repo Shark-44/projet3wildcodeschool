@@ -28,11 +28,13 @@ class PanierManager extends AbstractManager {
 
   delebyuser(UtilisateurId) {
     return this.database.query(
-      `DELETE FROM ${this.table} WHERE UtilisateurId = ?`,
+      `DELETE panier FROM ${this.table} INNER JOIN panier_has_objets ON panier.id = panier_has_objets.panier_id
+      WHERE panier.utilisateur_id = ?`,
       [UtilisateurId]
     )
   }
 
+  // 20 dec fonction up et delete ok
   upanier(panier) {
     return this.database.query(
       `update ${this.table} INNER JOIN panier_has_objets ON panier.id = panier_has_objets.panier_id set panier.quantite_panier = ? where panier.utilisateur_id = ? AND panier_has_objets.objets_id = ?`,
@@ -41,7 +43,6 @@ class PanierManager extends AbstractManager {
   }
 
   delobjetuser(objetdel) {
-    console.info("je suis dans panier m", objetdel)
     return this.database.query(
       `DELETE panier
       FROM ${this.table}

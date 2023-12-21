@@ -7,7 +7,7 @@ class UtilisateurobjetsManager extends AbstractManager {
 
   insert(UtilisateurId, ObjetsId) {
     return this.database.query(
-      `insert into ${this.table} (UtilisateurId, ObjetsId) values (?,?)`,
+      `insert into ${this.table} (utilisateur_id, Objets_id) values (?,?)`,
       [UtilisateurId, ObjetsId]
     )
   }

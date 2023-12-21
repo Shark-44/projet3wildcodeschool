@@ -32,7 +32,7 @@ class CommandeManager extends AbstractManager {
 
   reqvalidecommande(commande, commandeobjets) {
     return this.database.query(
-      `INSERT INTO ${this.table} (numero, UtilisateurId, prixTotal)  values (?,?,?)`,
+      `INSERT INTO ${this.table} (numero, utilisateur_id, prixTotal)  values (?,?,?)`,
       [commande.numero, commande.UtilisateurId, commande.prixTotal]
     )
   }

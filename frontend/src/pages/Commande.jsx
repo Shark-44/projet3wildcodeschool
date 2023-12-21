@@ -8,13 +8,13 @@ import Cookies from "js-cookie"
 function Commande() {
   const date = new Date()
   const formattedDate = date.toLocaleDateString("fr-FR")
-
+  console.info(formattedDate)
   const [objetspanier, setObjetspanier] = useState([])
   const UtilisateurId = Cookies.get("UtilisateurId")
   const [utilisateur, setUtilisateur] = useState([])
 
   const sommetotal = objetspanier.reduce((somme, a) => {
-    return somme + a.prix * a.quantitePanier
+    return somme + a.prix * a.quantite_panier
   }, 0)
   const TVA = ((sommetotal * 20) / 100).toFixed(2)
   const API_URL = import.meta.env.VITE_BACKEND_URL
@@ -57,7 +57,7 @@ function Commande() {
           <div className="detailcommande">
             <h2 className="souligne-titre">Details commande :</h2>
             {objetspanier.map((objetcommande, index) => {
-              const somme = objetcommande.prix * objetcommande.quantitePanier
+              const somme = objetcommande.prix * objetcommande.quantite_panier
               return (
                 <div key={index} className="details">
                   <img
@@ -67,7 +67,7 @@ function Commande() {
                   />
                   <div>{objetcommande.nomObjet}</div>
                   <div>prix u. {objetcommande.prix} € </div>
-                  <div>Qté :{objetcommande.quantitePanier}</div>
+                  <div>Qté :{objetcommande.quantite_panier}</div>
                   <div id="sommedetail">{somme} €</div>
                 </div>
               )

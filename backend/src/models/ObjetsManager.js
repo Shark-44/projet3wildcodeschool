@@ -7,7 +7,7 @@ class ObjetsManager extends AbstractManager {
 
   insert(objets) {
     return this.database.query(
-      `insert into ${this.table} (nomObjet, prix, quantite, photo1, photo2, descriptionObjet) values (?,?,?,?,?,?)`,
+      `insert into ${this.table} (nomObjet, prix, quantite, photo1, photo2, descriptionObjet, categorie_id) values (?,?,?,?,?,?,?)`,
       [
         objets.nomObjet,
         objets.prix,
@@ -15,6 +15,7 @@ class ObjetsManager extends AbstractManager {
         objets.photo1,
         objets.photo2,
         objets.descriptionObjet,
+        objets.CategorieId,
       ]
     )
   }
