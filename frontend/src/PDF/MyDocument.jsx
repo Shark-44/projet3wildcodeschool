@@ -81,7 +81,7 @@ const MyDocument = () => {
   const UtilisateurId = Cookies.get("UtilisateurId")
   const [utilisateur, setUtilisateur] = useState([])
   const sommetotal = objetspanier.reduce((somme, a) => {
-    return somme + a.prix * a.quantitePanier
+    return somme + a.prix * a.quantite_panier
   }, 0)
   const TVA = ((sommetotal * 20) / 100).toFixed(2)
 
@@ -121,8 +121,7 @@ const MyDocument = () => {
           <Text style={styles.sectionref}> Detail commande</Text>
         </View>
         {objetspanier.map((a, index) => {
-          const somme = a.prix * a.quantitePanier
-
+          const somme = a.prix * a.quantite_panier
           return (
             <View key={index} style={styles.card}>
               <Image
@@ -131,7 +130,7 @@ const MyDocument = () => {
               />
               <Text style={styles.textcard}> {a.nomObjet} </Text>
               <Text style={styles.textcard}>prix u. {a.prix} €</Text>
-              <Text style={styles.textcard}> Qté :{a.quantitePanier} </Text>
+              <Text style={styles.textcard}> Qté :{a.quantite_panier} </Text>
               <Text style={styles.textcard}> : {somme} €</Text>
             </View>
           )

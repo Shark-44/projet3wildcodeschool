@@ -93,7 +93,7 @@ router.delete(
   checkToken,
   avisutilisateurControllers.destroy
 )
-router.get("/avislaisse", avisutilisateurControllers.surcreateur)
+router.get("/avislaisse", avisutilisateurControllers.surcreateur) // le 21 dec
 
 // ROUTE AVIS OBJETS
 router.get("/avisobjet", avisobjetControllers.browse)
