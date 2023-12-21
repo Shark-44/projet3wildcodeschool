@@ -7,13 +7,8 @@ class AvisobjetManager extends AbstractManager {
 
   insert(avisobjet) {
     return this.database.query(
-      `insert into ${this.table} (UtilisateurId, ObjetsId, avisObjet, dateavisObjet) values (?,?,?,?)`,
-      [
-        avisobjet.UtilisateurId,
-        avisobjet.ObjetsId,
-        avisobjet.avisObjet,
-        avisobjet.dateavisObjet,
-      ]
+      `insert into ${this.table} (avisObjet, date_avis, utilisateur_id) values (?,?,?)`,
+      [avisobjet.avisObjet, avisobjet.dateavisObjet, avisobjet.UtilisateurId]
     )
   }
 

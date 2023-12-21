@@ -40,6 +40,10 @@ const UtilisateurManager = require("./UtilisateurManager")
 const UtilisateurobjetsManager = require("./UtilisateurobjetsManager")
 const FavorisManager = require("./FavorisManager")
 const PanierobjetManager = require("./PanierobjetManager")
+const AvishasobjetsManager = require("./AvishasobjetsManager")
+
+models.avishasobjets = new AvishasobjetsManager()
+models.avishasobjets.setDatabase(pool)
 
 models.panierobjet = new PanierobjetManager()
 models.panierobjet.setDatabase(pool)

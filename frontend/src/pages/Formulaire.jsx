@@ -122,16 +122,11 @@ function Formulaire() {
       // eslint-disable-next-line no-unused-vars
       const data = await response.json()
 
-      if (formData.createur === "0") {
-        await AlterwordAPI.post("/utilisateur", {
-          ...formData,
-        })
-      } else {
-        await AlterwordAPI.post("/utilisateur/with/categorie", {
-          ...formData,
-        })
+      const formDataToSend = {
+        ...formData,
+        CategorieID: formData.createur === "0" ? null : formData.CategorieID,
       }
-
+      await AlterwordAPI.post("/utilisateur", formDataToSend)
       navigate("/")
     } catch (error) {
       console.error("Error submitting form:", error)
@@ -254,7 +249,7 @@ function Formulaire() {
                     {hasUppercase ? "✅" : "❌"} Au moins une majuscule
                     {hasLowercase ? "✅" : "❌"} Au moins une minuscule
                     {hasDigit ? "✅" : "❌"} Au moins un chiffre
-                    {isLengthValid ? "✅" : "❌"} Et plus de 10 caractères
+                    {isLengthValid ? "✅" : "❌"} Et plus de 8 caractères
                   </div>
                 )}
               </div>
