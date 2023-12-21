@@ -6,7 +6,7 @@ import Cardloupe from "../components/Cardloupe"
 import Stars from "../components/Stars"
 import Cookies from "js-cookie"
 
-function ObjetsID({ onlogin, setAddpanier, addpanier }) {
+function ObjetsID({ setAddpanier, addpanier }) {
   const params = useParams()
 
   const [objets, setObjets] = useState([])

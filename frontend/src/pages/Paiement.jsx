@@ -37,7 +37,7 @@ const annee = [
   "2027",
   "2028",
 ]
-function Paiement() {
+function Paiement({ setAddpanier, addpanier }) {
   // eslint-disable-next-line no-unused-vars
   const [selectedOption, setSelectedOption] = useState()
   const UtilisateurId = Cookies.get("UtilisateurId")
@@ -107,6 +107,7 @@ function Paiement() {
       })
       .then(() => {
         console.info("Suppression du panier réussie!")
+        setAddpanier((addpanier = 0))
       })
       .catch((error) => {
         console.error("Une erreur s'est produite:", error)

@@ -28,12 +28,12 @@ function App() {
   const handleLoginClick = () => {
     setIsShowLogin((isShowLogin) => !isShowLogin)
   }
-  const [danspanier, setDanspanier] = useState([])
+  // const [danspanier, setDanspanier] = useState([])
   const [onlogin, setOnlogin] = useState()
-  const [addpanier, setAddpanier] = useState(danspanier)
+  const [addpanier, setAddpanier] = useState()
   const user = Cookies.get("UtilisateurId")
   // const { user } = useAuthContext()
-  console.info(" info", danspanier)
+
   useEffect(() => {
     const fetchData = async () => {
       if (!user) {
@@ -42,13 +42,12 @@ function App() {
         const response = await AlterwordAPI.get(
           `/objetpanier?UtilisateurId=${user}`
         )
-        setDanspanier(response.data)
         setAddpanier(response.data.length)
       }
     }
 
     fetchData()
-  }, [user])
+  }, [user, setAddpanier])
 
   return (
     <div className="App">
@@ -81,10 +80,20 @@ function App() {
               <ObjetID setAddpanier={setAddpanier} addpanier={addpanier} />
             }
           />
-          <Route path="/Panier" element={<Panier />} />
+          <Route
+            path="/Panier"
+            element={
+              <Panier setAddpanier={setAddpanier} addpanier={addpanier} />
+            }
+          />
           <Route path="/Commande" element={<Commande />} />
           <Route path="/PDFvu/:id" element={<PDFvu />} />
-          <Route path="/Paiement" element={<Paiement />} />
+          <Route
+            path="/Paiement"
+            element={
+              <Paiement setAddpanier={setAddpanier} addpanier={addpanier} />
+            }
+          />
           <Route path="/Compte" element={<Compte />} />
           <Route path="/Ajoutobjet" element={<Ajoutobjet />} />
         </Route>

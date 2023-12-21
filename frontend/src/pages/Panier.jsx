@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import "./Panier.css"
 import Cookies from "js-cookie"
 
-function Panier() {
+function Panier({ setAddpanier, addpanier }) {
   const [objetspanier, setObjetspanier] = useState([])
   const UtilisateurId = Cookies.get("UtilisateurId")
   const API_URL = import.meta.env.VITE_BACKEND_URL
@@ -37,6 +37,7 @@ function Panier() {
         const newObjetpanier = [...objetspanier]
         newObjetpanier.splice(index, 1)
         setObjetspanier(newObjetpanier)
+        setAddpanier(addpanier - 1)
       })
       .catch((err) => {
         console.error("Error delete", err)

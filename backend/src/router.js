@@ -93,7 +93,7 @@ router.delete(
   checkToken,
   avisutilisateurControllers.destroy
 )
-router.get("/avislaisse", avisutilisateurControllers.surcreateur) // le 21 dec
+router.get("/avislaisse", avisutilisateurControllers.surcreateur) // dec 2023
 
 // ROUTE AVIS OBJETS
 router.get("/avisobjet", avisobjetControllers.browse)
@@ -118,8 +118,8 @@ router.delete(
 router.get("/panier", panierControllers.browse)
 router.get("/panier", panierControllers.read)
 router.post("/panier", checkToken, panierControllers.add) // dec 2023
-router.delete("/panier", checkToken, panierControllers.objetuser) // le 20 dec
-router.delete("/panierbyuser", checkToken, panierControllers.delbyuser)
+router.delete("/panier", checkToken, panierControllers.objetuser) // dec 2023
+router.delete("/panierbyuser", checkToken, panierControllers.delbyuser) // dec 2023
 router.get("/panieruser", panierControllers.byuser)
 router.put("/panier", checkToken, panierControllers.upanier) // dec 2023
 router.get("/objetpanier", panierControllers.achatbyuser) // dec 2023
