@@ -28,7 +28,8 @@ class PanierManager extends AbstractManager {
 
   delebyuser(UtilisateurId) {
     return this.database.query(
-      `DELETE FROM ${this.table} WHERE UtilisateurId = ?`,
+      `DELETE panier FROM ${this.table} INNER JOIN panier_has_objets ON panier.id = panier_has_objets.panier_id
+      WHERE panier.utilisateur_id = ?`,
       [UtilisateurId]
     )
   }

@@ -8,7 +8,7 @@ import Cookies from "js-cookie"
 function Commande() {
   const date = new Date()
   const formattedDate = date.toLocaleDateString("fr-FR")
-
+  console.info(formattedDate)
   const [objetspanier, setObjetspanier] = useState([])
   const UtilisateurId = Cookies.get("UtilisateurId")
   const [utilisateur, setUtilisateur] = useState([])

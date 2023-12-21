@@ -76,7 +76,7 @@ function Paiement() {
   const handlevalide = () => {
     const postPromises = objetspanier.map((objet, index) => {
       const date = new Date()
-      const dateCommande = date.toLocaleDateString("fr-FR")
+      const dateCommande = date.toLocaleDateString()
 
       const data = {
         numero,
@@ -101,7 +101,9 @@ function Paiement() {
 
     Promise.all(postPromises)
       .then(() => {
-        return AlterwordAPI.delete(`/panier?UtilisateurId=${UtilisateurId}`)
+        return AlterwordAPI.delete(
+          `/panierbyuser?UtilisateurId=${UtilisateurId}`
+        )
       })
       .then(() => {
         console.info("Suppression du panier réussie!")

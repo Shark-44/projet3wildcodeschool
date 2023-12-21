@@ -1,5 +1,6 @@
 .PDFvu{
-    width: 1900px;
-    height: auto;
-    margin: auto;
-  }
+  position: absolute;
+  width: 100%;
+  z-index: 200;
+  overflow: hidden;
+    }

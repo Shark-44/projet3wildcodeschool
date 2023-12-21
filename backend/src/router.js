@@ -81,7 +81,7 @@ router.put("/commande/:id", checkToken, commandeControllers.edit)
 router.delete("/commande/:id", checkToken, commandeControllers.destroy)
 router.get("/histocommande", commandeControllers.cbyuser) // dec 2023
 router.get("/commandelastID", commandeControllers.dernierID)
-router.post("/commandeandobjet/:id", commandeControllers.validecommande)
+router.post("/commandeandobjet/:id", commandeControllers.validecommande) // le 21 dec
 
 // ROUTE AVIS UTILISATEUR A CREATEUR
 router.get("/avisutilisateur", avisutilisateurControllers.browse)
@@ -119,7 +119,7 @@ router.get("/panier", panierControllers.browse)
 router.get("/panier", panierControllers.read)
 router.post("/panier", checkToken, panierControllers.add) // dec 2023
 router.delete("/panier", checkToken, panierControllers.objetuser) // le 20 dec
-router.delete("/panieruser", checkToken, panierControllers.delbyuser)
+router.delete("/panierbyuser", checkToken, panierControllers.delbyuser)
 router.get("/panieruser", panierControllers.byuser)
 router.put("/panier", checkToken, panierControllers.upanier) // dec 2023
 router.get("/objetpanier", panierControllers.achatbyuser) // dec 2023
