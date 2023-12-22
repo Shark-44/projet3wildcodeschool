@@ -7,35 +7,25 @@ const upload = multer({ dest: "./public/assets/images" })
 
 const objetsControllers = require("./controllers/objetsControllers")
 const utilisateurControllers = require("./controllers/utilisateurControllers")
-const categorieControllers = require("./controllers/categorieControllers")
 const commandeControllers = require("./controllers/commandeControllers")
 const avisutilisateurControllers = require("./controllers/avisutilisateurControllers")
 const avisobjetControllers = require("./controllers/avisobjetControllers")
 const commandeobjetsControllers = require("./controllers/commandeobjetsControllers")
 const panierControllers = require("./controllers/panierControllers")
-const utilisateurcategorieControllers = require("./controllers/utilisateurcategorieControllers")
 const utilisateurobjetsControllers = require("./controllers/utilisateurobjetsControllers")
-const categorieobjetsControllers = require("./controllers/categorieobjetsControllers")
 const uploadControllers = require("./controllers/uploadControllers")
 const validator = require("./validator")
 const favorisControlers = require("./controllers/favorisControllers")
 
 // ROUTES UTILISATEUR
-router.get("/utilisateur", utilisateurControllers.browse)
-router.get("/utilisateur/:id", utilisateurControllers.read)
+
 router.post(
   "/utilisateur",
   validator.validateUtilisateur,
   hashPassword,
   utilisateurControllers.add
 ) // dec 2023
-router.put(
-  "/utilisateur/:id",
-  validator.validateUtilisateur,
-  hashPassword,
-  utilisateurControllers.edit
-)
-router.delete("/utilisateur/:id", checkToken, utilisateurControllers.destroy)
+
 router.get("/utilisateuremailexists", utilisateurControllers.findemail) // dec 2023
 
 // ROUTE JOINTURE
@@ -43,12 +33,6 @@ router.get(
   "/utilisateur/with/categorie",
   utilisateurControllers.toutlescreateurs
 ) // dec 2023
-router.post(
-  "/utilisateur/with/categorie",
-  validator.validateUtilisateur,
-  hashPassword,
-  utilisateurControllers.editutilisateurcategorie
-)
 
 // ROUTE OBJETS
 router.get("/objets", objetsControllers.browse)
@@ -61,87 +45,40 @@ router.get(
   "/utilisateur/avec/objets",
   objetsControllers.readobjetsByUtilisateur
 )
-router.get("/objets/with/categorie", objetsControllers.objetsByCategorie)
-router.get("/avisurobjet", objetsControllers.readavisobjet)
+router.get("/objets/with/categorie", objetsControllers.objetsByCategorie) // dec 2023
 router.get("/avisurobjetparid", avisobjetControllers.readavisobjetid) // dec 2023
-router.get("/quantitecommande", objetsControllers.vuquantiteobjets)
-
+router.get("/quantitecommande", objetsControllers.vuquantiteobjets) // dec 2023
 router.post("/objetbycreateur", objetsControllers.ajoutbycreateur) // le 21 dec
 
 // ROUTE CATEGORIE
-router.get("/categorie", categorieControllers.browse)
-router.get("/categorie/:id", categorieControllers.read)
+
 router.get("/categriebyuser", utilisateurControllers.finduserC) // dec 2023
 
 // ROUTE COMMANDE
-router.get("/commande", commandeControllers.browse)
-router.get("/commande/:id", commandeControllers.read)
-router.post("/commande", checkToken, commandeControllers.add)
-router.put("/commande/:id", checkToken, commandeControllers.edit)
-router.delete("/commande/:id", checkToken, commandeControllers.destroy)
+
 router.get("/histocommande", commandeControllers.cbyuser) // dec 2023
-router.get("/commandelastID", commandeControllers.dernierID)
+router.get("/commandelastID", commandeControllers.dernierID) // dec 2023
 router.post("/commandeandobjet/:id", commandeControllers.validecommande) // dec 2023
 
 // ROUTE AVIS UTILISATEUR A CREATEUR
-router.get("/avisutilisateur", avisutilisateurControllers.browse)
-router.get("/avisutilisateur", avisutilisateurControllers.read)
-router.post("/avisutilisateur", checkToken, avisutilisateurControllers.add)
-router.put("/avisutilisateur", checkToken, avisutilisateurControllers.edit)
-router.delete(
-  "/avisutilisateur",
-  checkToken,
-  avisutilisateurControllers.destroy
-)
 router.get("/avislaisse", avisutilisateurControllers.surcreateur) // dec 2023
 
 // ROUTE AVIS OBJETS
-router.get("/avisobjet", avisobjetControllers.browse)
-router.get("/avisobjet", avisobjetControllers.read)
+
 router.get("/avisutilisateurhome", avisobjetControllers.readavis) // dec 2023
 router.post("/avisobjet", checkToken, avisobjetControllers.add) // le 21 dec
-router.put("/avisobjet", checkToken, avisobjetControllers.edit)
-router.delete("/avisobjet", checkToken, avisobjetControllers.destroy)
 
 // ROUTE liaison COMMANDE OBJET
-router.get("/commandehasobjets", commandeobjetsControllers.browse)
-router.get("/commandehasobjets", commandeobjetsControllers.read)
-router.post("/commandehasobjets", checkToken, commandeobjetsControllers.add)
-router.put("/commandehasobjets", checkToken, commandeobjetsControllers.edit)
-router.delete(
-  "/commandehasobjets",
-  checkToken,
-  commandeobjetsControllers.destroy
-)
+
+router.post("/commandehasobjets", checkToken, commandeobjetsControllers.add) // dec 2023
 
 // ROUTE PANIER
-router.get("/panier", panierControllers.browse)
-router.get("/panier", panierControllers.read)
 router.post("/panier", checkToken, panierControllers.add) // dec 2023
 router.delete("/panier", checkToken, panierControllers.objetuser) // dec 2023
 router.delete("/panierbyuser", checkToken, panierControllers.delbyuser) // dec 2023
-router.get("/panieruser", panierControllers.byuser)
 router.put("/panier", checkToken, panierControllers.upanier) // dec 2023
 router.get("/objetpanier", panierControllers.achatbyuser) // dec 2023
 
-// ROUTE liaison CREATEUR CATEGORIE
-router.get("/utilisateurhascategorie", utilisateurcategorieControllers.browse)
-router.get("/utilisateurhascategorie", utilisateurcategorieControllers.read)
-router.post(
-  "/utilisateurhascategorie",
-  checkToken,
-  utilisateurcategorieControllers.add
-)
-router.put(
-  "/utilisateurhascategorie",
-  checkToken,
-  utilisateurcategorieControllers.edit
-)
-router.delete(
-  "/utilisateurhascategorie",
-  checkToken,
-  utilisateurcategorieControllers.destroy
-)
 // ROUTE favoris
 router.get("/favoris", checkToken, favorisControlers.lirefavoris) // dec 2023
 router.post("/favoris", checkToken, favorisControlers.ajoutfavoris) // dec 2023
@@ -150,33 +87,10 @@ router.get("/favorispouruser", checkToken, favorisControlers.favorisuser) // dec
 router.delete("/favorispouruser", checkToken, favorisControlers.delfavorisuser) // dec 2023
 
 // ROUTE liaison UTILISATEUR OBJETS
-router.get("/utilisateurhasobjets", utilisateurobjetsControllers.browse)
-router.get("/utilisateurhasobjets", utilisateurobjetsControllers.read)
 router.post(
   "/utilisateurhasobjets",
   checkToken,
   utilisateurobjetsControllers.add
-)
-router.put(
-  "/utilisateurhasobjets",
-  checkToken,
-  utilisateurobjetsControllers.edit
-)
-router.delete(
-  "/utilisateurhasobjets",
-  checkToken,
-  utilisateurobjetsControllers.destroy
-)
-
-// ROUTE liaison CATEGORIE OBJETS
-router.get("/categoriehasobjets", categorieobjetsControllers.browse)
-router.get("/categoriehasobjets", categorieobjetsControllers.read)
-router.post("/categoriehasobjets", checkToken, categorieobjetsControllers.add)
-router.put("/categoriehasobjets", checkToken, categorieobjetsControllers.edit)
-router.delete(
-  "/categoriehasobjets",
-  checkToken,
-  categorieobjetsControllers.destroy
 )
 
 // ROUTE UPLOAD IMAGE DANS BACKEND
@@ -185,7 +99,7 @@ router.post(
   "/upload/:dossier",
   upload.single("myfile"),
   uploadControllers.uploadavecdossier
-)
+) // dec 2023
 
 // ROUTE de CONNEXION
 router.post(

@@ -31,7 +31,6 @@ const models = {}
 
 const AvisobjetManager = require("./AvisobjetManager")
 const AvisutilisateurManager = require("./AvisutilisateurManager")
-const CategorieManager = require("./CategorieManager")
 const CommandeManager = require("./CommandeManager")
 const CommandeobjetsManager = require("./CommandeobjetsManager")
 const ObjetsManager = require("./ObjetsManager")
@@ -53,9 +52,6 @@ models.avisobjet.setDatabase(pool)
 
 models.avisutilisateur = new AvisutilisateurManager()
 models.avisutilisateur.setDatabase(pool)
-
-models.categorie = new CategorieManager()
-models.categorie.setDatabase(pool)
 
 models.commande = new CommandeManager()
 models.commande.setDatabase(pool)
