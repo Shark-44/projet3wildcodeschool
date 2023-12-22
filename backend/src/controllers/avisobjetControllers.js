@@ -27,7 +27,20 @@ const readavis = (req, res) => {
       res.sendStatus(500)
     })
 }
+const readavisobjetid = (req, res) => {
+  const id = req.query.id
+  models.avisobjet
+    .readavisobjetid(id)
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
 module.exports = {
   add,
   readavis,
+  readavisobjetid,
 }

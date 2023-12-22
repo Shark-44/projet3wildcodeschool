@@ -1,17 +1,5 @@
 const models = require("../models")
 
-const browse = (req, res) => {
-  models.utilisateur
-    .findAll()
-    .then(([rows]) => {
-      res.send(rows)
-    })
-    .catch((err) => {
-      console.error(err)
-      res.sendStatus(511)
-    })
-}
-
 const add = (req, res) => {
   const utilisateur = req.body
   utilisateur.password = req.body.hashedPassword
@@ -26,58 +14,6 @@ const add = (req, res) => {
       res.sendStatus(512)
     })
 }
-const read = (req, res) => {
-  models.utilisateur
-    .find(req.params.id)
-    .then(([rows]) => {
-      if (rows[0] == null) {
-        res.sendStatus(404)
-      } else {
-        res.send(rows[0])
-      }
-    })
-    .catch((err) => {
-      console.error(err)
-      res.sendStatus(513)
-    })
-}
-
-const edit = (req, res) => {
-  const utilisateur = req.body
-
-  utilisateur.id = parseInt(req.params.id, 10)
-
-  models.utilisateur
-    .update(utilisateur)
-    .then(([result]) => {
-      if (result.affectedRows === 0) {
-        res.sendStatus(404)
-      } else {
-        res.sendStatus(204)
-      }
-    })
-    .catch((err) => {
-      console.error(err)
-      res.sendStatus(514)
-    })
-}
-
-const destroy = (req, res) => {
-  models.utilisateur
-    .delete(req.params.id)
-    .then(([result]) => {
-      if (result.affectedRows === 0) {
-        res.sendStatus(404)
-      } else {
-        res.sendStatus(204)
-      }
-    })
-    .catch((err) => {
-      console.error(err)
-      res.sendStatus(516)
-    })
-}
-
 const toutlescreateurs = (req, res) => {
   models.utilisateur
     .readallcreateur()
@@ -156,11 +92,7 @@ const findemail = (req, res) => {
     })
 }
 module.exports = {
-  browse,
   add,
-  read,
-  edit,
-  destroy,
   toutlescreateurs,
   loginUtilisateur,
   logoutUtilisateur,

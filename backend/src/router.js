@@ -18,21 +18,14 @@ const validator = require("./validator")
 const favorisControlers = require("./controllers/favorisControllers")
 
 // ROUTES UTILISATEUR
-router.get("/utilisateur", utilisateurControllers.browse)
-router.get("/utilisateur/:id", utilisateurControllers.read)
+
 router.post(
   "/utilisateur",
   validator.validateUtilisateur,
   hashPassword,
   utilisateurControllers.add
 ) // dec 2023
-router.put(
-  "/utilisateur/:id",
-  validator.validateUtilisateur,
-  hashPassword,
-  utilisateurControllers.edit
-)
-router.delete("/utilisateur/:id", checkToken, utilisateurControllers.destroy)
+
 router.get("/utilisateuremailexists", utilisateurControllers.findemail) // dec 2023
 
 // ROUTE JOINTURE
@@ -53,10 +46,8 @@ router.get(
   objetsControllers.readobjetsByUtilisateur
 )
 router.get("/objets/with/categorie", objetsControllers.objetsByCategorie) // dec 2023
-router.get("/avisurobjet", objetsControllers.readavisobjet) // del..........................
 router.get("/avisurobjetparid", avisobjetControllers.readavisobjetid) // dec 2023
 router.get("/quantitecommande", objetsControllers.vuquantiteobjets) // dec 2023
-
 router.post("/objetbycreateur", objetsControllers.ajoutbycreateur) // le 21 dec
 
 // ROUTE CATEGORIE
@@ -64,11 +55,7 @@ router.post("/objetbycreateur", objetsControllers.ajoutbycreateur) // le 21 dec
 router.get("/categriebyuser", utilisateurControllers.finduserC) // dec 2023
 
 // ROUTE COMMANDE
-router.get("/commande", commandeControllers.browse) // del...........................
-router.get("/commande/:id", commandeControllers.read) // del.........................
-router.post("/commande", checkToken, commandeControllers.add) // del.................
-router.put("/commande/:id", checkToken, commandeControllers.edit) // del.............
-router.delete("/commande/:id", checkToken, commandeControllers.destroy) // del.......
+
 router.get("/histocommande", commandeControllers.cbyuser) // dec 2023
 router.get("/commandelastID", commandeControllers.dernierID) // dec 2023
 router.post("/commandeandobjet/:id", commandeControllers.validecommande) // dec 2023
@@ -86,8 +73,6 @@ router.post("/avisobjet", checkToken, avisobjetControllers.add) // le 21 dec
 router.post("/commandehasobjets", checkToken, commandeobjetsControllers.add) // dec 2023
 
 // ROUTE PANIER
-router.get("/panier", panierControllers.browse)
-router.get("/panier", panierControllers.read)
 router.post("/panier", checkToken, panierControllers.add) // dec 2023
 router.delete("/panier", checkToken, panierControllers.objetuser) // dec 2023
 router.delete("/panierbyuser", checkToken, panierControllers.delbyuser) // dec 2023
