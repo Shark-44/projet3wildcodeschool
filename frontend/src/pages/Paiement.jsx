@@ -86,7 +86,6 @@ function Paiement({ setAddpanier, addpanier }) {
         quantiteCommande: objet.quantite_panier,
         dateCommande,
       }
-      console.info(data)
       return AlterwordAPI.post(`/commandeandobjet/${index}`, data)
         .then((response) => {
           console.info(`Commande pour l'objet ${index} réussie!`)

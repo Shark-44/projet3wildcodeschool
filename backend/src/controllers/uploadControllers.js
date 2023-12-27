@@ -2,6 +2,9 @@ const fs = require("fs")
 
 class UploadController {
   static upload = (req, res) => {
+    if (!req.file) {
+      return res.status(400).send("No file uploaded")
+    }
     fs.rename(
       req.file.path,
       `public/assets/images/avatar/${req.file.originalname}`,
