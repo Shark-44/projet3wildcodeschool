@@ -11,12 +11,16 @@
   .top{
     display: flex;
     gap: 25px;
+    width: 100%;
   }
   #bienvenu{
     color: white;
   }
   .blockcoor {
     display: flex;
+    width: 120%;
+    justify-content: center;
+    margin-right: 20px;
   }
   .coordonnees {
     border-radius: 15px;
@@ -24,6 +28,7 @@
     padding: 5px;
     width: 60vw;
   }
+
   .detailcoor{
     color: white;
     margin-left: 50px;

@@ -16,9 +16,10 @@ const utilisateurobjetsControllers = require("./controllers/utilisateurobjetsCon
 const uploadControllers = require("./controllers/uploadControllers")
 const validator = require("./validator")
 const favorisControlers = require("./controllers/favorisControllers")
+const categorieControllers = require("./controllers/categorieControllers")
 
 // ROUTES UTILISATEUR
-
+router.get("/utilisateur/:id", utilisateurControllers.findcreateur)
 router.post(
   "/utilisateur",
   validator.validateUtilisateur,
@@ -53,6 +54,7 @@ router.post("/objetbycreateur", objetsControllers.ajoutbycreateur) // le 21 dec
 // ROUTE CATEGORIE
 
 router.get("/categriebyuser", utilisateurControllers.finduserC) // dec 2023
+router.get("/categorie", categorieControllers.browse)
 
 // ROUTE COMMANDE
 

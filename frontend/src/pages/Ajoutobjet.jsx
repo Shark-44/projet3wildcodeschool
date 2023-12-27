@@ -26,7 +26,7 @@ function Ajoutobjet() {
   const UtilisateurId = Cookies.get("UtilisateurId")
   const [categorie, setCategorie] = useState("")
   const CategorieId = categorie.categorie_id
-  console.info("la categorie enregistre", CategorieId)
+
   // Pour adapter la bdd et les dossiers images
   let dossier = "default"
   if (categorie.categorie_id === 1) {
@@ -36,7 +36,7 @@ function Ajoutobjet() {
   } else if (categorie.categorie_id === 3) {
     dossier = "print"
   }
-  console.info("UtilisateurId:", UtilisateurId)
+
   // Les fonctions
   useEffect(() => {
     AlterwordAPI.get(`/categriebyuser?UtilisateurId=${UtilisateurId}`).then(
@@ -53,8 +53,7 @@ function Ajoutobjet() {
       CategorieId,
     })
   }
-  console.info("dans la categorie", CategorieId)
-  console.info(formData)
+
   // gestion des images
   const uploadImage = (e, photoNumber) => {
     const file = e.target.files[0]
@@ -86,8 +85,6 @@ function Ajoutobjet() {
         ...prevFormData,
         photo1: "",
       }))
-    } else {
-      console.info("1")
     }
   }
   const cancelImage2 = (photoNumber) => {
@@ -97,8 +94,6 @@ function Ajoutobjet() {
         ...prevFormData,
         photo2: "",
       }))
-    } else {
-      console.info("2")
     }
   }
   // l'enregistrement

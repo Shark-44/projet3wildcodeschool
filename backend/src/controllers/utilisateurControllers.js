@@ -1,5 +1,21 @@
 const models = require("../models")
 
+const findcreateur = (req, res) => {
+  models.utilisateur
+    .find(req.params.id)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(434)
+      } else {
+        res.send(rows[0])
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 const add = (req, res) => {
   const utilisateur = req.body
   utilisateur.password = req.body.hashedPassword
@@ -92,6 +108,7 @@ const findemail = (req, res) => {
     })
 }
 module.exports = {
+  findcreateur,
   add,
   toutlescreateurs,
   loginUtilisateur,

@@ -111,7 +111,7 @@ const upanier = (req, res) => {
 }
 const objetuser = (req, res) => {
   const objetdel = req.query
-  console.info("pour delete")
+
   models.panier
     .delobjetuser(objetdel)
     .then(([rows]) => {

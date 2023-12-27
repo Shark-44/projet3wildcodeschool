@@ -24,7 +24,7 @@ function Formulaire() {
     photo: "",
   })
 
-  const [image, setImage] = useState("./src/assets/avatar.png")
+  const [image, setImage] = useState("")
   const [visuel, setVisuel] = useState("./src/assets/avatar.png")
   // Partie enregistrement
   const { register, handleSubmit, setValue } = useForm()
@@ -36,6 +36,7 @@ function Formulaire() {
   const [hasUppercase, setHasUppercase] = useState(false)
   const [hasLowercase, setHasLowercase] = useState(false)
   const [hasDigit, setHasDigit] = useState(false)
+  const [hasSymbol, setHasSymbol] = useState(false)
   const [isLengthValid, setIsLengthValid] = useState(false)
   const [selectedOption, setSelectedOption] = useState(0)
 
@@ -112,19 +113,24 @@ function Formulaire() {
         return
       }
       const formPayload = new FormData()
-      formPayload.append("myfile", image)
+      if (image) {
+        formPayload.append("myfile", image)
+      }
 
-      const response = await fetch(API_URL + "/upload", {
-        method: "POST",
-        body: formPayload,
-      })
+      if (image) {
+        const response = await fetch(API_URL + "/upload", {
+          method: "POST",
+          body: formPayload,
+        })
 
-      // eslint-disable-next-line no-unused-vars
-      const data = await response.json()
+        // eslint-disable-next-line no-unused-vars
+        const data = await response.json()
+      }
 
       const formDataToSend = {
         ...formData,
         CategorieID: formData.createur === "0" ? null : formData.CategorieID,
+        photo: image ? image.name : null,
       }
       await AlterwordAPI.post("/utilisateur", formDataToSend)
       navigate("/")
@@ -150,10 +156,12 @@ function Formulaire() {
     const uppercaseRegex = /[A-Z]/
     const lowercaseRegex = /[a-z]/
     const digitRegex = /\d/
+    const symbolRegex = /[!@#$%^&*(),.?":{}|<>]/
 
     setHasUppercase(uppercaseRegex.test(newPassword))
     setHasLowercase(lowercaseRegex.test(newPassword))
     setHasDigit(digitRegex.test(newPassword))
+    setHasSymbol(symbolRegex.test(newPassword))
     setIsLengthValid(newPassword.length >= 8)
 
     const result = zxcvbn(newPassword) // Valide la complexité du password
@@ -164,6 +172,7 @@ function Formulaire() {
       hasUppercase,
       hasLowercase,
       hasDigit,
+      hasSymbol,
       isLengthValid
     )
   }
@@ -218,7 +227,7 @@ function Formulaire() {
               <input
                 type={formData.visiblePW ? "text" : "password"}
                 className="formulairebase"
-                placeholder="!-m-M-1 et plus de 8 caracteres"
+                placeholder="Plus de 8 caracteres"
                 onChange={(e) => handlePasswordChange(e)}
               />
               <div
@@ -242,13 +251,18 @@ function Formulaire() {
 
             {password && (
               <div className="Condition">
-                {hasUppercase && hasLowercase && hasDigit && isLengthValid ? (
+                {hasUppercase &&
+                hasLowercase &&
+                hasDigit &&
+                isLengthValid &&
+                hasSymbol ? (
                   <h6>condition remplies</h6>
                 ) : (
                   <div>
-                    {hasUppercase ? "✅" : "❌"} Au moins une majuscule
-                    {hasLowercase ? "✅" : "❌"} Au moins une minuscule
+                    {hasLowercase && hasUppercase ? "✅" : "❌"} Au moins une
+                    majuscule et minuscule
                     {hasDigit ? "✅" : "❌"} Au moins un chiffre
+                    {hasSymbol ? "✅" : "❌"} Au moins un symbole
                     {isLengthValid ? "✅" : "❌"} Et plus de 8 caractères
                   </div>
                 )}
